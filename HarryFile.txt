@@ -1,5 +1,7 @@
 This is my new test file.
 
 This is the second line of my test file
-.
+
+
 This is the third line of my test file.
+
