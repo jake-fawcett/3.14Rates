@@ -1,0 +1,233 @@
+body{
+	background-color: #006994;
+	background-image: url("Sea.png");
+}
+
+.nav {
+	background-image: url("planks.jpg");
+	background-repeat: repeat;
+	background-size: 100px 100px;
+	overflow: hidden;
+	margin-left: 250px;
+	margin-bottom: 25px;
+}
+
+.nav a {
+	float: left;
+    display: block;
+	color: #e2dfa8;
+    text-align: center;
+    padding: 31px 20px;
+    text-decoration: none;
+    font-size: 15px;
+}
+
+.nav a:hover {
+	background-color: black;
+	opacity: 0.6;
+	color: white;
+}
+
+#PirateGif {
+	padding: -31px -20px;
+	margin-bottom: -30px;
+	margin-top: -30px;
+}
+
+#PirateGif img {
+	height: 75px;
+}
+
+#active {
+	background-color: black;
+	opacity: 0.6;
+	color: white;
+}
+
+#logo {
+	float: left;
+	width: 250px;
+	height: 80px;
+}
+
+p{
+	font-size: 15px;
+	font-family: Comic Sans;
+	color: #e2dfa8;
+	text-align: center;
+}
+
+h1{
+	color: #e2dfa8;
+	font-size: 25px;
+	text-align: center;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+
+h2 {
+	margin-top: -0.5vw;
+	margin-left: 2vw;
+}
+
+#Line {
+	margin-top: -15px;
+	margin-bottom: 7.5px;
+	height: 1px;
+	width: 100%;
+	background-color: #e2dfa8;
+}
+
+#AboutUs {
+	background-image: url("planks.jpg");
+	background-repeat: repeat;
+	background-size: 100px 100px;
+	width: 90%;
+	height: 110px;
+	margin: 0px 5vw 0px 5vw;
+}
+
+#Assessment1 {
+	background-image: url("planks.jpg");
+	background-repeat: repeat;
+	background-size: 100px 100px;
+    width: 35vw;
+	margin: 25px 4vw 25px 8vw;
+	float: left;
+}
+
+#Assessment2 {
+	background-image: url("planks.jpg");
+	background-repeat: repeat;
+	background-size: 100px 100px;
+    width: 35vw;
+	margin: 25px 8vw 25px 4vw;
+	float: left;
+}
+
+#Assessment3 {
+	background-image: url("planks.jpg");
+	background-repeat: repeat;
+	background-size: 100px 100px;
+    width: 35vw;
+	margin: 25px 4vw 25px 8vw;
+	float: left;
+}
+
+#Assessment4 {
+	background-image: url("planks.jpg");
+	background-repeat: repeat;
+	background-size: 100px 100px;
+    width: 35vw;
+	margin: 25px 8vw 25px 4vw;
+	float: left;
+}
+
+li {
+	color: #e2dfa8;
+}
+
+a:link {
+	color: #e2dfa8;
+}
+
+a:visited {
+	color: #e2dfa8;
+}
+
+a:hover {
+	color: hotpink;
+}
+
+.pictures {
+	margin-left: 5vw;
+	margin-right: 5vw;
+	padding-bottom: 65.5vw;
+	background-image: url("planks.jpg");
+	background-repeat: repeat;
+	background-size: 100px 100px;
+}
+
+.pictures h2 {
+	color: #e2dfa8;
+	font-size: 25px;
+	text-align: center;
+}
+
+#Ben img {
+	width: 25vw;
+	height: 25vw;
+	margin-left: 2.5vw;
+	border-radius: 50% 50% 50% 50%;
+}
+#Ben {
+	float: left;
+	text-align: center;
+	width: 27.5vw;
+	margin-top: 1vw;
+}
+
+#Harry img {
+	width: 25vw;
+	height: 25vw;
+	margin-left: 2.5vw;
+	border-radius: 50% 50% 50% 50%;
+}
+#Harry {
+	float: left;
+	text-align: center;
+	width: 30vw;
+	margin-top: 1vw;
+}
+
+#Jake img {
+	width: 25vw;
+	height: 25vw;
+	margin-left: 2.5vw;
+	border-radius: 50% 50% 50% 50%;
+}
+#Jake {
+	float: left;
+	text-align: center;
+	width: 27.5vw;
+	margin-top: 1vw;
+}
+
+#Jing img {
+	width: 25vw;
+	height: 25vw;
+	margin-left: 2.5vw;
+	border-radius: 50% 50% 50% 50%;
+}
+#Jing {
+	float: left;
+	text-align: center;
+	width: 27.5vw;
+	padding-bottom: 3vw;
+}
+
+#Scott img {
+	width: 25vw;
+	height: 25vw;
+	margin-left: 2.5vw;
+	border-radius: 50% 50% 50% 50%;
+}
+#Scott {
+	float: left;
+	text-align: center;
+	width: 27.5vw;
+	padding-bottom: 3vw;
+}
+
+#Cameron img {
+	width: 25vw;
+	height: 25vw;
+	margin-left: 2.5vw;
+	border-radius: 50% 50% 50% 50%;
+}
+#Cameron {
+	float: left;
+	text-align: center;
+	width: 27.5vw;
+	padding-bottom: 3vw;
+}
