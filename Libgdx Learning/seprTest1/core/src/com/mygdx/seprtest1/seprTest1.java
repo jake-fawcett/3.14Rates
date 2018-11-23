@@ -38,4 +38,4 @@ public class seprTest1 extends ApplicationAdapter {
 		//img.dispose();
 		font.dispose();
 	}
-}
+} //Testing
