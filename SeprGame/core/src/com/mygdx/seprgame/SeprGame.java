@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class SeprGame extends ApplicationAdapter {
+	//FIXME Move this class into display
 	SpriteBatch batch;
 	Texture img;
 	
