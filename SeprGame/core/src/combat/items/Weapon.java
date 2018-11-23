@@ -2,7 +2,7 @@ package combat.items;
 
 public class Weapon {
     private String name;
-    private int Cost;
+    private int cost;
     private int baseDamage;
     private int baseCooldown;
     private int baseCritChance;
@@ -12,7 +12,7 @@ public class Weapon {
     public Weapon(String name, int cost, int baseDamage, int baseCooldown, int baseCritChance, int baseChanceToHit,
                   int currentCooldown) {
         this.name = name;
-        Cost = cost;
+        this.cost = cost;
         this.baseDamage = baseDamage;
         this.baseCooldown = baseCooldown;
         this.baseCritChance = baseCritChance;
@@ -25,7 +25,7 @@ public class Weapon {
     }
 
     public int getCost() {
-        return Cost;
+        return cost;
     }
 
     public int getBaseDamage() {
