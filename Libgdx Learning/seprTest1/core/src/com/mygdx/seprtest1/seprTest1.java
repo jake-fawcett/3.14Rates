@@ -27,7 +27,7 @@ public class seprTest1 extends ApplicationAdapter {
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
 		batch.begin();
-		font.draw(batch, "Hello Scott", 200, 200);
+		font.draw(batch, "Hello Jake", 200, 200);
 		//batch.draw(img, 0, 0);
 		batch.end();
 	}
