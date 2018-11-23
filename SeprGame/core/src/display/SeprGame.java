@@ -1,4 +1,4 @@
-package com.mygdx.seprgame;
+package display;
 
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
