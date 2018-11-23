@@ -12,9 +12,9 @@ public class seprTest1 extends ApplicationAdapter {
 	SpriteBatch batch;
 	//Texture img;
 	BitmapFont font;
-	
+
 	@Override
-	public void create () {
+	public void create() {
 		batch = new SpriteBatch();
 		//img = new Texture("badlogic.jpg");
 		font = new BitmapFont();
@@ -22,7 +22,7 @@ public class seprTest1 extends ApplicationAdapter {
 	}
 
 	@Override
-	public void render () {											//Called Each Frame (Event Loop), Other Functions respond to events
+	public void render() {                                            //Called Each Frame (Event Loop), Other Functions respond to events
 		Gdx.gl.glClearColor(1, 1, 1, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
@@ -31,9 +31,9 @@ public class seprTest1 extends ApplicationAdapter {
 		//batch.draw(img, 0, 0);
 		batch.end();
 	}
-	
+
 	@Override
-	public void dispose () {
+	public void dispose() {
 		batch.dispose();
 		//img.dispose();
 		font.dispose();
