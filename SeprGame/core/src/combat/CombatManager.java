@@ -13,6 +13,4 @@ public class CombatManager {
         this.enemy = enemy;
         this.isPlayersTurn = isPlayersTurn;
     }
-
-
 }
