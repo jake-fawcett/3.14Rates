@@ -18,7 +18,7 @@ public class Room {
 /*  TODO Add in enumeration for function.
     I'm not confident on how to do them so if someone who is wants to take it I'm happy for them to.
     - Scott*/
-//    private FuncitonsEnumerable fucntion GOES HERE;
+//    private FunctionsEnumerable function GOES HERE;
 
     public Room(String name, double multiplier, int baseHealth, int hp, RoomUpgrade[] upgrades) {
         this.name = name;
