@@ -13,4 +13,6 @@ public class CombatManager {
         this.enemy = enemy;
         this.isPlayersTurn = isPlayersTurn;
     }
+
+    //TODO Write methods
 }
