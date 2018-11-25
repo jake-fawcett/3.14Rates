@@ -1,5 +1,5 @@
 package combat.actors;
 
-interface CombatActor{
+interface CombatActor {
     //TODO Write me
 }
