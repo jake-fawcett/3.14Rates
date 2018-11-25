@@ -5,7 +5,9 @@ import combat.items.RoomUpgrade;
 public class Room {
     private String name;
     private double multiplier;
-    private int baseHealth;
+    private int baseHP;
+    private int hp;
+
     /**
      * A 1x3 array of RoomUpgrade
      *
@@ -18,10 +20,11 @@ public class Room {
     - Scott*/
 //    private FuncitonsEnumerable fucntion GOES HERE;
 
-    public Room(String name, double multiplier, int baseHealth, RoomUpgrade[] upgrades) {
+    public Room(String name, double multiplier, int baseHealth, int hp, RoomUpgrade[] upgrades) {
         this.name = name;
         this.multiplier = multiplier;
-        this.baseHealth = baseHealth;
+        this.baseHP = baseHealth;
+        this.hp = hp;
         this.upgrades = upgrades;
     }
 
@@ -33,8 +36,12 @@ public class Room {
         return multiplier;
     }
 
-    public int getBaseHealth() {
-        return baseHealth;
+    public int getBaseHP() {
+        return baseHP;
+    }
+
+    public int getHp() {
+        return hp;
     }
 
     public RoomUpgrade[] getUpgrades() {
