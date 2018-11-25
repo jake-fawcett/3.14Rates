@@ -1,5 +1,5 @@
 package combat.actors;
 
-public class CombatEnemy {
+public class CombatEnemy implements CombatActor {
     //TODO Write me
 }
