@@ -15,17 +15,16 @@ public class Room {
      * a third. So the first slot is 100% effective, the second is 66%, then 33%.
      */
     private RoomUpgrade[] upgrades;
-/*  TODO Add in enumeration for function.
-    I'm not confident on how to do them so if someone who is wants to take it I'm happy for them to.
-    - Scott*/
-//    private FunctionsEnumerable function GOES HERE;
+    private RoomFunction function;
 
-    public Room(String name, double multiplier, int baseHealth, int hp, RoomUpgrade[] upgrades) {
+    public Room(String name, double multiplier, int baseHealth, int hp, RoomUpgrade[] upgrades,
+                RoomFunction function) {
         this.name = name;
         this.multiplier = multiplier;
         this.baseHP = baseHealth;
         this.hp = hp;
         this.upgrades = upgrades;
+        this.function = function;
     }
 
     public String getName() {
