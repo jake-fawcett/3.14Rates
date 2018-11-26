@@ -13,7 +13,7 @@ public class CombatPlayer extends CombatActor {
     }
 
     @Override
-    public List<Pair<Room, Weapon>> takeTurn(List<Pair<Room, Integer>> damageTaken) {
+    public List<Pair<Room, Weapon>> takeTurn(List<Pair<Room, Integer>> damageReport) {
         return null;
 //        TODO Write me
     }
