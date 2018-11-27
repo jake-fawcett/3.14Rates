@@ -1,4 +1,4 @@
-package combat;
+package combat.manager;
 
 import combat.actors.CombatPlayer;
 import combat.items.Weapon;
@@ -34,7 +34,7 @@ public class CombatManager {
      * @return damageReport - A report detailing which rooms were hit and for how much damage. See CombatActor >
      * takeTurn() for its use and more info.
      */
-    private List<Pair<Room, Integer>> applyTurn(List<Pair<Room, Weapon>> attackReport) {
+    List<Pair<Room, Integer>> applyTurn(List<Pair<Room, Weapon>> attackReport) {
         return null;
     }
 
@@ -45,6 +45,6 @@ public class CombatManager {
      * how this is done depends on implementation
      */
     @SuppressWarnings("JavaDoc")
-    private void endCombat() {
+    void endCombat() {
     }
 }
