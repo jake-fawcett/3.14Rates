@@ -37,8 +37,9 @@ public class CombatEnemyTest {
     }
 
     private List<Room> createSampleRooms(){
-//        FIXME Write me once we have decided on the final rooms
-    return new ArrayList<Room>();
+//        FIXME SCOTT WORKING HERE
+        List<Room> rooms = new ArrayList<Room>();
+        return new ArrayList<Room>();
     }
 
     private List<Weapon> createSampleWeapons(){
