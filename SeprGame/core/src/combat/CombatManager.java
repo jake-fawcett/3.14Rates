@@ -23,7 +23,7 @@ public class CombatManager {
      * <p></p>
      * FIXME This will not return void when it has finished. Decide on what should be returned.
      */
-    private void enterCombat() {
+    public void enterCombat() {
     }
 
     /**
