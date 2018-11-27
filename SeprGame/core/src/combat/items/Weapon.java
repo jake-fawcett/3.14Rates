@@ -10,14 +10,14 @@ public class Weapon {
     private int currentCooldown;
 
     public Weapon(String name, int cost, int baseDamage, int baseCooldown, double baseCritChance,
-                  double baseChanceToHit, int currentCooldown) {
+                  double baseChanceToHit) {
         this.name = name;
         this.cost = cost;
         this.baseDamage = baseDamage;
         this.baseCooldown = baseCooldown;
         this.baseCritChance = baseCritChance;
         this.baseChanceToHit = baseChanceToHit;
-        this.currentCooldown = currentCooldown;
+        this.currentCooldown = 0;
     }
 
     public String getName() {
