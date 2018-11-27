@@ -5,12 +5,12 @@ public class Weapon {
     private int cost;
     private int baseDamage;
     private int baseCooldown;
-    private int baseCritChance;
-    private int baseChanceToHit;
+    private double baseCritChance;
+    private double baseChanceToHit;
     private int currentCooldown;
 
-    public Weapon(String name, int cost, int baseDamage, int baseCooldown, int baseCritChance, int baseChanceToHit,
-                  int currentCooldown) {
+    public Weapon(String name, int cost, int baseDamage, int baseCooldown, double baseCritChance,
+                  double baseChanceToHit, int currentCooldown) {
         this.name = name;
         this.cost = cost;
         this.baseDamage = baseDamage;
@@ -36,11 +36,11 @@ public class Weapon {
         return baseCooldown;
     }
 
-    public int getBaseCritChance() {
+    public double getBaseCritChance() {
         return baseCritChance;
     }
 
-    public int getBaseChanceToHit() {
+    public double getBaseChanceToHit() {
         return baseChanceToHit;
     }
 
