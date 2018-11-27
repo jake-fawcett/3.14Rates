@@ -13,16 +13,16 @@ import java.util.List;
 import static org.junit.Assert.*;
 
 public class CombatEnemyTest {
-    CombatEnemy tester;
+    private CombatEnemy tester;
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         // TODO Scott working here
         tester = new CombatEnemy(createSampleShip());
     }
 
     @After
-    public void tearDown() throws Exception {
+    public void tearDown() {
 
     }
 
@@ -31,10 +31,9 @@ public class CombatEnemyTest {
         List<Room> rooms = createSampleRooms();
         List<Weapon> weapons = createSampleWeapons();
         int baseHP = 100;
-        int currentHP = baseHP;
+        int currentHP = 100;
 
-        Ship myShip = new Ship(crew, rooms, weapons, baseHP, currentHP);
-        return myShip;
+        return new Ship(crew, rooms, weapons, baseHP, currentHP);
     }
 
     private List<Room> createSampleRooms(){
@@ -43,7 +42,16 @@ public class CombatEnemyTest {
     }
 
     private List<Weapon> createSampleWeapons(){
-//        FIXME Write me
+        List<Weapon> weapons = new ArrayList<Weapon>();
+        weapons.add(new Weapon("Weapon1", 50, 15, 2000, 0.05,
+                0.8, 0));
+        weapons.add(new Weapon("Weapon2", 50, 15, 2000, 0.05,
+                0.8, 0));
+        weapons.add(new Weapon("Weapon3", 10, 3, 1500, 0.05,
+                0.8, 0));
+        weapons.add(new Weapon("Weapon4", 100, 30, 4000, 0.05,
+                0.9, 0));
+
         return new ArrayList<Weapon>();
     }
 
