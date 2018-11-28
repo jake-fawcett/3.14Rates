@@ -8,5 +8,6 @@ public class CombatPlayerTest {
 
     @Test
     public void takeTurn() {
+        fail("Test not yet implemented");
     }
 }

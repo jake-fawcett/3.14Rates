@@ -93,6 +93,6 @@ public class CombatEnemyTest {
 
     @Test
     public void takeTurn() {
-
+        fail("Test not yet implemented");
     }
 }
