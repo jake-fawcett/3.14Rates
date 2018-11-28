@@ -39,7 +39,7 @@ public class Room {
 
     public void damage(int damage) {
         hp -= damage;
-        if (damage < 0) {
+        if (hp < 0) {
             hp = 0;
         }
     }
