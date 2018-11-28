@@ -2,6 +2,7 @@ package combat.ship;
 
 import combat.items.RoomUpgrade;
 
+@SuppressWarnings("WeakerAccess")
 public class Room {
     private int baseHP;
     private int hp;
@@ -22,7 +23,7 @@ public class Room {
     }
 
     public double getMultiplier() {
-        return hp/baseHP;
+        return (float) hp/ (float) baseHP;
     }
 
     public int getBaseHP() {
