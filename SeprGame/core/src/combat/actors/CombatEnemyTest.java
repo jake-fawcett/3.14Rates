@@ -7,6 +7,7 @@ import combat.ship.RoomFunction;
 import combat.ship.Ship;
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -92,7 +93,9 @@ public class CombatEnemyTest {
     }
 
     @Test
+    @Ignore
     public void takeTurn() {
+        //todo implement test
         fail("Test not yet implemented");
     }
 }
