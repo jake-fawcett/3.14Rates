@@ -18,7 +18,6 @@ public class RoomTest {
     @Test
     public void damage() {
         myRoom = new Room(100, 100, new RoomUpgrade[3], RoomFunction.CROWS_NEST);
-        int startHp = myRoom.getHp();
         myRoom.damage(50);
         assertEquals("HP should be 50 after 50 damage taken on a 100HP ship", 50, myRoom.getHp());
         myRoom.damage(100);
