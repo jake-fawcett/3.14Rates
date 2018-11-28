@@ -49,9 +49,9 @@ public class CombatEnemyTest {
         rooms.add(new Room(1.0, 150, 100,
                 createSampleUpgrades(RoomFunction.CREW_QUARTERS,0), RoomFunction.CREW_QUARTERS));
         rooms.add(new Room(1.0, 200, 100,
-                createSampleUpgrades(RoomFunction.CREW_QUARTERS,0), RoomFunction.NON_FUNCTIONAL));
+                createSampleUpgrades(RoomFunction.NON_FUNCTIONAL,0), RoomFunction.NON_FUNCTIONAL));
         rooms.add(new Room(1.0, 200, 100,
-                createSampleUpgrades(RoomFunction.CREW_QUARTERS,0), RoomFunction.NON_FUNCTIONAL));
+                createSampleUpgrades(RoomFunction.NON_FUNCTIONAL,0), RoomFunction.NON_FUNCTIONAL));
 
 
         return new ArrayList<Room>();
