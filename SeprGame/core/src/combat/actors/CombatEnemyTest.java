@@ -39,8 +39,21 @@ public class CombatEnemyTest {
     }
 
     private List<Room> createSampleRooms(){
-//        FIXME SCOTT WORKING HERE
         List<Room> rooms = new ArrayList<Room>();
+        rooms.add(new Room(1.0, 100, 100, createSampleUpgrades(RoomFunction.HELM, 0),
+                RoomFunction.HELM));
+        rooms.add(new Room(1.0, 150, 100, createSampleUpgrades(RoomFunction.CROWS_NEST,0),
+                RoomFunction.CROWS_NEST));
+        rooms.add(new Room(1.0, 120, 100, createSampleUpgrades(RoomFunction.GUN_DECK,0),
+                RoomFunction.GUN_DECK));
+        rooms.add(new Room(1.0, 150, 100,
+                createSampleUpgrades(RoomFunction.CREW_QUARTERS,0), RoomFunction.CREW_QUARTERS));
+        rooms.add(new Room(1.0, 200, 100,
+                createSampleUpgrades(RoomFunction.CREW_QUARTERS,0), RoomFunction.NON_FUNCTIONAL));
+        rooms.add(new Room(1.0, 200, 100,
+                createSampleUpgrades(RoomFunction.CREW_QUARTERS,0), RoomFunction.NON_FUNCTIONAL));
+
+
         return new ArrayList<Room>();
     }
 
