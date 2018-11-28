@@ -1,7 +1,9 @@
 package combat.actors;
 
+import combat.items.RoomUpgrade;
 import combat.items.Weapon;
 import combat.ship.Room;
+import combat.ship.RoomFunction;
 import combat.ship.Ship;
 import org.junit.After;
 import org.junit.Before;
@@ -40,6 +42,26 @@ public class CombatEnemyTest {
 //        FIXME SCOTT WORKING HERE
         List<Room> rooms = new ArrayList<Room>();
         return new ArrayList<Room>();
+    }
+
+    /**
+     * Creates a sample upgrade list. Creates one of a set.
+     *
+     * @param set The set of upgrades that you want to create. See cases in switch statement for possible sets.
+     * @return A list of upgrades.
+     */
+    private RoomUpgrade[] createSampleUpgrades(RoomFunction room, int set) {
+        RoomUpgrade[] upgrades = new RoomUpgrade[3];
+        switch (set){
+            case 0:
+//              Case zero returns no upgrades
+                break;
+            case 1:
+                upgrades[0] = new RoomUpgrade("Upgrade1", 100, 1.5, room);
+                upgrades[1] = new RoomUpgrade("Upgrade2", 50, 2, room);
+                break;
+        }
+        return upgrades;
     }
 
     private List<Weapon> createSampleWeapons(){
