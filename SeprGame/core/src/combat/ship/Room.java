@@ -3,11 +3,9 @@ package combat.ship;
 import combat.items.RoomUpgrade;
 
 public class Room {
-    private String name;
     private double multiplier;
     private int baseHP;
     private int hp;
-
     /**
      * A 1x3 array of RoomUpgrade
      *
@@ -17,18 +15,12 @@ public class Room {
     private RoomUpgrade[] upgrades;
     private RoomFunction function;
 
-    public Room(String name, double multiplier, int baseHealth, int hp, RoomUpgrade[] upgrades,
-                RoomFunction function) {
-        this.name = name;
+    public Room(double multiplier, int baseHealth, int hp, RoomUpgrade[] upgrades, RoomFunction function) {
         this.multiplier = multiplier;
         this.baseHP = baseHealth;
         this.hp = hp;
         this.upgrades = upgrades;
         this.function = function;
-    }
-
-    public String getName() {
-        return name;
     }
 
     public double getMultiplier() {
