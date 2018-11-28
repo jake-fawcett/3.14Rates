@@ -36,5 +36,12 @@ public class Room {
     public RoomUpgrade[] getUpgrades() {
         return upgrades;
     }
+
+    public void damage(int damage) {
+        hp -= damage;
+        if (damage < 0) {
+            hp = 0;
+        }
+    }
 }
 
