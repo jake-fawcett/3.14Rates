@@ -47,4 +47,19 @@ public class Weapon {
     public int getCurrentCooldown() {
         return currentCooldown;
     }
+
+    public void fire() {
+        if (currentCooldown == 0) {
+            currentCooldown = baseCooldown;
+        } else {
+            throw new IllegalStateException("Cannot fire before cooldown reaches 0");
+        }
+    }
+
+    public void decrementCooldown(int ticks){
+        currentCooldown -= ticks;
+        if (currentCooldown < 0) {
+            currentCooldown = 0;
+        }
+    }
 }
