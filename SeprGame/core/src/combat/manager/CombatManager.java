@@ -21,7 +21,7 @@ public class CombatManager {
     /**
      * Controls the whole process of combat from start to entering minigame.
      * <p></p>
-     * FIXME This will not return void when it has finished. Decide on what should be returned.
+     * TODO This will not return void when it has finished. Decide on what should be returned.
      */
     public void enterCombat() {
     }
