@@ -2,7 +2,7 @@ package combat.items;
 
 public class Weapon {
     private String name;
-    public int cost;
+    private int cost;
     private int baseDamage;
     private int baseCooldown;
     private double baseCritChance;
