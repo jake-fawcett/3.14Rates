@@ -6,8 +6,9 @@ public enum WeaponBank {
 
     private Weapon weapon;
 
-    public Weapon getWeapon() {
-        return weapon;
+    public Weapon getWeapon(){
+        return new Weapon(weapon.getName(), weapon.getCost(), weapon.getBaseDamage(), weapon.getBaseCooldown(),
+                weapon.getBaseCritChance(), weapon.getBaseChanceToHit());
     }
 
     WeaponBank(Weapon weapon) {
