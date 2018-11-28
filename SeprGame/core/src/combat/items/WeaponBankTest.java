@@ -24,7 +24,6 @@ public class WeaponBankTest {
     public void testGetWeaponCreatesNewInstances() {
     Weapon w1 = WeaponBank.values()[0].getWeapon();
     Weapon w2 = WeaponBank.values()[0].getWeapon();
-    System.out.println(w1.getCurrentCooldown());
     w1.fire();
     assertNotEquals("Weapons created from the same id should still be independent.", w1.getCurrentCooldown(),
             w2.getCurrentCooldown());
