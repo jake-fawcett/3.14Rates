@@ -15,7 +15,14 @@ public class WeaponTest {
     }
 
     @Test
-    public void fire() {
-        fail();
+    public void cooldownStartsAt0(){
+        assertEquals("Cooldown should start at 0", tester.getCurrentCooldown(), 0);
+    }
+
+    @Test
+    public void fireResetsCooldown() {
+        tester.fire();
+        assertEquals("Cooldown should be reset to base after fire", tester.getCurrentCooldown(),
+                tester.getBaseCooldown());
     }
 }
