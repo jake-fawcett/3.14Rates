@@ -3,7 +3,6 @@ package combat.ship;
 import combat.items.RoomUpgrade;
 
 public class Room {
-    private double multiplier;
     private int baseHP;
     private int hp;
     /**
@@ -15,8 +14,7 @@ public class Room {
     private RoomUpgrade[] upgrades;
     private RoomFunction function;
 
-    public Room(double multiplier, int baseHealth, int hp, RoomUpgrade[] upgrades, RoomFunction function) {
-        this.multiplier = multiplier;
+    public Room(int baseHealth, int hp, RoomUpgrade[] upgrades, RoomFunction function) {
         this.baseHP = baseHealth;
         this.hp = hp;
         this.upgrades = upgrades;
@@ -24,7 +22,7 @@ public class Room {
     }
 
     public double getMultiplier() {
-        return multiplier;
+        return hp/baseHP;
     }
 
     public int getBaseHP() {
