@@ -26,24 +26,21 @@ public class Room {
     }
 
     public double getMultiplier() {
-        final float SLOT_0_MULTIPLIER = (float) 1;
-        final float SLOT_1_MULTIPLIER = (float) 0.666;
-        final float SLOT_2_MULTIPLIER = (float) 0.333;
+        final float SLOT_0_MULTIPLIER = (float) 1, SLOT_1_MULTIPLIER = (float) 0.666, SLOT_2_MULTIPLIER = (float) 0.333;
         Map<Integer, Float> slots = new HashMap<Integer, Float>();
         slots.put(0, SLOT_0_MULTIPLIER);
         slots.put(1, SLOT_1_MULTIPLIER);
         slots.put(2, SLOT_2_MULTIPLIER);
-        double finalMultiplier;
+        double roomMultiplier;
 
-        //Fixme Multiplier names could be clearer
-        finalMultiplier = (double) hp / (double) baseHP;
+        roomMultiplier = (double) hp / (double) baseHP;
 
         for (int i = 0; i < 3; i ++) {
             if (upgrades[i] != null) {
-                finalMultiplier *= ((upgrades[i].getMultiplier() - 1)  * slots.get(i)) + 1;
+                roomMultiplier *= ((upgrades[i].getMultiplier() - 1)  * slots.get(i)) + 1;
             }
         }
-        return finalMultiplier;
+        return roomMultiplier;
     }
 
     public int getBaseHP() {
