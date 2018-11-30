@@ -22,8 +22,8 @@ public class CombatActorTest {
 
     @Before
     public void setUp() {
-        enemyTest = new CombatEnemy(SampleObjects.createSampleShip());
-        playerTest = new CombatPlayer(SampleObjects.createSampleShip());
+        enemyTest = new CombatEnemy(SampleObjects.createSampleShip(1));
+        playerTest = new CombatPlayer(SampleObjects.createSampleShip(1));
     }
 
     private List<Pair<Room, Integer>> createSampleDamageReport(CombatActor actor) {
