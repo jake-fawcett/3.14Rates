@@ -23,8 +23,17 @@ public class Room {
     }
 
     public double getMultiplier() {
-        //Fixme Take into account Upgrades
-        return (float) hp/ (float) baseHP;
+        //FIXME Write tests for me
+        double multiplier;
+        multiplier = (double) hp / (double) baseHP;
+        int slot = 1;
+        for (double i = 9.999; i > 0; i -= 3.333) {
+            if (upgrades[slot] != null) {
+                multiplier *= i;
+            }
+            slot ++;
+        }
+        return multiplier;
     }
 
     public int getBaseHP() {
