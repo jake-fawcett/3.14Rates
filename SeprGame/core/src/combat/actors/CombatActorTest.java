@@ -15,12 +15,14 @@ import java.util.List;
 
 import static org.junit.Assert.*;
 
-public class CombatEnemyTest {
-    private CombatEnemy tester;
+public class CombatActorTest {
+    private CombatEnemy enemyTest;
+    private CombatPlayer playerTest;
 
     @Before
     public void setUp() {
-        tester = new CombatEnemy(createSampleShip());
+        enemyTest = new CombatEnemy(createSampleShip());
+        playerTest = new CombatPlayer(createSampleShip());
     }
 
     private Ship createSampleShip() {
@@ -87,11 +89,11 @@ public class CombatEnemyTest {
         return new ArrayList<Weapon>();
     }
 
-    private List<Pair<Room, Integer>> createSampleDamageReport() {
+    private List<Pair<Room, Integer>> createSampleDamageReport(CombatActor actor) {
         List<Pair<Room, Integer>> report = new ArrayList<Pair<Room, Integer>>();
         try {
-            report.add(new Pair<Room, Integer>(tester.getShip().getRoom(RoomFunction.HELM), 5));
-            report.add(new Pair<Room, Integer>(tester.getShip().getRoom(RoomFunction.GUN_DECK), 10));
+            report.add(new Pair<Room, Integer>(actor.getShip().getRoom(RoomFunction.HELM), 5));
+            report.add(new Pair<Room, Integer>(actor.getShip().getRoom(RoomFunction.GUN_DECK), 10));
         } catch (IllegalArgumentException ex) {
             fail("Failed before test could be run due to error in setup. A room you tried to damage in the damage " +
                     "report does not exist.");
@@ -99,31 +101,39 @@ public class CombatEnemyTest {
         return report;
     }
 
-    @Test
-    @Ignore
-    public void takeTurn() {
+    public void testActorTakeTurn(CombatActor actor) {
         //Initial room health
-        int helmHP = tester.getShip().getRoom(RoomFunction.HELM).getHp();
-        int gunHP = tester.getShip().getRoom(RoomFunction.GUN_DECK).getHp();
-        int crowHP = tester.getShip().getRoom(RoomFunction.CROWS_NEST).getHp();
-        int crewHP = tester.getShip().getRoom(RoomFunction.CREW_QUARTERS).getHp();
+        int helmHP = actor.getShip().getRoom(RoomFunction.HELM).getHp();
+        int gunHP = actor.getShip().getRoom(RoomFunction.GUN_DECK).getHp();
+        int crowHP = actor.getShip().getRoom(RoomFunction.CROWS_NEST).getHp();
+        int crewHP = actor.getShip().getRoom(RoomFunction.CREW_QUARTERS).getHp();
 
-        List<Pair<Room, Weapon>> turnReport = tester.takeTurn(createSampleDamageReport());
+        List<Pair<Room, Weapon>> turnReport = actor.takeTurn(createSampleDamageReport(actor));
         //TODO Test that it outputs the correct thing using turnReport (above)
 
         // Rooms take damage
-        assertEquals("Hit rooms should be damaged", helmHP - 5, tester.getShip().getRoom(
+        assertEquals("Hit rooms should be damaged", helmHP - 5, actor.getShip().getRoom(
                 RoomFunction.HELM).getHp());
 
-        assertEquals("Hit rooms should be damaged", gunHP - 10, tester.getShip().getRoom(
+        assertEquals("Hit rooms should be damaged", gunHP - 10, actor.getShip().getRoom(
                 RoomFunction.GUN_DECK).getHp());
 
-        assertEquals("Non-Hit rooms should not be damaged", crowHP, tester.getShip().getRoom(
+        assertEquals("Non-Hit rooms should not be damaged", crowHP, actor.getShip().getRoom(
                 RoomFunction.CROWS_NEST).getHp());
 
-        assertEquals("Non-Hit rooms should not be damaged", crewHP, tester.getShip().getRoom(
+        assertEquals("Non-Hit rooms should not be damaged", crewHP, actor.getShip().getRoom(
                 RoomFunction.CREW_QUARTERS).getHp());
 
 
+    }
+
+    @Test
+    public void testEnemyTakeTurn() {
+        testActorTakeTurn(enemyTest);
+    }
+
+    @Test
+    public void testPlayerTakeTurn() {
+        testActorTakeTurn(playerTest);
     }
 }
