@@ -33,16 +33,17 @@ public class Room {
         slots.put(0, SLOT_0_MULTIPLIER);
         slots.put(1, SLOT_1_MULTIPLIER);
         slots.put(2, SLOT_2_MULTIPLIER);
-        double multiplier;
+        double finalMultiplier;
 
-        multiplier = (double) hp / (double) baseHP;
+        //Fixme Multiplier names could be clearer
+        finalMultiplier = (double) hp / (double) baseHP;
 
         for (int i = 0; i < 3; i ++) {
             if (upgrades[i] != null) {
-                multiplier *= ((upgrades[i].getMultiplier() - 1)  * slots.get(i)) + 1;
+                finalMultiplier *= ((upgrades[i].getMultiplier() - 1)  * slots.get(i)) + 1;
             }
         }
-        return multiplier;
+        return finalMultiplier;
     }
 
     public int getBaseHP() {
