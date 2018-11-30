@@ -50,4 +50,6 @@ public class Ship {
     public int getHullHP() {
         return hullHP;
     }
+
+    //ToDo Methods for taking damage, Repairing Damage
 }

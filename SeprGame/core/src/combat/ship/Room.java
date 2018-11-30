@@ -23,6 +23,7 @@ public class Room {
     }
 
     public double getMultiplier() {
+        //Fixme Take into account Upgrades
         return (float) hp/ (float) baseHP;
     }
 
