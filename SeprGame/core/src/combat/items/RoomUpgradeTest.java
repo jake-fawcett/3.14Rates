@@ -12,4 +12,12 @@ public class RoomUpgradeTest {
         RoomUpgrade tester = new RoomUpgrade("test upgrade", 100, 1.0,
                 RoomFunction.NON_FUNCTIONAL);
     }
+
+    @Test
+    public void RoomUpgrade() {
+        RoomUpgrade tester = new RoomUpgrade("test upgrade", 100, 1.0,
+                RoomFunction.GUN_DECK);
+        assertEquals("Valid rooms should be allowed in constructor. (As opposed to exception thrown)",
+                RoomFunction.GUN_DECK, tester.getAffectsRoom());
+    }
 }
