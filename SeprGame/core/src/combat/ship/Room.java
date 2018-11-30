@@ -27,7 +27,7 @@ public class Room {
         double multiplier;
         multiplier = (double) hp / (double) baseHP;
         int slot = 1;
-        for (double i = 9.999; i > 0; i -= 3.333) {
+        for (double i = 1.999; i > 0; i -= 0.333) {
             if (upgrades[slot] != null) {
                 multiplier *= i;
             }
