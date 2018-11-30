@@ -5,6 +5,7 @@ import combat.items.Weapon;
 import combat.ship.Room;
 import combat.ship.RoomFunction;
 import combat.ship.Ship;
+import javafx.util.Pair;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Ignore;
@@ -20,13 +21,7 @@ public class CombatEnemyTest {
 
     @Before
     public void setUp() {
-        // TODO Scott working here
         tester = new CombatEnemy(createSampleShip());
-    }
-
-    @After
-    public void tearDown() {
-
     }
 
     private Ship createSampleShip(){
@@ -92,10 +87,14 @@ public class CombatEnemyTest {
         return new ArrayList<Weapon>();
     }
 
+    private List<Pair<Room, Integer>> createSampleDamageReport(){
+        List<Pair<Room,Integer>> report = new ArrayList<Pair<Room, Integer>>();
+        report.add(new Pair<Room, Integer>(tester.getRoom(RoomFunction.HELM), 5));
+    }
+
     @Test
     @Ignore
     public void takeTurn() {
-        //todo implement test
-        fail("Test not yet implemented");
+        tester.takeTurn()
     }
 }
