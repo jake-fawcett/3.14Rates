@@ -38,6 +38,10 @@ public class Room {
         return upgrades;
     }
 
+    public RoomFunction getFunction() {
+        return function;
+    }
+
     public void damage(int damage) {
         hp -= damage;
         if (hp < 0) {
