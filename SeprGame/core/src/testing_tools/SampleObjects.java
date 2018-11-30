@@ -11,12 +11,29 @@ import java.util.List;
 
 
 public class SampleObjects {
-    public static Ship createSampleShip() {
-        int crew = 5;
-        List<Room> rooms = createSampleRooms(0);
-        List<Weapon> weapons = createSampleWeapons();
-        int baseHP = 100;
-        int currentHP = 100;
+    public static Ship createSampleShip(int set) {
+        int crew = 0;
+        List<Room> rooms = new ArrayList<Room>();
+        List<Weapon> weapons = new ArrayList<Weapon>();
+        int baseHP = 0;
+        int currentHP = 0;
+
+        switch (set) {
+            case 0:
+                crew = 5;
+                rooms = createSampleRooms(0);
+                weapons = createSampleWeapons();
+                baseHP = 100;
+                currentHP = 100;
+                break;
+            case 1:
+                crew = 5;
+                rooms = createSampleRooms(1);
+                weapons = createSampleWeapons();
+                baseHP = 100;
+                currentHP = 100;
+                break;
+        }
 
         return new Ship(crew, rooms, weapons, baseHP, currentHP);
     }
