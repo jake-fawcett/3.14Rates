@@ -52,5 +52,17 @@ public class Ship {
         return hullHP;
     }
 
-    //ToDo Methods for taking damage, Repairing Damage
+    public void damage(int damage) {
+        hullHP -= damage;
+        if (hullHP < 0) {
+            hullHP = 0;
+        }
+    }
+
+    public void repair(int damage) {
+        hullHP += damage;
+        if (hullHP > baseHullHP){
+            hullHP = baseHullHP;
+        }
+    }
 }
