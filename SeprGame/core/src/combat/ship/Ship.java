@@ -23,8 +23,14 @@ public class Ship {
         return crew;
     }
 
-    public List<Room> getRooms() {
-        return rooms;
+    public Room getRoom(RoomFunction function) {
+        //FIXME Write tests for me
+        for(Room room : rooms) {
+            if(room.getFunction() == function){
+                return room;
+            }
+        }
+        throw new IllegalArgumentException("A room with this function does not exist on this ship.");
     }
 
     public List<Weapon> getWeapons() {
