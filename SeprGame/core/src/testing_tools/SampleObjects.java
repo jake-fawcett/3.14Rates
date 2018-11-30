@@ -88,6 +88,11 @@ public class SampleObjects {
                 upgrades[0] = new RoomUpgrade("Upgrade1", 100, 1.5, room);
                 upgrades[1] = new RoomUpgrade("Upgrade2", 50, 2, room);
                 break;
+            case 2:
+                upgrades[0] = new RoomUpgrade("Upgrade1", 100, 1.5, room);
+                upgrades[1] = new RoomUpgrade("Upgrade2", 50, 2, room);
+                upgrades[2] = new RoomUpgrade("Upgrade3", 50, 1.25, room);
+                break;
         }
         return upgrades;
     }
