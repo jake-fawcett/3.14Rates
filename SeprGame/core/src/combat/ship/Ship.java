@@ -31,7 +31,6 @@ public class Ship {
      * @throws IllegalArgumentException when the room does not exist.
      */
     public Room getRoom(RoomFunction function) {
-        //FIXME Write tests for me
         for (Room room : rooms) {
             if (room.getFunction() == function) {
                 return room;
