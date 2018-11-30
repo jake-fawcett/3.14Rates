@@ -23,7 +23,13 @@ public class Ship {
         return crew;
     }
 
-    public Room getRoom(RoomFunction function) {
+    /**
+     * Gets a room of a given function in a ship
+     * @param function The function of the room you want to get
+     * @return The room on that ship with that function.
+     * @throws IllegalArgumentException when the room does not exist.
+     */
+    public Room getRoom(RoomFunction function) throws IllegalArgumentException{
         //FIXME Write tests for me
         for(Room room : rooms) {
             if(room.getFunction() == function){
