@@ -13,7 +13,7 @@ import java.util.List;
 public class SampleObjects {
     public static Ship createSampleShip() {
         int crew = 5;
-        List<Room> rooms = createSampleRooms();
+        List<Room> rooms = createSampleRooms(0);
         List<Weapon> weapons = createSampleWeapons();
         int baseHP = 100;
         int currentHP = 100;
@@ -21,22 +21,36 @@ public class SampleObjects {
         return new Ship(crew, rooms, weapons, baseHP, currentHP);
     }
 
-    public static List<Room> createSampleRooms() {
+    public static List<Room> createSampleRooms(int set) {
         List<Room> rooms = new ArrayList<Room>();
         RoomFunction func;
 
-        func = RoomFunction.HELM;
-        rooms.add(new Room(100, 100, createSampleUpgrades(func, 0), func));
-        func = RoomFunction.CROWS_NEST;
-        rooms.add(new Room(150, 100, createSampleUpgrades(func, 0), func));
-        func = RoomFunction.GUN_DECK;
-        rooms.add(new Room(120, 100, createSampleUpgrades(func, 0), func));
-        func = RoomFunction.CREW_QUARTERS;
-        rooms.add(new Room(150, 100, createSampleUpgrades(func, 0), func));
-        func = RoomFunction.NON_FUNCTIONAL;
-        rooms.add(new Room(200, 100, createSampleUpgrades(func, 0), func));
-        func = RoomFunction.NON_FUNCTIONAL;
-        rooms.add(new Room(200, 100, createSampleUpgrades(func, 0), func));
+        switch (set) {
+            case 0:
+                func = RoomFunction.HELM;
+                rooms.add(new Room(100, 100, createSampleUpgrades(func, 0), func));
+                func = RoomFunction.CROWS_NEST;
+                rooms.add(new Room(150, 100, createSampleUpgrades(func, 0), func));
+                func = RoomFunction.GUN_DECK;
+                rooms.add(new Room(120, 100, createSampleUpgrades(func, 0), func));
+                func = RoomFunction.CREW_QUARTERS;
+                rooms.add(new Room(150, 100, createSampleUpgrades(func, 0), func));
+                func = RoomFunction.NON_FUNCTIONAL;
+                rooms.add(new Room(200, 100, createSampleUpgrades(func, 0), func));
+                func = RoomFunction.NON_FUNCTIONAL;
+                rooms.add(new Room(200, 100, createSampleUpgrades(func, 0), func));
+            case 1:
+                func = RoomFunction.HELM;
+                rooms.add(new Room(100, 100, createSampleUpgrades(func, 0), func));
+                func = RoomFunction.CROWS_NEST;
+                rooms.add(new Room(150, 100, createSampleUpgrades(func, 0), func));
+                func = RoomFunction.CREW_QUARTERS;
+                rooms.add(new Room(150, 100, createSampleUpgrades(func, 0), func));
+                func = RoomFunction.NON_FUNCTIONAL;
+                rooms.add(new Room(200, 100, createSampleUpgrades(func, 0), func));
+                func = RoomFunction.NON_FUNCTIONAL;
+                rooms.add(new Room(200, 100, createSampleUpgrades(func, 0), func));
+        }
 
         return new ArrayList<Room>();
     }
