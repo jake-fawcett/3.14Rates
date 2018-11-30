@@ -3,6 +3,7 @@ package combat.ship;
 import combat.items.RoomUpgrade;
 import org.junit.Before;
 import org.junit.Test;
+import testing_tools.SampleObjects;
 
 import static org.junit.Assert.*;
 
@@ -26,7 +27,7 @@ public class RoomTest {
     }
 
     @Test
-    public void getMultiplier() {
+    public void getMultiplierWithNoUpgrades() {
         myRoom = new Room(100, 100, new RoomUpgrade[3], RoomFunction.CROWS_NEST);
         assertEquals("Initial multiplier should be 1.0", 1.0, myRoom.getMultiplier(), 0.001);
 
@@ -41,5 +42,17 @@ public class RoomTest {
         myRoom.damage(50);
         assertEquals("After health is reduced to 0, multiplier should be 0.0", 0.0,
                 myRoom.getMultiplier(), 0.001);
+    }
+
+    @Test
+    public void getMultiplierWithUpgrades() {
+        myRoom = new Room(100,100, SampleObjects.createSampleUpgrades(RoomFunction.CROWS_NEST, 2),
+                RoomFunction.CROWS_NEST);
+        assertEquals("This configuration of upgrades should give this value at full health",
+                5.99789, myRoom.getMultiplier(), 0.001);
+        myRoom.damage(myRoom.getBaseHP()/2);
+        assertEquals("This configuration of upgrades should give this value at half health",
+                2.99894, myRoom.getMultiplier(), 0.001);
+
     }
 }
