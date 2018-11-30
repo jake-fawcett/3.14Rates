@@ -16,7 +16,7 @@ public class WeaponBankTest {
     @Test
     public void getWeapon(){
         Weapon myWeapon = WeaponBank.values()[0].getWeapon();
-        assertEquals("You should be able to get a weapon class from the WeaponBank", Weapon.class,
+        assertEquals("You should be able to get a weapon from the WeaponBank", Weapon.class,
                 myWeapon.getClass());
     }
 
