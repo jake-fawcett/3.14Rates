@@ -24,7 +24,7 @@ public class RoomUpgrade {
         return affectsRoom;
     }
 
-    public RoomUpgrade(String name, int cost, double multiplier, RoomFunction affectsRoom) {
+    public RoomUpgrade(String name, int cost, double multiplier, RoomFunction affectsRoom) throws IllegalStateException{
         this.name = name;
         this.cost = cost;
         this.multiplier = multiplier;
