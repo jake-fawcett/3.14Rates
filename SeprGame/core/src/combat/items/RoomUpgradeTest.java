@@ -14,7 +14,7 @@ public class RoomUpgradeTest {
     }
 
     @Test
-    public void RoomUpgrade() {
+    public void constructorCorrectlyAppliesFunction() {
         RoomUpgrade tester = new RoomUpgrade("test upgrade", 100, 1.0,
                 RoomFunction.GUN_DECK);
         assertEquals("Valid rooms should be allowed in constructor. (As opposed to exception thrown)",
