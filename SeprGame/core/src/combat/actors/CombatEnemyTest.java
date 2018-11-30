@@ -24,7 +24,7 @@ public class CombatEnemyTest {
         tester = new CombatEnemy(createSampleShip());
     }
 
-    private Ship createSampleShip(){
+    private Ship createSampleShip() {
         int crew = 5;
         List<Room> rooms = createSampleRooms();
         List<Weapon> weapons = createSampleWeapons();
@@ -62,7 +62,7 @@ public class CombatEnemyTest {
      */
     private RoomUpgrade[] createSampleUpgrades(RoomFunction room, int set) {
         RoomUpgrade[] upgrades = new RoomUpgrade[3];
-        switch (set){
+        switch (set) {
             case 0:
 //              Case zero returns no upgrades
                 break;
@@ -74,7 +74,7 @@ public class CombatEnemyTest {
         return upgrades;
     }
 
-    private List<Weapon> createSampleWeapons(){
+    private List<Weapon> createSampleWeapons() {
         List<Weapon> weapons = new ArrayList<Weapon>();
         weapons.add(new Weapon("Weapon1", 50, 15, 2000, 0.05,
                 0.8));
