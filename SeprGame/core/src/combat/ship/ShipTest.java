@@ -20,6 +20,14 @@ public class ShipTest {
     }
 
     @Test
+    public void getRoom() {
+        assertEquals("getRoom(RoomFunction.CREW_QUARTERS) should return a room",
+                Room.class, tester.getRoom(RoomFunction.CROWS_NEST).getClass());
+        assertEquals("getRoom(RoomFunction.CREW_QUARTERS) should return a room whose function is crows nest",
+                RoomFunction.CROWS_NEST, tester.getRoom(RoomFunction.CROWS_NEST).getFunction());
+    }
+
+    @Test
     public void damage() {
         tester.damage(50);
         assertEquals("HP should be reduced by 50", tester.getBaseHullHP() - 50,
