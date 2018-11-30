@@ -49,10 +49,10 @@ public class RoomTest {
         myRoom = new Room(100,100, SampleObjects.createSampleUpgrades(RoomFunction.CROWS_NEST, 2),
                 RoomFunction.CROWS_NEST);
         assertEquals("This configuration of upgrades should give this value at full health",
-                5.99789, myRoom.getMultiplier(), 0.001);
+                2.689, myRoom.getMultiplier(), 0.05);
         myRoom.damage(myRoom.getBaseHP()/2);
         assertEquals("This configuration of upgrades should give this value at half health",
-                2.99894, myRoom.getMultiplier(), 0.001);
+                1.345, myRoom.getMultiplier(), 0.05);
 
     }
 }
