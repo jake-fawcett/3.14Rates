@@ -128,11 +128,13 @@ public class CombatActorTest {
     }
 
     @Test
+    @Ignore
     public void testEnemyTakeTurn() {
         testActorTakeTurn(enemyTest);
     }
 
     @Test
+    @Ignore
     public void testPlayerTakeTurn() {
         testActorTakeTurn(playerTest);
     }
