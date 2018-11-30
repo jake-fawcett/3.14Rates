@@ -108,9 +108,10 @@ public class CombatEnemyTest {
         int crowHP = tester.getShip().getRoom(RoomFunction.CROWS_NEST).getHp();
         int crewHP = tester.getShip().getRoom(RoomFunction.CREW_QUARTERS).getHp();
 
-        tester.takeTurn(createSampleDamageReport());
+        List<Pair<Room, Weapon>> turnReport = tester.takeTurn(createSampleDamageReport());
+        //TODO Test that it outputs the correct thing using turnReport (above)
 
-        // Rooms damage
+        // Rooms take damage
         assertEquals("Hit rooms should be damaged", helmHP - 5, tester.getShip().getRoom(
                 RoomFunction.HELM).getHp());
 
