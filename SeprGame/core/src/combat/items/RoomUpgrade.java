@@ -6,11 +6,6 @@ public class RoomUpgrade {
     private String name;
     private int cost;
     private double multiplier;
-
-    public RoomFunction getAffectsRoom() {
-        return affectsRoom;
-    }
-
     private RoomFunction affectsRoom;
 
     public String getName() {
@@ -23,6 +18,10 @@ public class RoomUpgrade {
 
     public double getMultiplier() {
         return multiplier;
+    }
+
+    public RoomFunction getAffectsRoom() {
+        return affectsRoom;
     }
 
     public RoomUpgrade(String name, int cost, double multiplier, RoomFunction affectsRoom) {
