@@ -102,6 +102,25 @@ public class CombatEnemyTest {
     @Test
     @Ignore
     public void takeTurn() {
-        tester.takeTurn()
+        //Initial room health
+        int helmHP = tester.getShip().getRoom(RoomFunction.HELM).getHp();
+        int gunHP = tester.getShip().getRoom(RoomFunction.GUN_DECK).getHp();
+        int crowHP = tester.getShip().getRoom(RoomFunction.CROWS_NEST).getHp();
+        int crewHP = tester.getShip().getRoom(RoomFunction.CREW_QUARTERS).getHp();
+
+        // Rooms damage
+        assertEquals("Hit rooms should be damaged", helmHP - 5, tester.getShip().getRoom(
+                RoomFunction.HELM).getHp());
+
+        assertEquals("Hit rooms should be damaged", gunHP - 10, tester.getShip().getRoom(
+                RoomFunction.GUN_DECK).getHp());
+
+        assertEquals("Non-Hit rooms should not be damaged", crowHP, tester.getShip().getRoom(
+                RoomFunction.CROWS_NEST).getHp());
+
+        assertEquals("Non-Hit rooms should not be damaged", crewHP, tester.getShip().getRoom(
+                RoomFunction.CREW_QUARTERS).getHp());
+
+
     }
 }
