@@ -11,7 +11,12 @@ public class ShipTest {
 
     @Before
     public void setUp() {
-        tester = SampleObjects.createSampleShip();
+        tester = SampleObjects.createSampleShip(1);
+    }
+
+    @Test (expected = IllegalArgumentException.class)
+    public void getRoomThrowsIllegalArgument(){
+        tester.getRoom(RoomFunction.GUN_DECK);
     }
 
     @Test
