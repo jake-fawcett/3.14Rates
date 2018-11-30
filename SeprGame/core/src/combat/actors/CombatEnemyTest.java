@@ -6,7 +6,6 @@ import combat.ship.Room;
 import combat.ship.RoomFunction;
 import combat.ship.Ship;
 import javafx.util.Pair;
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -88,9 +87,16 @@ public class CombatEnemyTest {
         return new ArrayList<Weapon>();
     }
 
-    private List<Pair<Room, Integer>> createSampleDamageReport(){
-        List<Pair<Room,Integer>> report = new ArrayList<Pair<Room, Integer>>();
-        report.add(new Pair<Room, Integer>(tester.getRoom(RoomFunction.HELM), 5));
+    private List<Pair<Room, Integer>> createSampleDamageReport() {
+        List<Pair<Room, Integer>> report = new ArrayList<Pair<Room, Integer>>();
+        try {
+            report.add(new Pair<Room, Integer>(tester.getShip().getRoom(RoomFunction.HELM), 5));
+            report.add(new Pair<Room, Integer>(tester.getShip().getRoom(RoomFunction.GUN_DECK), 10));
+        } catch (IllegalArgumentException ex) {
+            fail("Failed before test could be run due to error in setup. A room you tried to damage in the damage " +
+                    "report does not exist.");
+        }
+        return report;
     }
 
     @Test
