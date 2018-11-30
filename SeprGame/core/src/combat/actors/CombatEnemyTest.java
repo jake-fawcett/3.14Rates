@@ -108,6 +108,8 @@ public class CombatEnemyTest {
         int crowHP = tester.getShip().getRoom(RoomFunction.CROWS_NEST).getHp();
         int crewHP = tester.getShip().getRoom(RoomFunction.CREW_QUARTERS).getHp();
 
+        tester.takeTurn(createSampleDamageReport());
+
         // Rooms damage
         assertEquals("Hit rooms should be damaged", helmHP - 5, tester.getShip().getRoom(
                 RoomFunction.HELM).getHp());
