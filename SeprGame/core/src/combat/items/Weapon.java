@@ -48,7 +48,7 @@ public class Weapon {
         return currentCooldown;
     }
 
-    public void fire() throws IllegalStateException{
+    public void fire() {
         if (currentCooldown == 0) {
             currentCooldown = baseCooldown;
         } else {

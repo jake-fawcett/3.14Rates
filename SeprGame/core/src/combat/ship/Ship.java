@@ -29,7 +29,7 @@ public class Ship {
      * @return The room on that ship with that function.
      * @throws IllegalArgumentException when the room does not exist.
      */
-    public Room getRoom(RoomFunction function) throws IllegalArgumentException{
+    public Room getRoom(RoomFunction function) {
         //FIXME Write tests for me
         for(Room room : rooms) {
             if(room.getFunction() == function){
