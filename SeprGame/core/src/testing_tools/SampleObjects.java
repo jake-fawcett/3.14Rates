@@ -69,7 +69,7 @@ public class SampleObjects {
                 rooms.add(new Room(200, 100, createSampleUpgrades(func, 0), func));
         }
 
-        return new ArrayList<Room>();
+        return rooms;
     }
 
     /**
