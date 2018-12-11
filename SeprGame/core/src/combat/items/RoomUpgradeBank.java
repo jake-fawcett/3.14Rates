@@ -18,7 +18,7 @@ public enum RoomUpgradeBank {
         this.affectsRoom = affectsRoom;
     }
 
-    public RoomUpgrade getUpgrade() {
+    public RoomUpgrade getRoomUpgrade() {
         return new RoomUpgrade(name, cost, multiplier, affectsRoom);
     }
 }
