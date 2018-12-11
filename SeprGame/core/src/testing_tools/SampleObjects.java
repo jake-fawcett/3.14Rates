@@ -7,6 +7,7 @@ import combat.ship.Room;
 import combat.ship.RoomFunction;
 import combat.ship.Ship;
 import location.Department;
+import other.Resource;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -121,12 +122,12 @@ public class SampleObjects {
         return stock;
     }
 
-    public static Map<Department.resources, Integer> createSampleResourceStock(int set) {
-        Map<Department.resources, Integer> stock = new HashMap<Department.resources, Integer>();
+    public static Map<Resource, Integer> createSampleResourceStock(int set) {
+        Map<Resource, Integer> stock = new HashMap<Resource, Integer>();
         switch (set) {
             case 1:
-                stock.put(Department.resources.CREW, 5);
-                stock.put(Department.resources.FOOD, 2);
+                stock.put(Resource.CREW, 5);
+                stock.put(Resource.FOOD, 2);
                 break;
         }
         return stock;

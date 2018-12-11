@@ -8,11 +8,6 @@ import java.util.List;
 import java.util.Map;
 
 public class Department {
-//    We may find that we want to move this out to its own class eventually.
-    public enum resources {
-        CREW, FOOD
-    }
-
     private List<Weapon> weaponStock;
     private List<RoomUpgrade> upgradeStock;
     /**
