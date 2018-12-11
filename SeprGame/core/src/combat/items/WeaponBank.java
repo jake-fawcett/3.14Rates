@@ -23,6 +23,4 @@ public enum WeaponBank {
     public Weapon getWeapon() {
         return new Weapon(name, cost, baseDamage, baseCooldown, baseCritChance, baseChanceToHit);
     }
-
-
 }
