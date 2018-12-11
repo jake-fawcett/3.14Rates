@@ -26,14 +26,14 @@ public class SampleObjects {
             case 0:
                 crew = 5;
                 rooms = createSampleRooms(0);
-                weapons = createSampleWeapons();
+                weapons = createSampleWeapons(1);
                 baseHP = 100;
                 currentHP = 100;
                 break;
             case 1:
                 crew = 5;
                 rooms = createSampleRooms(1);
-                weapons = createSampleWeapons();
+                weapons = createSampleWeapons(1);
                 baseHP = 100;
                 currentHP = 100;
                 break;
