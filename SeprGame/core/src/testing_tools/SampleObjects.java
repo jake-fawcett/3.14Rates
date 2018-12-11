@@ -1,13 +1,17 @@
 package testing_tools;
 
+import com.badlogic.gdx.utils.ArrayMap;
 import combat.items.RoomUpgrade;
 import combat.items.Weapon;
 import combat.ship.Room;
 import combat.ship.RoomFunction;
 import combat.ship.Ship;
+import location.Department;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 public class SampleObjects {
@@ -109,6 +113,32 @@ public class SampleObjects {
                 0.9));
 
         return new ArrayList<Weapon>();
+    }
+
+    public static Map<Department.resources, Integer> createSampleResourceStock(int set) {
+        Map<Department.resources, Integer> stock = new HashMap<Department.resources, Integer>();
+        switch (set) {
+            case 1:
+                stock.put(Department.resources.CREW, 5);
+                stock.put(Department.resources.FOOD, 2);
+                break;
+        }
+        return stock;
+    }
+
+    public static List<RoomUpgrade> createSampleUpgrades(int set) {
+        List<RoomUpgrade> stock = new ArrayList<RoomUpgrade>();
+        switch (set) {
+            case 0:
+//              Case zero returns no upgrades
+                break;
+            case 1:
+                stock.add(new RoomUpgrade("Upgrade1", 100, 1.5, RoomFunction.CROWS_NEST));
+                stock.add(new RoomUpgrade("Upgrade2", 150, 1.25, RoomFunction.GUN_DECK));
+                stock.add(new RoomUpgrade("Upgrade3", 120, 1.75, RoomFunction.HELM));
+                break;
+        }
+        return stock;
     }
 
 }

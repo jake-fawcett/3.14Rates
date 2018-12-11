@@ -8,12 +8,16 @@ import java.util.List;
 import java.util.Map;
 
 public class Department {
-    enum resources {
-        Weapons, Upgrades
+//    We may find that we want to move this out to its own class eventually.
+    public enum resources {
+        CREW, FOOD
     }
 
     private List<Weapon> weaponStock;
     private List<RoomUpgrade> upgradeStock;
+    /**
+     * Map storing resources and their cost per unit.
+     */
     private Map<Resource, Integer> resourceStock;
 
     public Department(List<Weapon> weaponStock, List<RoomUpgrade> upgradeStock, Map<Resource, Integer> resourceStock) {
