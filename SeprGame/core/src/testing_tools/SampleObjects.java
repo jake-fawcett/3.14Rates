@@ -101,18 +101,24 @@ public class SampleObjects {
         return upgrades;
     }
 
-    public static List<Weapon> createSampleWeapons() {
-        List<Weapon> weapons = new ArrayList<Weapon>();
-        weapons.add(new Weapon("Weapon1", 50, 15, 2000, 0.05,
-                0.8));
-        weapons.add(new Weapon("Weapon2", 50, 15, 2000, 0.05,
-                0.8));
-        weapons.add(new Weapon("Weapon3", 10, 3, 1500, 0.05,
-                0.8));
-        weapons.add(new Weapon("Weapon4", 100, 30, 4000, 0.05,
-                0.9));
-
-        return new ArrayList<Weapon>();
+    public static List<Weapon> createSampleWeapons(int set) {
+        List<Weapon> stock = new ArrayList<Weapon>();
+        switch (set) {
+            case 0:
+                //Case 0 returns no stock
+                break;
+            case 1:
+                stock.add(new Weapon("Weapon1", 50, 15, 2000, 0.05,
+                        0.8));
+                stock.add(new Weapon("Weapon2", 50, 15, 2000, 0.05,
+                        0.8));
+                stock.add(new Weapon("Weapon3", 10, 3, 1500, 0.05,
+                        0.8));
+                stock.add(new Weapon("Weapon4", 100, 30, 4000, 0.05,
+                        0.9));
+                break;
+        }
+        return stock;
     }
 
     public static Map<Department.resources, Integer> createSampleResourceStock(int set) {
@@ -126,7 +132,7 @@ public class SampleObjects {
         return stock;
     }
 
-    public static List<RoomUpgrade> createSampleUpgrades(int set) {
+    public static List<RoomUpgrade> createSampleUpgradeStock(int set) {
         List<RoomUpgrade> stock = new ArrayList<RoomUpgrade>();
         switch (set) {
             case 0:
