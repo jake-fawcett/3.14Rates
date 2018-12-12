@@ -1,8 +1,12 @@
 package combat.ship;
 
+import combat.items.Weapon;
 import org.junit.Before;
 import org.junit.Test;
 import testing_tools.SampleObjects;
+
+import java.util.List;
+import java.util.WeakHashMap;
 
 import static org.junit.Assert.*;
 
@@ -45,5 +49,13 @@ public class ShipTest {
         tester.repair(tester.getBaseHullHP());
         assertEquals("HP should not be allowed to go above max", tester.getBaseHullHP(),
                 tester.getHullHP());
+    }
+
+    @Test
+    public void addWeapon() {
+        Weapon adding = new Weapon("Weapon to add", 5, 5, 5, 0.1,
+                0.1);
+        tester.addWeapon(adding);
+        assertTrue("Weapon should be added to weapons", tester.getWeapons().contains(adding));
     }
 }

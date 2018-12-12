@@ -64,4 +64,7 @@ public class Ship {
             hullHP = baseHullHP;
         }
     }
+
+    public void addWeapon(Weapon selling) {
+    }
 }
