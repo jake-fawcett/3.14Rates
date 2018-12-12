@@ -3,6 +3,7 @@ package location;
 import combat.items.RoomUpgrade;
 import combat.items.Weapon;
 import combat.ship.Ship;
+import game_manager.GameManager;
 import other.Resource;
 
 import java.util.List;
@@ -12,6 +13,9 @@ public class Department {
 
     private List<Weapon> weaponStock;
     private List<RoomUpgrade> upgradeStock;
+    /**
+     * Map storing resources and their cost per unit.
+     */
     private Map<Resource, Integer> resourceStock;
 
     public Department(List<Weapon> weaponStock, List<RoomUpgrade> upgradeStock, Map<Resource, Integer> resourceStock) {
@@ -32,12 +36,21 @@ public class Department {
         return resourceStock;
     }
 
-    public void buyWeapon(Ship shipBuyingFor, Integer index) {
+    public void buyWeapon(GameManager gmBuyingFor, Integer index) {
     }
 
-    public void buyRoomUpgrade(Ship shipBuyingFor, Integer index){
+    public void buyRoomUpgrade(GameManager gmBuyingFor, Integer index){
     }
 
-    public void buyResource(Resource resource, int quantity) {
+    public void buyResource(GameManager gmBuyingFor, Resource resource, int quantity) {
+    }
+
+    public void sellWeapon(GameManager gmSelling, Weapon weapon) {
+    }
+
+    public void sellUpgrade(GameManager gmSelling, RoomUpgrade upgrade) {
+    }
+
+    public void sellResource(GameManager gmSelling, Resource resource) {
     }
 }
