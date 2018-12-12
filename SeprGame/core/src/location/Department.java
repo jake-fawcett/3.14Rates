@@ -3,6 +3,7 @@ package location;
 import combat.items.RoomUpgrade;
 import combat.items.Weapon;
 import combat.ship.Ship;
+import game_manager.GameManager;
 import other.Resource;
 
 import java.util.List;
@@ -41,6 +42,6 @@ public class Department {
     public void buyRoomUpgrade(Ship shipBuyingFor, Integer index){
     }
 
-    public void buyResource(Resource resource, int quantity) {
+    public void buyResource(GameManager gmBuyingFor, Resource resource, int quantity) {
     }
 }
