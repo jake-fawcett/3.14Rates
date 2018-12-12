@@ -2,7 +2,7 @@ package com.mygdx.seprgame.desktop;
 
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
-import display.SeprGame;
+import gameManager.GameManager;
 
 public class DesktopLauncher {
 	public static void main (String[] arg) {
@@ -12,6 +12,6 @@ public class DesktopLauncher {
 		config.width = 1024;
 		config.fullscreen = false;
 
-		new LwjglApplication(new SeprGame(), config);
+		new LwjglApplication(new GameManager(), config);
 	}
 }

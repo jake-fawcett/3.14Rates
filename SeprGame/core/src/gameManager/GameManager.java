@@ -1,3 +1,5 @@
+package gameManager;
+
 import combat.ship.Ship;
 import other.Difficulty;
 
