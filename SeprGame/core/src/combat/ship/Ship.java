@@ -71,6 +71,13 @@ public class Ship {
     }
 
     public void addUpgrade(RoomUpgrade upgrade) {
-        this.getRoom(upgrade.getAffectsRoom()).addUpgrade(upgrade);
+        try {
+            this.getRoom(upgrade.getAffectsRoom()).addUpgrade(upgrade);
+        } catch (IllegalStateException ex) {
+            if (ex.getMessage() == "Room Upgrades full") {
+                //TODO Handle me
+                throw new IllegalStateException("Room Upgrades full");
+            }
+        }
     }
 }
