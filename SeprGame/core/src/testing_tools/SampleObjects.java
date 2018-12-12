@@ -7,7 +7,9 @@ import combat.ship.RoomFunction;
 import combat.ship.Room;
 import combat.ship.RoomFunction;
 import combat.ship.Ship;
+import game_manager.GameManager;
 import location.Department;
+import other.Difficulty;
 import other.Resource;
 
 import java.util.ArrayList;
@@ -163,4 +165,15 @@ public class SampleObjects {
         return stock;
     }
 
+    public static GameManager createSampleGameManager(int set){
+        String playerName;
+        Difficulty difficulty;
+        GameManager gm = new GameManager(null, null);
+        switch (set) {
+            case 1:
+                gm = new GameManager("Test", Difficulty.EASY);
+                break;
+        }
+        return gm;
+    }
 }
