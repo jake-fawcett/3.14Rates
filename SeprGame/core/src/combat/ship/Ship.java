@@ -88,7 +88,7 @@ public class Ship {
 
         } catch (IllegalStateException ex) {
             if (ex.getMessage().equals("Room Upgrades full")) {
-                /* TODO Handle me please jake  ( ͡° ͜ʖ ͡°)
+                /* FIXME Handle me please jake  ( ͡° ͜ʖ ͡°)
                    - The throw that is there now is just a placeholder and should be deleted.
                    - This catch should somehow warn the player that they have to get rid of one upgrade and make them
                      choose which. */
