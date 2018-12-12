@@ -8,7 +8,7 @@ public class Room {
     private int hp;
     /**
      * A 1x3 array of RoomUpgrade
-     *
+     * <p>
      * Stores the upgrades applied to the room. Each upgrade slot past the first has its effectiveness diminished by
      * a third. So the first slot is 100% effective, the second is 66%, then 33%.
      */
@@ -61,7 +61,17 @@ public class Room {
     }
 
     public void addUpgrade(RoomUpgrade upgrade) {
-        //todo write me
+        Boolean set = false;
+        for (int i = 0; i < 3; i++) {
+            if (upgrades[i] == null) {
+                upgrades[i] = upgrade;
+                set = true;
+            }
+        }
+
+        if (!set) {
+            throw new IllegalStateException("Upgrade Slots full");
+        }
     }
 }
 
