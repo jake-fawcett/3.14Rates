@@ -66,11 +66,11 @@ public class Ship {
         }
     }
 
-    public void addWeapon(Weapon selling) {
-    // TODO write me
+    public void addWeapon(Weapon weapon) {
+        weapons.add(weapon);
     }
 
-    public void addUpgrade(RoomUpgrade selling) {
-    //Todo write me
+    public void addUpgrade(RoomUpgrade upgrade) {
+        this.getRoom(upgrade.getAffectsRoom()).addUpgrade(upgrade);
     }
 }
