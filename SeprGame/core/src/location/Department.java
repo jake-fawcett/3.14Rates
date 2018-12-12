@@ -2,6 +2,7 @@ package location;
 
 import combat.items.RoomUpgrade;
 import combat.items.Weapon;
+import combat.ship.Ship;
 import other.Resource;
 
 import java.util.List;
@@ -31,10 +32,10 @@ public class Department {
         return resourceStock;
     }
 
-    public void buyWeapon(Integer index) {
+    public void buyWeapon(Ship shipBuyingFor, Integer index) {
     }
 
-    public void buyRoomUpgrade(Integer index){
+    public void buyRoomUpgrade(Ship shipBuyingFor, Integer index){
     }
 
     public void buyResource(Resource resource, int quantity) {
