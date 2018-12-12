@@ -1,9 +1,10 @@
 package game_manager;
 
-import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Game;
 import combat.ship.Ship;
 import other.Difficulty;
+import other.Screen;
+import display.*;
 
 public class GameManager extends Game {
     private int gold;
@@ -12,6 +13,7 @@ public class GameManager extends Game {
     private String playerName;
     private Ship playerShip;
     private Difficulty difficulty;
+    private Screen screen = Screen.MENU;
 
     public int getGold() {
         return gold;
@@ -61,6 +63,8 @@ public class GameManager extends Game {
         this.difficulty = difficulty;
     }
 
+    public void setScreen(Screen screen) { this.screen = screen;}
+
     public GameManager(String playerName, Difficulty difficulty) {
 //        TODO implement below
 //        this.gold = ;
@@ -80,17 +84,18 @@ public class GameManager extends Game {
 
     @Override
     public void create() { //Called when the application is created
-
+        this.setScreen(new menuScreen());
     }
 
     @Override
     public void render() { //Called when the Application should render, Called continuously
-
+        super.render();
     }
 
     @Override
     public void dispose() { //Called when the application is destroyed, resources must be disposed of from Memory
 
     }
+
 
 }
