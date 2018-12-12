@@ -7,11 +7,9 @@ import combat.ship.Ship;
 import game_manager.GameManager;
 import org.junit.Before;
 import org.junit.Test;
-import other.Difficulty;
 import other.Resource;
 
 import java.util.Arrays;
-import java.util.List;
 import java.util.Map;
 
 import static org.junit.Assert.*;
@@ -77,11 +75,6 @@ public class DepartmentTest {
     public void buyResourceGoldReturnsError() {
 //        Since you cannot buy gold an error should be thrown saying that you are trying to buy gold.
         tester.buyResource(testGM, Resource.GOLD, 10);
-
-        Map<Resource, Integer> resourceStock = tester.getResourceStock();
-        int goldBefore = testGM.getGold();
-        int foodBefore = testGM.getFood();
-        int crewBefore = testGM.getPlayerShip().getCrew();
     }
 
     @Test
@@ -110,5 +103,12 @@ public class DepartmentTest {
                 testGM.getPlayerShip().getCrew());
         assertEquals("Gold should be deducted from game manager's gold count",
                 goldBefore - (5 * resourceStock.get(Resource.CREW)), testGM.getGold());
+    }
+
+    @Test (expected = IllegalStateException.class)
+    public void cantBuyMoreResourceThanCanAfford(){
+//    You should not be able to buy more of a resource than you can afford
+        int canAfford = (testGM.getGold() / tester.getResourceStock().get(Resource.CREW));
+        tester.buyResource(testGM, Resource.CREW, canAfford + 10);
     }
 }
