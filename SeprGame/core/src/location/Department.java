@@ -8,9 +8,6 @@ import java.util.List;
 import java.util.Map;
 
 public class Department {
-    enum resources {
-        Weapons, Upgrades
-    }
 
     private List<Weapon> weaponStock;
     private List<RoomUpgrade> upgradeStock;
