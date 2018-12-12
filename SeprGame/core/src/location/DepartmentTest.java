@@ -69,8 +69,8 @@ public class DepartmentTest {
     @Test(expected = IllegalStateException.class)
     public void cannotBuyWeaponThatYouCantAfford() {
         assertTrue("For this test to work you must have less gold than the price of the weapon we are " +
-                "testing with (1000000)", testGM.getGold() < tester.getWeaponStock().get(4).getCost());
-        tester.buyWeapon(testGM, 4);
+                "testing with (1000000)", testGM.getGold() < tester.getWeaponStock().get(3).getCost());
+        tester.buyWeapon(testGM, 3);
     }
 
     @Ignore

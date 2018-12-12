@@ -67,7 +67,7 @@ public class Ship {
     }
 
     public void addWeapon(Weapon weapon) {
-        if (weapons.size() > 5) {
+        if (weapons.size() > 4) {
             throw new IllegalStateException("Weapon Slots full");
         } else {
             weapons.add(weapon);
