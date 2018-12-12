@@ -11,7 +11,6 @@ import static other.Constants.DEFAULT_SHIP_CREW;
 import static other.Constants.DEFAULT_SHIP_HP;
 
 public enum ShipBank {
-    //TODO Create Ships
     //TODO replace new lists below with actual pre-made lists of rooms and weapons.
     STARTER_SHIP(DEFAULT_SHIP_CREW, new ArrayList<Room>(), new ArrayList<Weapon>(), DEFAULT_SHIP_HP);
 

@@ -85,11 +85,14 @@ public class Ship {
     public void addUpgrade(RoomUpgrade upgrade) {
         try {
             this.getRoom(upgrade.getAffectsRoom()).addUpgrade(upgrade);
+
         } catch (IllegalStateException ex) {
-            if (ex.getMessage() == "Room Upgrades full") {
-                //TODO Handle me please jake  ( ͡° ͜ʖ ͡°)
-                // The throw that is there now is just a placeholder and should be deleted
-                throw new IllegalStateException("Room Upgrades full");
+            if (ex.getMessage().equals("Room Upgrades full")) {
+                /* TODO Handle me please jake  ( ͡° ͜ʖ ͡°)
+                   - The throw that is there now is just a placeholder and should be deleted.
+                   - This catch should somehow warn the player that they have to get rid of one upgrade and make them
+                     choose which. */
+                throw ex;
             }
         }
     }
