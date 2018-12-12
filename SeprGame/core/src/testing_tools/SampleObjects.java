@@ -3,6 +3,7 @@ package testing_tools;
 import com.badlogic.gdx.utils.ArrayMap;
 import combat.items.RoomUpgrade;
 import combat.items.Weapon;
+import combat.ship.RoomFunction;
 import combat.ship.Room;
 import combat.ship.RoomFunction;
 import combat.ship.Ship;
@@ -118,6 +119,18 @@ public class SampleObjects {
                 stock.add(new Weapon("Weapon4", 100, 30, 4000, 0.05,
                         0.9));
                 break;
+            case 2:
+                stock.add(new Weapon("Weapon1", 50, 15, 2000, 0.05,
+                        0.8));
+                stock.add(new Weapon("Weapon2", 50, 15, 2000, 0.05,
+                        0.8));
+                stock.add(new Weapon("Weapon3", 10, 3, 1500, 0.05,
+                        0.8));
+                stock.add(new Weapon("Weapon4", 100, 30, 4000, 0.05,
+                        0.9));
+                stock.add(new Weapon("Weapon5", 120, 33, 4000, 0.4,
+                        0.9));
+
         }
         return stock;
     }
@@ -143,6 +156,8 @@ public class SampleObjects {
                 stock.add(new RoomUpgrade("Upgrade1", 100, 1.5, RoomFunction.CROWS_NEST));
                 stock.add(new RoomUpgrade("Upgrade2", 150, 1.25, RoomFunction.GUN_DECK));
                 stock.add(new RoomUpgrade("Upgrade3", 120, 1.75, RoomFunction.HELM));
+                stock.add(new RoomUpgrade("Upgrade4", 150, 1.25, RoomFunction.CROWS_NEST));
+                stock.add(new RoomUpgrade("Upgrade5", 120, 1.75, RoomFunction.CREW_QUARTERS));
                 break;
         }
         return stock;
