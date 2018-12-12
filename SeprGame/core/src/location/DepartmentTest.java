@@ -175,9 +175,4 @@ public class DepartmentTest {
                 goldBefore + Math.round(selling.getCost() * STORE_SELL_PRICE_MULTIPLIER),
                 testGM.getGold());
     }
-
-    @Test
-    public void sellResource() {
-        // TODO Write me
-    }
 }
