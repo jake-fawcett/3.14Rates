@@ -36,10 +36,10 @@ public class Department {
         return resourceStock;
     }
 
-    public void buyWeapon(Ship shipBuyingFor, Integer index) {
+    public void buyWeapon(GameManager gmBuyingFor, Integer index) {
     }
 
-    public void buyRoomUpgrade(Ship shipBuyingFor, Integer index){
+    public void buyRoomUpgrade(GameManager gmBuyingFor, Integer index){
     }
 
     public void buyResource(GameManager gmBuyingFor, Resource resource, int quantity) {

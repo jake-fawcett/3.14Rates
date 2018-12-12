@@ -19,7 +19,6 @@ public class DepartmentTest {
     //FIXME Scott working here
 
     private Department tester;
-    private Ship testShip;
     private GameManager testGM;
 
 
@@ -27,16 +26,15 @@ public class DepartmentTest {
     public void setUp() {
         tester = new Department(createSampleWeapons(2), createSampleUpgradeStock(1),
                 createSampleResourceStock(1));
-        testShip = createSampleShip(0);
         testGM = createSampleGameManager(1);
     }
 
     @Test
     public void buyWeaponMovesWeapon() {
         Weapon buying = tester.getWeaponStock().get(0);
-        tester.buyWeapon(testShip, 0);
+        tester.buyWeapon(testGM, 0);
         assertFalse("Weapon should be removed from stock", tester.getWeaponStock().contains(buying));
-        assertTrue("Weapon should be added to ship", testShip.getWeapons().contains(buying));
+        assertTrue("Weapon should be added to ship", testGM.getPlayerShip().getWeapons().contains(buying));
     }
 
     @Test
@@ -44,26 +42,26 @@ public class DepartmentTest {
         assertTrue("For this test to work weapon stock must be at least of length 5",
                 tester.getWeaponStock().size() >= 5);
         Weapon buying = tester.getWeaponStock().get(2);
-        tester.buyWeapon(testShip, 2);
+        tester.buyWeapon(testGM, 2);
         assertFalse("Correct weapon should be removed from stock", tester.getWeaponStock().contains(buying));
-        assertTrue("Correct weapon should be added to ship", testShip.getWeapons().contains(buying));
+        assertTrue("Correct weapon should be added to ship", testGM.getPlayerShip().getWeapons().contains(buying));
     }
 
     @Test
     public void buyUpgradeMovesUpgrade() {
         RoomUpgrade buying = tester.getUpgradeStock().get(0);
-        tester.buyRoomUpgrade(testShip, 0);
+        tester.buyRoomUpgrade(testGM, 0);
 
         assertFalse("Upgrade should be removed from stock", tester.getUpgradeStock().contains(buying));
         assertTrue("Upgrade should be added to ship",
-                Arrays.asList(testShip.getRoom(RoomFunction.CROWS_NEST).getUpgrades()).contains(buying));
+                Arrays.asList(testGM.getPlayerShip().getRoom(RoomFunction.CROWS_NEST).getUpgrades()).contains(buying));
     }
 
     @Test(expected = IllegalStateException.class)
     public void cannotBuyWeaponThatYouCantAfford() {
         assertTrue("For this test to work you must have less gold than the price of the weapon we are " +
                 "testing with (1000000)", testGM.getGold() < tester.getWeaponStock().get(4).getCost());
-        tester.buyWeapon(testShip, 4);
+        tester.buyWeapon(testGM, 4);
     }
 
     @Test
@@ -71,18 +69,18 @@ public class DepartmentTest {
         assertTrue("For this test to work upgrade stock must be at least of length 5",
                 tester.getUpgradeStock().size() >= 5);
         RoomUpgrade buying = tester.getUpgradeStock().get(2);
-        tester.buyRoomUpgrade(testShip, 2);
+        tester.buyRoomUpgrade(testGM, 2);
 
         assertFalse("Correct upgrade should be removed from stock", tester.getUpgradeStock().contains(buying));
         assertTrue("Correct upgrade should be added to ship",
-                Arrays.asList(testShip.getRoom(RoomFunction.CROWS_NEST).getUpgrades()).contains(buying));
+                Arrays.asList(testGM.getPlayerShip().getRoom(RoomFunction.CROWS_NEST).getUpgrades()).contains(buying));
     }
 
     @Test(expected = IllegalStateException.class)
     public void cannotBuyUpgradeThatYouCantAfford() {
         assertTrue("For this test to work you must have less gold than the price of the upgrade we are " +
                 "testing with (1000000)", testGM.getGold() < tester.getUpgradeStock().get(4).getCost());
-        tester.buyRoomUpgrade(testShip, 4);
+        tester.buyRoomUpgrade(testGM, 4);
     }
 
     @Test(expected = IllegalArgumentException.class)
