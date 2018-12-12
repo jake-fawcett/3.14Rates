@@ -4,8 +4,10 @@ import combat.items.RoomUpgrade;
 import combat.items.Weapon;
 import combat.ship.RoomFunction;
 import combat.ship.Ship;
+import game_manager.GameManager;
 import org.junit.Before;
 import org.junit.Test;
+import other.Difficulty;
 import other.Resource;
 
 import java.util.Arrays;
@@ -20,7 +22,7 @@ public class DepartmentTest {
 
     private Department tester;
     private Ship testShip;
-
+    private GameManager testGM;
 
 
     @Before
@@ -28,6 +30,7 @@ public class DepartmentTest {
         tester = new Department(createSampleWeapons(2), createSampleUpgradeStock(1),
                 createSampleResourceStock(1));
         testShip = createSampleShip(0);
+        testGM = createSampleGameManager(1);
     }
 
     @Test
@@ -70,9 +73,42 @@ public class DepartmentTest {
                 Arrays.asList(testShip.getRoom(RoomFunction.CROWS_NEST).getUpgrades()).contains(buying));
     }
 
-    @Test
-    public void buyResource() {
-        Map<Resource, Integer> resourceStock = tester.getResourceStock();
+    @Test (expected = IllegalArgumentException.class)
+    public void buyResourceGoldReturnsError() {
+//        Since you cannot buy gold an error should be thrown saying that you are trying to buy gold.
+        tester.buyResource(testGM, Resource.GOLD, 10);
 
+        Map<Resource, Integer> resourceStock = tester.getResourceStock();
+        int goldBefore = testGM.getGold();
+        int foodBefore = testGM.getFood();
+        int crewBefore = testGM.getPlayerShip().getCrew();
+    }
+
+    @Test
+    public void buyResourceFood() {
+        Map<Resource, Integer> resourceStock = tester.getResourceStock();
+        int goldBefore = testGM.getGold();
+        int foodBefore = testGM.getFood();
+        tester.buyResource(testGM, Resource.FOOD, 5);
+        assertEquals("Resource stock should not change since resources are not consumed from shop",
+                resourceStock, tester.getResourceStock());
+        assertEquals("Food should be added to game manager's food count",foodBefore + 5,
+                testGM.getFood());
+        assertEquals("Gold should be deducted from game manager's gold count",
+                goldBefore - (5 * resourceStock.get(Resource.FOOD)), testGM.getGold());
+    }
+
+    @Test
+    public void buyResourceCrew() {
+        Map<Resource, Integer> resourceStock = tester.getResourceStock();
+        int goldBefore = testGM.getGold();
+        int crewBefore = testGM.getPlayerShip().getCrew();
+        tester.buyResource(testGM, Resource.CREW, 5);
+        assertEquals("Resource stock should not change since resources are not consumed from shop",
+                resourceStock, tester.getResourceStock());
+        assertEquals("Crew should be added to ship's crew count",crewBefore + 5,
+                testGM.getPlayerShip().getCrew());
+        assertEquals("Gold should be deducted from game manager's gold count",
+                goldBefore - (5 * resourceStock.get(Resource.CREW)), testGM.getGold());
     }
 }
