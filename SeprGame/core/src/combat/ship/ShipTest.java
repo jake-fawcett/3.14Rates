@@ -52,7 +52,6 @@ public class ShipTest {
                 tester.getHullHP());
     }
 
-    @Ignore
     @Test
     public void addWeapon() {
         Weapon weapon = new Weapon("Weapon to add", 5, 5, 5, 0.1,
@@ -61,7 +60,6 @@ public class ShipTest {
         assertTrue("Weapon should be added to weapons", tester.getWeapons().contains(weapon));
     }
 
-    @Ignore
     @Test
     public void addUpgrade() {
         RoomUpgrade upgrade = new RoomUpgrade("up", 1, 0.1, RoomFunction.CREW_QUARTERS);
