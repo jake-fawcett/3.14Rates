@@ -3,6 +3,11 @@ package display;
 import com.badlogic.gdx.Screen;
 
 public class combatScreen implements Screen {
+    private boolean isCollegeBattle;
+
+    public combatScreen(Boolean isCollegeBattle) {
+        this.isCollegeBattle = isCollegeBattle;
+    }
 
     @Override
     public void show() {
