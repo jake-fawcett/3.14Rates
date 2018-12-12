@@ -1,5 +1,6 @@
 package combat.ship;
 
+import combat.items.RoomUpgrade;
 import combat.items.Weapon;
 
 import java.util.List;
@@ -66,5 +67,10 @@ public class Ship {
     }
 
     public void addWeapon(Weapon selling) {
+    // TODO write me
+    }
+
+    public void addUpgrade(RoomUpgrade selling) {
+    //Todo write me
     }
 }
