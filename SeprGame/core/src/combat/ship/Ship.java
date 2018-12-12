@@ -5,6 +5,7 @@ import combat.items.Weapon;
 
 import java.util.List;
 
+@SuppressWarnings("ALL")
 public class Ship {
     private int crew;
     private List<Room> rooms;
