@@ -1,10 +1,8 @@
 package combat.actors;
 
-import combat.items.RoomUpgrade;
 import combat.items.Weapon;
 import combat.ship.Room;
 import combat.ship.RoomFunction;
-import combat.ship.Ship;
 import javafx.util.Pair;
 import org.junit.Before;
 import org.junit.Ignore;

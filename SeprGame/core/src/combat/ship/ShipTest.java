@@ -8,8 +8,6 @@ import org.junit.Test;
 import testing_tools.SampleObjects;
 
 import java.util.Arrays;
-import java.util.List;
-import java.util.WeakHashMap;
 
 import static org.junit.Assert.*;
 

@@ -1,14 +1,11 @@
 package testing_tools;
 
-import com.badlogic.gdx.utils.ArrayMap;
 import combat.items.RoomUpgrade;
 import combat.items.Weapon;
-import combat.ship.RoomFunction;
 import combat.ship.Room;
 import combat.ship.RoomFunction;
 import combat.ship.Ship;
 import game_manager.GameManager;
-import location.Department;
 import other.Difficulty;
 import other.Resource;
 

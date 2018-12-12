@@ -2,7 +2,6 @@ package location;
 
 import combat.items.RoomUpgrade;
 import combat.items.Weapon;
-import combat.ship.Ship;
 import game_manager.GameManager;
 import other.Resource;
 

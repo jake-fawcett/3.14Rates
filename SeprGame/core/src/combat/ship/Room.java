@@ -2,9 +2,6 @@ package combat.ship;
 
 import combat.items.RoomUpgrade;
 
-import java.util.HashMap;
-import java.util.Map;
-
 @SuppressWarnings("WeakerAccess")
 public class Room {
     private int baseHP;

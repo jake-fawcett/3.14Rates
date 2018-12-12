@@ -3,14 +3,12 @@ package location;
 import combat.items.RoomUpgrade;
 import combat.items.Weapon;
 import combat.ship.RoomFunction;
-import combat.ship.Ship;
 import game_manager.GameManager;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 import other.Resource;
 
-import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;

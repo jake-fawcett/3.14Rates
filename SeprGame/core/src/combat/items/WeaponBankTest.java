@@ -1,6 +1,5 @@
 package combat.items;
 
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -10,8 +9,8 @@ public class WeaponBankTest {
 
     @Before
     public void testNotEmpty(){
-        assertFalse("These tests will not work with an empty WeaponBank",
-                WeaponBank.values().length == 0);
+        assertNotEquals("These tests will not work with an empty WeaponBank", 0,
+                WeaponBank.values().length);
     }
 
     @Test

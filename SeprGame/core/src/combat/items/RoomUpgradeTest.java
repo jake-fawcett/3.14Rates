@@ -1,6 +1,5 @@
 package combat.items;
 
-import combat.ship.Room;
 import combat.ship.RoomFunction;
 import org.junit.Test;
 
