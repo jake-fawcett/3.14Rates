@@ -30,11 +30,14 @@ public class DepartmentTest {
     }
 
     @Test
-    public void buyWeaponMovesWeapon() {
+    public void buyWeaponBuysWeapon() {
         Weapon buying = tester.getWeaponStock().get(0);
         tester.buyWeapon(testGM, 0);
+        int goldBefore = testGM.getGold();
         assertFalse("Weapon should be removed from stock", tester.getWeaponStock().contains(buying));
         assertTrue("Weapon should be added to ship", testGM.getPlayerShip().getWeapons().contains(buying));
+        assertEquals("Gold should be deducted when a weapon is bought", goldBefore - buying.getCost(),
+                testGM.getGold());
     }
 
     @Test
@@ -48,13 +51,16 @@ public class DepartmentTest {
     }
 
     @Test
-    public void buyUpgradeMovesUpgrade() {
+    public void buyUpgradeBuysUpgrade() {
         RoomUpgrade buying = tester.getUpgradeStock().get(0);
         tester.buyRoomUpgrade(testGM, 0);
+        int goldBefore = testGM.getGold();
 
         assertFalse("Upgrade should be removed from stock", tester.getUpgradeStock().contains(buying));
         assertTrue("Upgrade should be added to ship",
                 Arrays.asList(testGM.getPlayerShip().getRoom(RoomFunction.CROWS_NEST).getUpgrades()).contains(buying));
+        assertEquals("Gold should be deducted when an upgrade is bought",
+                goldBefore - buying.getCost(), testGM.getGold());
     }
 
     @Test(expected = IllegalStateException.class)
