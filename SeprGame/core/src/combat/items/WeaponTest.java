@@ -1,5 +1,6 @@
 package combat.items;
 
+import banks.WeaponBank;
 import org.junit.Before;
 import org.junit.Test;
 

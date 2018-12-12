@@ -1,5 +1,6 @@
-package combat.items;
+package banks;
 
+import combat.items.RoomUpgrade;
 import combat.ship.RoomFunction;
 
 public enum RoomUpgradeBank {

@@ -1,4 +1,6 @@
-package combat.items;
+package banks;
+
+import combat.items.Weapon;
 
 public enum WeaponBank {
     //TODO Create weapons

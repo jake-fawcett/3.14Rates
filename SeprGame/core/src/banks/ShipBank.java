@@ -1,6 +1,8 @@
-package combat.ship;
+package banks;
 
 import combat.items.Weapon;
+import combat.ship.Room;
+import combat.ship.Ship;
 
 import java.util.ArrayList;
 import java.util.List;

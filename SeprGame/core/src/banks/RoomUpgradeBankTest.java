@@ -1,5 +1,6 @@
-package combat.items;
+package banks;
 
+import combat.items.RoomUpgrade;
 import org.junit.Before;
 import org.junit.Test;
 

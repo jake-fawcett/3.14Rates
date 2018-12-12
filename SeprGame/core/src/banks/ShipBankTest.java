@@ -1,5 +1,6 @@
-package combat.ship;
+package banks;
 
+import combat.ship.Ship;
 import org.junit.Before;
 import org.junit.Test;
 
