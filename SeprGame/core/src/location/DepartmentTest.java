@@ -1,12 +1,16 @@
 package location;
 
+import combat.items.RoomUpgrade;
 import combat.items.Weapon;
 import combat.ship.RoomFunction;
 import combat.ship.Ship;
 import org.junit.Before;
 import org.junit.Test;
+import other.Resource;
 
+import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 import static org.junit.Assert.*;
 import static testing_tools.SampleObjects.*;
@@ -18,9 +22,10 @@ public class DepartmentTest {
     private Ship testShip;
 
 
+
     @Before
     public void setUp() {
-        tester = new Department(createSampleWeapons(1), createSampleUpgradeStock(2),
+        tester = new Department(createSampleWeapons(2), createSampleUpgradeStock(1),
                 createSampleResourceStock(1));
         testShip = createSampleShip(0);
     }
@@ -39,15 +44,35 @@ public class DepartmentTest {
                 tester.getWeaponStock().size() >= 5);
         Weapon buying = tester.getWeaponStock().get(2);
         tester.buyWeapon(testShip, 2);
-        assertFalse("Weapon should be removed from stock", tester.getWeaponStock().contains(buying));
-        assertTrue("Weapon should be added to ship", testShip.getWeapons().contains(buying));
+        assertFalse("Correct weapon should be removed from stock", tester.getWeaponStock().contains(buying));
+        assertTrue("Correct weapon should be added to ship", testShip.getWeapons().contains(buying));
     }
 
     @Test
-    public void buyRoomUpgrade() {
+    public void buyUpgradeMovesUpgrade() {
+        RoomUpgrade buying = tester.getUpgradeStock().get(0);
+        tester.buyRoomUpgrade(testShip, 0);
+
+        assertFalse("Upgrade should be removed from stock", tester.getUpgradeStock().contains(buying));
+        assertTrue("Upgrade should be added to ship",
+                Arrays.asList(testShip.getRoom(RoomFunction.CROWS_NEST).getUpgrades()).contains(buying));
+    }
+
+    @Test
+    public void buyUpgradeBuysCorrectUpgrade() {
+        assertTrue("For this test to work upgrade stock must be at least of length 5",
+                tester.getUpgradeStock().size() >= 5);
+        RoomUpgrade buying = tester.getUpgradeStock().get(2);
+        tester.buyRoomUpgrade(testShip, 2);
+
+        assertFalse("Correct upgrade should be removed from stock", tester.getUpgradeStock().contains(buying));
+        assertTrue("Correct upgrade should be added to ship",
+                Arrays.asList(testShip.getRoom(RoomFunction.CROWS_NEST).getUpgrades()).contains(buying));
     }
 
     @Test
     public void buyResource() {
+        Map<Resource, Integer> resourceStock = tester.getResourceStock();
+
     }
 }
