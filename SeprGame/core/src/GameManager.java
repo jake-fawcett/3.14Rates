@@ -58,7 +58,7 @@ public class GameManager {
     }
 
     public GameManager(String playerName, Difficulty difficulty) {
-//        TODO implement below
+//        TODO implement below, maybe using constants for start values?
 //        this.gold = ;
 //        this.food = ;
 //        this.points = ;
