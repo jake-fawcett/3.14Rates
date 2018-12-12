@@ -50,7 +50,4 @@ public class Department {
 
     public void sellUpgrade(GameManager gmSelling, RoomUpgrade upgrade) {
     }
-
-    public void sellResource(GameManager gmSelling, Resource resource) {
-    }
 }
