@@ -59,6 +59,13 @@ public class DepartmentTest {
                 Arrays.asList(testShip.getRoom(RoomFunction.CROWS_NEST).getUpgrades()).contains(buying));
     }
 
+    @Test (expected = IllegalStateException.class)
+    public void cannotBuyWeaponThatYouCantAfford() {
+        assertTrue("For this test to work you must have less gold than the price of the weapon we are " +
+                "testing with (1000000)", testGM.getGold() < tester.getWeaponStock().get(4).getCost());
+        tester.buyWeapon(testShip, 4);
+    }
+
     @Test
     public void buyUpgradeBuysCorrectUpgrade() {
         assertTrue("For this test to work upgrade stock must be at least of length 5",
@@ -69,6 +76,13 @@ public class DepartmentTest {
         assertFalse("Correct upgrade should be removed from stock", tester.getUpgradeStock().contains(buying));
         assertTrue("Correct upgrade should be added to ship",
                 Arrays.asList(testShip.getRoom(RoomFunction.CROWS_NEST).getUpgrades()).contains(buying));
+    }
+
+    @Test (expected = IllegalStateException.class)
+    public void cannotBuyUpgradeThatYouCantAfford() {
+        assertTrue("For this test to work you must have less gold than the price of the upgrade we are " +
+                "testing with (1000000)", testGM.getGold() < tester.getUpgradeStock().get(4).getCost());
+        tester.buyRoomUpgrade(testShip, 4);
     }
 
     @Test (expected = IllegalArgumentException.class)
