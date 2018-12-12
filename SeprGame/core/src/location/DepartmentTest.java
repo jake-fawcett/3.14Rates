@@ -9,10 +9,13 @@ import org.junit.Before;
 import org.junit.Test;
 import other.Resource;
 
+import java.lang.reflect.Array;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 
 import static org.junit.Assert.*;
+import static other.Constants.STORE_SELL_PRICE_MULTIPLIER;
 import static testing_tools.SampleObjects.*;
 
 public class DepartmentTest {
@@ -132,13 +135,49 @@ public class DepartmentTest {
 
     @Test
     public void sellWeapon() {
+        Weapon selling = new Weapon("Test Weapon", 100, 10, 4000,
+                0.5, 0.5);
+        testGM.getPlayerShip().addWeapon(selling);
+        int goldBefore = testGM.getGold();
+        List<Weapon> shipWeaponsBefore = testGM.getPlayerShip().getWeapons();
+
+        assertTrue("Ship should start with the weapon in its weapon list for these tests to work properly",
+                shipWeaponsBefore.contains(selling));
+
+        tester.sellWeapon(testGM, selling);
+
+        assertTrue("Weapon should be put into stock", tester.getWeaponStock().contains(selling));
+        assertFalse("Weapon should be removed from ship weapons",
+                testGM.getPlayerShip().getWeapons().contains(selling));
+        assertEquals("Gold should be paid in relation to value of item and store price multiplier",
+                goldBefore + Math.round(selling.getCost() * STORE_SELL_PRICE_MULTIPLIER),
+                testGM.getGold());
     }
 
     @Test
     public void sellUpgrade() {
+        RoomUpgrade selling = new RoomUpgrade("Test upgrade", 100, 1.75,
+                RoomFunction.CREW_QUARTERS);
+        testGM.getPlayerShip().addUpgrade(selling);
+        int goldBefore = testGM.getGold();
+        RoomUpgrade[] roomUpgradesBefore = testGM.getPlayerShip().getRoom(RoomFunction.CREW_QUARTERS).getUpgrades();
+
+        assertTrue("Ship should start with the upgrade in its upgrade list for these tests to work properly",
+                Arrays.asList(roomUpgradesBefore).contains(selling));
+
+        tester.sellUpgrade(testGM, selling);
+
+        assertTrue("Upgrade should be put into stock", tester.getUpgradeStock().contains(selling));
+        assertFalse("Upgrade should be removed from ship upgrades",
+                Arrays.asList(testGM.getPlayerShip().getRoom(RoomFunction.CREW_QUARTERS).getUpgrades())
+                        .contains(selling));
+        assertEquals("Gold should be paid in relation to value of item and store price multiplier",
+                goldBefore + Math.round(selling.getCost() * STORE_SELL_PRICE_MULTIPLIER),
+                testGM.getGold());
     }
 
     @Test
     public void sellResource() {
+
     }
 }
