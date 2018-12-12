@@ -59,5 +59,9 @@ public class Room {
             hp = 0;
         }
     }
+
+    public void addUpgrade(RoomUpgrade upgrade) {
+        //todo write me
+    }
 }
 

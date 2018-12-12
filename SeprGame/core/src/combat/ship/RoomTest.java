@@ -55,4 +55,9 @@ public class RoomTest {
                 1.345, myRoom.getMultiplier(), 0.05);
 
     }
+
+    @Test
+    public void addUpgrade() {
+        //todo write me
+    }
 }
