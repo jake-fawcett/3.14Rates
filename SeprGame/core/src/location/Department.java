@@ -44,4 +44,13 @@ public class Department {
 
     public void buyResource(GameManager gmBuyingFor, Resource resource, int quantity) {
     }
+
+    public void sellWeapon(GameManager gmSelling, Weapon weapon) {
+    }
+
+    public void sellUpgrade(GameManager gmSelling, RoomUpgrade upgrade) {
+    }
+
+    public void sellResource(GameManager gmSelling, Resource resource) {
+    }
 }

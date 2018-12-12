@@ -129,4 +129,16 @@ public class DepartmentTest {
         int canAfford = (testGM.getGold() / tester.getResourceStock().get(Resource.CREW));
         tester.buyResource(testGM, Resource.CREW, canAfford + 10);
     }
+
+    @Test
+    public void sellWeapon() {
+    }
+
+    @Test
+    public void sellUpgrade() {
+    }
+
+    @Test
+    public void sellResource() {
+    }
 }
