@@ -1,6 +1,5 @@
 package com.mygdx.seprgame.desktop;
 
-import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
 import game_manager.GameManager;
