@@ -1,10 +1,11 @@
 package game_manager;
 
 import com.badlogic.gdx.ApplicationListener;
+import com.badlogic.gdx.Game;
 import combat.ship.Ship;
 import other.Difficulty;
 
-public class GameManager implements ApplicationListener {
+public class GameManager extends Game {
     private int gold;
     private int food;
     private int points;
@@ -78,32 +79,18 @@ public class GameManager implements ApplicationListener {
     }
 
     @Override
-    public void create() {
+    public void create() { //Called when the application is created
 
     }
 
     @Override
-    public void resize(int width, int height) {
+    public void render() { //Called when the Application should render, Called continuously
 
     }
 
     @Override
-    public void render() {
+    public void dispose() { //Called when the application is destroyed, resources must be disposed of from Memory
 
     }
 
-    @Override
-    public void pause() {
-
-    }
-
-    @Override
-    public void resume() {
-
-    }
-
-    @Override
-    public void dispose() {
-
-    }
 }
