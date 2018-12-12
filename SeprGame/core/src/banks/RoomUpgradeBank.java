@@ -3,9 +3,11 @@ package banks;
 import combat.items.RoomUpgrade;
 import combat.ship.RoomFunction;
 
+import static other.Constants.DEFAULT_UPGRADE_COST;
+
 public enum RoomUpgradeBank {
     //TODO Create Upgrades
-    A("Refined Gunpowder", 150, 1.25, RoomFunction.GUN_DECK);
+    A("Refined Gunpowder", DEFAULT_UPGRADE_COST, 1.25, RoomFunction.GUN_DECK);
 
     private String name;
     private int cost;

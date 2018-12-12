@@ -8,4 +8,5 @@ public class Constants {
     public static final double STORE_SELL_PRICE_MULTIPLIER = 0.66;
     public static final int DEFAULT_SHIP_HP = 1000;
     public static final int DEFAULT_SHIP_CREW = 25;
+    public static final int DEFAULT_UPGRADE_COST = 100;
 }
