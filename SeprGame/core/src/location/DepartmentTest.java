@@ -41,7 +41,7 @@ public class DepartmentTest {
 
     @Test
     public void buyWeaponBuysCorrectWeapon() {
-        assertTrue("For this test to work weapon stock must be at least of length 5", 
+        assertTrue("For this test to work weapon stock must be at least of length 5",
                 tester.getWeaponStock().size() >= 5);
         Weapon buying = tester.getWeaponStock().get(2);
         tester.buyWeapon(testShip, 2);
@@ -59,7 +59,7 @@ public class DepartmentTest {
                 Arrays.asList(testShip.getRoom(RoomFunction.CROWS_NEST).getUpgrades()).contains(buying));
     }
 
-    @Test (expected = IllegalStateException.class)
+    @Test(expected = IllegalStateException.class)
     public void cannotBuyWeaponThatYouCantAfford() {
         assertTrue("For this test to work you must have less gold than the price of the weapon we are " +
                 "testing with (1000000)", testGM.getGold() < tester.getWeaponStock().get(4).getCost());
@@ -78,14 +78,14 @@ public class DepartmentTest {
                 Arrays.asList(testShip.getRoom(RoomFunction.CROWS_NEST).getUpgrades()).contains(buying));
     }
 
-    @Test (expected = IllegalStateException.class)
+    @Test(expected = IllegalStateException.class)
     public void cannotBuyUpgradeThatYouCantAfford() {
         assertTrue("For this test to work you must have less gold than the price of the upgrade we are " +
                 "testing with (1000000)", testGM.getGold() < tester.getUpgradeStock().get(4).getCost());
         tester.buyRoomUpgrade(testShip, 4);
     }
 
-    @Test (expected = IllegalArgumentException.class)
+    @Test(expected = IllegalArgumentException.class)
     public void buyResourceGoldReturnsError() {
 //        Since you cannot buy gold an error should be thrown saying that you are trying to buy gold.
         tester.buyResource(testGM, Resource.GOLD, 10);
@@ -99,7 +99,7 @@ public class DepartmentTest {
         tester.buyResource(testGM, Resource.FOOD, 5);
         assertEquals("Resource stock should not change since resources are not consumed from shop",
                 resourceStock, tester.getResourceStock());
-        assertEquals("Food should be added to game manager's food count",foodBefore + 5,
+        assertEquals("Food should be added to game manager's food count", foodBefore + 5,
                 testGM.getFood());
         assertEquals("Gold should be deducted from game manager's gold count",
                 goldBefore - (5 * resourceStock.get(Resource.FOOD)), testGM.getGold());
@@ -113,14 +113,14 @@ public class DepartmentTest {
         tester.buyResource(testGM, Resource.CREW, 5);
         assertEquals("Resource stock should not change since resources are not consumed from shop",
                 resourceStock, tester.getResourceStock());
-        assertEquals("Crew should be added to ship's crew count",crewBefore + 5,
+        assertEquals("Crew should be added to ship's crew count", crewBefore + 5,
                 testGM.getPlayerShip().getCrew());
         assertEquals("Gold should be deducted from game manager's gold count",
                 goldBefore - (5 * resourceStock.get(Resource.CREW)), testGM.getGold());
     }
 
-    @Test (expected = IllegalStateException.class)
-    public void cantBuyMoreResourceThanCanAfford(){
+    @Test(expected = IllegalStateException.class)
+    public void cantBuyMoreResourceThanCanAfford() {
 //    You should not be able to buy more of a resource than you can afford
         int canAfford = (testGM.getGold() / tester.getResourceStock().get(Resource.CREW));
         tester.buyResource(testGM, Resource.CREW, canAfford + 10);
