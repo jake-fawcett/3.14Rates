@@ -1,9 +1,15 @@
 package display;
 
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class combatScreen implements Screen {
     private boolean isCollegeBattle;
+
+    private SpriteBatch batch = new SpriteBatch();
+    private Texture battleBackground = new Texture("battleBackground.png");
+
 
     public combatScreen(Boolean isCollegeBattle) {
         this.isCollegeBattle = isCollegeBattle;
@@ -16,7 +22,9 @@ public class combatScreen implements Screen {
 
     @Override
     public void render(float delta) {
-
+        batch.begin();
+        batch.draw(battleBackground,0,0);
+        batch.end();
     }
 
     @Override

@@ -13,7 +13,10 @@ public class GameManager extends Game {
     private String playerName;
     private Ship playerShip;
     private Difficulty difficulty;
-    private Screen screen = Screen.MENU;
+    private Screen screen = Screen.COMBAT;
+    private combatScreen defaultCombatScreen = new combatScreen(false);
+    private combatScreen collegeCombatScreen = new combatScreen(true);
+    private departmentScreen departmentScreen = new departmentScreen();
 
     public int getGold() {
         return gold;
@@ -63,6 +66,30 @@ public class GameManager extends Game {
         this.difficulty = difficulty;
     }
 
+    public combatScreen getDefaultCombatScreen() {
+        return defaultCombatScreen;
+    }
+
+    public void setDefaultCombatScreen(combatScreen defaultCombatScreen) {
+        this.defaultCombatScreen = defaultCombatScreen;
+    }
+
+    public combatScreen getCollegeCombatScreen() {
+        return collegeCombatScreen;
+    }
+
+    public void setCollegeCombatScreen(combatScreen collegeCombatScreen) {
+        this.collegeCombatScreen = collegeCombatScreen;
+    }
+
+    public departmentScreen getDepartmentScreen() {
+        return departmentScreen;
+    }
+
+    public void setDepartmentScreen(departmentScreen departmentScreen) {
+        this.departmentScreen = departmentScreen;
+    }
+
     public void setScreen(Screen screen) { this.screen = screen;}
 
     public GameManager(String playerName, Difficulty difficulty) {
@@ -84,7 +111,7 @@ public class GameManager extends Game {
 
     @Override
     public void create() { //Called when the application is created
-        this.setScreen(new menuScreen());
+        this.setScreen(defaultCombatScreen);
     }
 
     @Override
