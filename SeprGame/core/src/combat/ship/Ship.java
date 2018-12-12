@@ -61,13 +61,17 @@ public class Ship {
 
     public void repair(int damage) {
         hullHP += damage;
-        if (hullHP > baseHullHP){
+        if (hullHP > baseHullHP) {
             hullHP = baseHullHP;
         }
     }
 
     public void addWeapon(Weapon weapon) {
-        weapons.add(weapon);
+        if (weapons.size() > 5) {
+            throw new IllegalStateException("Weapon Slots full");
+        } else {
+            weapons.add(weapon);
+        }
     }
 
     public void addUpgrade(RoomUpgrade upgrade) {

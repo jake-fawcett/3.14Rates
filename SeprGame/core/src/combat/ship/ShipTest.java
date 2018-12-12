@@ -60,6 +60,16 @@ public class ShipTest {
         assertTrue("Weapon should be added to weapons", tester.getWeapons().contains(weapon));
     }
 
+    @Test (expected = IllegalStateException.class)
+    public void addWeaponThrowsFull() {
+        tester.addWeapon(new Weapon("Weapon to add", 5, 5, 5, 0.1,
+                0.1));
+        tester.addWeapon(new Weapon("Weapon to add", 5, 5, 5, 0.1,
+                0.1));
+        tester.addWeapon(new Weapon("Weapon to add", 5, 5, 5, 0.1,
+                0.1));
+    }
+
     @Test
     public void addUpgrade() {
         RoomUpgrade upgrade = new RoomUpgrade("up", 1, 0.1, RoomFunction.CREW_QUARTERS);
