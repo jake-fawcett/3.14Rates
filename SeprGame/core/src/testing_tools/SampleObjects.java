@@ -159,8 +159,6 @@ public class SampleObjects {
     }
 
     public static GameManager createSampleGameManager(int set){
-        String playerName;
-        Difficulty difficulty;
         GameManager gm = new GameManager(null, null);
         switch (set) {
             case 1:
