@@ -1,4 +1,4 @@
-package gameManager;
+package game_manager;
 
 import combat.ship.Ship;
 import other.Difficulty;
@@ -67,5 +67,12 @@ public class GameManager {
 //        this.playerShip =
         this.playerName = playerName;
         this.difficulty = difficulty;
+    }
+
+    public GameManager() {
+//        TODO write code to get this info
+        String newPlayerName = null;
+        Difficulty newDifficulty = null;
+//        set rest of the info to defaults, preferably by using the other constructor somehow
     }
 }
