@@ -2,9 +2,15 @@ package banks;
 
 import combat.items.Weapon;
 
+import static other.Constants.*;
+
 public enum WeaponBank {
     //TODO Create weapons
-    A("Storm Bringer", 200, 50, 100, 0.2, 0.9);
+    STARTER_WEAPON("Pea Shooter", DEFAULT_WEAPON_COST / 4, DEFAULT_WEAPON_DAMAGE / 4,
+            DEFAULT_WEAPON_COOLDOWN / 2, DEFAULT_WEAPON_CRIT_CHANCE, DEFAULT_WEAPON_HIT_CHANCE),
+
+    A("Storm Bringer", DEFAULT_WEAPON_COST, DEFAULT_WEAPON_DAMAGE, DEFAULT_WEAPON_COOLDOWN,
+            DEFAULT_WEAPON_CRIT_CHANCE, DEFAULT_WEAPON_HIT_CHANCE);
 
     private String name;
     private int cost;

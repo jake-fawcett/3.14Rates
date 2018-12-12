@@ -9,4 +9,9 @@ public class Constants {
     public static final int DEFAULT_SHIP_HP = 1000;
     public static final int DEFAULT_SHIP_CREW = 25;
     public static final int DEFAULT_UPGRADE_COST = 100;
+    public static final int DEFAULT_WEAPON_COST = 100;
+    public static final int DEFAULT_WEAPON_DAMAGE = 100;
+    public static final int DEFAULT_WEAPON_COOLDOWN = 10000;
+    public static final double DEFAULT_WEAPON_CRIT_CHANCE = 0.2;
+    public static final double DEFAULT_WEAPON_HIT_CHANCE = 0.9;
 }
