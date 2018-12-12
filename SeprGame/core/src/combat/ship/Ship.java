@@ -75,7 +75,8 @@ public class Ship {
             this.getRoom(upgrade.getAffectsRoom()).addUpgrade(upgrade);
         } catch (IllegalStateException ex) {
             if (ex.getMessage() == "Room Upgrades full") {
-                //TODO Handle me
+                //TODO Handle me please jake  ( ͡° ͜ʖ ͡°)
+                // The throw that is there now is just a placeholder and should be deleted
                 throw new IllegalStateException("Room Upgrades full");
             }
         }
