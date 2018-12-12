@@ -130,7 +130,7 @@ public class SampleObjects {
                         0.8));
                 stock.add(new Weapon("Weapon4", 100, 30, 4000, 0.05,
                         0.9));
-                stock.add(new Weapon("Weapon5", 120, 33, 4000, 0.4,
+                stock.add(new Weapon("Weapon5", 1000000, 33, 4000, 0.4,
                         0.9));
 
         }
@@ -159,7 +159,7 @@ public class SampleObjects {
                 stock.add(new RoomUpgrade("Upgrade2", 150, 1.25, RoomFunction.GUN_DECK));
                 stock.add(new RoomUpgrade("Upgrade3", 120, 1.75, RoomFunction.HELM));
                 stock.add(new RoomUpgrade("Upgrade4", 150, 1.25, RoomFunction.CROWS_NEST));
-                stock.add(new RoomUpgrade("Upgrade5", 120, 1.75, RoomFunction.CREW_QUARTERS));
+                stock.add(new RoomUpgrade("Upgrade5", 1000000, 1.75, RoomFunction.CREW_QUARTERS));
                 break;
         }
         return stock;
