@@ -20,6 +20,14 @@ public class Ship {
         this.hullHP = hullHP;
     }
 
+    public Ship(int crew, List<Room> rooms, List<Weapon> weapons, int baseHullHP) {
+        this.crew = crew;
+        this.rooms = rooms;
+        this.weapons = weapons;
+        this.baseHullHP = baseHullHP;
+        this.hullHP = baseHullHP;
+    }
+
     public int getCrew() {
         return crew;
     }
