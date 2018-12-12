@@ -16,7 +16,7 @@ public class RoomUpgradeBankTest {
     @Test
     public void getRoomUpgradeGetsRoomUpgrade(){
         RoomUpgrade myRoomUpgrade = RoomUpgradeBank.A.getRoomUpgrade();
-        assertEquals("You should be able to get a weapon from the RoomUpgradeBank", RoomUpgrade.class,
+        assertEquals("You should be able to get a RoomUpgrade from the RoomUpgradeBank", RoomUpgrade.class,
                 myRoomUpgrade.getClass());
     }
 }
