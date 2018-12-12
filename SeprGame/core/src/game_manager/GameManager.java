@@ -1,9 +1,10 @@
 package game_manager;
 
+import com.badlogic.gdx.ApplicationListener;
 import combat.ship.Ship;
 import other.Difficulty;
 
-public class GameManager {
+public class GameManager implements ApplicationListener {
     private int gold;
     private int food;
     private int points;
@@ -74,5 +75,35 @@ public class GameManager {
         String newPlayerName = null;
         Difficulty newDifficulty = null;
 //        set rest of the info to defaults, preferably by using the other constructor somehow
+    }
+
+    @Override
+    public void create() {
+
+    }
+
+    @Override
+    public void resize(int width, int height) {
+
+    }
+
+    @Override
+    public void render() {
+
+    }
+
+    @Override
+    public void pause() {
+
+    }
+
+    @Override
+    public void resume() {
+
+    }
+
+    @Override
+    public void dispose() {
+
     }
 }
