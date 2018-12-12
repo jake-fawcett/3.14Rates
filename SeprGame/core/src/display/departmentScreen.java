@@ -1,10 +1,8 @@
 package display;
 
 import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.scenes.scene2d.InputListener;
 
-public class combatDisplay extends InputListener implements Screen {
-
+public class departmentScreen implements Screen {
 
     @Override
     public void show() {
