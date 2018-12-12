@@ -1,15 +1,19 @@
 package game_manager;
 
+import com.badlogic.gdx.Game;
 import combat.ship.Ship;
 import other.Difficulty;
+import other.Screen;
+import display.*;
 
-public class GameManager {
+public class GameManager extends Game {
     private int gold;
     private int food;
     private int points;
     private String playerName;
     private Ship playerShip;
     private Difficulty difficulty;
+    private Screen screen = Screen.MENU;
 
     public int getGold() {
         return gold;
@@ -59,6 +63,8 @@ public class GameManager {
         this.difficulty = difficulty;
     }
 
+    public void setScreen(Screen screen) { this.screen = screen;}
+
     public GameManager(String playerName, Difficulty difficulty) {
 //        TODO implement below, maybe using constants for start values?
 //        this.gold = ;
@@ -75,4 +81,21 @@ public class GameManager {
         Difficulty newDifficulty = null;
 //        set rest of the info to defaults, preferably by using the other constructor somehow
     }
+
+    @Override
+    public void create() { //Called when the application is created
+        this.setScreen(new menuScreen());
+    }
+
+    @Override
+    public void render() { //Called when the Application should render, Called continuously
+        super.render();
+    }
+
+    @Override
+    public void dispose() { //Called when the application is destroyed, resources must be disposed of from Memory
+
+    }
+
+
 }
