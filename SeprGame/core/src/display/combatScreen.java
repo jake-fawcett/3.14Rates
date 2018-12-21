@@ -6,10 +6,13 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
-import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+
 
 public class combatScreen implements Screen {
     private boolean isCollegeBattle;
@@ -26,41 +29,50 @@ public class combatScreen implements Screen {
     private Sprite playerShipBackground = new Sprite(shipBackground);
     private Sprite enemyShipBackground = new Sprite(shipBackground);
 
-    private Texture crewQuartersTexture = new Texture("crewQuaters.png");
-    private TextureRegionDrawable crewQuartersDrawable = new TextureRegionDrawable(new TextureRegion(crewQuartersTexture));
-    private ImageButton enemyCrewQuarters = new ImageButton(crewQuartersDrawable);
-    private Sprite friendlyCrewQuaters = new Sprite(crewQuartersTexture);
+    private TextureAtlas buttonAtlas = new TextureAtlas("roomSpriteSheet.txt");
+    private Skin skin = new Skin();
 
-    private Texture crowsNestTexture = new Texture("crowsNest.png");
-    private TextureRegionDrawable crowsNestDrawable = new TextureRegionDrawable(new TextureRegion(crowsNestTexture));
-    private ImageButton enemyCrowsNest = new ImageButton(crowsNestDrawable);
-    private Sprite friendlyCrowsNest = new Sprite(crowsNestTexture);
+    private ImageButton.ImageButtonStyle crewQuatersStyle = new ImageButton.ImageButtonStyle();
+    private ImageButton.ImageButtonStyle crowsNestStyle = new ImageButton.ImageButtonStyle();
+    private ImageButton.ImageButtonStyle gunDeckStyle = new ImageButton.ImageButtonStyle();
+    private ImageButton.ImageButtonStyle helmStyle = new ImageButton.ImageButtonStyle();
+    private ImageButton.ImageButtonStyle emptyRoomStyle = new ImageButton.ImageButtonStyle();
 
-    private Texture gunDeckTexture = new Texture("gunDeck.png");
-    private TextureRegionDrawable gunDeckDrawable = new TextureRegionDrawable(new TextureRegion(gunDeckTexture));
-    private ImageButton enemyGunDeck = new ImageButton(gunDeckDrawable);
-    private Sprite friendlyGunDeck = new Sprite(gunDeckTexture);
+    private Sprite friendlyCrewQuaters = buttonAtlas.createSprite("crewQuaters");
+    private Sprite friendlyCrowsNest = buttonAtlas.createSprite("crowsNest");
+    private Sprite friendlyGunDeck = buttonAtlas.createSprite("gunDeck");
+    private Sprite friendlyHelm = buttonAtlas.createSprite("helm");
+    private Sprite friendlyEmptyRoom1 = buttonAtlas.createSprite("EmptyRoom");
+    private Sprite friendlyEmptyRoom2 = buttonAtlas.createSprite("EmptyRoom");
+    private Sprite friendlyEmptyRoom3 = buttonAtlas.createSprite("EmptyRoom");
+    private Sprite friendlyEmptyRoom4 = buttonAtlas.createSprite("EmptyRoom");
 
-    private Texture helmTexture = new Texture("helm.png");
-    private TextureRegionDrawable helmDrawable = new TextureRegionDrawable(new TextureRegion(helmTexture));
-    private ImageButton enemyHelm = new ImageButton(helmDrawable);
-    private Sprite friendlyHelm = new Sprite(helmTexture);
-
-    private Texture emptyRoomTexture = new Texture("emptyRoom.png");
-    private TextureRegionDrawable emptyRoomDrawable = new TextureRegionDrawable(new TextureRegion(emptyRoomTexture));
-    private ImageButton enemyEmptyRoom1 = new ImageButton(emptyRoomDrawable);
-    private ImageButton enemyEmptyRoom2 = new ImageButton(emptyRoomDrawable);
-    private ImageButton enemyEmptyRoom3 = new ImageButton(emptyRoomDrawable);
-    private ImageButton enemyEmptyRoom4 = new ImageButton(emptyRoomDrawable);
-    private Sprite friendlyEmptyRoom1 = new Sprite(emptyRoomTexture);
-    private Sprite friendlyEmptyRoom2 = new Sprite(emptyRoomTexture);
-    private Sprite friendlyEmptyRoom3 = new Sprite(emptyRoomTexture);
-    private Sprite friendlyEmptyRoom4 = new Sprite(emptyRoomTexture);
+    private ImageButton enemyCrewQuarters = new ImageButton(crewQuatersStyle);
+    private ImageButton enemyCrowsNest = new ImageButton(crowsNestStyle);
+    private ImageButton enemyGunDeck = new ImageButton(gunDeckStyle);
+    private ImageButton enemyHelm = new ImageButton(helmStyle);
+    private ImageButton enemyEmptyRoom1 = new ImageButton(emptyRoomStyle);
+    private ImageButton enemyEmptyRoom2 = new ImageButton(emptyRoomStyle);
+    private ImageButton enemyEmptyRoom3 = new ImageButton(emptyRoomStyle);
+    private ImageButton enemyEmptyRoom4 = new ImageButton(emptyRoomStyle);
 
     //TODO Add button function, Track most recent room pressed
 
     @Override
     public void show() {
+        skin.addRegions(buttonAtlas);
+
+        crewQuatersStyle.up = skin.getDrawable("crewQuaters");
+        crewQuatersStyle.checked = skin.getDrawable("crewQuatersTargetted");
+        crowsNestStyle.up = skin.getDrawable("crowsNest");
+        crowsNestStyle.checked = skin.getDrawable("crowsNestTargetted");
+        gunDeckStyle.up = skin.getDrawable("gunDeck");
+        gunDeckStyle.checked = skin.getDrawable("gunDeckTargetted");
+        helmStyle.up = skin.getDrawable("helm");
+        helmStyle.checked = skin.getDrawable("helmTargetted");
+        emptyRoomStyle.up = skin.getDrawable("EmptyRoom");
+        emptyRoomStyle.checked = skin.getDrawable("EmptyRoomTargetted");
+
         stage.addActor(enemyCrewQuarters);
         stage.addActor(enemyCrowsNest);
         stage.addActor(enemyGunDeck);
@@ -89,12 +101,19 @@ public class combatScreen implements Screen {
         enemyEmptyRoom3.setPosition(828,512);
         enemyEmptyRoom4.setPosition(700,640);
         enemyCrewQuarters.setPosition(828, 640);
+
+        enemyEmptyRoom1.addListener(new InputListener(){
+            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button){
+                System.out.print("Hello");
+                return true;
+            }
+        });
     }
 
     @Override
     public void render(float delta) {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT);
-
+        Gdx.input.setInputProcessor(stage);
 
 
         batch.begin();
