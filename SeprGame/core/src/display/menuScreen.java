@@ -60,8 +60,7 @@ public class menuScreen extends InputListener implements Screen  {
         runCombat.setScale(3);
         runCombat.addListener(new InputListener() {
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button){
-                gameManager.setScreen(gameManager.getDefaultCombatScreen());
-                dispose();
+                gameManager.setScreen(other.Screen.COMBAT);
                 return true;
             }
         });
@@ -72,7 +71,7 @@ public class menuScreen extends InputListener implements Screen  {
         runCollege.setScale(3);
         runCollege.addListener(new InputListener() {
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button){
-                gameManager.setScreen(gameManager.getCollegeCombatScreen());
+                gameManager.setScreen(other.Screen.COLLEGE);
                 return true;
             }
         });
@@ -83,7 +82,7 @@ public class menuScreen extends InputListener implements Screen  {
         runDepartment.setScale(3);
         runDepartment.addListener(new InputListener() {
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button){
-                gameManager.setScreen(gameManager.getDepartmentScreen());
+                gameManager.setScreen(other.Screen.DEPARTMENT);
                 return true;
             }
         });
