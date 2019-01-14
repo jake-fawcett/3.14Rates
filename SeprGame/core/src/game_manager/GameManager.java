@@ -23,16 +23,32 @@ public class GameManager extends Game {
         return gold;
     }
 
-    public void setGold(int gold) {
-        this.gold = gold;
+    public void addGold(int amount) {
+        this.gold += amount;
+    }
+
+    public void deductGold(int amount) {
+        this.gold -= amount;
     }
 
     public int getFood() {
         return food;
     }
 
+    public void addFood(int amount) {
+        this.food += amount;
+    }
+
+    public void deductFood(int amount) {
+        this.food -= amount;
+    }
+
     public int getPoints() {
         return points;
+    }
+
+    public void addPoints(int amount) {
+        this.points += amount;
     }
 
     public String getPlayerName() {
@@ -47,16 +63,8 @@ public class GameManager extends Game {
         return playerShip;
     }
 
-    public void setPlayerShip(Ship playerShip) {
-        this.playerShip = playerShip;
-    }
-
     public Difficulty getDifficulty() {
         return difficulty;
-    }
-
-    public void setDifficulty(Difficulty difficulty) {
-        this.difficulty = difficulty;
     }
 
     public void setScreen(Screen screen) {
@@ -70,18 +78,6 @@ public class GameManager extends Game {
         this.food = STARTING_FOOD;
         this.points = 0;
         this.playerShip = STARTER_SHIP.getShip();
-    }
-
-    public void addPoints(int amount){
-        this.points += amount;
-    }
-
-    public void addFood(int amount) {
-        this.food += amount;
-    }
-
-    public void deductFood(int amount) {
-        this.food -= amount;
     }
 
 
