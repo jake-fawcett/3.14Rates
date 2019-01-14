@@ -80,6 +80,10 @@ public class GameManager extends Game {
         this.playerShip = STARTER_SHIP.getShip();
     }
 
+    public void addPoints(int numOfPoints){
+        this.points += numOfPoints;
+    }
+
     @Override
     public void create() { //Called when the application is created
         this.setScreen(new menuScreen());
