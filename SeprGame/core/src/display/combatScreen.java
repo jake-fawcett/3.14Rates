@@ -12,6 +12,7 @@ import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import java.util.concurrent.TimeUnit;
 
 
 public class combatScreen implements Screen {
@@ -47,14 +48,14 @@ public class combatScreen implements Screen {
     private Sprite friendlyEmptyRoom3 = buttonAtlas.createSprite("EmptyRoom");
     private Sprite friendlyEmptyRoom4 = buttonAtlas.createSprite("EmptyRoom");
 
-    private ImageButton enemyCrewQuarters = new ImageButton(crewQuatersStyle);
-    private ImageButton enemyCrowsNest = new ImageButton(crowsNestStyle);
-    private ImageButton enemyGunDeck = new ImageButton(gunDeckStyle);
-    private ImageButton enemyHelm = new ImageButton(helmStyle);
-    private ImageButton enemyEmptyRoom1 = new ImageButton(emptyRoomStyle);
-    private ImageButton enemyEmptyRoom2 = new ImageButton(emptyRoomStyle);
-    private ImageButton enemyEmptyRoom3 = new ImageButton(emptyRoomStyle);
-    private ImageButton enemyEmptyRoom4 = new ImageButton(emptyRoomStyle);
+    private ImageButton enemyCrewQuarters;
+    private ImageButton enemyCrowsNest;
+    private ImageButton enemyGunDeck;
+    private ImageButton enemyHelm;
+    private ImageButton enemyEmptyRoom1;
+    private ImageButton enemyEmptyRoom2;
+    private ImageButton enemyEmptyRoom3;
+    private ImageButton enemyEmptyRoom4;
 
     //TODO Add button function, Track most recent room pressed
 
@@ -72,6 +73,16 @@ public class combatScreen implements Screen {
         helmStyle.checked = skin.getDrawable("helmTargetted");
         emptyRoomStyle.up = skin.getDrawable("EmptyRoom");
         emptyRoomStyle.checked = skin.getDrawable("EmptyRoomTargetted");
+
+        enemyCrewQuarters = new ImageButton(crewQuatersStyle);
+        enemyCrowsNest = new ImageButton(crowsNestStyle);
+        enemyGunDeck = new ImageButton(gunDeckStyle);
+        enemyHelm = new ImageButton(helmStyle);
+        enemyEmptyRoom1 = new ImageButton(emptyRoomStyle);
+        enemyEmptyRoom2 = new ImageButton(emptyRoomStyle);
+        enemyEmptyRoom3 = new ImageButton(emptyRoomStyle);
+        enemyEmptyRoom4 = new ImageButton(emptyRoomStyle);
+
 
         stage.addActor(enemyCrewQuarters);
         stage.addActor(enemyCrowsNest);
@@ -104,7 +115,8 @@ public class combatScreen implements Screen {
 
         enemyEmptyRoom1.addListener(new InputListener(){
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button){
-                System.out.print("Hello");
+                enemyEmptyRoom1.setChecked(true);
+
                 return true;
             }
         });
@@ -112,9 +124,8 @@ public class combatScreen implements Screen {
 
     @Override
     public void render(float delta) {
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT);
+        //Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         Gdx.input.setInputProcessor(stage);
-
 
         batch.begin();
         batch.draw(battleBackground,0,0);

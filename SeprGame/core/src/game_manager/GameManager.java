@@ -14,6 +14,8 @@ public class GameManager extends Game {
     private Ship playerShip;
     private Difficulty difficulty;
 
+    private Game game;
+
     public int getGold() {
         return gold;
     }
@@ -72,6 +74,7 @@ public class GameManager extends Game {
 //        this.playerShip =
         this.playerName = playerName;
         this.difficulty = difficulty;
+        game = this;
     }
 
     public GameManager() {
@@ -81,7 +84,7 @@ public class GameManager extends Game {
 //        set rest of the info to defaults, preferably by using the other constructor somehow
     }
 
-    private Screen screen = Screen.COMBAT;
+    private Screen screen = Screen.MENU;
     private combatScreen defaultCombatScreen;
     private combatScreen collegeCombatScreen;
     private departmentScreen departmentScreen;
