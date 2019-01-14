@@ -31,16 +31,8 @@ public class GameManager extends Game {
         return food;
     }
 
-    public void setFood(int food) {
-        this.food = food;
-    }
-
     public int getPoints() {
         return points;
-    }
-
-    public void setPoints(int points) {
-        this.points = points;
     }
 
     public String getPlayerName() {
@@ -80,9 +72,18 @@ public class GameManager extends Game {
         this.playerShip = STARTER_SHIP.getShip();
     }
 
-    public void addPoints(int numOfPoints){
-        this.points += numOfPoints;
+    public void addPoints(int amount){
+        this.points += amount;
     }
+
+    public void addFood(int amount) {
+        this.food += amount;
+    }
+
+    public void deductFood(int amount) {
+        this.food -= amount;
+    }
+
 
     @Override
     public void create() { //Called when the application is created
