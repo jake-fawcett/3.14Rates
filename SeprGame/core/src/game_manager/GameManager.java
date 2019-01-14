@@ -1,10 +1,15 @@
 package game_manager;
 
+import banks.ShipBank;
 import com.badlogic.gdx.Game;
 import combat.ship.Ship;
 import other.Difficulty;
 import other.Screen;
 import display.*;
+
+import static banks.ShipBank.STARTER_SHIP;
+import static other.Constants.STARTING_FOOD;
+import static other.Constants.STARTING_GOLD;
 
 public class GameManager extends Game {
     private int gold;
@@ -67,10 +72,10 @@ public class GameManager extends Game {
 
     public GameManager(String playerName, Difficulty difficulty) {
 //        TODO implement below, maybe using constants for start values?
-//        this.gold = ;
-//        this.food = ;
-//        this.points = ;
-//        this.playerShip =
+        this.gold = STARTING_GOLD;
+        this.food = STARTING_FOOD;
+        this.points = 0;
+        this.playerShip = STARTER_SHIP.getShip();
         this.playerName = playerName;
         this.difficulty = difficulty;
     }
