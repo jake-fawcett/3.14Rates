@@ -79,4 +79,6 @@ public class ShipTest {
         assertFalse("Upgrade should not be added to any other room", Arrays.asList(tester.getRoom(
                 RoomFunction.CROWS_NEST).getUpgrades()).contains(upgrade));
     }
+
+    //TODO write test for adding upgrade once the upgrade slots are all full once Jake written the code in addUpgrade()
 }

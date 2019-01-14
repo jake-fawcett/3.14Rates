@@ -18,8 +18,6 @@ import static other.Constants.STORE_SELL_PRICE_MULTIPLIER;
 import static testing_tools.SampleObjects.*;
 
 public class DepartmentTest {
-    //FIXME Scott working here
-
     private Department tester;
     private GameManager testGM;
 
