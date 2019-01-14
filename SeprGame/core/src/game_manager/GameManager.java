@@ -29,6 +29,9 @@ public class GameManager extends Game {
 
     public void deductGold(int amount) {
         this.gold -= amount;
+        if (gold < 0) {
+            gold = 0;
+        }
     }
 
     public int getFood() {
@@ -40,7 +43,10 @@ public class GameManager extends Game {
     }
 
     public void deductFood(int amount) {
-        this.food -= amount;
+        food -= amount;
+        if (food < 0) {
+            food = 0;
+        }
     }
 
     public int getPoints() {
