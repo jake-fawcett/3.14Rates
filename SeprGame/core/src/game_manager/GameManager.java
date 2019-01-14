@@ -77,14 +77,6 @@ public class GameManager extends Game {
         game = this;
     }
 
-    public GameManager() {
-//        TODO write code to get this info
-        String newPlayerName = null;
-        Difficulty newDifficulty = null;
-//        set rest of the info to defaults, preferably by using the other constructor somehow
-        game = this;
-    }
-
     private Screen screen = Screen.MENU;
     private combatScreen defaultCombatScreen;
     private combatScreen collegeCombatScreen;
