@@ -71,13 +71,12 @@ public class GameManager extends Game {
     public void setScreen(Screen screen) { this.screen = screen;}
 
     public GameManager(String playerName, Difficulty difficulty) {
-//        TODO implement below, maybe using constants for start values?
+        this.playerName = playerName;
+        this.difficulty = difficulty;
         this.gold = STARTING_GOLD;
         this.food = STARTING_FOOD;
         this.points = 0;
         this.playerShip = STARTER_SHIP.getShip();
-        this.playerName = playerName;
-        this.difficulty = difficulty;
     }
 
     public GameManager() {
