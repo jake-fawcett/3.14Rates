@@ -80,6 +80,10 @@ public class GameManager extends Game {
         this.playerShip = STARTER_SHIP.getShip();
     }
 
+    public GameManager() {
+        //TODO Write me
+    }
+
 
     @Override
     public void create() { //Called when the application is created
