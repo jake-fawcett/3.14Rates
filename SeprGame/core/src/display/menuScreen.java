@@ -36,8 +36,6 @@ public class menuScreen extends InputListener implements Screen {
     private TextButton runDepartment;
     private TextButton exitGame;
 
-    private GameManager gameManager = new GameManager();
-
     private Game game;
     public menuScreen(Game game){
         this.game = game;
@@ -115,8 +113,6 @@ public class menuScreen extends InputListener implements Screen {
         batch.end();
 
         stage.draw();
-
-        gameManager.render();
     }
 
     @Override
