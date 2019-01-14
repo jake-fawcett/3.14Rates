@@ -1,6 +1,5 @@
 package game_manager;
 
-import banks.ShipBank;
 import com.badlogic.gdx.Game;
 import combat.ship.Ship;
 import other.Difficulty;
@@ -77,13 +76,6 @@ public class GameManager extends Game {
         this.food = STARTING_FOOD;
         this.points = 0;
         this.playerShip = STARTER_SHIP.getShip();
-    }
-
-    public GameManager() {
-//        TODO write code to get this info
-        String newPlayerName = null;
-        Difficulty newDifficulty = null;
-//        set rest of the info to defaults, preferably by using the other constructor somehow
     }
 
     @Override
