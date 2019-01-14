@@ -82,6 +82,7 @@ public class GameManager extends Game {
         String newPlayerName = null;
         Difficulty newDifficulty = null;
 //        set rest of the info to defaults, preferably by using the other constructor somehow
+        game = this;
     }
 
     private Screen screen = Screen.MENU;
@@ -95,23 +96,13 @@ public class GameManager extends Game {
         defaultCombatScreen = new combatScreen(false);
         collegeCombatScreen = new combatScreen(true);
         departmentScreen = new departmentScreen();
-        menuScreen =  new menuScreen();
-        this.setScreen(new combatScreen(false));
+        menuScreen =  new menuScreen(game);
+        this.setScreen(menuScreen);
     }
 
     @Override
     public void render() { //Called when the Application should render, Called continuously
         super.render();
-
-        if (screen == Screen.COMBAT){
-            this.setScreen(defaultCombatScreen);
-        } if (screen == Screen.COLLEGE) {
-            this.setScreen(collegeCombatScreen);
-        } if (screen == Screen.DEPARTMENT){
-            this.setScreen(departmentScreen);
-        } if (screen == Screen.MENU) {
-            this.setScreen(menuScreen);
-        }
     }
 
     @Override
