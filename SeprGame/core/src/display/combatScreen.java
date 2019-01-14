@@ -4,16 +4,14 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.graphics.g2d.*;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.ButtonGroup;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
-import java.util.concurrent.TimeUnit;
-
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 
 public class combatScreen implements Screen {
     private boolean isCollegeBattle;
@@ -57,10 +55,25 @@ public class combatScreen implements Screen {
     private ImageButton enemyEmptyRoom3;
     private ImageButton enemyEmptyRoom4;
 
+
+    private BitmapFont buttonFont = new BitmapFont();
+    private TextButton.TextButtonStyle myTextButtonStyle = new TextButton.TextButtonStyle();
+    private TextureAtlas textButtonAtlas = new TextureAtlas("weaponButtonSpriteSheet.txt");
+    private Skin textButtonSkin = new Skin();
+    private TextButton weapon1;
+    private TextButton weapon2;
+    private TextButton weapon3;
+    private TextButton weapon4;
+    private TextButton weaponFire;
+    private ButtonGroup weaponButtonGroup;
+
+    private String weaponSelected;
+
     //TODO Add button function, Track most recent room pressed
 
     @Override
     public void show() {
+        //Room Buttons
         skin.addRegions(buttonAtlas);
 
         crewQuatersStyle.up = skin.getDrawable("crewQuaters");
@@ -82,7 +95,6 @@ public class combatScreen implements Screen {
         enemyEmptyRoom2 = new ImageButton(emptyRoomStyle);
         enemyEmptyRoom3 = new ImageButton(emptyRoomStyle);
         enemyEmptyRoom4 = new ImageButton(emptyRoomStyle);
-
 
         stage.addActor(enemyCrewQuarters);
         stage.addActor(enemyCrowsNest);
@@ -116,6 +128,80 @@ public class combatScreen implements Screen {
         enemyEmptyRoom1.addListener(new InputListener(){
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button){
                 enemyEmptyRoom1.setChecked(true);
+                return true;
+            }
+        });
+
+        //Weapon Buttons
+        textButtonSkin.addRegions(textButtonAtlas);
+        myTextButtonStyle.font = buttonFont;
+        myTextButtonStyle.up = textButtonSkin.getDrawable("weaponButtonUp");
+        myTextButtonStyle.down = textButtonSkin.getDrawable("weaponButtonDown");
+        myTextButtonStyle.checked = textButtonSkin.getDrawable("weaponButtonChecked");
+
+        weapon1 = new TextButton("Weapon 1",myTextButtonStyle);
+        weapon2 = new TextButton("Weapon 2",myTextButtonStyle);
+        weapon3 = new TextButton("Weapon 3",myTextButtonStyle);
+        weapon4 = new TextButton("Weapon 4",myTextButtonStyle);
+        weaponFire = new TextButton("Fire!",myTextButtonStyle);
+
+        weaponButtonGroup = new ButtonGroup(weapon1, weapon2, weapon3, weapon4, weaponFire);
+        weaponButtonGroup.setMaxCheckCount(1);
+
+        weapon1.setTransform(true);
+        weapon1.setScale(1,1.5f);
+        weapon2.setTransform(true);
+        weapon2.setScale(1,1.5f);
+        weapon3.setTransform(true);
+        weapon3.setScale(1, 1.5f);
+        weapon4.setTransform(true);
+        weapon4.setScale(1,1.5f);
+        weaponFire.setTransform(true);
+        weaponFire.setScale(1,1.5f);
+
+        stage.addActor(weapon1);
+        stage.addActor(weapon2);
+        stage.addActor(weapon3);
+        stage.addActor(weapon4);
+        stage.addActor(weaponFire);
+
+        weapon1.setPosition(50, 50);
+        weapon2.setPosition(175, 50);
+        weapon3.setPosition(300, 50);
+        weapon4.setPosition(425, 50);
+        weaponFire.setPosition(575,50);
+
+        weapon1.addListener(new InputListener(){
+            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button){
+                weaponSelected = "weapon1";
+                return true;
+            }
+        });
+
+        weapon2.addListener(new InputListener(){
+            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button){
+                weaponSelected = "weapon2";
+                return true;
+            }
+        });
+
+        weapon3.addListener(new InputListener(){
+            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button){
+                weaponSelected = "weapon3";
+                return true;
+            }
+        });
+
+        weapon4.addListener(new InputListener(){
+            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button){
+                weaponSelected = "weapon4";
+                return true;
+            }
+        });
+
+        weaponFire.addListener(new InputListener(){
+            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button){
+                //TODO Add WeaponFiring Capability
 
                 return true;
             }
@@ -124,7 +210,7 @@ public class combatScreen implements Screen {
 
     @Override
     public void render(float delta) {
-        //Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         Gdx.input.setInputProcessor(stage);
 
         batch.begin();
