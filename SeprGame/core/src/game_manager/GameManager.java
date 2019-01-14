@@ -67,7 +67,9 @@ public class GameManager extends Game {
         this.difficulty = difficulty;
     }
 
-    public void setScreen(Screen screen) { this.screen = screen;}
+    public void setScreen(Screen screen) {
+        this.screen = screen;
+    }
 
     public GameManager(String playerName, Difficulty difficulty) {
         this.playerName = playerName;
