@@ -97,4 +97,20 @@ public class Ship {
             }
         }
     }
+
+    public float calculateAccuracy(){
+//        TODO write me
+        return (float) 0.1;
+    }
+
+    public float calculateCritAccuracy(){
+//        TODO write me
+        return (float) 0.1;
+    }
+
+    public float calculateEvadeChance(){
+//        TODO Write me
+        return (float) 0.1;
+    }
+
 }

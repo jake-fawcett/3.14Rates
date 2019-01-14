@@ -80,5 +80,20 @@ public class ShipTest {
                 RoomFunction.CROWS_NEST).getUpgrades()).contains(upgrade));
     }
 
+    @Test
+    public void calcualateAccuracy() {
+//        Fixme - write me
+    }
+
+    @Test
+    public void calcualateCritAccuracy() {
+//        Fixme - write me
+    }
+
+    @Test
+    public void calculateEvadeChance() {
+//        Fixme - write me
+    }
+
     //TODO write test for adding upgrade once the upgrade slots are all full once Jake written the code in addUpgrade()
 }
