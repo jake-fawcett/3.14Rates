@@ -29,10 +29,10 @@ public class RoomSetBankTest {
         List<Room> roomList = RoomSetBank.STARTER_ROOMS.getRoomList();
         List<Room> roomList2 = RoomSetBank.STARTER_ROOMS.getRoomList();
         assertFalse("The list should not be empty", roomList.size() == 0);
-        Room r1 = roomList.get(0);
-        Room r2 = roomList2.get(0);
-        r1.damage(1);
-        assertNotEquals("Rooms created from the same set should still be independent.", r1.getHp(), r2.getHp());
+        roomList.remove(0);
+
+        assertNotEquals("Rooms created from the same set should still be independent.", roomList.size(),
+                roomList2.size());
     }
 
 }
