@@ -89,9 +89,8 @@ public class Ship {
 
         } catch (IllegalStateException ex) {
             if (ex.getMessage().equals("Room Upgrades full")) {
-                /* FIXME Handle me please jake  ( ͡° ͜ʖ ͡°)
-                   - The throw that is there now is just a placeholder and should be deleted.
-                   - This catch should somehow warn the player that they have to get rid of one upgrade and make them
+                /* TODO Write catch so that a message is displayed on the screen warning you if room upgrades are full.
+                     - This catch should somehow warn the player that they have to get rid of one upgrade and make them
                      choose which. */
                 throw ex;
             }
