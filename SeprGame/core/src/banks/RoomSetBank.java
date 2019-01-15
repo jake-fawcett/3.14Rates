@@ -17,30 +17,30 @@ public enum RoomSetBank {
             new Room(DEFAULT_ROOM_HP, DEFAULT_ROOM_HP, new RoomUpgrade[3], RoomFunction.NON_FUNCTIONAL),
             new Room(DEFAULT_ROOM_HP, DEFAULT_ROOM_HP, new RoomUpgrade[3], RoomFunction.NON_FUNCTIONAL));
 
-    private Room room1;
-    private Room room2;
-    private Room room3;
-    private Room room4;
-    private Room room5;
-    private Room room6;
+    private Room r1;
+    private Room r2;
+    private Room r3;
+    private Room r4;
+    private Room r5;
+    private Room r6;
 
-    RoomSetBank(Room room1, Room room2, Room room3, Room room4, Room room5, Room room6) {
-        this.room1 = room1;
-        this.room2 = room2;
-        this.room3 = room3;
-        this.room4 = room4;
-        this.room5 = room5;
-        this.room6 = room6;
+    RoomSetBank(Room r1, Room r2, Room r3, Room r4, Room r5, Room r6) {
+        this.r1 = r1;
+        this.r2 = r2;
+        this.r3 = r3;
+        this.r4 = r4;
+        this.r5 = r5;
+        this.r6 = r6;
     }
 
     public List<Room> getRoomList() {
         List<Room> out = new ArrayList<Room>();
-        out.add(room1);
-        out.add(room2);
-        out.add(room3);
-        out.add(room4);
-        out.add(room5);
-        out.add(room6);
+        Room[] rooms = new Room[] {r1,r2,r3,r4,r5,r6};
+
+        for (Room r : rooms) {
+            out.add(new Room(r.getBaseHP(), r.getHp(), r.getUpgrades(), r.getFunction()));
+        }
+
         return out;
     }
 }
