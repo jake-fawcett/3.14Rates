@@ -55,6 +55,9 @@ public class combatScreen implements Screen {
     private ImageButton enemyEmptyRoom3;
     private ImageButton enemyEmptyRoom4;
 
+    private ButtonGroup roomButtonGroup;
+    private String roomSelected;
+
 
     private BitmapFont buttonFont = new BitmapFont();
     private TextButton.TextButtonStyle myTextButtonStyle = new TextButton.TextButtonStyle();
@@ -68,6 +71,7 @@ public class combatScreen implements Screen {
     private ButtonGroup weaponButtonGroup;
 
     private String weaponSelected;
+
 
     //TODO Add button function, Track most recent room pressed
 
@@ -125,9 +129,61 @@ public class combatScreen implements Screen {
         enemyEmptyRoom4.setPosition(700,640);
         enemyCrewQuarters.setPosition(828, 640);
 
+        roomButtonGroup = new ButtonGroup(enemyCrowsNest, enemyGunDeck, enemyHelm, enemyCrewQuarters, enemyEmptyRoom1, enemyEmptyRoom2, enemyEmptyRoom3, enemyEmptyRoom4);
+        roomButtonGroup.setMaxCheckCount(1);
+
+        enemyCrowsNest.addListener(new InputListener(){
+            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button){
+                roomSelected = "crowsNest";
+                return true;
+            }
+        });
+
+        enemyGunDeck.addListener(new InputListener(){
+            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button){
+                roomSelected = "gunDeck";
+                return true;
+            }
+        });
+
+        enemyHelm.addListener(new InputListener(){
+            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button){
+                roomSelected = "helm";
+                return true;
+            }
+        });
+
+        enemyCrewQuarters.addListener(new InputListener(){
+            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button){
+                roomSelected = "crewQuaters";
+                return true;
+            }
+        });
+
         enemyEmptyRoom1.addListener(new InputListener(){
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button){
-                enemyEmptyRoom1.setChecked(true);
+                roomSelected = "emptyRoom1";
+                return true;
+            }
+        });
+
+        enemyEmptyRoom2.addListener(new InputListener(){
+            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button){
+                roomSelected = "emptyRoom2";
+                return true;
+            }
+        });
+
+        enemyEmptyRoom3.addListener(new InputListener(){
+            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button){
+                roomSelected = "emptyRoom3";
+                return true;
+            }
+        });
+
+        enemyEmptyRoom4.addListener(new InputListener(){
+            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button){
+                roomSelected = "emptyRoom4";
                 return true;
             }
         });
@@ -145,7 +201,7 @@ public class combatScreen implements Screen {
         weapon4 = new TextButton("Weapon 4",myTextButtonStyle);
         weaponFire = new TextButton("Fire!",myTextButtonStyle);
 
-        weaponButtonGroup = new ButtonGroup(weapon1, weapon2, weapon3, weapon4, weaponFire);
+        weaponButtonGroup = new ButtonGroup(weapon1, weapon2, weapon3, weapon4);
         weaponButtonGroup.setMaxCheckCount(1);
 
         weapon1.setTransform(true);
@@ -202,7 +258,9 @@ public class combatScreen implements Screen {
         weaponFire.addListener(new InputListener(){
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button){
                 //TODO Add WeaponFiring Capability
-
+                weaponButtonGroup.uncheckAll();
+                roomButtonGroup.uncheckAll();
+                weaponFire.setChecked(false);
                 return true;
             }
         });
