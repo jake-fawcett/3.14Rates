@@ -6,7 +6,9 @@ import combat.ship.RoomFunction;
 import static other.Constants.DEFAULT_UPGRADE_COST;
 
 public enum RoomUpgradeBank {
-    A("Refined Gunpowder", DEFAULT_UPGRADE_COST, 1.25, RoomFunction.GUN_DECK);
+    REF_GUN("Refined Gunpowder", (int) (DEFAULT_UPGRADE_COST), 1.125, RoomFunction.GUN_DECK),
+    SIGHT("Cannon Sights", (int) (DEFAULT_UPGRADE_COST * 1.25), 1.25, RoomFunction.GUN_DECK),
+    STITCH("Reinforced Sail Stitching", (int) (DEFAULT_UPGRADE_COST), 1.125, RoomFunction.HELM);
 
     private String name;
     private int cost;
