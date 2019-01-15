@@ -96,4 +96,20 @@ public class Ship {
             }
         }
     }
+
+    public float calculateShipAccuracy(){
+        //TODO this is just a placeholder, write me
+        return (float) 0.1;
+    }
+
+    public float calculateShipCritAccuracy(){
+        //TODO this is just a placeholder, write me
+        return (float) 0.1;
+    }
+
+    public float calculateShipEvade(){
+        //TODO this is just a placeholder, write me
+        return (float) 0.1;
+    }
+
 }

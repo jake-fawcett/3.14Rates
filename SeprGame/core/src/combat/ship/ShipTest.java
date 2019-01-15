@@ -19,8 +19,8 @@ public class ShipTest {
         tester = SampleObjects.createSampleShip(1);
     }
 
-    @Test (expected = IllegalArgumentException.class)
-    public void getRoomThrowsIllegalArgument(){
+    @Test(expected = IllegalArgumentException.class)
+    public void getRoomThrowsIllegalArgument() {
         tester.getRoom(RoomFunction.GUN_DECK);
     }
 
@@ -60,7 +60,7 @@ public class ShipTest {
         assertTrue("Weapon should be added to weapons", tester.getWeapons().contains(weapon));
     }
 
-    @Test (expected = IllegalStateException.class)
+    @Test(expected = IllegalStateException.class)
     public void addWeaponThrowsFull() {
         tester.addWeapon(new Weapon("Weapon to add", 5, 5, 5, 0.1,
                 0.1));
@@ -80,5 +80,22 @@ public class ShipTest {
                 RoomFunction.CROWS_NEST).getUpgrades()).contains(upgrade));
     }
 
-    //TODO write test for adding upgrade once the upgrade slots are all full once Jake written the code in addUpgrade()
+//    TODO write test for adding upgrade once the upgrade slots are all full once the catch has been written (See
+//    todo in Ship -> addUpgrade()
+
+    @Test
+    public void calculateShipAccuracy() {
+
+    }
+
+    @Test
+    public void calculateShipCritAccuracy() {
+
+    }
+
+    @Test
+    public void calculateShipEvade() {
+
+    }
+
 }
