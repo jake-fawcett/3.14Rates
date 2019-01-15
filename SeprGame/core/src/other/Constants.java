@@ -20,5 +20,5 @@ import combat.ship.Ship;
         public static final int STARTING_GOLD = 250;
         public static final int STARTING_FOOD = 100;
         public static final int DEFAULT_ROOM_HP = 1000;
-    public static final ShipBank STARTING_SHIP = ShipBank.STARTER_SHIP;
+        public static final double BASE_SHIP_ACCURACY = 1;
 }

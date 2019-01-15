@@ -1,5 +1,6 @@
 package combat.ship;
 
+import banks.ShipBank;
 import combat.items.RoomUpgrade;
 import combat.items.Weapon;
 import org.junit.Before;
@@ -10,6 +11,7 @@ import testing_tools.SampleObjects;
 import java.util.Arrays;
 
 import static org.junit.Assert.*;
+import static other.Constants.BASE_SHIP_ACCURACY;
 
 public class ShipTest {
     private Ship tester;
@@ -84,13 +86,53 @@ public class ShipTest {
 //    todo in Ship -> addUpgrade()
 
     @Test
-    public void calculateShipAccuracy() {
+    public void calculateShipAccuracyBase() {
+        assertTrue("These tests rely on the BASE_SHIP_ACCURACY in constants being set to 1. If it is" +
+                "changed either set it back or re-work the test.", BASE_SHIP_ACCURACY == 1);
 
+        Ship testShip = ShipBank.STARTER_SHIP.getShip();
+
+        assertTrue("The plain starter ship with no upgrades is expected to have an accuracy of 1 (Base)",
+                1 == testShip.calculateShipAccuracy());
     }
 
     @Test
-    public void calculateShipCritAccuracy() {
+    public void calculateShipAccuracyDamaged() {
+        assertTrue("These tests rely on the BASE_SHIP_ACCURACY in constants being set to 1. If it is" +
+                "changed either set it back or re-work the test.", BASE_SHIP_ACCURACY == 1);
 
+        Ship testShip = ShipBank.STARTER_SHIP.getShip();
+        Room crowsNest = testShip.getRoom(RoomFunction.CROWS_NEST);
+
+        crowsNest.damage(crowsNest.getBaseHP() / 2); // Half total health
+        assertTrue("Damage to a room should affect its accuracy proportional to how much damage is taken.",
+                0.5 == testShip.calculateShipAccuracy());
+        crowsNest.damage(crowsNest.getBaseHP() / 4); // Quarter total health
+        assertTrue("Damage to a room should affect its accuracy proportional to how much damage is taken.",
+                0.25 == testShip.calculateShipAccuracy());
+        crowsNest.damage(crowsNest.getBaseHP()); // 0 health
+        assertTrue("Damage to a room should affect its accuracy proportional to how much damage is taken.",
+                0 == testShip.calculateShipAccuracy());
+    }
+
+    @Test
+    public void calculateShipAccuracyUpgrades() {
+        assertTrue("These tests rely on the BASE_SHIP_ACCURACY in constants being set to 1. If it is" +
+                "changed either set it back or re-work the test.", BASE_SHIP_ACCURACY == 1);
+
+        Ship testShip = ShipBank.STARTER_SHIP.getShip();
+
+        testShip.addUpgrade(new RoomUpgrade("a", 1, 1.5, RoomFunction.HELM));
+        testShip.addUpgrade(new RoomUpgrade("a", 1, 1.5, RoomFunction.GUN_DECK));
+        assertTrue("Upgrades added to anything besides crows nest should have no effect on accuracy",
+                1 == testShip.calculateShipAccuracy());
+
+        testShip.addUpgrade(new RoomUpgrade("a", 1, 1.5, RoomFunction.CROWS_NEST));
+        assertTrue("Upgrades added to the crows nest should affect accuracy",
+                1.5 == testShip.calculateShipAccuracy());
+
+//        Once I got to here I realised that this is actually all already tested when testing Room -> getMultipleir()
+//        So I am leaving the tests I have already written here, but not doing any more
     }
 
     @Test
