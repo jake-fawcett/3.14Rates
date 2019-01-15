@@ -15,6 +15,13 @@ public class Room {
     private RoomUpgrade[] upgrades;
     private RoomFunction function;
 
+    public Room(int baseHealth, RoomUpgrade[] upgrades, RoomFunction function) {
+        this.baseHP = baseHealth;
+        this.hp = baseHealth;
+        this.upgrades = upgrades;
+        this.function = function;
+    }
+
     public Room(int baseHealth, int hp, RoomUpgrade[] upgrades, RoomFunction function) {
         this.baseHP = baseHealth;
         this.hp = hp;
