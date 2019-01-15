@@ -135,6 +135,7 @@ public class ShipTest {
 //        So I am leaving the tests I have already written here, but not doing any more
     }
 
+    @Ignore
     @Test
     public void calculateShipEvade() {
 
