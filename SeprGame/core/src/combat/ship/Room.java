@@ -7,7 +7,7 @@ public class Room {
     private int baseHP;
     private int hp;
     /**
-     * A 1x3 array of RoomUpgrade
+     * STORM 1x3 array of RoomUpgrade
      * <p>
      * Stores the upgrades applied to the room. Each upgrade slot past the first has its effectiveness diminished by
      * a third. So the first slot is 100% effective, the second is 66%, then 33%.
