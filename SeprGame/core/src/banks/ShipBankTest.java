@@ -21,4 +21,13 @@ public class ShipBankTest {
         assertEquals("You should be able to get a ship from the ShipBank", Ship.class,
                 myShip.getClass());
     }
+
+    @Test
+    public void getShipCreatesNewInstances() {
+        Ship s1 = ShipBank.STARTER_SHIP.getShip();
+        Ship s2 = ShipBank.STARTER_SHIP.getShip();
+        s1.damage(1);
+        assertNotEquals("Ships created from the same id should still be independent.", s1.getHullHP(),
+                s2.getHullHP());
+    }
 }

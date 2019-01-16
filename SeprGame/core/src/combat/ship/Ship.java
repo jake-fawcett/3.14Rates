@@ -6,6 +6,8 @@ import combat.items.Weapon;
 import java.util.Hashtable;
 import java.util.List;
 
+import static other.Constants.BASE_SHIP_ACCURACY;
+
 @SuppressWarnings("ALL")
 public class Ship {
     private int crew;
@@ -90,9 +92,8 @@ public class Ship {
 
         } catch (IllegalStateException ex) {
             if (ex.getMessage().equals("Room Upgrades full")) {
-                /* FIXME Handle me please jake  ( ͡° ͜ʖ ͡°)
-                   - The throw that is there now is just a placeholder and should be deleted.
-                   - This catch should somehow warn the player that they have to get rid of one upgrade and make them
+                /* TODO Write catch so that a message is displayed on the screen warning you if room upgrades are full.
+                     - This catch should somehow warn the player that they have to get rid of one upgrade and make them
                      choose which. */
                 throw ex;
             }
@@ -104,6 +105,17 @@ public class Ship {
         //  and write TESTS FOR IT
         crew += amount;
     }
+
+    public double calculateShipAccuracy(){
+        return BASE_SHIP_ACCURACY * this.getRoom(RoomFunction.CROWS_NEST).getMultiplier();
+    }
+
+    public float calculateShipEvade(){
+        //TODO this is just a placeholder, write me
+        return (float) 0.1;
+    }
+
+}
 
     public boolean hasUpgrade(RoomUpgrade upgrade) {
         //FIXME write tests for me

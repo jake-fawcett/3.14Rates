@@ -70,7 +70,7 @@ public class Room {
     public void addUpgrade(RoomUpgrade upgrade) {
         Boolean set = false;
         for (int i = 0; i < 3; i++) {
-            if (upgrades[i] == null) {
+            if (upgrades[i] == null && !set) {
                 upgrades[i] = upgrade;
                 set = true;
             }

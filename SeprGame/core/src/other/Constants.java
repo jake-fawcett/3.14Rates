@@ -1,8 +1,5 @@
 package other;
 
-import banks.ShipBank;
-import combat.ship.Ship;
-
     public class Constants {
         /**
          * The reduction applied to the value of an item when a store buys it from you. Eg. if this is 0.5 and the item
@@ -23,6 +20,5 @@ import combat.ship.Ship;
         public static final int CREW_COST = 50;
         public static final int REPAIR_COST = 25;
         public static final int FOOD_COST = 10;
-
-    public static final ShipBank STARTING_SHIP = ShipBank.STARTER_SHIP;
+        public static final double BASE_SHIP_ACCURACY = 1;
 }
