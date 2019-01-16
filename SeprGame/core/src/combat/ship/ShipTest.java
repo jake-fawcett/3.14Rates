@@ -58,6 +58,8 @@ public class ShipTest {
                 0.1);
         tester.addWeapon(weapon);
         assertTrue("Weapon should be added to weapons", tester.getWeapons().contains(weapon));
+        //FIXME test you cant add more than four weapons
+
     }
 
     @Test (expected = IllegalStateException.class)
