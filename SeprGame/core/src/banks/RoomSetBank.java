@@ -38,14 +38,7 @@ public enum RoomSetBank {
         Room[] rooms = new Room[]{r1, r2, r3, r4, r5, r6};
 
         for (Room r : rooms) {
-            RoomUpgrade[] newUpgrades = new RoomUpgrade[3];
-            for (int i = 0; i < 3; i++) {
-                if (r.getUpgrades()[i] != null) {
-                    newUpgrades[i] = new RoomUpgrade(r.getUpgrades()[i].getName(), r.getUpgrades()[i].getCost(),
-                            r.getUpgrades()[i].getMultiplier(), r.getUpgrades()[i].getAffectsRoom());
-                }
-            }
-            out.add(new Room(r.getBaseHP(), r.getHp(), newUpgrades, r.getFunction()));
+            out.add(new Room(r.getBaseHP(), r.getHp(), r.getUpgrades(), r.getFunction()));
         }
 
         return out;
