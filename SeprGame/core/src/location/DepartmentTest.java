@@ -128,8 +128,6 @@ public class DepartmentTest {
     public void cantBuyMoreResourceThanCanAfford() {
 //    You should not be able to buy more of a resource than you can afford
         int canAfford = (testGM.getGold() / tester.getResourceStock().get(Resource.CREW));
-        System.out.println(testGM.getGold());
-        System.out.println(tester.getResourceStock().get(Resource.CREW));
         tester.buyResource(Resource.CREW, canAfford + 10);
     }
 
