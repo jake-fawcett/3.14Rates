@@ -82,14 +82,20 @@ public class Room {
     }
 
     public void delUpgrade(RoomUpgrade upgrade) {
-        //FIXME THIS IS HASTILY WRITTEN JUST TO TEST SOMETHING! NEEDS TESTS WRITING AND MORE FUNCTInoALITY (EG WHAT
-        //  if upgrade doesnt exist? Make it so that you dont have blank slots in the middle, upgrades move forward
-        //  one is deleted
+        Boolean deleted = false;
         for (int i = 0; i < 3; i++) {
-            if (upgrades[i] == upgrade) {
+            if (!deleted) {
+                if (upgrades[i] == upgrade) {
+                    upgrades[i] = null;
+                    deleted = true;
+                }
+            } else {
+                upgrades[i-1] = upgrades[i];
                 upgrades[i] = null;
             }
         }
+
+
     }
 }
 
