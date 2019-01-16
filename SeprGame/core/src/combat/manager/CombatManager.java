@@ -88,9 +88,6 @@ public class CombatManager {
 
     /**
      * Ends the fight and starts minigame.
-     *
-     * @return TODO Will end up returning outcome of combat to game manager
-     * how this is done depends on implementation
      */
     private void endCombat() {
     }
