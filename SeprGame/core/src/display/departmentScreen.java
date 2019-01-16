@@ -12,7 +12,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.ProgressBar;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
-import combat.items.WeaponBank;
+import banks.WeaponBank;
 import game_manager.GameManager;
 
 import java.util.List;
