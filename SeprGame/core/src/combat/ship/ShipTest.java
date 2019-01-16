@@ -13,6 +13,7 @@ import java.util.Arrays;
 
 import static org.junit.Assert.*;
 import static other.Constants.BASE_SHIP_ACCURACY;
+import static other.Constants.BASE_SHIP_EVADE;
 
 public class ShipTest {
     private Ship tester;
@@ -22,6 +23,12 @@ public class ShipTest {
     public void setUp() {
         tester = SampleObjects.createSampleShip(1);
         tester2 = ShipBank.STARTER_SHIP.getShip();
+
+        assertTrue("These tests rely on the BASE_SHIP_ACCURACY in constants being set to 1. If it is" +
+                "changed either set it back or re-work the test.", BASE_SHIP_ACCURACY == 1);
+
+        assertTrue("These tests rely on the BASE_SHIP_EVADE in constants being set to 1. If it is" +
+                "changed either set it back or re-work the test.", BASE_SHIP_EVADE == 1);
     }
 
     @Test(expected = IllegalArgumentException.class)
@@ -96,18 +103,12 @@ public class ShipTest {
 
     @Test
     public void calculateShipAccuracyBase() {
-        assertTrue("These tests rely on the BASE_SHIP_ACCURACY in constants being set to 1. If it is" +
-                "changed either set it back or re-work the test.", BASE_SHIP_ACCURACY == 1);
-
         assertTrue("The plain starter ship with no upgrades is expected to have an accuracy of 1 (Base)",
                 1 == tester2.calculateShipAccuracy());
     }
 
     @Test
     public void calculateShipAccuracyDamaged() {
-        assertTrue("These tests rely on the BASE_SHIP_ACCURACY in constants being set to 1. If it is" +
-                "changed either set it back or re-work the test.", BASE_SHIP_ACCURACY == 1);
-
         Room crowsNest = tester2.getRoom(RoomFunction.CROWS_NEST);
 
         crowsNest.damage(crowsNest.getBaseHP() / 2); // Half total health
@@ -123,9 +124,6 @@ public class ShipTest {
 
     @Test
     public void calculateShipAccuracyUpgrades() {
-        assertTrue("These tests rely on the BASE_SHIP_ACCURACY in constants being set to 1. If it is" +
-                "changed either set it back or re-work the test.", BASE_SHIP_ACCURACY == 1);
-
         tester2.addUpgrade(new RoomUpgrade("a", 1, 1.5, RoomFunction.HELM));
         tester2.addUpgrade(new RoomUpgrade("a", 1, 1.5, RoomFunction.GUN_DECK));
         assertTrue("Upgrades added to anything besides crows nest should have no effect on accuracy",
@@ -134,15 +132,39 @@ public class ShipTest {
         tester2.addUpgrade(new RoomUpgrade("a", 1, 1.5, RoomFunction.CROWS_NEST));
         assertEquals("Upgrades added to the crows nest should affect accuracy",
                 1.5, tester2.calculateShipAccuracy(), 0.1);
-
-//        Once I got to here I realised that this is actually all already tested when testing Room -> getMultipleir()
-//        So I am leaving the tests I have already written here, but not doing any more
     }
 
-    @Ignore
     @Test
-    public void calculateShipEvade() {
+    public void calculateShipEvadeBase() {
+        assertTrue("The plain starter ship with no upgrades is expected to have an evade of 1 (Base)",
+                1 == tester2.calculateShipEvade());
+    }
 
+    @Test
+    public void calculateShipEvadeDamaged() {
+        Room helm = tester2.getRoom(RoomFunction.HELM);
+
+        helm.damage(helm.getBaseHP() / 2); // Half total health
+        assertTrue("Damage to a room should affect its evade proportional to how much damage is taken.",
+                0.5 == tester2.calculateShipEvade());
+        helm.damage(helm.getBaseHP() / 4); // Quarter total health
+        assertTrue("Damage to a room should affect its evade proportional to how much damage is taken.",
+                0.25 == tester2.calculateShipEvade());
+        helm.damage(helm.getBaseHP()); // 0 health
+        assertTrue("Damage to a room should affect its evade proportional to how much damage is taken.",
+                0 == tester2.calculateShipEvade());
+    }
+
+    @Test
+    public void calculateShipEvadeUpgrades() {
+        tester2.addUpgrade(new RoomUpgrade("a", 1, 1.5, RoomFunction.CROWS_NEST));
+        tester2.addUpgrade(new RoomUpgrade("a", 1, 1.5, RoomFunction.GUN_DECK));
+        assertTrue("Upgrades added to anything besides helm should have no effect on evade",
+                1 == tester2.calculateShipEvade());
+
+        tester2.addUpgrade(new RoomUpgrade("a", 1, 1.5, RoomFunction.HELM));
+        assertEquals("Upgrades added to the helm should affect evade",
+                1.5, tester2.calculateShipEvade(), 0.1);
     }
 
     @Test

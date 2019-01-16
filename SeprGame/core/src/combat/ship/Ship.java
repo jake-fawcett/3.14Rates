@@ -7,6 +7,7 @@ import java.util.Hashtable;
 import java.util.List;
 
 import static other.Constants.BASE_SHIP_ACCURACY;
+import static other.Constants.BASE_SHIP_EVADE;
 
 @SuppressWarnings("ALL")
 public class Ship {
@@ -108,9 +109,8 @@ public class Ship {
         return BASE_SHIP_ACCURACY * this.getRoom(RoomFunction.CROWS_NEST).getMultiplier();
     }
 
-    public float calculateShipEvade() {
-        //TODO this is just a placeholder, write me
-        return (float) 0.1;
+    public double calculateShipEvade() {
+        return BASE_SHIP_EVADE * this.getRoom(RoomFunction.HELM).getMultiplier();
     }
 
     public boolean hasUpgrade(RoomUpgrade upgrade) {

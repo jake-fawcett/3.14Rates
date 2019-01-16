@@ -21,4 +21,5 @@ package other;
         public static final int REPAIR_COST = 25;
         public static final int FOOD_COST = 10;
         public static final double BASE_SHIP_ACCURACY = 1;
+        public static final double BASE_SHIP_EVADE = 1;
 }
