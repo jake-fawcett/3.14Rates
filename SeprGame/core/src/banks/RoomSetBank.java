@@ -38,7 +38,8 @@ public enum RoomSetBank {
         Room[] rooms = new Room[] {r1,r2,r3,r4,r5,r6};
 
         for (Room r : rooms) {
-            out.add(new Room(r.getBaseHP(), r.getHp(), r.getUpgrades(), r.getFunction()));
+            RoomUpgrade[] newUpgrades = new RoomUpgrade[3];
+            out.add(new Room(r.getBaseHP(), r.getHp(), newUpgrades, r.getFunction()));
         }
 
         return out;
