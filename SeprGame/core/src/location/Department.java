@@ -11,6 +11,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static other.Constants.*;
+
 public class Department {
 
     private List<Weapon> weaponStock;
@@ -23,9 +25,9 @@ public class Department {
         this.upgradeStock = upgradeStock;
         this.resourceStock = resourceStock;
         this.gameManager = gameManager;
-        resourceStock.put(Resource.REPAIR, 50);
-        resourceStock.put(Resource.CREW, 1000);
-        resourceStock.put(Resource.FOOD, 10);
+        resourceStock.put(Resource.REPAIR, REPAIR_COST);
+        resourceStock.put(Resource.CREW, CREW_COST);
+        resourceStock.put(Resource.FOOD, FOOD_COST);
     }
 
     public List<Weapon> getWeaponStock() {
@@ -75,7 +77,7 @@ public class Department {
         }
         if (resource == Resource.FOOD) {
             if (price * amount > gameManager.getGold()) {
-                System.out.print("Not enough gold");
+                throw new IllegalStateException("Not enough gold");
             } else {
                 gameManager.addFood(amount);
                 gameManager.deductGold(price * amount);
@@ -83,7 +85,7 @@ public class Department {
         }
         if (resource == Resource.CREW) {
             if (price * amount > gameManager.getGold()) {
-                System.out.print("Not enough gold");
+                throw new IllegalStateException("Not enough gold");
             } else {
                 gameManager.getPlayerShip().addCrew(amount);
                 gameManager.deductGold(price * amount);
@@ -91,7 +93,7 @@ public class Department {
         }
         if (resource == Resource.REPAIR) {
             if (price * amount > gameManager.getGold()) {
-                System.out.print("Not enough gold");
+                throw new IllegalStateException("Not enough gold");
             } else {
                 gameManager.getPlayerShip().repair(amount);
                 gameManager.deductGold(price * amount);

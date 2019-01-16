@@ -125,6 +125,8 @@ public class SampleObjects {
                         0.8));
                 stock.add(new Weapon("Weapon4", 5000, 30, 4000, 0.05,
                         0.9));
+                stock.add(new Weapon("Weapon5", 35, 30, 4000, 0.05,
+                        0.9));
 
         }
         return stock;

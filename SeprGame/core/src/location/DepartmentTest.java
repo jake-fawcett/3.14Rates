@@ -30,19 +30,20 @@ public class DepartmentTest {
     }
 
     @Test public void buyWeaponBuysWeapon() {
-        Weapon buying = tester.getWeaponStock().get(0);
+        Weapon buying = tester.getWeaponStock().get(4);
+        assertTrue("For this test to work, the weapon should cost 35", buying.getCost() == 35);
+        assertTrue("For this test to work, the player's gold should be 250", testGM.getGold() == 250);
         tester.buyWeapon(buying);
-        int goldBefore = testGM.getGold();
         assertFalse("Weapon should be removed from stock", tester.getWeaponStock().contains(buying));
         assertTrue("Weapon should be added to ship", testGM.getPlayerShip().getWeapons().contains(buying));
-        assertEquals("Gold should be deducted when a weapon is bought", goldBefore - buying.getCost(),
+        assertEquals("Gold should be deducted when a weapon is bought", 215,
                 testGM.getGold());
     }
 
     @Test public void buyWeaponBuysCorrectWeapon() {
         assertTrue("For this test to work weapon stock must be at least of length 5",
                 tester.getWeaponStock().size() >= 5);
-        Weapon buying = tester.getWeaponStock().get(2);
+        Weapon buying = tester.getWeaponStock().get(4);
         tester.buyWeapon(buying);
         assertFalse("Correct weapon should be removed from stock", tester.getWeaponStock().contains(buying));
         assertTrue("Correct weapon should be added to ship", testGM.getPlayerShip().getWeapons().contains(buying));
@@ -126,6 +127,8 @@ public class DepartmentTest {
     public void cantBuyMoreResourceThanCanAfford() {
 //    You should not be able to buy more of a resource than you can afford
         int canAfford = (testGM.getGold() / tester.getResourceStock().get(Resource.CREW));
+        System.out.println(testGM.getGold());
+        System.out.println(tester.getResourceStock().get(Resource.CREW));
         tester.buyResource(Resource.CREW, canAfford + 10);
     }
 
