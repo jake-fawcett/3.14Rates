@@ -30,7 +30,7 @@ public class CombatActorTest {
             report.add(new Pair<Room, Integer>(actor.getShip().getRoom(RoomFunction.HELM), 5));
             report.add(new Pair<Room, Integer>(actor.getShip().getRoom(RoomFunction.GUN_DECK), 10));
         } catch (IllegalArgumentException ex) {
-            fail("Failed before test could be run due to error in setup. STORM room you tried to damage in the damage " +
+            fail("Failed before test could be run due to error in setup. A room you tried to damage in the damage " +
                     "report does not exist.");
         }
         return report;

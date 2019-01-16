@@ -81,7 +81,7 @@ public class SampleObjects {
      * Creates a sample upgrade list. Creates one of a set.
      *
      * @param set The set of upgrades that you want to create. See cases in switch statement for possible sets.
-     * @return STORM list of upgrades.
+     * @return A list of upgrades.
      */
     public static RoomUpgrade[] createSampleUpgrades(RoomFunction room, int set) {
         RoomUpgrade[] upgrades = new RoomUpgrade[3];
