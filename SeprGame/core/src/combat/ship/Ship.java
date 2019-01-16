@@ -106,16 +106,14 @@ public class Ship {
         crew += amount;
     }
 
-    public double calculateShipAccuracy(){
+    public double calculateShipAccuracy() {
         return BASE_SHIP_ACCURACY * this.getRoom(RoomFunction.CROWS_NEST).getMultiplier();
     }
 
-    public float calculateShipEvade(){
+    public float calculateShipEvade() {
         //TODO this is just a placeholder, write me
         return (float) 0.1;
     }
-
-}
 
     public boolean hasUpgrade(RoomUpgrade upgrade) {
         //FIXME write tests for me
