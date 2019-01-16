@@ -51,14 +51,15 @@ public class DepartmentTest {
 
     @Test public void buyUpgradeBuysUpgrade() {
         RoomUpgrade buying = tester.getUpgradeStock().get(0);
+        assertTrue("For this test to work, the upgrade should cost 100", buying.getCost() == 100);
+        assertTrue("For this test to work, the player's gold should be 250", testGM.getGold() == 250);
         tester.buyRoomUpgrade(buying);
-        int goldBefore = testGM.getGold();
 
         assertFalse("Upgrade should be removed from stock", tester.getUpgradeStock().contains(buying));
         assertTrue("Upgrade should be added to ship",
                 Arrays.asList(testGM.getPlayerShip().getRoom(RoomFunction.CROWS_NEST).getUpgrades()).contains(buying));
         assertEquals("Gold should be deducted when an upgrade is bought",
-                goldBefore - buying.getCost(), testGM.getGold());
+                150, testGM.getGold());
     }
 
     @Test(expected = IllegalArgumentException.class)
@@ -78,7 +79,7 @@ public class DepartmentTest {
 
         assertFalse("Correct upgrade should be removed from stock", tester.getUpgradeStock().contains(buying));
         assertTrue("Correct upgrade should be added to ship",
-                Arrays.asList(testGM.getPlayerShip().getRoom(RoomFunction.CROWS_NEST).getUpgrades()).contains(buying));
+                Arrays.asList(testGM.getPlayerShip().getRoom(RoomFunction.HELM).getUpgrades()).contains(buying));
     }
 
     @Test(expected = IllegalArgumentException.class)
