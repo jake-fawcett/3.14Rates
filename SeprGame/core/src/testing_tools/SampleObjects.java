@@ -117,13 +117,13 @@ public class SampleObjects {
                         0.8));
                 break;
             case 2:
-                stock.add(new Weapon("Weapon1", 50, 15, 2000, 0.05,
+                stock.add(new Weapon("Weapon1", 5000, 15, 2000, 0.05,
                         0.8));
-                stock.add(new Weapon("Weapon2", 50, 15, 2000, 0.05,
+                stock.add(new Weapon("Weapon2", 5000, 15, 2000, 0.05,
                         0.8));
-                stock.add(new Weapon("Weapon3", 10, 3, 1500, 0.05,
+                stock.add(new Weapon("Weapon3", 5000, 3, 1500, 0.05,
                         0.8));
-                stock.add(new Weapon("Weapon4", 100, 30, 4000, 0.05,
+                stock.add(new Weapon("Weapon4", 5000, 30, 4000, 0.05,
                         0.9));
 
         }

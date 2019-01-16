@@ -60,7 +60,7 @@ public class DepartmentTest {
                 goldBefore - buying.getCost(), testGM.getGold());
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test(expected = IllegalArgumentException.class)
     public void cannotBuyWeaponThatYouCantAfford() {
         Weapon buying = tester.getWeaponStock().get(3);
         assertTrue("For this test to work you must have less gold than the price of the weapon we are " +
@@ -80,7 +80,7 @@ public class DepartmentTest {
                 Arrays.asList(testGM.getPlayerShip().getRoom(RoomFunction.CROWS_NEST).getUpgrades()).contains(buying));
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test(expected = IllegalArgumentException.class)
     public void cannotBuyUpgradeThatYouCantAfford() {
         RoomUpgrade buying = tester.getUpgradeStock().get(4);
         assertTrue("For this test to work you must have less gold than the price of the upgrade we are " +
