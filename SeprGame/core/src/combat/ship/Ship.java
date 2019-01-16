@@ -95,7 +95,7 @@ public class Ship {
             if (ex.getMessage().equals("Room Upgrades full")) {
                 /* TODO Write catch so that a message is displayed on the screen warning you if room upgrades are full.
                      - This catch should somehow warn the player that they have to get rid of one upgrade and make them
-                     choose which. STORM test also needs to be written for this once its done*/
+                     choose which. A test also needs to be written for this once its done*/
                 throw ex;
             }
         }
