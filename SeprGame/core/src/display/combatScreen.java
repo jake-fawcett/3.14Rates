@@ -9,8 +9,8 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
-import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
+import game_manager.GameManager;
 
 public class combatScreen implements Screen {
     private boolean isCollegeBattle;
@@ -86,6 +86,7 @@ public class combatScreen implements Screen {
 
     private String weaponSelected;
 
+    private GameManager game;
 
     //TODO Add button function, Track most recent room pressed
 
@@ -295,7 +296,7 @@ public class combatScreen implements Screen {
 
         weaponFire.addListener(new InputListener(){
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button){
-                //TODO Add WeaponFiring Capability
+                //TODO Add WeaponFiring Capability (Pass into CombatPlayer -> Combat Manager)
                 weaponButtonGroup.uncheckAll();
                 roomButtonGroup.uncheckAll();
                 weaponFire.setChecked(false);
@@ -309,7 +310,10 @@ public class combatScreen implements Screen {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         Gdx.input.setInputProcessor(stage);
 
-
+        //gold = game.getGold();
+        //food = game.getFood();
+        //score = game.getPoints();
+        // TODO crew + above broken
 
         batch.begin();
         batch.draw(battleBackground,0,0);

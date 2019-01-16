@@ -37,6 +37,7 @@ public class menuScreen extends InputListener implements Screen {
     private TextButton exitGame;
 
     private Game game;
+
     public menuScreen(Game game){
         this.game = game;
     }
