@@ -116,7 +116,6 @@ public class Ship {
     }
 
     public boolean hasUpgrade(RoomUpgrade upgrade) {
-        //FIXME write tests for me
         Room room = getRoom(upgrade.getAffectsRoom());
         for (RoomUpgrade i : room.getUpgrades()) {
             if (upgrade == i) {

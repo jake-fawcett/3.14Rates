@@ -1,5 +1,6 @@
 package combat.ship;
 
+import banks.RoomUpgradeBank;
 import banks.ShipBank;
 import combat.items.RoomUpgrade;
 import combat.items.Weapon;
@@ -144,4 +145,13 @@ public class ShipTest {
 
     }
 
+    @Test
+    public void hasUpgrade() {
+        RoomUpgrade upgrade = RoomUpgradeBank.SIGHT.getRoomUpgrade();
+        assertFalse("It should not tell you that you have an upgrade that you don't have",
+                tester2.hasUpgrade(upgrade));
+        tester2.addUpgrade(upgrade);
+        assertTrue("It should tell you that you have an upgrade that you do have",
+                tester2.hasUpgrade(upgrade));
+    }
 }
