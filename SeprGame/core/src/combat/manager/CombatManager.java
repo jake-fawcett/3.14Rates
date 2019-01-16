@@ -21,8 +21,6 @@ public class CombatManager {
 
     /**
      * Controls the whole process of combat from start to entering minigame.
-     * <p></p>
-     * TODO This will not return void when it has finished. Decide on what should be returned.
      */
     public void enterCombat() {
     }
@@ -41,11 +39,7 @@ public class CombatManager {
 
     /**
      * Ends the fight and starts minigame.
-     *
-     * @return TODO Will end up returning outcome of combat to game manager
-     * how this is done depends on implementation
      */
-    @SuppressWarnings("JavaDoc")
-    void endCombat() {
+    private void endCombat() {
     }
 }
