@@ -86,9 +86,6 @@ public class ShipTest {
                 RoomFunction.CROWS_NEST).getUpgrades()).contains(upgrade));
     }
 
-//    TODO write test for adding upgrade once the upgrade slots are all full once the catch has been written (See
-//    todo in Ship -> addUpgrade()
-
     @Test
     public void calculateShipAccuracyBase() {
         assertTrue("These tests rely on the BASE_SHIP_ACCURACY in constants being set to 1. If it is" +
