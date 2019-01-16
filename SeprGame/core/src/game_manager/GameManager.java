@@ -87,7 +87,8 @@ public class GameManager extends Game {
     }
 
     public GameManager() {
-        //TODO Write me
+//        TODO Write me so that the screen asks the player for their information
+//          (name and the difficulty they want to play)
     }
 
 

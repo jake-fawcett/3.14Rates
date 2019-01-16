@@ -81,7 +81,7 @@ public class SampleObjects {
      * Creates a sample upgrade list. Creates one of a set.
      *
      * @param set The set of upgrades that you want to create. See cases in switch statement for possible sets.
-     * @return A list of upgrades.
+     * @return STORM list of upgrades.
      */
     public static RoomUpgrade[] createSampleUpgrades(RoomFunction room, int set) {
         RoomUpgrade[] upgrades = new RoomUpgrade[3];
@@ -117,13 +117,15 @@ public class SampleObjects {
                         0.8));
                 break;
             case 2:
-                stock.add(new Weapon("Weapon1", 50, 15, 2000, 0.05,
+                stock.add(new Weapon("Weapon1", 5000, 15, 2000, 0.05,
                         0.8));
-                stock.add(new Weapon("Weapon2", 50, 15, 2000, 0.05,
+                stock.add(new Weapon("Weapon2", 5000, 15, 2000, 0.05,
                         0.8));
-                stock.add(new Weapon("Weapon3", 10, 3, 1500, 0.05,
+                stock.add(new Weapon("Weapon3", 5000, 3, 1500, 0.05,
                         0.8));
-                stock.add(new Weapon("Weapon4", 100, 30, 4000, 0.05,
+                stock.add(new Weapon("Weapon4", 5000, 30, 4000, 0.05,
+                        0.9));
+                stock.add(new Weapon("Weapon5", 35, 30, 4000, 0.05,
                         0.9));
 
         }

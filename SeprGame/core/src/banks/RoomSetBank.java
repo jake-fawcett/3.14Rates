@@ -10,7 +10,7 @@ import java.util.List;
 import static other.Constants.DEFAULT_ROOM_HP;
 
 public enum RoomSetBank {
-    TEST_SET(new Room(DEFAULT_ROOM_HP, DEFAULT_ROOM_HP, new RoomUpgrade[3], RoomFunction.CROWS_NEST),
+    STARTER_ROOMS(new Room(DEFAULT_ROOM_HP, DEFAULT_ROOM_HP, new RoomUpgrade[3], RoomFunction.CROWS_NEST),
             new Room(DEFAULT_ROOM_HP, DEFAULT_ROOM_HP, new RoomUpgrade[3], RoomFunction.HELM),
             new Room(DEFAULT_ROOM_HP, DEFAULT_ROOM_HP, new RoomUpgrade[3], RoomFunction.GUN_DECK),
             new Room(DEFAULT_ROOM_HP, DEFAULT_ROOM_HP, new RoomUpgrade[3], RoomFunction.CREW_QUARTERS),
@@ -35,7 +35,7 @@ public enum RoomSetBank {
 
     public List<Room> getRoomList() {
         List<Room> out = new ArrayList<Room>();
-        Room[] rooms = new Room[] {r1,r2,r3,r4,r5,r6};
+        Room[] rooms = new Room[]{r1, r2, r3, r4, r5, r6};
 
         for (Room r : rooms) {
             out.add(new Room(r.getBaseHP(), r.getHp(), r.getUpgrades(), r.getFunction()));

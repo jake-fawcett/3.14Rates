@@ -1,5 +1,6 @@
 package combat.ship;
 
+import com.sun.deploy.util.ArrayUtil;
 import combat.items.RoomUpgrade;
 import org.junit.Before;
 import org.junit.Test;
@@ -49,11 +50,11 @@ public class RoomTest {
 
     @Test
     public void getMultiplierWithUpgrades() {
-        tester = new Room(100,100, SampleObjects.createSampleUpgrades(RoomFunction.CROWS_NEST, 2),
+        tester = new Room(100, 100, SampleObjects.createSampleUpgrades(RoomFunction.CROWS_NEST, 2),
                 RoomFunction.CROWS_NEST);
         assertEquals("This configuration of upgrades should give this value at full health",
                 2.689, tester.getMultiplier(), 0.05);
-        tester.damage(tester.getBaseHP()/2);
+        tester.damage(tester.getBaseHP() / 2);
         assertEquals("This configuration of upgrades should give this value at half health",
                 1.345, tester.getMultiplier(), 0.05);
 
@@ -66,11 +67,39 @@ public class RoomTest {
         assertTrue("Upgrade should be added", Arrays.asList(tester.getUpgrades()).contains(upgrade));
     }
 
-    @Test (expected = IllegalStateException.class)
+    @Test(expected = IllegalStateException.class)
     public void cannotAddMoreThanThreeUpgrades() {
         tester.addUpgrade(new RoomUpgrade("TestUpgrade", 1, 1.2, RoomFunction.CROWS_NEST));
         tester.addUpgrade(new RoomUpgrade("TestUpgrade", 1, 1.2, RoomFunction.CROWS_NEST));
         tester.addUpgrade(new RoomUpgrade("TestUpgrade", 1, 1.2, RoomFunction.CROWS_NEST));
         tester.addUpgrade(new RoomUpgrade("TestUpgrade", 1, 1.2, RoomFunction.CROWS_NEST));
+    }
+
+    @Test
+    public void delUpgrade() {
+        RoomUpgrade up1 = new RoomUpgrade("a", 1, 1, RoomFunction.CROWS_NEST);
+        RoomUpgrade up2 = new RoomUpgrade("b", 1, 1, RoomFunction.CROWS_NEST);
+        RoomUpgrade up3 = new RoomUpgrade("c", 1, 1, RoomFunction.CROWS_NEST);
+
+        tester.addUpgrade(up1);
+        tester.addUpgrade(up2);
+        tester.addUpgrade(up3);
+
+        assertTrue("Upgrades should be correctly initialised",
+                tester.getUpgrades()[0].getName() == "a");
+        assertTrue("Upgrades should be correctly initialised",
+                tester.getUpgrades()[1].getName() == "b");
+        assertTrue("Upgrades should be correctly initialised",
+                tester.getUpgrades()[2].getName() == "c");
+
+        tester.delUpgrade(up2);
+        assertFalse("Upgrades should be correctly removed", Arrays.asList(tester.getUpgrades()).contains(up2));
+
+        assertTrue("Upgrades should be correctly shifted after deletion",
+                tester.getUpgrades()[0].getName() == "a");
+        assertTrue("Upgrades should be correctly shifted after deletion",
+                tester.getUpgrades()[1].getName() == "c");
+        assertTrue("Upgrades should be correctly shifted after deletion",
+                tester.getUpgrades()[2] == null);
     }
 }
