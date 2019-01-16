@@ -1,5 +1,5 @@
 package other;
 
 public enum Resource {
-    CREW, GOLD, FOOD
+    CREW, GOLD, FOOD, REPAIR
 }

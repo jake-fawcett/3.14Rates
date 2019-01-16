@@ -3,6 +3,7 @@ package combat.ship;
 import combat.items.RoomUpgrade;
 import combat.items.Weapon;
 
+import java.util.Hashtable;
 import java.util.List;
 
 @SuppressWarnings("ALL")
@@ -96,5 +97,28 @@ public class Ship {
                 throw ex;
             }
         }
+    }
+
+    public void addCrew(int amount) {
+        //FIXME this is only a very hastily written method. Check it doesnt need to take into account max crew etc
+        //  and write TESTS FOR IT
+        crew += amount;
+    }
+
+    public boolean hasUpgrade(RoomUpgrade upgrade) {
+        //FIXME write tests for me
+        Room room = getRoom(upgrade.getAffectsRoom());
+        for (RoomUpgrade i : room.getUpgrades()) {
+            if (upgrade == i) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void delUpgrade(RoomUpgrade upgrade) {
+        //FIXME THIS IS HASTILY WRITTEN JUST TO TEST SOMETHING! NEEDS TESTS WRITING AND MORE FUNCTInoALITY (EG WHAT
+        //  if upgrade doesnt exist?
+        getRoom(upgrade.getAffectsRoom()).delUpgrade(upgrade);
     }
 }

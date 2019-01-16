@@ -80,5 +80,16 @@ public class Room {
             throw new IllegalStateException("Upgrade Slots full");
         }
     }
+
+    public void delUpgrade(RoomUpgrade upgrade) {
+        //FIXME THIS IS HASTILY WRITTEN JUST TO TEST SOMETHING! NEEDS TESTS WRITING AND MORE FUNCTInoALITY (EG WHAT
+        //  if upgrade doesnt exist? Make it so that you dont have blank slots in the middle, upgrades move forward
+        //  one is deleted
+        for (int i = 0; i < 3; i++) {
+            if (upgrades[i] == upgrade) {
+                upgrades[i] = null;
+            }
+        }
+    }
 }
 
