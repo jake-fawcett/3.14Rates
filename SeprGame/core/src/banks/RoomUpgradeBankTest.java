@@ -1,5 +1,6 @@
-package combat.items;
+package banks;
 
+import combat.items.RoomUpgrade;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -9,14 +10,14 @@ public class RoomUpgradeBankTest {
 
     @Before
     public void testNotEmpty(){
-        assertNotEquals("These tests will not work with an empty RoomUpgradeBank",
+        assertFalse("These tests will not work with an empty RoomUpgradeBank",
                 RoomUpgradeBank.values().length == 0);
     }
 
     @Test
     public void getRoomUpgradeGetsRoomUpgrade(){
-        RoomUpgrade myRoomUpgrade = RoomUpgradeBank.A.getRoomUpgrade();
-        assertEquals("You should be able to get a weapon from the RoomUpgradeBank", RoomUpgrade.class,
+        RoomUpgrade myRoomUpgrade = RoomUpgradeBank.REF_GUN.getRoomUpgrade();
+        assertEquals("You should be able to get a RoomUpgrade from the RoomUpgradeBank", RoomUpgrade.class,
                 myRoomUpgrade.getClass());
     }
 }

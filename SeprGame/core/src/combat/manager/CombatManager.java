@@ -7,6 +7,7 @@ import javafx.util.Pair;
 
 import java.util.List;
 
+@SuppressWarnings("FieldCanBeLocal")
 public class CombatManager {
     private CombatPlayer player;
     private CombatPlayer enemy;

@@ -1,8 +1,13 @@
 package combat.ship;
 
+import combat.items.RoomUpgrade;
+import combat.items.Weapon;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import testing_tools.SampleObjects;
+
+import java.util.Arrays;
 
 import static org.junit.Assert.*;
 
@@ -46,4 +51,34 @@ public class ShipTest {
         assertEquals("HP should not be allowed to go above max", tester.getBaseHullHP(),
                 tester.getHullHP());
     }
+
+    @Test
+    public void addWeapon() {
+        Weapon weapon = new Weapon("Weapon to add", 5, 5, 5, 0.1,
+                0.1);
+        tester.addWeapon(weapon);
+        assertTrue("Weapon should be added to weapons", tester.getWeapons().contains(weapon));
+    }
+
+    @Test (expected = IllegalStateException.class)
+    public void addWeaponThrowsFull() {
+        tester.addWeapon(new Weapon("Weapon to add", 5, 5, 5, 0.1,
+                0.1));
+        tester.addWeapon(new Weapon("Weapon to add", 5, 5, 5, 0.1,
+                0.1));
+        tester.addWeapon(new Weapon("Weapon to add", 5, 5, 5, 0.1,
+                0.1));
+    }
+
+    @Test
+    public void addUpgrade() {
+        RoomUpgrade upgrade = new RoomUpgrade("up", 1, 0.1, RoomFunction.CREW_QUARTERS);
+        tester.addUpgrade(upgrade);
+        assertTrue("Upgrade should be added to appropriate room", Arrays.asList(tester.getRoom(
+                RoomFunction.CREW_QUARTERS).getUpgrades()).contains(upgrade));
+        assertFalse("Upgrade should not be added to any other room", Arrays.asList(tester.getRoom(
+                RoomFunction.CROWS_NEST).getUpgrades()).contains(upgrade));
+    }
+
+    //TODO write test for adding upgrade once the upgrade slots are all full once Jake written the code in addUpgrade()
 }

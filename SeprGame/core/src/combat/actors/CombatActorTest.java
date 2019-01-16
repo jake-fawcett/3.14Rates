@@ -1,10 +1,8 @@
 package combat.actors;
 
-import combat.items.RoomUpgrade;
 import combat.items.Weapon;
 import combat.ship.Room;
 import combat.ship.RoomFunction;
-import combat.ship.Ship;
 import javafx.util.Pair;
 import org.junit.Before;
 import org.junit.Ignore;
@@ -44,9 +42,6 @@ public class CombatActorTest {
         int gunHP = actor.getShip().getRoom(RoomFunction.GUN_DECK).getHp();
         int crowHP = actor.getShip().getRoom(RoomFunction.CROWS_NEST).getHp();
         int crewHP = actor.getShip().getRoom(RoomFunction.CREW_QUARTERS).getHp();
-
-        List<Pair<Room, Weapon>> turnReport = actor.takeTurn(createSampleDamageReport(actor));
-        //TODO Test that it outputs the correct thing using turnReport (above)
 
         // Rooms take damage
         assertEquals("Hit rooms should be damaged", helmHP - 5, actor.getShip().getRoom(

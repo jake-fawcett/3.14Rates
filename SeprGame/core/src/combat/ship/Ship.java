@@ -1,9 +1,11 @@
 package combat.ship;
 
+import combat.items.RoomUpgrade;
 import combat.items.Weapon;
 
 import java.util.List;
 
+@SuppressWarnings("ALL")
 public class Ship {
     private int crew;
     private List<Room> rooms;
@@ -17,6 +19,14 @@ public class Ship {
         this.weapons = weapons;
         this.baseHullHP = baseHullHP;
         this.hullHP = hullHP;
+    }
+
+    public Ship(int crew, List<Room> rooms, List<Weapon> weapons, int baseHullHP) {
+        this.crew = crew;
+        this.rooms = rooms;
+        this.weapons = weapons;
+        this.baseHullHP = baseHullHP;
+        this.hullHP = baseHullHP;
     }
 
     public int getCrew() {
@@ -60,8 +70,30 @@ public class Ship {
 
     public void repair(int damage) {
         hullHP += damage;
-        if (hullHP > baseHullHP){
+        if (hullHP > baseHullHP) {
             hullHP = baseHullHP;
+        }
+    }
+
+    public void addWeapon(Weapon weapon) {
+        if (weapons.size() > 4) {
+            throw new IllegalStateException("Weapon Slots full");
+        } else {
+            weapons.add(weapon);
+        }
+    }
+
+    public void addUpgrade(RoomUpgrade upgrade) {
+        try {
+            this.getRoom(upgrade.getAffectsRoom()).addUpgrade(upgrade);
+
+        } catch (IllegalStateException ex) {
+            if (ex.getMessage().equals("Room Upgrades full")) {
+                /* TODO Write catch so that a message is displayed on the screen warning you if room upgrades are full.
+                     - This catch should somehow warn the player that they have to get rid of one upgrade and make them
+                     choose which. */
+                throw ex;
+            }
         }
     }
 }

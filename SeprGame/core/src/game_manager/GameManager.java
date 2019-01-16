@@ -6,6 +6,10 @@ import other.Difficulty;
 import other.Screen;
 import display.*;
 
+import static banks.ShipBank.STARTER_SHIP;
+import static other.Constants.STARTING_FOOD;
+import static other.Constants.STARTING_GOLD;
+
 public class GameManager extends Game {
     private int gold;
     private int food;
@@ -13,31 +17,44 @@ public class GameManager extends Game {
     private String playerName;
     private Ship playerShip;
     private Difficulty difficulty;
-
     private Game game;
 
     public int getGold() {
         return gold;
     }
 
-    public void setGold(int gold) {
-        this.gold = gold;
+    public void addGold(int amount) {
+        this.gold += amount;
+    }
+
+    public void deductGold(int amount) {
+        this.gold -= amount;
+        if (gold < 0) {
+            gold = 0;
+        }
     }
 
     public int getFood() {
         return food;
     }
 
-    public void setFood(int food) {
-        this.food = food;
+    public void addFood(int amount) {
+        this.food += amount;
+    }
+
+    public void deductFood(int amount) {
+        food -= amount;
+        if (food < 0) {
+            food = 0;
+        }
     }
 
     public int getPoints() {
         return points;
     }
 
-    public void setPoints(int points) {
-        this.points = points;
+    public void addPoints(int amount) {
+        this.points += amount;
     }
 
     public String getPlayerName() {
@@ -52,29 +69,26 @@ public class GameManager extends Game {
         return playerShip;
     }
 
-    public void setPlayerShip(Ship playerShip) {
-        this.playerShip = playerShip;
-    }
-
     public Difficulty getDifficulty() {
         return difficulty;
     }
 
-    public void setDifficulty(Difficulty difficulty) {
-        this.difficulty = difficulty;
+    public void setScreen(Screen screen) {
+        this.screen = screen;
     }
 
-    public void setScreen(Screen screen) { this.screen = screen;}
-
     public GameManager(String playerName, Difficulty difficulty) {
-//        TODO implement below
-//        this.gold = ;
-//        this.food = ;
-//        this.points = ;
-//        this.playerShip =
         this.playerName = playerName;
         this.difficulty = difficulty;
+        this.gold = STARTING_GOLD;
+        this.food = STARTING_FOOD;
+        this.points = 0;
+        this.playerShip = STARTER_SHIP.getShip();
         game = this;
+    }
+
+    public GameManager() {
+        //TODO Write me
     }
 
     private Screen screen = Screen.MENU;

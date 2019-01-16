@@ -2,21 +2,25 @@ package combat.ship;
 
 import combat.items.RoomUpgrade;
 
-import java.util.HashMap;
-import java.util.Map;
-
 @SuppressWarnings("WeakerAccess")
 public class Room {
     private int baseHP;
     private int hp;
     /**
      * A 1x3 array of RoomUpgrade
-     *
+     * <p>
      * Stores the upgrades applied to the room. Each upgrade slot past the first has its effectiveness diminished by
      * a third. So the first slot is 100% effective, the second is 66%, then 33%.
      */
     private RoomUpgrade[] upgrades;
     private RoomFunction function;
+
+    public Room(int baseHealth, RoomUpgrade[] upgrades, RoomFunction function) {
+        this.baseHP = baseHealth;
+        this.hp = baseHealth;
+        this.upgrades = upgrades;
+        this.function = function;
+    }
 
     public Room(int baseHealth, int hp, RoomUpgrade[] upgrades, RoomFunction function) {
         this.baseHP = baseHealth;
@@ -60,6 +64,20 @@ public class Room {
         hp -= damage;
         if (hp < 0) {
             hp = 0;
+        }
+    }
+
+    public void addUpgrade(RoomUpgrade upgrade) {
+        Boolean set = false;
+        for (int i = 0; i < 3; i++) {
+            if (upgrades[i] == null) {
+                upgrades[i] = upgrade;
+                set = true;
+            }
+        }
+
+        if (!set) {
+            throw new IllegalStateException("Upgrade Slots full");
         }
     }
 }
