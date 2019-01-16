@@ -23,7 +23,6 @@ public class ShipTest {
         tester2 = ShipBank.STARTER_SHIP.getShip();
     }
 
-    /*
     @Test(expected = IllegalArgumentException.class)
     public void getRoomThrowsIllegalArgument() {
         tester.getRoom(RoomFunction.GUN_DECK);
@@ -87,8 +86,6 @@ public class ShipTest {
 
 //    TODO write test for adding upgrade once the upgrade slots are all full once the catch has been written (See
 //    todo in Ship -> addUpgrade()
-
-    */
 
     @Test
     public void calculateShipAccuracyBase() {
