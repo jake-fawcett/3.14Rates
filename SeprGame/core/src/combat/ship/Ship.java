@@ -101,8 +101,6 @@ public class Ship {
     }
 
     public void addCrew(int amount) {
-        //FIXME this is only a very hastily written method. Check it doesnt need to take into account max crew etc
-        //  and write TESTS FOR IT
         crew += amount;
     }
 
