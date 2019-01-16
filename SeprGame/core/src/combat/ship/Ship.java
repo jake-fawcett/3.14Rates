@@ -126,8 +126,10 @@ public class Ship {
     }
 
     public void delUpgrade(RoomUpgrade upgrade) {
-        //FIXME THIS IS HASTILY WRITTEN JUST TO TEST SOMETHING! NEEDS TESTS WRITING AND MORE FUNCTInoALITY (EG WHAT
-        //  if upgrade doesnt exist?
-        getRoom(upgrade.getAffectsRoom()).delUpgrade(upgrade);
+        if (this.hasUpgrade(upgrade)) {
+            getRoom(upgrade.getAffectsRoom()).delUpgrade(upgrade);
+        } else {
+            throw new IllegalArgumentException("Cannot delete upgrade that you do not have");
+        }
     }
 }

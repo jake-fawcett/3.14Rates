@@ -65,9 +65,9 @@ public class ShipTest {
         assertTrue("Weapon should be added to weapons", tester.getWeapons().contains(weapon));
     }
 
-    @Test (expected = IllegalStateException.class)
+    @Test(expected = IllegalStateException.class)
     public void cantAddMoreThanFourWeapons() {
-        for (int i = 0; i < 5; i ++) {
+        for (int i = 0; i < 5; i++) {
             Weapon weapon = new Weapon("Weapon to add", 5, 5, 5, 0.1,
                     0.1);
             tester.addWeapon(weapon);
@@ -153,5 +153,14 @@ public class ShipTest {
         tester2.addUpgrade(upgrade);
         assertTrue("It should tell you that you have an upgrade that you do have",
                 tester2.hasUpgrade(upgrade));
+    }
+
+    @Test
+    public void delUpgrade() {
+        RoomUpgrade upgrade = RoomUpgradeBank.SIGHT.getRoomUpgrade();
+        tester2.addUpgrade(upgrade);
+        assertTrue("Upgrade must be added for this test to work", tester2.hasUpgrade(upgrade));
+        tester2.delUpgrade(upgrade);
+        assertFalse("Upgrade should be deleted from ship", tester2.hasUpgrade(upgrade));
     }
 }
