@@ -3,7 +3,11 @@ package combat.ship;
 import combat.items.RoomUpgrade;
 import combat.items.Weapon;
 
+import java.util.Hashtable;
 import java.util.List;
+
+import static other.Constants.BASE_SHIP_ACCURACY;
+import static other.Constants.BASE_SHIP_EVADE;
 
 @SuppressWarnings("ALL")
 public class Ship {
@@ -91,9 +95,39 @@ public class Ship {
             if (ex.getMessage().equals("Room Upgrades full")) {
                 /* TODO Write catch so that a message is displayed on the screen warning you if room upgrades are full.
                      - This catch should somehow warn the player that they have to get rid of one upgrade and make them
-                     choose which. */
+                     choose which. A test also needs to be written for this once its done*/
                 throw ex;
             }
+        }
+    }
+
+    public void addCrew(int amount) {
+        crew += amount;
+    }
+
+    public double calculateShipAccuracy() {
+        return BASE_SHIP_ACCURACY * this.getRoom(RoomFunction.CROWS_NEST).getMultiplier();
+    }
+
+    public double calculateShipEvade() {
+        return BASE_SHIP_EVADE * this.getRoom(RoomFunction.HELM).getMultiplier();
+    }
+
+    public boolean hasUpgrade(RoomUpgrade upgrade) {
+        Room room = getRoom(upgrade.getAffectsRoom());
+        for (RoomUpgrade i : room.getUpgrades()) {
+            if (upgrade == i) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void delUpgrade(RoomUpgrade upgrade) {
+        if (this.hasUpgrade(upgrade)) {
+            getRoom(upgrade.getAffectsRoom()).delUpgrade(upgrade);
+        } else {
+            throw new IllegalArgumentException("Cannot delete upgrade that you do not have");
         }
     }
 }

@@ -18,7 +18,7 @@ public class RoomSetBankTest {
 
     @Test
     public void getRoomListGetsRoomList() {
-        List<Room> roomList = RoomSetBank.TEST_SET.getRoomList();
+        List<Room> roomList = RoomSetBank.STARTER_ROOMS.getRoomList();
         assertEquals("You should be returned a list", java.util.ArrayList.class, roomList.getClass());
         assertFalse("The list should not be empty", roomList.size() == 0);
         assertEquals("You should be returned a list of rooms", Room.class, roomList.get(0).getClass());
@@ -26,18 +26,13 @@ public class RoomSetBankTest {
 
     @Test
     public void getRoomListCreatesNewInstances() {
-        List<Room> roomList = RoomSetBank.TEST_SET.getRoomList();
-        List<Room> roomList2 = RoomSetBank.TEST_SET.getRoomList();
+        List<Room> roomList = RoomSetBank.STARTER_ROOMS.getRoomList();
+        List<Room> roomList2 = RoomSetBank.STARTER_ROOMS.getRoomList();
         assertFalse("The list should not be empty", roomList.size() == 0);
-        Room r1 = roomList.get(0);
-        Room r2 = roomList2.get(0);
-        System.out.println(r1.getHp());
-        System.out.println(r2.getHp());
-        r1.damage(1);
-        System.out.println(r1.getHp());
-        System.out.println(r2.getHp());
+        roomList.remove(0);
 
-        assertNotEquals("Rooms created from the same set should still be independent.", r1.getHp(), r2.getHp());
+        assertNotEquals("Rooms created from the same set should still be independent.", roomList.size(),
+                roomList2.size());
     }
 
 }
