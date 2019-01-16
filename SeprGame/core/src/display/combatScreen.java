@@ -8,10 +8,9 @@ import com.badlogic.gdx.graphics.g2d.*;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.ButtonGroup;
-import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
-import com.badlogic.gdx.scenes.scene2d.ui.Skin;
-import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.ui.*;
+import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
+import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 
 public class combatScreen implements Screen {
     private boolean isCollegeBattle;
@@ -22,6 +21,21 @@ public class combatScreen implements Screen {
 
     private SpriteBatch batch = new SpriteBatch();
     private Stage stage = new Stage();
+
+    private Texture hpBackground = new Texture("background.png");
+    private Texture hpDisabledBackground = new Texture("disabledBackground.png");
+    private ProgressBar.ProgressBarStyle healthBarStyle = new ProgressBar.ProgressBarStyle();
+    private ProgressBar healthBar;
+
+    private int score;
+    private String scoreName;
+    private int gold;
+    private String goldName;
+    private int crew;
+    private String crewName;
+    private int food;
+    private String foodName;
+    private BitmapFont indicatorFont = new BitmapFont();
 
     private Texture battleBackground = new Texture("battleBackground.png");
     private Texture shipBackground = new Texture("shipBackground.png");
@@ -77,6 +91,30 @@ public class combatScreen implements Screen {
 
     @Override
     public void show() {
+
+        //Health Bar
+        healthBarStyle.background = new TextureRegionDrawable(new TextureRegion(hpBackground));
+        healthBarStyle.disabledBackground = new TextureRegionDrawable(new TextureRegion(hpDisabledBackground));
+        healthBar = new ProgressBar(0,1000,1,false, healthBarStyle);
+        healthBar.setValue(500);
+        healthBar.setWidth(256);
+        healthBar.setHeight(64);
+        healthBar.setPosition(50,950);
+
+        stage.addActor(healthBar);
+
+        score = 0;
+        scoreName = "Score: 0";
+
+        food = 0;
+        foodName = "Food: 0";
+
+        gold = 0;
+        goldName = "Gold: 0";
+
+        crew = 0;
+        crewName = "Crew: 0";
+
         //Room Buttons
         skin.addRegions(buttonAtlas);
 
@@ -271,11 +309,13 @@ public class combatScreen implements Screen {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         Gdx.input.setInputProcessor(stage);
 
+
+
         batch.begin();
         batch.draw(battleBackground,0,0);
         playerShipBackground.draw(batch);
         enemyShipBackground.draw(batch);
-        playerShipBackground.draw(batch);
+
         friendlyCrewQuaters.draw(batch);
         friendlyCrowsNest.draw(batch);
         friendlyEmptyRoom1.draw(batch);
@@ -284,6 +324,13 @@ public class combatScreen implements Screen {
         friendlyEmptyRoom3.draw(batch);
         friendlyEmptyRoom4.draw(batch);
         friendlyHelm.draw(batch);
+
+        indicatorFont.setColor(1f,1f,1f,1f);
+        indicatorFont.draw(batch, scoreName, 55, 970);
+        indicatorFont.draw(batch, goldName, 120, 970);
+        indicatorFont.draw(batch, crewName, 185, 970);
+        indicatorFont.draw(batch, foodName, 250, 970);
+
         batch.end();
 
         stage.draw();
