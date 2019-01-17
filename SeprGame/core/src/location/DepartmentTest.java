@@ -25,8 +25,7 @@ public class DepartmentTest {
     @Before
     public void setUp() {
         testGM = createSampleGameManager(1);
-        tester = new Department(createSampleWeapons(2), createSampleUpgradeStock(1),
-                createSampleResourceStock(1), testGM);
+        tester = new Department(createSampleWeapons(2), createSampleUpgradeStock(1), testGM);
     }
 
     @Test public void buyWeaponBuysWeapon() {
