@@ -42,6 +42,7 @@ public enum ShipBank {
             roomsOut.add(new Room(r.getBaseHP(), r.getHp(), newUpgrades, r.getFunction()));
         }
         for (Weapon w : weapons) {
+            if (w != null)
             weaponsOut.add(w);
         }
 
