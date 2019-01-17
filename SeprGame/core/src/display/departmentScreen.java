@@ -22,10 +22,17 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import static banks.RoomUpgradeSetBank.COMP_SCI_UPGRADES;
+import static banks.RoomUpgradeSetBank.LMB_UPGRADES;
+import static banks.WeaponSetBank.COMP_SCI_WEPS;
+import static banks.WeaponSetBank.LMB_WEPS;
 import static other.Constants.STORE_SELL_PRICE_MULTIPLIER;
 
 public class departmentScreen implements Screen {
     private GameManager game = new GameManager(null, null);
+
+    private Department compSci = new Department(COMP_SCI_WEPS.getWeaponList(), COMP_SCI_UPGRADES.getRoomList(), game);
+    private Department lmb = new Department(LMB_WEPS.getWeaponList(), LMB_UPGRADES.getRoomList(), game);
 
     private SpriteBatch batch = new SpriteBatch();
     private Stage stage = new Stage();
@@ -198,8 +205,7 @@ public class departmentScreen implements Screen {
                 if (game.getGold() >= weapons.get(randDepartment).getCost() && game.getPlayerShip().getWeapons().get(3) == null){
                     buyWeapon1.setTouchable(Touchable.disabled);
                     buyWeapon1.setText("Purchased!");
-                    game.deductGold(weapons.get(randDepartment).getCost());
-                    game.getPlayerShip().addWeapon(weapons.get(randDepartment));
+                    compSci.buyWeapon(weapons.get(randDepartment));
                 } else {
                     buyWeapon1.setText("Insufficient Gold!");
                 }
@@ -215,7 +221,7 @@ public class departmentScreen implements Screen {
                 if (game.getGold() >= weapons.get(randWeapon1).getCost() && game.getPlayerShip().getWeapons().get(3) == null){
                     buyWeapon2.setTouchable(Touchable.disabled);
                     buyWeapon2.setText("Purchased!");
-
+                    compSci.buyWeapon(weapons.get(randWeapon1));
                 } else {
                     buyWeapon2.setText("Insufficient Gold!");
                 }
@@ -231,8 +237,7 @@ public class departmentScreen implements Screen {
                 if (game.getGold() >= weapons.get(randWeapon2).getCost() && game.getPlayerShip().getWeapons().get(3) == null){
                     buyWeapon3.setTouchable(Touchable.disabled);
                     buyWeapon3.setText("Purchased!");
-                    game.deductGold(weapons.get(randWeapon2).getCost());
-                    game.getPlayerShip().addWeapon(weapons.get(randWeapon2));
+                    compSci.buyWeapon(weapons.get(randWeapon2));
                 } else {
                     buyWeapon3.setText("Insufficient Gold!");
                 }
