@@ -34,6 +34,7 @@ public class CombatManager {
             damageReport = calculateDamage(turnReport, player.getShip(), enemy.getShip());
             turnReport = enemy.takeTurn(damageReport);
             damageReport = calculateDamage(turnReport, enemy.getShip(), player.getShip());
+            //TODO add tester for a ship health being 0 and ending the fight
         }
 
 
