@@ -1,6 +1,6 @@
 package display;
 
-import com.badlogic.gdx.Game;
+import banks.WeaponBank;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Texture;
@@ -12,9 +12,10 @@ import com.badlogic.gdx.scenes.scene2d.ui.ProgressBar;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
-import banks.WeaponBank;
-import game_manager.GameManager;
+import combat.items.Weapon;
 
+
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -70,15 +71,28 @@ public class departmentScreen implements Screen {
 
     private BitmapFont weaponTitleFont = new BitmapFont();
     private BitmapFont weaponDetailsFont = new BitmapFont();
-    private String weapon1 = "StormBringer"; //WeaponBank.A.getWeapon()
-    private String weaponDamage1 = "100";
-    private String weaponCooldown1 = "4";
-    private String critChance1 = "10";
-    private String accuracy1 = "90";
-    private String price1 = "1000";
+
+    private List<Weapon> weapons = new ArrayList<Weapon>();
+    private TextButton buyWeapon1;
+    private TextButton buyWeapon2;
+    private TextButton buyWeapon3;
+    private int randWeapon1;
+    private int randWeapon2;
+
 
     @Override
     public void show() {
+        weapons.add(WeaponBank.SEPR.getWeapon());
+        weapons.add(WeaponBank.LAWBRINGER.getWeapon());
+        weapons.add(WeaponBank.CRITTER.getWeapon());
+        weapons.add(WeaponBank.STORM.getWeapon());
+        weapons.add(WeaponBank.BOOM.getWeapon());
+        weapons.add(WeaponBank.GATLING.getWeapon());
+        weapons.add(WeaponBank.MORTAR.getWeapon());
+        weapons.add(WeaponBank.SCATTER.getWeapon());
+        weapons.add(WeaponBank.TREB.getWeapon());
+        weapons.add(WeaponBank.WATER.getWeapon());
+        weapons.add(WeaponBank.WIN.getWeapon());
 
         skin.addRegions(menuButtonAtlas);
         myTextButtonStyle.font = buttonFont;
@@ -129,7 +143,7 @@ public class departmentScreen implements Screen {
         friendlyHelm.setPosition(228,640);
 
         Random rand = new Random();
-        int randDepartment = rand.nextInt(2);
+        randDepartment = rand.nextInt(2);
 
         openShop = new TextButton("Shop", myTextButtonStyle);
         openShop.setPosition(350,960);
@@ -138,6 +152,9 @@ public class departmentScreen implements Screen {
                 shopBackground.setAlpha(0.85f);
                 weaponTitleFont.setColor(1,1,1,1);
                 weaponDetailsFont.setColor(1,1,1,1);
+                buyWeapon1.setColor(1,1,1,1f);
+                buyWeapon2.setColor(1,1,1,1f);
+                buyWeapon3.setColor(1,1,1,1f);
                 return true;
             }
         });
@@ -148,10 +165,32 @@ public class departmentScreen implements Screen {
         shopBackground.setPosition(256,256);
 
         weaponTitleFont.setColor(1f,1f,1f,0f);
-        weaponTitleFont.getData().setScale(1.2f);
+        weaponTitleFont.getData().setScale(1.5f);
         weaponDetailsFont.setColor(1f,1f,1f,0f);
-        weaponDetailsFont.getData().setScale(0.8f);
-    }
+        weaponDetailsFont.getData().setScale(1f);
+
+        randWeapon1 = rand.nextInt(9) + 2;
+        randWeapon2 = rand.nextInt(9) + 2;
+
+        buyWeapon1 = new TextButton("Buy " + weapons.get(randDepartment).getName(), myTextButtonStyle);
+        buyWeapon1.setPosition(160, 740);
+        stage.addActor(buyWeapon1);
+
+
+        buyWeapon2 = new TextButton("Buy " + weapons.get(randWeapon1).getName(), myTextButtonStyle);
+        buyWeapon2.setPosition(160, 590);
+        stage.addActor(buyWeapon2);
+
+
+        buyWeapon3 = new TextButton("Buy " + weapons.get(randWeapon2).getName(), myTextButtonStyle);
+        buyWeapon3.setPosition(160, 450);
+        stage.addActor(buyWeapon3);
+
+
+        buyWeapon1.setColor(1,1,1,0f);
+        buyWeapon2.setColor(1,1,1,0f);
+        buyWeapon3.setColor(1,1,1,0f);
+        }
 
     @Override
     public void render(float delta) {
@@ -175,10 +214,26 @@ public class departmentScreen implements Screen {
             case 0:
                 computerScience.draw(batch);
                 computerScience.setPosition(500,256);
+
+                shopBackground.draw(batch);
+
+                weaponTitleFont.draw(batch, weapons.get(0).getName(), 160,880);
+                weaponDetailsFont.draw(batch, "Damage: " + weapons.get(0).getBaseDamage(), 160, 850);
+                weaponDetailsFont.draw(batch, "Cooldown: " + weapons.get(0).getCurrentCooldown(), 160,830);
+                weaponDetailsFont.draw(batch, "Crit Chance: " + weapons.get(0).getBaseCritChance(), 160, 810);
+                weaponDetailsFont.draw(batch, "Hit Chance: " + weapons.get(0).getBaseChanceToHit(), 160, 790);
                 break;
             case 1:
                 lawAndManagment.draw(batch);
                 lawAndManagment.setPosition(500,256);
+
+                shopBackground.draw(batch);
+
+                weaponTitleFont.draw(batch, weapons.get(1).getName(), 160,880);
+                weaponDetailsFont.draw(batch, "Damage: " + weapons.get(1).getBaseDamage(), 160, 850);
+                weaponDetailsFont.draw(batch, "Cooldown: " + weapons.get(1).getCurrentCooldown(), 160,830);
+                weaponDetailsFont.draw(batch, "Crit Chance: " + weapons.get(1).getBaseCritChance(), 160, 810);
+                weaponDetailsFont.draw(batch, "Hit Chance: " + weapons.get(1).getBaseChanceToHit(), 160, 790);
                 break;
         }
 
@@ -188,14 +243,18 @@ public class departmentScreen implements Screen {
         indicatorFont.draw(batch, crewName, 185, 970);
         indicatorFont.draw(batch, foodName, 250, 970);
 
-        shopBackground.draw(batch);
+        System.out.print(randWeapon1);
+        weaponTitleFont.draw(batch, weapons.get(randWeapon1).getName(), 160,730);
+        weaponDetailsFont.draw(batch, "Damage: " + weapons.get(randWeapon1).getBaseDamage(), 160, 700);
+        weaponDetailsFont.draw(batch, "Cooldown: " + weapons.get(randWeapon1).getCurrentCooldown(), 160,680);
+        weaponDetailsFont.draw(batch, "Crit Chance: " + weapons.get(randWeapon1).getBaseCritChance(), 160, 660);
+        weaponDetailsFont.draw(batch, "Hit Chance: " + weapons.get(randWeapon1).getBaseChanceToHit(), 160, 640);
 
-        weaponTitleFont.draw(batch, weapon1, 160,880);
-        weaponDetailsFont.draw(batch, weaponDamage1, 160, 860);
-        weaponDetailsFont.draw(batch, weaponCooldown1, 160,840);
-        weaponDetailsFont.draw(batch,critChance1, 160, 820);
-        weaponDetailsFont.draw(batch, accuracy1, 160, 800);
-
+        weaponTitleFont.draw(batch, weapons.get(randWeapon2).getName(), 160,580);
+        weaponDetailsFont.draw(batch, "Damage: " + weapons.get(randWeapon2).getBaseDamage(), 160, 560);
+        weaponDetailsFont.draw(batch, "Cooldown: " + weapons.get(randWeapon2).getCurrentCooldown(), 160,540);
+        weaponDetailsFont.draw(batch, "Crit Chance: " + weapons.get(randWeapon2).getBaseCritChance(), 160, 520);
+        weaponDetailsFont.draw(batch, "Hit Chance: " + weapons.get(randWeapon2).getBaseChanceToHit(), 160, 500);
 
         batch.end();
 
