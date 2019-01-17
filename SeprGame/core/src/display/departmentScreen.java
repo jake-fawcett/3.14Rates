@@ -175,17 +175,36 @@ public class departmentScreen implements Screen {
         buyWeapon1 = new TextButton("Buy " + weapons.get(randDepartment).getName(), myTextButtonStyle);
         buyWeapon1.setPosition(160, 740);
         stage.addActor(buyWeapon1);
+        buyWeapon1.addListener(new InputListener() {
+            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button){
+                if (gold <= weapons.get(randDepartment).getCost()){
+                    buyWeapon1.setDisabled(true);
+                } else {
 
+                }
+                return true;
+            }
+        });
 
         buyWeapon2 = new TextButton("Buy " + weapons.get(randWeapon1).getName(), myTextButtonStyle);
         buyWeapon2.setPosition(160, 590);
         stage.addActor(buyWeapon2);
+        buyWeapon2.addListener(new InputListener() {
+            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button){
 
+                return true;
+            }
+        });
 
         buyWeapon3 = new TextButton("Buy " + weapons.get(randWeapon2).getName(), myTextButtonStyle);
         buyWeapon3.setPosition(160, 450);
         stage.addActor(buyWeapon3);
+        buyWeapon3.addListener(new InputListener() {
+            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button){
 
+                return true;
+            }
+        });
 
         buyWeapon1.setColor(1,1,1,0f);
         buyWeapon2.setColor(1,1,1,0f);
