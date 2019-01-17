@@ -24,7 +24,7 @@ public enum RoomUpgradeSetBank {
         this.r4 = r4;
     }
 
-    public List<RoomUpgrade> getRoomList() {
+    public List<RoomUpgrade> getRoomUpgradeList() {
         List<RoomUpgrade> out = new ArrayList();
         RoomUpgradeBank[] roomUpgrades = {r1, r2, r3, r4};
 
