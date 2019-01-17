@@ -8,17 +8,21 @@ import com.badlogic.gdx.graphics.g2d.*;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.ui.ProgressBar;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import combat.items.Weapon;
 import game_manager.GameManager;
+import location.Department;
 
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+
+import static other.Constants.STORE_SELL_PRICE_MULTIPLIER;
 
 public class departmentScreen implements Screen {
     private GameManager game = new GameManager(null, null);
@@ -151,6 +155,10 @@ public class departmentScreen implements Screen {
                     buyWeapon1.setColor(1, 1, 1, 1f);
                     buyWeapon2.setColor(1, 1, 1, 1f);
                     buyWeapon3.setColor(1, 1, 1, 1f);
+                    if (sellWeapon1 != null){sellWeapon1.setColor(1, 1, 1, 1f);}
+                    if (sellWeapon2 != null){sellWeapon1.setColor(1, 1, 1, 1f);}
+                    if (sellWeapon3 != null){sellWeapon1.setColor(1, 1, 1, 1f);}
+                    if (sellWeapon4 != null){sellWeapon1.setColor(1, 1, 1, 1f);}
                     toggleShop = false;
                 } else {
                     shopBackground.setAlpha(0);
@@ -159,6 +167,10 @@ public class departmentScreen implements Screen {
                     buyWeapon1.setColor(1, 1, 1, 0);
                     buyWeapon2.setColor(1, 1, 1, 0);
                     buyWeapon3.setColor(1, 1, 1, 0);
+                    if (sellWeapon1 != null){sellWeapon1.setColor(1, 1, 1, 0);}
+                    if (sellWeapon2 != null){sellWeapon1.setColor(1, 1, 1, 0);}
+                    if (sellWeapon3 != null){sellWeapon1.setColor(1, 1, 1, 0);}
+                    if (sellWeapon4 != null){sellWeapon1.setColor(1, 1, 1, 0);}
                     toggleShop = true;
                 }
                 return true;
@@ -178,14 +190,13 @@ public class departmentScreen implements Screen {
 
         randWeapon1 = rand.nextInt(9) + 2;
         randWeapon2 = rand.nextInt(9) + 2;
-
         buyWeapon1 = new TextButton("Buy (" + weapons.get(randDepartment).getCost() + "g)", myTextButtonStyle);
         buyWeapon1.setPosition(160, 740);
         stage.addActor(buyWeapon1);
         buyWeapon1.addListener(new InputListener() {
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button){
-                if (game.getGold() >= weapons.get(randDepartment).getCost()){ //TODO Check empty weapons slots > 0
-                    buyWeapon1.setDisabled(true);
+                if (game.getGold() >= weapons.get(randDepartment).getCost() && game.getPlayerShip().getWeapons().get(3) == null){
+                    buyWeapon1.setTouchable(Touchable.disabled);
                     buyWeapon1.setText("Purchased!");
                     game.deductGold(weapons.get(randDepartment).getCost());
                     game.getPlayerShip().addWeapon(weapons.get(randDepartment));
@@ -201,11 +212,10 @@ public class departmentScreen implements Screen {
         stage.addActor(buyWeapon2);
         buyWeapon2.addListener(new InputListener() {
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button){
-                if (game.getGold() >= weapons.get(randWeapon1).getCost()){
-                    buyWeapon2.setDisabled(true);
+                if (game.getGold() >= weapons.get(randWeapon1).getCost() && game.getPlayerShip().getWeapons().get(3) == null){
+                    buyWeapon2.setTouchable(Touchable.disabled);
                     buyWeapon2.setText("Purchased!");
-                    game.deductGold(weapons.get(randWeapon1).getCost());
-                    game.getPlayerShip().addWeapon(weapons.get(randWeapon1));
+
                 } else {
                     buyWeapon2.setText("Insufficient Gold!");
                 }
@@ -218,8 +228,8 @@ public class departmentScreen implements Screen {
         stage.addActor(buyWeapon3);
         buyWeapon3.addListener(new InputListener() {
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button){
-                if (game.getGold() >= weapons.get(randWeapon2).getCost()){
-                    buyWeapon3.setDisabled(true);
+                if (game.getGold() >= weapons.get(randWeapon2).getCost() && game.getPlayerShip().getWeapons().get(3) == null){
+                    buyWeapon3.setTouchable(Touchable.disabled);
                     buyWeapon3.setText("Purchased!");
                     game.deductGold(weapons.get(randWeapon2).getCost());
                     game.getPlayerShip().addWeapon(weapons.get(randWeapon2));
@@ -236,22 +246,78 @@ public class departmentScreen implements Screen {
 
         playerWeapons = game.getPlayerShip().getWeapons();
 
-        sellWeapon1 = new TextButton("Sell (" + playerWeapons.get(0).getCost() / 2 + "g)", myTextButtonStyle);
-        sellWeapon1.setPosition(160, 450);
-        stage.addActor(sellWeapon1);
-        buyWeapon3.addListener(new InputListener() {
-            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button){
-                if (playerWeapons.get(0) instanceof Weapon){
-                    sellWeapon1.setDisabled(true);
-                    sellWeapon1.setText("Sold!");
-                    game.addGold(playerWeapons.get(0).getCost() / 2);
-                    //game.getPlayerShip().del; TODO Method to check if a ship has a weapon and delete weapon
-                } else {
-                    buyWeapon3.setText("Insufficient Gold!");
+        if (playerWeapons.get(0) instanceof Weapon) {
+            sellWeapon1 = new TextButton("Sell (" + playerWeapons.get(0).getCost() * STORE_SELL_PRICE_MULTIPLIER + "g)", myTextButtonStyle);
+            sellWeapon1.setPosition(500, 740);
+            stage.addActor(sellWeapon1);
+            sellWeapon1.addListener(new InputListener() {
+                public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+                    if (playerWeapons.get(0) instanceof Weapon) {
+                        sellWeapon1.setTouchable(Touchable.disabled);
+                        sellWeapon1.setText("Sold!");
+                        game.addGold((int) (playerWeapons.get(0).getCost() * STORE_SELL_PRICE_MULTIPLIER));
+                        game.getPlayerShip().delWeapon(playerWeapons.get(0));
+                    }
+                    return true;
                 }
-                return true;
-            }
-        });
+            });
+        }
+
+        if (playerWeapons.get(1) instanceof Weapon) {
+            sellWeapon2 = new TextButton("Sell (" + playerWeapons.get(1).getCost() * STORE_SELL_PRICE_MULTIPLIER + "g)", myTextButtonStyle);
+            sellWeapon2.setPosition(500, 590);
+            stage.addActor(sellWeapon2);
+            sellWeapon2.addListener(new InputListener() {
+                public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+                    if (playerWeapons.get(1) instanceof Weapon) {
+                        sellWeapon2.setTouchable(Touchable.disabled);
+                        sellWeapon2.setText("Sold!");
+                        game.addGold((int) (playerWeapons.get(1).getCost() * STORE_SELL_PRICE_MULTIPLIER));
+                        game.getPlayerShip().delWeapon(playerWeapons.get(1));
+                    }
+                    return true;
+                }
+            });
+        }
+
+        if (playerWeapons.get(2) instanceof Weapon) {
+            sellWeapon3 = new TextButton("Sell (" + playerWeapons.get(2).getCost() * STORE_SELL_PRICE_MULTIPLIER + "g)", myTextButtonStyle);
+            sellWeapon3.setPosition(500, 440);
+            stage.addActor(sellWeapon3);
+            sellWeapon3.addListener(new InputListener() {
+                public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+                    if (playerWeapons.get(2) instanceof Weapon) {
+                        sellWeapon3.setTouchable(Touchable.disabled);
+                        sellWeapon3.setText("Sold!");
+                        game.addGold((int) (playerWeapons.get(2).getCost() * STORE_SELL_PRICE_MULTIPLIER));
+                        game.getPlayerShip().delWeapon(playerWeapons.get(2));
+                    }
+                    return true;
+                }
+            });
+        }
+
+        if (playerWeapons.get(3) instanceof Weapon) {
+            sellWeapon4 = new TextButton("Sell (" + playerWeapons.get(3).getCost() * STORE_SELL_PRICE_MULTIPLIER + "g)", myTextButtonStyle);
+            sellWeapon4.setPosition(500, 390);
+            stage.addActor(sellWeapon4);
+            sellWeapon4.addListener(new InputListener() {
+                public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+                    if (playerWeapons.get(3) instanceof Weapon) {
+                        sellWeapon4.setTouchable(Touchable.disabled);
+                        sellWeapon4.setText("Sold!");
+                        game.addGold((int) (playerWeapons.get(3).getCost() * STORE_SELL_PRICE_MULTIPLIER));
+                        game.getPlayerShip().delWeapon(playerWeapons.get(1));
+                    }
+                    return true;
+                }
+            });
+        }
+
+        if (sellWeapon1 != null){sellWeapon1.setColor(1, 1, 1, 0);}
+        if (sellWeapon2 != null){sellWeapon1.setColor(1, 1, 1, 0);}
+        if (sellWeapon3 != null){sellWeapon1.setColor(1, 1, 1, 0);}
+        if (sellWeapon4 != null){sellWeapon1.setColor(1, 1, 1, 0);}
 
         }
 
@@ -317,44 +383,36 @@ public class departmentScreen implements Screen {
         weaponDetailsFont.draw(batch, "Crit Chance: " + weapons.get(randWeapon2).getBaseCritChance(), 160, 520);
         weaponDetailsFont.draw(batch, "Hit Chance: " + weapons.get(randWeapon2).getBaseChanceToHit(), 160, 500);
 
-        if (playerWeapons.get(0) != null) {
+        if (playerWeapons.get(0) instanceof Weapon) {
             weaponTitleFont.draw(batch, playerWeapons.get(0).getName(), 500, 880);
             weaponDetailsFont.draw(batch, "Damage: " + playerWeapons.get(0).getBaseDamage(), 500, 850);
             weaponDetailsFont.draw(batch, "Cooldown: " + playerWeapons.get(0).getCurrentCooldown(), 500,830);
             weaponDetailsFont.draw(batch, "Crit Chance: " + playerWeapons.get(0).getBaseCritChance(), 500, 810);
             weaponDetailsFont.draw(batch, "Hit Chance: " + playerWeapons.get(0).getBaseChanceToHit(), 500, 790);
-        } else {
-            weaponTitleFont.draw(batch, "Empty Slot", 500, 880);
         }
 
-        if (playerWeapons.get(1) != null) {
+        if (playerWeapons.get(1) instanceof Weapon) {
             weaponTitleFont.draw(batch, playerWeapons.get(1).getName(), 500, 730);
             weaponDetailsFont.draw(batch, "Damage: " + playerWeapons.get(1).getBaseDamage(), 500, 700);
             weaponDetailsFont.draw(batch, "Cooldown: " + playerWeapons.get(1).getCurrentCooldown(), 500,680);
             weaponDetailsFont.draw(batch, "Crit Chance: " + playerWeapons.get(1).getBaseCritChance(), 500, 660);
             weaponDetailsFont.draw(batch, "Hit Chance: " + playerWeapons.get(1).getBaseChanceToHit(), 500, 640);
-        } else {
-            weaponTitleFont.draw(batch, "Empty Slot", 500, 730);
         }
 
-        if (playerWeapons.get(2) != null) {
+        if (playerWeapons.get(2) instanceof Weapon) {
             weaponTitleFont.draw(batch, playerWeapons.get(2).getName(), 500, 580);
             weaponDetailsFont.draw(batch, "Damage: " + playerWeapons.get(2).getBaseDamage(), 500, 550);
             weaponDetailsFont.draw(batch, "Cooldown: " + playerWeapons.get(2).getCurrentCooldown(), 500,530);
             weaponDetailsFont.draw(batch, "Crit Chance: " + playerWeapons.get(2).getBaseCritChance(), 500, 510);
             weaponDetailsFont.draw(batch, "Hit Chance: " + playerWeapons.get(2).getBaseChanceToHit(), 500, 490);
-        } else {
-            weaponTitleFont.draw(batch, "Empty Slot", 500, 580);
         }
 
-        if (playerWeapons.get(3) != null) {
+        if (playerWeapons.get(3) instanceof Weapon) {
             weaponTitleFont.draw(batch, playerWeapons.get(3).getName(), 500, 430);
             weaponDetailsFont.draw(batch, "Damage: " + playerWeapons.get(3).getBaseDamage(), 500, 400);
             weaponDetailsFont.draw(batch, "Cooldown: " + playerWeapons.get(3).getCurrentCooldown(), 500,380);
             weaponDetailsFont.draw(batch, "Crit Chance: " + playerWeapons.get(3).getBaseCritChance(), 500, 360);
             weaponDetailsFont.draw(batch, "Hit Chance: " + playerWeapons.get(3).getBaseChanceToHit(), 500, 340);
-        } else {
-            weaponTitleFont.draw(batch, "Empty Slot", 500, 430);
         }
 
         batch.end();
