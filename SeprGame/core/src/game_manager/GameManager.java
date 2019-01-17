@@ -19,6 +19,8 @@ public class GameManager extends Game {
     private Difficulty difficulty;
     private Game game;
 
+    public Game getGame() { return game; }
+
     public int getGold() {
         return gold;
     }

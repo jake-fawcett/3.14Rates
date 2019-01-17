@@ -3,7 +3,7 @@ package banks;
 import combat.items.Weapon;
 
 import static other.Constants.*;
-
+//FIXME DEFAULT Cooldown is 0
 public enum WeaponBank {
     STARTER_WEAPON("Pea Shooter", DEFAULT_WEAPON_COST / 4, DEFAULT_WEAPON_DAMAGE / 4,
             DEFAULT_WEAPON_COOLDOWN / 2, DEFAULT_WEAPON_CRIT_CHANCE, DEFAULT_WEAPON_HIT_CHANCE),
