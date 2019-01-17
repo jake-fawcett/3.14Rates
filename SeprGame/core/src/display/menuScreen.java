@@ -14,7 +14,6 @@ import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
-import game_manager.GameManager;
 
 public class menuScreen extends InputListener implements Screen {
     private SpriteBatch batch = new SpriteBatch();
@@ -86,7 +85,7 @@ public class menuScreen extends InputListener implements Screen {
         runDepartment.setScale(3);
         runDepartment.addListener(new InputListener() {
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button){
-                game.setScreen(new departmentScreen());
+                game.setScreen(new departmentScreen2());
                 return true;
             }
         });
