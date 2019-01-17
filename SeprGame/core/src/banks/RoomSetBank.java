@@ -15,6 +15,8 @@ public enum RoomSetBank {
             new Room(DEFAULT_ROOM_HP, DEFAULT_ROOM_HP, new RoomUpgrade[3], RoomFunction.GUN_DECK),
             new Room(DEFAULT_ROOM_HP, DEFAULT_ROOM_HP, new RoomUpgrade[3], RoomFunction.CREW_QUARTERS),
             new Room(DEFAULT_ROOM_HP, DEFAULT_ROOM_HP, new RoomUpgrade[3], RoomFunction.NON_FUNCTIONAL),
+            new Room(DEFAULT_ROOM_HP, DEFAULT_ROOM_HP, new RoomUpgrade[3], RoomFunction.NON_FUNCTIONAL),
+            new Room(DEFAULT_ROOM_HP, DEFAULT_ROOM_HP, new RoomUpgrade[3], RoomFunction.NON_FUNCTIONAL),
             new Room(DEFAULT_ROOM_HP, DEFAULT_ROOM_HP, new RoomUpgrade[3], RoomFunction.NON_FUNCTIONAL));
 
     private Room r1;
@@ -23,19 +25,23 @@ public enum RoomSetBank {
     private Room r4;
     private Room r5;
     private Room r6;
+    private Room r7;
+    private Room r8;
 
-    RoomSetBank(Room r1, Room r2, Room r3, Room r4, Room r5, Room r6) {
+    RoomSetBank(Room r1, Room r2, Room r3, Room r4, Room r5, Room r6, Room r7, Room r8) {
         this.r1 = r1;
         this.r2 = r2;
         this.r3 = r3;
         this.r4 = r4;
         this.r5 = r5;
         this.r6 = r6;
+        this.r7 = r7;
+        this.r8 = r8;
     }
 
     public List<Room> getRoomList() {
         List<Room> out = new ArrayList<Room>();
-        Room[] rooms = new Room[]{r1, r2, r3, r4, r5, r6};
+        Room[] rooms = new Room[]{r1, r2, r3, r4, r5, r6, r7, r8};
 
         for (Room r : rooms) {
             out.add(new Room(r.getBaseHP(), r.getHp(), r.getUpgrades(), r.getFunction()));
