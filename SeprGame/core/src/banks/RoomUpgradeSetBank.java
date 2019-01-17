@@ -36,5 +36,7 @@ public enum RoomUpgradeSetBank {
                 out.add(null);
             }
         }
+
+        return out;
     }
 }
