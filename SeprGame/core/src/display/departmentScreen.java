@@ -1,7 +1,5 @@
 package display;
 
-import banks.WeaponBank;
-import banks.WeaponSetBank;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Texture;
