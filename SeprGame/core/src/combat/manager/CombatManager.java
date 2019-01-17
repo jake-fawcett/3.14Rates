@@ -15,12 +15,10 @@ import java.util.Random;
 public class CombatManager {
     private CombatPlayer player;
     private CombatEnemy enemy;
-    private Boolean isPlayersTurn;
 
     public CombatManager(CombatPlayer player, CombatEnemy enemy) {
         this.player = player;
         this.enemy = enemy;
-        this.isPlayersTurn = true;
 //        combatLoop();
     }
 
