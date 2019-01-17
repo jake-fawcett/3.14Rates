@@ -130,4 +130,16 @@ public class Ship {
             throw new IllegalArgumentException("Cannot delete upgrade that you do not have");
         }
     }
+
+    //TODO Write Test for delWeapon
+    public void delWeapon(Weapon weapon) {
+        int i = 0;
+        while(i < 4){
+            if (this.weapons.get(i) == weapons) {
+                this.weapons.remove(i);
+                break;
+            }
+            i++;
+        }
+    }
 }
