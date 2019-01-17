@@ -51,15 +51,12 @@ public class CombatManager {
             Weapon weapon = shot.getValue();
             int damage;
 
-            if (pickRandom() > (weapon.getAccuracy() * shipFiring.calculateAccuracy())) {
+            if (pickRandom() > (weapon.getAccuracy() * shipFiring.calculateShipAccuracy())) {
                 damage = 0;
-            } else if (pickRandom() > shipFiredAt.calculateEvadeChance()) {
+            } else if (pickRandom() > shipFiredAt.calculateShipEvade()) {
                 damage = 0;
             } else {
                 damage = weapon.getBaseDamage();
-                if (pickRandom() > (weapon.getCritChance() * shipFiring.calculateCritAccuracy())) {
-                    damage *= 1.5;
-                }
             }
 
             damageReport.add(new Pair<Room, Integer> (target, damage));
