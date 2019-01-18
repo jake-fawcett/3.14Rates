@@ -6,6 +6,7 @@ import combat.actors.CombatEnemy;
 import combat.actors.CombatPlayer;
 import combat.items.Weapon;
 import combat.ship.Room;
+import combat.ship.RoomFunction;
 import combat.ship.Ship;
 import javafx.util.Pair;
 
@@ -65,6 +66,10 @@ public class CombatManager {
                 damage = 0;
             } else {
                 damage = weapon.getBaseDamage();
+            }
+
+            if (target.getFunction() == RoomFunction.NON_FUNCTIONAL) {
+                damage = damage * 2;
             }
 
             damageReport.add(new Pair<Room, Integer>(target, damage));
