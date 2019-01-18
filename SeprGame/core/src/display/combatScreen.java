@@ -50,6 +50,9 @@ public class combatScreen implements Screen {
     private Room roomSelected;
     private Weapon weaponSelected;
 
+    private ButtonGroup weaponButtonGroup;
+    private ButtonGroup roomButtonGroup;
+
     @Override
     public void show() {
         buttonAtlas = new TextureAtlas("buttonSpriteSheet.txt");
@@ -284,7 +287,7 @@ public class combatScreen implements Screen {
         weaponButtonStyle.checked = weaponButtonSkin.getDrawable("weaponButtonChecked");
         weaponButtonStyle.font = new BitmapFont();
 
-        final List<Weapon> playerWeapons = playerShip.getWeapons();
+        List<Weapon> playerWeapons = playerShip.getWeapons();
         List<TextButton> weaponButtons = new ArrayList<TextButton>();
 
         ButtonGroup weaponButtonGroup = new ButtonGroup();
@@ -309,7 +312,7 @@ public class combatScreen implements Screen {
         }
 
 
-        TextButton fire = new TextButton("Fire", weaponButtonStyle);
+        final TextButton fire = new TextButton("Fire", weaponButtonStyle);
         fire.setTransform(true);
         fire.setScale(1,1.5f);
         fire.setPosition(575,50);
@@ -340,9 +343,12 @@ public class combatScreen implements Screen {
                 return true;
             }
         });
+
         fire.addListener(new InputListener() {
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-
+                weaponButtonGroup.uncheckAll();
+                roomButtonGroup.uncheckAll();
+                fire.setChecked(false);
                 return true;
             }
         });
