@@ -13,7 +13,9 @@ import com.badlogic.gdx.scenes.scene2d.ui.ProgressBar;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
+import combat.items.RoomUpgrade;
 import combat.items.Weapon;
+import combat.ship.RoomFunction;
 import combat.ship.Ship;
 import game_manager.GameManager;
 import location.Department;
@@ -89,6 +91,8 @@ public class departmentScreen2 implements Screen {
         drawShopBackground(shopBackground, boolShowShop);
         drawBuyWeaponInformation(titleFont, bodyFont);
         drawSellWeaponInformation(titleFont, bodyFont);
+
+        drawBuyRoomUpgradeInformation(titleFont, bodyFont);
 
         toggleShop(boolShowShop, shopBackground, titleFont, bodyFont);
 
@@ -269,8 +273,6 @@ public class departmentScreen2 implements Screen {
     }
 
     public void drawBuyWeaponInformation(BitmapFont titleFont, BitmapFont bodyFont) {
-        titleFont.getData().setScale(1.5f);
-
         List<Weapon> weaponList = new ArrayList<Weapon>();
         int i = 0;
         while (i <= department.getWeaponStock().size() - 1 && department.getWeaponStock().get(i) instanceof Weapon) {
@@ -290,8 +292,6 @@ public class departmentScreen2 implements Screen {
     }
 
     public void drawSellWeaponInformation(BitmapFont titleFont, BitmapFont bodyFont) {
-        titleFont.getData().setScale(1.5f);
-
         List<Weapon> weaponList = new ArrayList<Weapon>();
         int i = 0;
         while (i <= playerShip.getWeapons().size() - 1 && playerShip.getWeapons().get(i) instanceof Weapon) {
@@ -301,14 +301,32 @@ public class departmentScreen2 implements Screen {
 
         int j = 0;
         while (j <= weaponList.size() - 1){
-            titleFont.draw(batch, weaponList.get(j).getName(), 500, 880 - (150 * j));
-            bodyFont.draw(batch, "Damage: " + df.format(weaponList.get(j).getBaseDamage()), 500, 850 - (150 * j));
-            bodyFont.draw(batch, "Crit Chance: " + df.format(weaponList.get(j).getBaseCritChance()), 500, 830 - (150 * j));
-            bodyFont.draw(batch, "Hit Chance: " + df.format(weaponList.get(j).getBaseChanceToHit()), 500, 810 - (150 * j));
-            bodyFont.draw(batch, "Cooldown: " + df.format(weaponList.get(j).getBaseCooldown()), 500, 790 - (150 * j));
+            titleFont.draw(batch, weaponList.get(j).getName(), 360, 880 - (150 * j));
+            bodyFont.draw(batch, "Damage: " + df.format(weaponList.get(j).getBaseDamage()), 360, 850 - (150 * j));
+            bodyFont.draw(batch, "Crit Chance: " + df.format(weaponList.get(j).getBaseCritChance()), 360, 830 - (150 * j));
+            bodyFont.draw(batch, "Hit Chance: " + df.format(weaponList.get(j).getBaseChanceToHit()), 360, 810 - (150 * j));
+            bodyFont.draw(batch, "Cooldown: " + df.format(weaponList.get(j).getBaseCooldown()), 360, 790 - (150 * j));
             j++;
         }
     }
+
+    public void drawBuyRoomUpgradeInformation(BitmapFont titleFont, BitmapFont bodyFont) {
+        List<RoomUpgrade> roomUpgradeList = new ArrayList<RoomUpgrade>();
+        int i = 0;
+        while (i <= department.getUpgradeStock().size() - 1 && department.getUpgradeStock().get(i) instanceof RoomUpgrade) {
+            roomUpgradeList.add(department.getUpgradeStock().get(i));
+            i++;
+        }
+
+        int j = 0;
+        while (j <= roomUpgradeList.size() - 1){
+            titleFont.draw(batch, roomUpgradeList.get(j).getName(), 560, 880 - (150 * j));
+            bodyFont.draw(batch, "Room: " + roomUpgradeList.get(j).getAffectsRoom(), 560, 830 - (150 * j));
+            bodyFont.draw(batch, "Multiplier: " + df.format(roomUpgradeList.get(j).getMultiplier()), 560, 850 - (150 * j));
+            j++;
+        }
+    }
+    //FIXME Unable to Sell Room Upgrades
 
     public void toggleShop(Boolean boolShowShop, Sprite shopBackground, BitmapFont titleFont, BitmapFont bodyFont) {
         if (boolShowShop) {
