@@ -43,7 +43,7 @@ public enum ShipBank {
         }
         for (Weapon w : weapons) {
             if (w != null) {
-                weaponsOut.add(new Weapon(w.getName(), w.getCost(), w.getBaseDamage(), w.getCurrentCooldown(), w.getCritChance(), w.getAccuracy()));
+                weaponsOut.add(new Weapon(w.getName(), w.getCost(), w.getBaseDamage(), w.getCooldown(), w.getCritChance(), w.getAccuracy()));
             }
         }
         return new Ship(crew, roomsOut, weaponsOut, baseHullHP);
