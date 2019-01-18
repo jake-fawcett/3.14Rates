@@ -72,9 +72,6 @@ public class departmentScreen2 implements Screen {
         textButtonStyle.up = skin.getDrawable("buttonUp");
         textButtonStyle.down = skin.getDrawable("buttonDown");
 
-        buttonShowShop(textButtonStyle);
-        buttonToMenu(textButtonStyle);
-
         shopBackground = createShopBackground();
 
     }
@@ -88,6 +85,9 @@ public class departmentScreen2 implements Screen {
         drawBackground();
         drawFriendlyShip();
         drawDepartment(randInt);
+
+        buttonShowShop(textButtonStyle);
+        buttonToMenu(textButtonStyle);
 
         drawHealthBar();
         drawIndicators();
@@ -312,6 +312,7 @@ public class departmentScreen2 implements Screen {
 
                     try {
                         department.buyWeapon(weaponList.get(j));
+                        stage.clear();
                     } catch (IllegalStateException e) {
                         buyButtonList.get(j).setText("Insufficient Gold!");
                     } catch (IllegalArgumentException e) {
@@ -321,6 +322,7 @@ public class departmentScreen2 implements Screen {
                             buyButtonList.get(j).setText("Insufficient Gold!");
                         }
                     }
+
                     return true;
                 }
             });
@@ -368,6 +370,7 @@ public class departmentScreen2 implements Screen {
 
                     try {
                         department.sellWeapon(weaponList.get(j));
+                        stage.clear();
                     } catch (IllegalArgumentException e) {
                         buyButtonList.get(j).setText("Empty Slot!");
                     }
@@ -416,6 +419,7 @@ public class departmentScreen2 implements Screen {
 
                     try {
                         department.buyRoomUpgrade(roomUpgradeList.get(j));
+                        stage.clear();
                     } catch (IllegalStateException e) {
                         buyButtonList.get(j).setText("Insufficient Gold!");
                     } catch (IllegalArgumentException e) {

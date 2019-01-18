@@ -138,6 +138,7 @@ public class departmentScreen implements Screen {
         Random rand = new Random();
         randDepartment = rand.nextInt(2);
         System.out.print(randDepartment);
+        randDepartment = 1;
 
 
         openShop = new TextButton("Shop", myTextButtonStyle);

@@ -14,7 +14,7 @@ package other;
         public static final int DEFAULT_WEAPON_COOLDOWN = 1000;
         public static final double DEFAULT_WEAPON_CRIT_CHANCE = 0.2;
         public static final double DEFAULT_WEAPON_HIT_CHANCE = 0.9;
-        public static final int STARTING_GOLD = 250;
+        public static final int STARTING_GOLD = 10000;
         public static final int STARTING_FOOD = 100;
         public static final int DEFAULT_ROOM_HP = 1000;
         public static final int CREW_COST = 50;
