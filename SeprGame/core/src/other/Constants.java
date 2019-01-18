@@ -25,4 +25,9 @@ package other;
         public static final double EASY_SCORE_MULTIPLIER = 1.0;
         public static final double MED_SCORE_MULTIPLIER = 2.0;
         public static final double DIFF_SCORE_MULTIPLIER = 3.0;
+        /** A number from 0 to 1 which decides the maximum percent of health a ship can have before you can board it.
+         *
+         *  E.g. if you want ships to be boardable after removing 60% of their health, set this to 0.4)
+         */
+        public static final double SHIP_BOARD_PERCENTAGE = 0.25;
 }
