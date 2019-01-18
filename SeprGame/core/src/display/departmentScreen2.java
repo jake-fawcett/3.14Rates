@@ -21,6 +21,7 @@ import game_manager.GameManager;
 import location.Department;
 
 
+import javax.xml.soap.Text;
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -56,6 +57,8 @@ public class departmentScreen2 implements Screen {
     private BitmapFont titleFont = new BitmapFont();
     private BitmapFont bodyFont = new BitmapFont();
 
+    private List<TextButton> buyButtonList = new ArrayList<TextButton>();
+
     @Override
     public void show() {
         df = new DecimalFormat("#.##");
@@ -89,12 +92,12 @@ public class departmentScreen2 implements Screen {
         drawIndicators();
 
         drawShopBackground(shopBackground, boolShowShop);
-        drawBuyWeaponInformation(titleFont, bodyFont);
+        buyButtonList = drawBuyWeaponFeatures(titleFont, bodyFont, textButtonStyle);
         drawSellWeaponInformation(titleFont, bodyFont);
 
         drawBuyRoomUpgradeInformation(titleFont, bodyFont);
 
-        toggleShop(boolShowShop, shopBackground, titleFont, bodyFont);
+        toggleShop(boolShowShop, shopBackground, titleFont, bodyFont, buyButtonList);
 
         batch.end();
 
@@ -124,7 +127,7 @@ public class departmentScreen2 implements Screen {
 
     @Override
     public void dispose() {
-
+        stage.dispose();
     }
 
     public int pickRandom(int max) {
@@ -272,8 +275,10 @@ public class departmentScreen2 implements Screen {
         }
     }
 
-    public void drawBuyWeaponInformation(BitmapFont titleFont, BitmapFont bodyFont) {
+    public List<TextButton> drawBuyWeaponFeatures(BitmapFont titleFont, BitmapFont bodyFont, TextButton.TextButtonStyle textButtonStyle) {
+        List<TextButton> buyButtonList = new ArrayList<TextButton>();
         List<Weapon> weaponList = new ArrayList<Weapon>();
+
         int i = 0;
         while (i <= department.getWeaponStock().size() - 1 && department.getWeaponStock().get(i) instanceof Weapon) {
             weaponList.add(department.getWeaponStock().get(i));
@@ -287,8 +292,43 @@ public class departmentScreen2 implements Screen {
             bodyFont.draw(batch, "Crit Chance: " + df.format(weaponList.get(j).getBaseCritChance()), 160, 830 - (150 * j));
             bodyFont.draw(batch, "Hit Chance: " + df.format(weaponList.get(j).getBaseChanceToHit()), 160, 810 - (150 * j));
             bodyFont.draw(batch, "Cooldown: " + df.format(weaponList.get(j).getBaseCooldown()), 160, 790 - (150 * j));
+
+            buyButtonList.add(new TextButton("Buy (" + weaponList.get(j).getCost() + ")", textButtonStyle));
+            buyButtonList.get(j).setPosition(160, 740 - (j * 150));
+            stage.addActor(buyButtonList.get(j));
             j++;
         }
+
+        setButtonListener(buyButtonList, weaponList);
+
+        return buyButtonList;
+    }
+
+    public void setButtonListener(final List<TextButton> buyButtonList, final List<Weapon> weaponList) {
+        int i = 0;
+        while (i <= buyButtonList.size() - 1) {
+            final int j = i;
+            buyButtonList.get(j).addListener(new InputListener() {
+                public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+
+                    try {
+                        department.buyWeapon(weaponList.get(j));
+                    } catch (IllegalStateException e) {
+                        buyButtonList.get(j).setText("Insufficient Gold!");
+                    } catch (IllegalArgumentException e) {
+                        if (e.getMessage() == "Weapon does not exist") {
+                            buyButtonList.get(j).setText("Out of Stock :(");
+                        } else if (e.getMessage() == "Not enough gold") {
+                            buyButtonList.get(j).setText("Insufficient Gold!");
+                        }
+                    }
+                    return true;
+                }
+            });
+
+            i++;
+        }
+
     }
 
     public void drawSellWeaponInformation(BitmapFont titleFont, BitmapFont bodyFont) {
@@ -328,15 +368,25 @@ public class departmentScreen2 implements Screen {
     }
     //FIXME Unable to Sell Room Upgrades
 
-    public void toggleShop(Boolean boolShowShop, Sprite shopBackground, BitmapFont titleFont, BitmapFont bodyFont) {
+    public void toggleShop(Boolean boolShowShop, Sprite shopBackground, BitmapFont titleFont, BitmapFont bodyFont, List<TextButton> buyButtonList) {
         if (boolShowShop) {
             shopBackground.setAlpha(0.85f);
             titleFont.setColor(1, 1, 1, 1);
             bodyFont.setColor(1, 1, 1, 1);
+            int i = 0;
+            while (i <= buyButtonList.size() - 1){
+                buyButtonList.get(i).setColor(1,1,1,1);
+                i++;
+            }
         } else {
             shopBackground.setAlpha(0);
             titleFont.setColor(1, 1, 1, 0);
             bodyFont.setColor(1, 1, 1, 0);
+            int i = 0;
+            while (i <= buyButtonList.size() - 1){
+                buyButtonList.get(i).setColor(1,1,1,0);
+                i++;
+            }
         }
     }
 
