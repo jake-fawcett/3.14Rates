@@ -206,22 +206,14 @@ public class departmentScreen implements Screen {
     }
 
     public void drawHealthBar() {
-        Texture hpBackground = new Texture("background.png");
-        Texture hpDisabledBackground = new Texture("disabledBackground.png");
+        Texture hpBar = new Texture("background.png");
+        Texture hpBackground = new Texture("disabledBackground.png");
 
-        ProgressBar.ProgressBarStyle hpBarStyle = new ProgressBar.ProgressBarStyle();
-        hpBarStyle.background = new TextureRegionDrawable( new TextureRegion(hpBackground));
-        hpBarStyle.disabledBackground = new TextureRegionDrawable( new TextureRegion(hpDisabledBackground));
+        int defaultWidth = 320;
 
-        ProgressBar hpBar = new ProgressBar(0,1000,10,false,hpBarStyle);
-        hpBar.setWidth(320);
-        hpBar.setHeight(64);
-        hpBar.setPosition(25,950);
-
-        stage.addActor(hpBar);
-
-        hpBar.setValue(500);
-    } //FIXME
+        batch.draw(hpBackground,25, 970, 320, 16);
+        batch.draw(hpBar,25, 970, defaultWidth * (playerShip.getHullHP()/playerShip.getBaseHullHP()), 16);
+    }
 
     public void drawIndicators(){
         BitmapFont indicatorFont = new BitmapFont();
