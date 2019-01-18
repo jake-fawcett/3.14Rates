@@ -4,27 +4,20 @@ import banks.CoordBank;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.*;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.Touchable;
-import com.badlogic.gdx.scenes.scene2d.ui.ProgressBar;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
-import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import combat.items.RoomUpgrade;
 import combat.items.Weapon;
-import combat.ship.RoomFunction;
 import combat.ship.Ship;
 import game_manager.GameManager;
 import location.Department;
 import other.Resource;
 
-
-import javax.xml.soap.Text;
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -209,10 +202,11 @@ public class departmentScreen implements Screen {
         Texture hpBar = new Texture("background.png");
         Texture hpBackground = new Texture("disabledBackground.png");
 
-        int defaultWidth = 320;
+        double defaultWidth = 320;
+        int width = (int)(defaultWidth * ((double)playerShip.getHullHP() / (double)playerShip.getBaseHullHP()));
 
         batch.draw(hpBackground,25, 970, 320, 16);
-        batch.draw(hpBar,25, 970, defaultWidth * (playerShip.getHullHP()/playerShip.getBaseHullHP()), 16);
+        batch.draw(hpBar,25, 970, width, 16);
     }
 
     public void drawIndicators(){
@@ -430,7 +424,7 @@ public class departmentScreen implements Screen {
         buyButtonList.get(0).addListener(new InputListener() {
                 public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
                     try {
-                        department.buyResource(Resource.CREW, 1);
+                        department.buyResource(Resource.CREW, SHOP_CREW_AMOUNT);
                         stage.clear();
                     } catch (IllegalStateException e) {
                     } catch (IllegalArgumentException e) {
@@ -441,7 +435,7 @@ public class departmentScreen implements Screen {
         buyButtonList.get(1).addListener(new InputListener() {
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
                 try {
-                    department.buyResource(Resource.FOOD, 1);
+                    department.buyResource(Resource.FOOD, SHOP_FOOD_AMOUNT);
                     stage.clear();
                 } catch (IllegalStateException e) {
                 } catch (IllegalArgumentException e) {
@@ -452,7 +446,7 @@ public class departmentScreen implements Screen {
         buyButtonList.get(2).addListener(new InputListener() {
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
                 try {
-                    department.buyResource(Resource.REPAIR, 1);
+                    department.buyResource(Resource.REPAIR, SHOP_REPAIR_AMOUNT);
                     stage.clear();
                 } catch (IllegalStateException e) {
                 } catch (IllegalArgumentException e) {
