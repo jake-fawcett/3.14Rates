@@ -48,6 +48,7 @@ public class combatScreen implements Screen {
     private Skin skin = new Skin();
 
     private Room roomSelected;
+    private Weapon weaponSelected;
 
     @Override
     public void show() {
@@ -59,6 +60,8 @@ public class combatScreen implements Screen {
         textButtonStyle.down = skin.getDrawable("buttonDown");
 
         drawEnemyShip();
+
+        drawWeaponButtons();
     }
 
     @Override
@@ -279,15 +282,69 @@ public class combatScreen implements Screen {
         weaponButtonStyle.up = weaponButtonSkin.getDrawable("weaponButtonUp");
         weaponButtonStyle.down = weaponButtonSkin.getDrawable("weaponButtonDown");
         weaponButtonStyle.checked = weaponButtonSkin.getDrawable("weaponButtonChecked");
+        weaponButtonStyle.font = new BitmapFont();
 
-        List<Weapon> playerWeapons = playerShip.getWeapons();
+        final List<Weapon> playerWeapons = playerShip.getWeapons();
         List<TextButton> weaponButtons = new ArrayList<TextButton>();
 
+        ButtonGroup weaponButtonGroup = new ButtonGroup();
+        weaponButtonGroup.setMaxCheckCount(1);
+
         int i = 0;
-        while (i < playerWeapons.size()){
-            weaponButtons.add(new TextButton(playerWeapons.get(i).getName(), weaponButtonStyle));
+        while (i < 4) {
+            try {
+                weaponButtons.add(new TextButton(playerWeapons.get(i).getName(), weaponButtonStyle));
+            } catch (IndexOutOfBoundsException e) {
+                weaponButtons.add(new TextButton("Empty Slot", weaponButtonStyle));
+                weaponButtons.get(i).setDisabled(true);
+            }
+            weaponButtons.get(i).setTransform(true);
+            weaponButtons.get(i).setScale(1, 1.5f);
+
+            weaponButtonGroup.add(weaponButtons.get(i));
+
+            weaponButtons.get(i).setPosition(50 + (125 * i), 50);
+            stage.addActor(weaponButtons.get(i));
+            i++;
         }
 
-        ButtonGroup weaponButtonGroup = new ButtonGroup(weaponButtons.get(0),weaponButtons.get(1),weaponButtons.get(2),weaponButtons.get(3));
+
+        TextButton fire = new TextButton("Fire", weaponButtonStyle);
+        fire.setTransform(true);
+        fire.setScale(1,1.5f);
+        fire.setPosition(575,50);
+
+        stage.addActor(fire);
+
+        weaponButtons.get(0).addListener(new InputListener() {
+            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+
+                return true;
+            }
+        });
+        weaponButtons.get(1).addListener(new InputListener() {
+            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+
+                return true;
+            }
+        });
+        weaponButtons.get(2).addListener(new InputListener() {
+            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+
+                return true;
+            }
+        });
+        weaponButtons.get(3).addListener(new InputListener() {
+            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+
+                return true;
+            }
+        });
+        fire.addListener(new InputListener() {
+            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+
+                return true;
+            }
+        });
     }
 }
