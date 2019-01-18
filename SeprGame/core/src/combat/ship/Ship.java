@@ -148,7 +148,7 @@ public class Ship {
     public void combatRepair() {
         Double repairPercent = calculateRepair();
         for (Room room : rooms) {
-            room.repair((int) (room.getBaseHP() * repairPercent));
+            room.repair((int) (room.getBaseHP() * repairPercent / 100));
         }
     }
 
