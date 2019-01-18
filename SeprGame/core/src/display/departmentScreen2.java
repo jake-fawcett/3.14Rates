@@ -36,6 +36,7 @@ import static other.Constants.STORE_SELL_PRICE_MULTIPLIER;
 
 public class departmentScreen2 implements Screen {
     private GameManager game = new GameManager(null, null);
+    private Ship playerShip = game.getPlayerShip();
 
     private SpriteBatch batch = new SpriteBatch();
     private Stage stage = new Stage();
@@ -44,8 +45,6 @@ public class departmentScreen2 implements Screen {
 
     private int randInt = pickRandom(2);
     private Department department = assignDepartment(randInt);
-
-    private Ship playerShip = game.getPlayerShip();
 
     private BitmapFont buttonFont = new BitmapFont();
     private TextButton.TextButtonStyle textButtonStyle = new TextButton.TextButtonStyle();

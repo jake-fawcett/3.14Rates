@@ -63,7 +63,7 @@ public class menuScreen extends InputListener implements Screen {
         runCombat.setScale(3);
         runCombat.addListener(new InputListener() {
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button){
-                game.setScreen(new combatScreen(false));
+                game.setScreen(new combatScreen2(false));
                 return true;
             }
         });
