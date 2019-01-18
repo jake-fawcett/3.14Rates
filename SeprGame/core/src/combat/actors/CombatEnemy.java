@@ -24,10 +24,21 @@ public class CombatEnemy extends CombatActor {
             weapon.decrementCooldown(COOLDOWN_TICKS_PER_TURN);
         }
         getShip().combatRepair();
-        Weapon weaponFired = pickRandChargedWeapon();
-        weaponFired.fire();
-        attackReport.add(new Pair<Room, Weapon>(pickRandRoom(enemy), weaponFired));
+        if (hasWepaonsReady()) {
+            Weapon weaponFired = pickRandChargedWeapon();
+            weaponFired.fire();
+            attackReport.add(new Pair<Room, Weapon>(pickRandRoom(enemy), weaponFired));
+        }
         return attackReport;
+    }
+
+    private boolean hasWepaonsReady() {
+        for (Weapon weapon : getShip().getWeapons()) {
+            if (weapon.getCurrentCooldown() == 0) {
+                return true;
+            }
+        }
+        return false;
     }
 
     private Weapon pickRandChargedWeapon() {

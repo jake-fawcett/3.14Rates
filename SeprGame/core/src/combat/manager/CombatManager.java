@@ -24,7 +24,7 @@ public class CombatManager {
     public CombatManager(CombatPlayer player, CombatEnemy enemy) {
         this.player = player;
         this.enemy = enemy;
-//        combatLoop();
+        combatLoop();
     }
 
     /**
