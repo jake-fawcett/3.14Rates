@@ -61,23 +61,23 @@ public class menuScreen extends InputListener implements Screen {
         runCombat.setPosition(Gdx.graphics.getWidth()/2f - 175, 700);
         runCombat.setTransform(true); //Allows the Button to be Scaled
         runCombat.setScale(3);
-        runCombat.addListener(new InputListener() {
-            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button){
-                game.setScreen(new combatScreen2(false));
-                return true;
-            }
-        });
+//        runCombat.addListener(new InputListener() {
+//            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button){
+//                game.setScreen(new combatScreen2(false));
+//                return true;
+//            }
+//        });
 
         stage.addActor(runCollege);
         runCollege.setPosition(Gdx.graphics.getWidth()/2f - 175, 580);
         runCollege.setTransform(true); //Allows the Button to be Scaled
         runCollege.setScale(3);
-        runCollege.addListener(new InputListener() {
-            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button){
-                game.setScreen(new combatScreen(true));
-                return true;
-            }
-        });
+//        runCollege.addListener(new InputListener() {
+//            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button){
+//                game.setScreen(new combatScreen(true));
+//                return true;
+//            }
+//        });
 
         stage.addActor(runDepartment);
         runDepartment.setPosition(Gdx.graphics.getWidth()/2f - 175, 460);
@@ -85,7 +85,7 @@ public class menuScreen extends InputListener implements Screen {
         runDepartment.setScale(3);
         runDepartment.addListener(new InputListener() {
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button){
-                game.setScreen(new departmentScreen2());
+                game.setScreen(new departmentScreen());
                 return true;
             }
         });

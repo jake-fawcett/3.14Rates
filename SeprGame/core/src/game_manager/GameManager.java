@@ -95,15 +95,15 @@ public class GameManager extends Game {
     }
 
     private Screen screen = Screen.MENU;
-    private combatScreen defaultCombatScreen;
-    private combatScreen collegeCombatScreen;
+    //private combatScreen defaultCombatScreen;
+    //private combatScreen collegeCombatScreen;
     private departmentScreen departmentScreen;
     private menuScreen menuScreen;
 
     @Override
     public void create() { //Called when the application is created
-        defaultCombatScreen = new combatScreen(false);
-        collegeCombatScreen = new combatScreen(true);
+        //defaultCombatScreen = new combatScreen(false);
+        //collegeCombatScreen = new combatScreen(true);
         departmentScreen = new departmentScreen();
         menuScreen =  new menuScreen(game);
         this.setScreen(menuScreen);
