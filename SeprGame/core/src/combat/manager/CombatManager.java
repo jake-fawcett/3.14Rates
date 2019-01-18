@@ -37,7 +37,7 @@ public class CombatManager {
         CombatActor temp;
 
         while (!checkFightEnd()) {
-            turnReport = shooter.takeTurn(damageReport);
+            turnReport = shooter.takeTurn(damageReport, receiver.getShip());
             damageReport = calculateDamage(turnReport, shooter.getShip(), receiver.getShip());
             applyTurn(damageReport);
 
