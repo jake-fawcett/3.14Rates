@@ -50,8 +50,8 @@ public class combatScreen implements Screen {
     private Room roomSelected;
     private Weapon weaponSelected;
 
-    private ButtonGroup weaponButtonGroup;
-    private ButtonGroup roomButtonGroup;
+    private ButtonGroup weaponButtonGroup = new ButtonGroup();
+    private ButtonGroup roomButtonGroup = new ButtonGroup();
 
     @Override
     public void show() {
@@ -157,10 +157,14 @@ public class combatScreen implements Screen {
         Texture hpBackground = new Texture("disabledBackground.png");
 
         double defaultWidth = 320;
-        int width = (int)(defaultWidth * ((double)playerShip.getHullHP() / (double)playerShip.getBaseHullHP()));
+        int playerWidth = (int)(defaultWidth * ((double)playerShip.getHullHP() / (double)playerShip.getBaseHullHP()));
+        //int enemtyWidth = TODO get enemy hp
 
         batch.draw(hpBackground,25, 970, 320, 16);
-        batch.draw(hpBar,25, 970, width, 16);
+        batch.draw(hpBar,25, 970, playerWidth, 16);
+
+        //batch.draw(hpBackground, 525, 970, 320, 16);
+        //batch.draw(hpBar,525, 970, enemyWidth, 16);
     }
 
     private void drawIndicators(){
@@ -185,6 +189,7 @@ public class combatScreen implements Screen {
         stage.addActor(toMenu);
     }
 
+    //FIXME PeaShooter is Checked on Start, Fire stays checked after click
     private void drawEnemyShip(){
         TextureAtlas roomButtonAtlas = new TextureAtlas("roomSpriteSheet.txt");
         Skin roomButtonSkin = new Skin();
@@ -205,8 +210,10 @@ public class combatScreen implements Screen {
         ImageButton enemyCrewQuarters = new ImageButton(crewQuatersStyle), enemyCrowsNest = new ImageButton(crowsNestStyle), enemyGunDeck = new ImageButton(gunDeckStyle), enemyHelm = new ImageButton(helmStyle),
                 enemyEmpty1 = new ImageButton(emptyStyle), enemyEmpty2 = new ImageButton(emptyStyle), enemyEmpty3 = new ImageButton(emptyStyle), enemyEmpty4 = new ImageButton(emptyStyle);
 
-        ButtonGroup roomButtonGroup = new ButtonGroup(enemyCrewQuarters, enemyCrowsNest, enemyGunDeck, enemyHelm, enemyEmpty1, enemyEmpty2, enemyEmpty3, enemyEmpty4);
+
+        roomButtonGroup.add(enemyCrewQuarters, enemyCrowsNest, enemyGunDeck, enemyHelm, enemyEmpty1, enemyEmpty2, enemyEmpty3, enemyEmpty4);
         roomButtonGroup.setMaxCheckCount(1);
+        roomButtonGroup.uncheckAll();
 
         enemyCrewQuarters.setPosition(700, 256);
         enemyEmpty1.setPosition(828, 256);
@@ -287,11 +294,11 @@ public class combatScreen implements Screen {
         weaponButtonStyle.checked = weaponButtonSkin.getDrawable("weaponButtonChecked");
         weaponButtonStyle.font = new BitmapFont();
 
-        List<Weapon> playerWeapons = playerShip.getWeapons();
+        final List<Weapon> playerWeapons = playerShip.getWeapons();
         List<TextButton> weaponButtons = new ArrayList<TextButton>();
 
-        ButtonGroup weaponButtonGroup = new ButtonGroup();
         weaponButtonGroup.setMaxCheckCount(1);
+        weaponButtonGroup.uncheckAll();
 
         int i = 0;
         while (i < 4) {
@@ -316,30 +323,44 @@ public class combatScreen implements Screen {
         fire.setTransform(true);
         fire.setScale(1,1.5f);
         fire.setPosition(575,50);
+        ButtonGroup fireGroup = new ButtonGroup(fire);
+        fireGroup.setMaxCheckCount(0);
 
         stage.addActor(fire);
 
         weaponButtons.get(0).addListener(new InputListener() {
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-
+                try {
+                    weaponSelected = playerWeapons.get(0);
+                } catch (IndexOutOfBoundsException e) {
+                }
                 return true;
             }
         });
         weaponButtons.get(1).addListener(new InputListener() {
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-
+                try {
+                    weaponSelected = playerWeapons.get(1);
+                } catch (IndexOutOfBoundsException e) {
+                }
                 return true;
             }
         });
         weaponButtons.get(2).addListener(new InputListener() {
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-
+                try {
+                    weaponSelected = playerWeapons.get(2);
+                } catch (IndexOutOfBoundsException e) {
+                }
                 return true;
             }
         });
         weaponButtons.get(3).addListener(new InputListener() {
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-
+                try {
+                    weaponSelected = playerWeapons.get(3);
+                } catch (IndexOutOfBoundsException e) {
+                }
                 return true;
             }
         });
@@ -352,5 +373,9 @@ public class combatScreen implements Screen {
                 return true;
             }
         });
+    }
+
+    private void drawRoomHP(){
+        //TODO drawRoomHP (NOTE super hardcoded)
     }
 }
