@@ -72,6 +72,14 @@ public class ShipTest {
         assertTrue("Weapon should be added to weapons", tester.getWeapons().contains(weapon));
     }
 
+    @Test (expected = IllegalStateException.class)
+    public void addWeaponAllowsUpToFour() {
+        tester.addWeapon(new Weapon("Weapon to add", 5, 5, 5, 0.1,
+                0.1));
+        tester.addWeapon(new Weapon("Weapon to add", 5, 5, 5, 0.1,
+                0.1));
+    }
+
     @Test(expected = IllegalStateException.class)
     public void cantAddMoreThanFourWeapons() {
         for (int i = 0; i < 5; i++) {
