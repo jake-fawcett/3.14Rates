@@ -20,6 +20,9 @@ public class Ship {
     public Ship(int crew, List<Room> rooms, List<Weapon> weapons, int baseHullHP, int hullHP) {
         this.crew = crew;
         this.rooms = rooms;
+        while (weapons.contains(null)){
+            weapons.remove(null);
+        }
         this.weapons = weapons;
         this.baseHullHP = baseHullHP;
         this.hullHP = hullHP;
@@ -80,7 +83,7 @@ public class Ship {
     }
 
     public void addWeapon(Weapon weapon) {
-        if (weapons.size() > 4) {
+        if (weapons.size() >= 4) {
             throw new IllegalStateException("Weapon Slots full");
         } else {
             weapons.add(weapon);
