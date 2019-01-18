@@ -23,7 +23,7 @@ public class WeaponTest {
     public void fireResetsCooldown() {
         tester.fire();
         assertEquals("Cooldown should be reset to base after fire", tester.getCurrentCooldown(),
-                tester.getBaseCooldown());
+                tester.getCooldown());
     }
 
     @Test
@@ -34,6 +34,6 @@ public class WeaponTest {
         tester.fire();
         tester.decrementCooldown(50);
         assertEquals("decrementCooldown should lower the cooldown by the given number of ticks",
-                tester.getBaseCooldown() - 50, tester.getCurrentCooldown());
+                tester.getCooldown() - 50, tester.getCurrentCooldown());
     }
 }

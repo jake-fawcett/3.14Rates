@@ -11,7 +11,8 @@ package other;
         public static final int DEFAULT_UPGRADE_COST = 100;
         public static final int DEFAULT_WEAPON_COST = 100;
         public static final int DEFAULT_WEAPON_DAMAGE = 100;
-        public static final int DEFAULT_WEAPON_COOLDOWN = 1000;
+        public static final int DEFAULT_WEAPON_COOLDOWN = 2000;
+        public static final int COOLDOWN_TICKS_PER_TURN = 500;
         public static final double DEFAULT_WEAPON_CRIT_CHANCE = 0.2;
         public static final double DEFAULT_WEAPON_HIT_CHANCE = 0.9;
         public static final int STARTING_GOLD = 250;
@@ -21,8 +22,14 @@ package other;
         public static final int REPAIR_COST = 25;
         public static final int FOOD_COST = 10;
         public static final double BASE_SHIP_ACCURACY = 1;
-        public static final double BASE_SHIP_EVADE = 1;
+        public static final double BASE_SHIP_EVADE = 0.3;
+        public static final double BASE_SHIP_REPAIR = 1;
         public static final double EASY_SCORE_MULTIPLIER = 1.0;
         public static final double MED_SCORE_MULTIPLIER = 2.0;
         public static final double DIFF_SCORE_MULTIPLIER = 3.0;
+        /** A number from 0 to 1 which decides the maximum percent of health a ship can have before you can board it.
+         *
+         *  E.g. if you want ships to be boardable after removing 60% of their health, set this to 0.4)
+         */
+        public static final double SHIP_BOARD_PERCENTAGE = 0.25;
 }

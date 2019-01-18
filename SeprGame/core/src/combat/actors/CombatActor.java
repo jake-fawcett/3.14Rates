@@ -7,7 +7,7 @@ import javafx.util.Pair;
 
 import java.util.List;
 
-abstract class CombatActor {
+public abstract class CombatActor {
     private Ship ship;
 
     public Ship getShip() {
@@ -19,7 +19,7 @@ abstract class CombatActor {
     }
 
     /**
-     * Handles the entire process of taking a turn. From applying the damage from the opponent's turn to ending the turn
+     * Handles the entire process of taking a turn. From repairing damage from the opponent's turn to ending the turn
      * and sending targets and weapons firing on them to the combat manager.
      *
      * NOTE: At the time of writing there is no implementation yet. I am imagining that takeTurn will do nothing more
@@ -30,5 +30,5 @@ abstract class CombatActor {
      * @return A list of pairs of Rooms and Weapons telling the CombatManager which rooms were fired at and with which
      * weapons
      */
-    public abstract List<Pair<Room, Weapon>> takeTurn(List<Pair<Room, Integer>> damageReport);
+    public abstract List<Pair<Room, Weapon>> takeTurn(List<Pair<Room, Integer>> damageReport, Ship enemy);
 }

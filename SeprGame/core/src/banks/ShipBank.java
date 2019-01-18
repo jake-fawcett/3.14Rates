@@ -42,10 +42,10 @@ public enum ShipBank {
             roomsOut.add(new Room(r.getBaseHP(), r.getHp(), newUpgrades, r.getFunction()));
         }
         for (Weapon w : weapons) {
-            if (w != null)
-            weaponsOut.add(w);
+            if (w != null) {
+                weaponsOut.add(new Weapon(w.getName(), w.getCost(), w.getBaseDamage(), w.getCooldown(), w.getCritChance(), w.getAccuracy()));
+            }
         }
-
         return new Ship(crew, roomsOut, weaponsOut, baseHullHP);
     }
 }

@@ -3,20 +3,20 @@ package combat.items;
 public class Weapon {
     private String name;
     private int cost;
-    private int baseDamage;
-    private int baseCooldown;
-    private double baseCritChance;
-    private double baseChanceToHit;
+    private int damage;
+    private int cooldown;
+    private double critChance;
+    private double accuracy;
     private int currentCooldown;
 
-    public Weapon(String name, int cost, int baseDamage, int baseCooldown, double baseCritChance,
-                  double baseChanceToHit) {
+    public Weapon(String name, int cost, int baseDamage, int cooldown, double critChance,
+                  double accuracy) {
         this.name = name;
         this.cost = cost;
-        this.baseDamage = baseDamage;
-        this.baseCooldown = baseCooldown;
-        this.baseCritChance = baseCritChance;
-        this.baseChanceToHit = baseChanceToHit;
+        this.damage = baseDamage;
+        this.cooldown = cooldown;
+        this.critChance = critChance;
+        this.accuracy = accuracy;
         this.currentCooldown = 0;
     }
 
@@ -29,19 +29,19 @@ public class Weapon {
     }
 
     public int getBaseDamage() {
-        return baseDamage;
+        return damage;
     }
 
-    public int getBaseCooldown() {
-        return baseCooldown;
+    public int getCooldown() {
+        return cooldown;
     }
 
-    public double getBaseCritChance() {
-        return baseCritChance;
+    public double getCritChance() {
+        return critChance;
     }
 
-    public double getBaseChanceToHit() {
-        return baseChanceToHit;
+    public double getAccuracy() {
+        return accuracy;
     }
 
     public int getCurrentCooldown() {
@@ -50,7 +50,7 @@ public class Weapon {
 
     public void fire() {
         if (currentCooldown == 0) {
-            currentCooldown = baseCooldown;
+            currentCooldown = cooldown;
         } else {
             throw new IllegalStateException("Cannot fire before cooldown reaches 0");
         }
