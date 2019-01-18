@@ -40,7 +40,7 @@ public class CombatManager {
         while (!checkFightEnd()) {
             turnReport = shooter.takeTurn(damageReport, receiver.getShip());
             damageReport = calculateDamage(turnReport, shooter.getShip(), receiver.getShip());
-            applyTurn(damageReport);
+            applyTurn(damageReport, receiver.getShip());
 
             temp = shooter;
             shooter = receiver;
@@ -105,9 +105,10 @@ public class CombatManager {
         return rand.nextFloat();
     }
 
-    private void applyTurn(List<Pair<Room, Integer>> damageReport) {
+    private void applyTurn(List<Pair<Room, Integer>> damageReport, Ship targeted) {
         for (Pair<Room, Integer> shot : damageReport) {
             shot.getKey().damage(shot.getValue());
+            targeted.damage(shot.getValue());
         }
     }
 
