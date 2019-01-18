@@ -24,8 +24,9 @@ public class CombatEnemy extends CombatActor {
             weapon.decrementCooldown(COOLDOWN_TICKS_PER_TURN);
         }
         getShip().combatRepair();
-        attackReport.add(new Pair<Room, Weapon>(pickRandRoom(enemy), pickRandChargedWeapon()));
-
+        Weapon weaponFired = pickRandChargedWeapon();
+        weaponFired.fire();
+        attackReport.add(new Pair<Room, Weapon>(pickRandRoom(enemy), weaponFired));
         return attackReport;
     }
 
