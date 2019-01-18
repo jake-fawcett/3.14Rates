@@ -31,11 +31,8 @@ public enum WeaponSetBank {
             if (w != null) {
                 Weapon copying = w.getWeapon();
                 out.add(w.getWeapon());
-            } else {
-                out.add(null);
             }
         }
-
         return out;
     }
 }
