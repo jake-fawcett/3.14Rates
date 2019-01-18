@@ -273,22 +273,20 @@ public class departmentScreen2 implements Screen {
 
         List<Weapon> weaponList = new ArrayList<Weapon>();
         int i = 0;
-        while (i <= department.getWeaponStock().size()) {
+        while (i <= department.getWeaponStock().size() - 1 && department.getWeaponStock().get(i) instanceof Weapon) {
             weaponList.add(department.getWeaponStock().get(i));
+            i++;
         }
 
         int j = 0;
-        while (j <= department.getWeaponStock().size()){
+        while (j <= weaponList.size() - 1){
             titleFont.draw(batch, weaponList.get(j).getName(), 160, 880 - (150 * j));
             bodyFont.draw(batch, "Damage: " + df.format(weaponList.get(j).getBaseDamage()), 160, 850 - (150 * j));
             bodyFont.draw(batch, "Crit Chance: " + df.format(weaponList.get(j).getBaseCritChance()), 160, 830 - (150 * j));
             bodyFont.draw(batch, "Hit Chance: " + df.format(weaponList.get(j).getBaseChanceToHit()), 160, 810 - (150 * j));
             bodyFont.draw(batch, "Cooldown: " + df.format(weaponList.get(j).getBaseCooldown()), 160, 790 - (150 * j));
-            i++;
+            j++;
         }
-
-        titleFont.setColor(1,1,1,0);
-        bodyFont.setColor(1,1,1,0);
     }
 
     public void drawSellWeaponInformation(BitmapFont titleFont, BitmapFont bodyFont) {
@@ -296,22 +294,20 @@ public class departmentScreen2 implements Screen {
 
         List<Weapon> weaponList = new ArrayList<Weapon>();
         int i = 0;
-        while (i <= playerShip.getWeapons().size()) {
+        while (i <= playerShip.getWeapons().size() - 1 && playerShip.getWeapons().get(i) instanceof Weapon) {
             weaponList.add(playerShip.getWeapons().get(i));
-        }
-
-        int j = 0;
-        while (j <= playerShip.getWeapons().size()){
-            titleFont.draw(batch, weaponList.get(j).getName(), 160, 880 - (150 * j));
-            bodyFont.draw(batch, "Damage: " + df.format(weaponList.get(j).getBaseDamage()), 160, 850 - (150 * j));
-            bodyFont.draw(batch, "Crit Chance: " + df.format(weaponList.get(j).getBaseCritChance()), 160, 830 - (150 * j));
-            bodyFont.draw(batch, "Hit Chance: " + df.format(weaponList.get(j).getBaseChanceToHit()), 160, 810 - (150 * j));
-            bodyFont.draw(batch, "Cooldown: " + df.format(weaponList.get(j).getBaseCooldown()), 160, 790 - (150 * j));
             i++;
         }
 
-        titleFont.setColor(1,1,1,0);
-        bodyFont.setColor(1,1,1,0);
+        int j = 0;
+        while (j <= weaponList.size() - 1){
+            titleFont.draw(batch, weaponList.get(j).getName(), 500, 880 - (150 * j));
+            bodyFont.draw(batch, "Damage: " + df.format(weaponList.get(j).getBaseDamage()), 500, 850 - (150 * j));
+            bodyFont.draw(batch, "Crit Chance: " + df.format(weaponList.get(j).getBaseCritChance()), 500, 830 - (150 * j));
+            bodyFont.draw(batch, "Hit Chance: " + df.format(weaponList.get(j).getBaseChanceToHit()), 500, 810 - (150 * j));
+            bodyFont.draw(batch, "Cooldown: " + df.format(weaponList.get(j).getBaseCooldown()), 500, 790 - (150 * j));
+            j++;
+        }
     }
 
     public void toggleShop(Boolean boolShowShop, Sprite shopBackground, BitmapFont titleFont, BitmapFont bodyFont) {
