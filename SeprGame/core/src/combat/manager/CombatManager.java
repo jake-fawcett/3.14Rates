@@ -62,7 +62,7 @@ public class CombatManager {
 
             if (pickRandom() > (weapon.getAccuracy() * shipFiring.calculateShipAccuracy())) {
                 damage = 0;
-            } else if (pickRandom() > shipFiredAt.calculateShipEvade()) {
+            } else if (pickRandom() <= shipFiredAt.calculateShipEvade()) {
                 damage = 0;
             } else {
                 damage = weapon.getBaseDamage();
