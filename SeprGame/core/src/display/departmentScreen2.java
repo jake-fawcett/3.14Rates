@@ -57,7 +57,9 @@ public class departmentScreen2 implements Screen {
     private BitmapFont titleFont = new BitmapFont();
     private BitmapFont bodyFont = new BitmapFont();
 
-    private List<TextButton> buyButtonList = new ArrayList<TextButton>();
+    private List<TextButton> buyWeaponButtonList = new ArrayList<TextButton>();
+    private List<TextButton> sellButtonList = new ArrayList<TextButton>();
+    private List<TextButton> buyRoomUpgradeButtonList = new ArrayList<TextButton>();
 
     @Override
     public void show() {
@@ -92,17 +94,15 @@ public class departmentScreen2 implements Screen {
         drawIndicators();
 
         drawShopBackground(shopBackground, boolShowShop);
-        buyButtonList = drawBuyWeaponFeatures(titleFont, bodyFont, textButtonStyle);
-        drawSellWeaponInformation(titleFont, bodyFont);
+        buyWeaponButtonList = drawBuyWeaponFeatures(titleFont, bodyFont, textButtonStyle);
+        sellButtonList = drawSellWeaponFeatures(titleFont, bodyFont, textButtonStyle);
+        buyRoomUpgradeButtonList = drawBuyRoomUpgradeFeatures(titleFont, bodyFont, textButtonStyle);
 
-        drawBuyRoomUpgradeInformation(titleFont, bodyFont);
-
-        toggleShop(boolShowShop, shopBackground, titleFont, bodyFont, buyButtonList);
+        toggleShop(boolShowShop, shopBackground, titleFont, bodyFont, buyWeaponButtonList, sellButtonList, buyRoomUpgradeButtonList);
 
         batch.end();
 
         stage.draw();
-        stage.act();
     }
 
     @Override
@@ -299,12 +299,12 @@ public class departmentScreen2 implements Screen {
             j++;
         }
 
-        setButtonListener(buyButtonList, weaponList);
+        buyWeaponButtonListener(buyButtonList, weaponList);
 
         return buyButtonList;
     }
 
-    public void setButtonListener(final List<TextButton> buyButtonList, final List<Weapon> weaponList) {
+    public void buyWeaponButtonListener(final List<TextButton> buyButtonList, final List<Weapon> weaponList) {
         int i = 0;
         while (i <= buyButtonList.size() - 1) {
             final int j = i;
@@ -330,9 +330,12 @@ public class departmentScreen2 implements Screen {
         }
 
     }
+    //FIXME WORDS AND BUTTONS DON'T WORK FULLYs
 
-    public void drawSellWeaponInformation(BitmapFont titleFont, BitmapFont bodyFont) {
+    public List<TextButton> drawSellWeaponFeatures(BitmapFont titleFont, BitmapFont bodyFont, TextButton.TextButtonStyle textButtonStyle) {
+        List<TextButton> sellButtonList = new ArrayList<TextButton>();
         List<Weapon> weaponList = new ArrayList<Weapon>();
+
         int i = 0;
         while (i <= playerShip.getWeapons().size() - 1 && playerShip.getWeapons().get(i) instanceof Weapon) {
             weaponList.add(playerShip.getWeapons().get(i));
@@ -346,11 +349,41 @@ public class departmentScreen2 implements Screen {
             bodyFont.draw(batch, "Crit Chance: " + df.format(weaponList.get(j).getBaseCritChance()), 360, 830 - (150 * j));
             bodyFont.draw(batch, "Hit Chance: " + df.format(weaponList.get(j).getBaseChanceToHit()), 360, 810 - (150 * j));
             bodyFont.draw(batch, "Cooldown: " + df.format(weaponList.get(j).getBaseCooldown()), 360, 790 - (150 * j));
+
+            sellButtonList.add(new TextButton("Sell (" + df.format(weaponList.get(j).getCost() * STORE_SELL_PRICE_MULTIPLIER) + ")", textButtonStyle));
+            sellButtonList.get(j).setPosition(360, 740 - (j * 150));
+            stage.addActor(sellButtonList.get(j));
             j++;
         }
+        sellButtonListener(sellButtonList, weaponList);
+
+        return sellButtonList;
     }
 
-    public void drawBuyRoomUpgradeInformation(BitmapFont titleFont, BitmapFont bodyFont) {
+    public void sellButtonListener(final List<TextButton> buyButtonList, final List<Weapon> weaponList) {
+        int i = 0;
+        while (i <= buyButtonList.size() - 1) {
+            final int j = i;
+            buyButtonList.get(j).addListener(new InputListener() {
+                public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+
+                    try {
+                        department.sellWeapon(weaponList.get(j));
+                    } catch (IllegalArgumentException e) {
+                        buyButtonList.get(j).setText("Empty Slot!");
+                    }
+                    return true;
+                }
+            });
+
+            i++;
+        }
+
+    }
+    //FIXME WORDS AND BUTTONS DON'T WORK FULLY
+
+    public List<TextButton> drawBuyRoomUpgradeFeatures(BitmapFont titleFont, BitmapFont bodyFont, TextButton.TextButtonStyle textButtonStyle) {
+        List<TextButton> buyButtonList = new ArrayList<TextButton>();
         List<RoomUpgrade> roomUpgradeList = new ArrayList<RoomUpgrade>();
         int i = 0;
         while (i <= department.getUpgradeStock().size() - 1 && department.getUpgradeStock().get(i) instanceof RoomUpgrade) {
@@ -363,19 +396,64 @@ public class departmentScreen2 implements Screen {
             titleFont.draw(batch, roomUpgradeList.get(j).getName(), 560, 880 - (150 * j));
             bodyFont.draw(batch, "Room: " + roomUpgradeList.get(j).getAffectsRoom(), 560, 830 - (150 * j));
             bodyFont.draw(batch, "Multiplier: " + df.format(roomUpgradeList.get(j).getMultiplier()), 560, 850 - (150 * j));
+
+            buyButtonList.add(new TextButton("Buy (" + df.format(roomUpgradeList.get(j).getCost()) + ")", textButtonStyle));
+            buyButtonList.get(j).setPosition(560, 740 - (j * 150));
+            stage.addActor(buyButtonList.get(j));
             j++;
         }
+        buyRoomUpgradeButtonListener(buyButtonList, roomUpgradeList);
+
+        return buyButtonList;
     }
     //FIXME Unable to Sell Room Upgrades
 
-    public void toggleShop(Boolean boolShowShop, Sprite shopBackground, BitmapFont titleFont, BitmapFont bodyFont, List<TextButton> buyButtonList) {
+    public void buyRoomUpgradeButtonListener(final List<TextButton> buyButtonList, final List<RoomUpgrade> roomUpgradeList) {
+        int i = 0;
+        while (i <= buyButtonList.size() - 1) {
+            final int j = i;
+            buyButtonList.get(j).addListener(new InputListener() {
+                public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+
+                    try {
+                        department.buyRoomUpgrade(roomUpgradeList.get(j));
+                    } catch (IllegalStateException e) {
+                        buyButtonList.get(j).setText("Insufficient Gold!");
+                    } catch (IllegalArgumentException e) {
+                        if (e.getMessage() == "Room does not exist") {
+                            buyButtonList.get(j).setText("Out of Stock :(");
+                        } else if (e.getMessage() == "Not enough gold") {
+                            buyButtonList.get(j).setText("Insufficient Gold!");
+                        }
+                    }
+                    return true;
+                }
+            });
+
+            i++;
+        }
+
+    }
+
+
+    public void toggleShop(Boolean boolShowShop, Sprite shopBackground, BitmapFont titleFont, BitmapFont bodyFont, List<TextButton> buyWeaponButtonList, List<TextButton> sellButtonList, List<TextButton> buyRoomUpgradeButtonList) {
         if (boolShowShop) {
             shopBackground.setAlpha(0.85f);
             titleFont.setColor(1, 1, 1, 1);
             bodyFont.setColor(1, 1, 1, 1);
             int i = 0;
-            while (i <= buyButtonList.size() - 1){
-                buyButtonList.get(i).setColor(1,1,1,1);
+            while (i <= buyWeaponButtonList.size() - 1){
+                buyWeaponButtonList.get(i).setColor(1,1,1,1);
+                i++;
+            }
+            i = 0;
+            while (i <= sellButtonList.size() - 1){
+                sellButtonList.get(i).setColor(1,1,1,1);
+                i++;
+            }
+            i = 0;
+            while (i <= buyRoomUpgradeButtonList.size() - 1){
+                buyRoomUpgradeButtonList.get(i).setColor(1,1,1,1);
                 i++;
             }
         } else {
@@ -383,8 +461,18 @@ public class departmentScreen2 implements Screen {
             titleFont.setColor(1, 1, 1, 0);
             bodyFont.setColor(1, 1, 1, 0);
             int i = 0;
-            while (i <= buyButtonList.size() - 1){
-                buyButtonList.get(i).setColor(1,1,1,0);
+            while (i <= buyWeaponButtonList.size() - 1){
+                buyWeaponButtonList.get(i).setColor(1,1,1,0);
+                i++;
+            }
+            i = 0;
+            while (i <= sellButtonList.size() - 1){
+                sellButtonList.get(i).setColor(1,1,1,0);
+                i++;
+            }
+            i = 0;
+            while (i <= buyRoomUpgradeButtonList.size() - 1){
+                buyRoomUpgradeButtonList.get(i).setColor(1,1,1,0);
                 i++;
             }
         }
