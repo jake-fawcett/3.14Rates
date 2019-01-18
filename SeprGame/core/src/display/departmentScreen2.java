@@ -12,8 +12,6 @@ import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.ui.ProgressBar;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
-import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
-import com.badlogic.gdx.scenes.scene2d.utils.NinePatchDrawable;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import combat.items.Weapon;
 import combat.ship.Ship;
@@ -21,6 +19,8 @@ import game_manager.GameManager;
 import location.Department;
 
 
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -37,6 +37,8 @@ public class departmentScreen2 implements Screen {
     private SpriteBatch batch = new SpriteBatch();
     private Stage stage = new Stage();
 
+    private DecimalFormat df;
+
     private int randInt = pickRandom(2);
     private Department department = assignDepartment(randInt);
 
@@ -47,11 +49,16 @@ public class departmentScreen2 implements Screen {
     private TextureAtlas buttonAtlas;
     private Skin skin = new Skin();
 
-    private TextButton showShop; //May be able to remove showShop and Menu from here.
-    private TextButton toMenu;
+    private Boolean boolShowShop = false;
+    private Sprite shopBackground;
+    private BitmapFont titleFont = new BitmapFont();
+    private BitmapFont bodyFont = new BitmapFont();
 
     @Override
     public void show() {
+        df = new DecimalFormat("#.##");
+        df.setRoundingMode(RoundingMode.CEILING);
+
         buttonAtlas = new TextureAtlas("buttonSpriteSheet.txt");
         skin.addRegions(buttonAtlas);
 
@@ -59,12 +66,16 @@ public class departmentScreen2 implements Screen {
         textButtonStyle.up = skin.getDrawable("buttonUp");
         textButtonStyle.down = skin.getDrawable("buttonDown");
 
-        showShop = buttonShowShop(textButtonStyle);
-        toMenu = buttonToMenu(textButtonStyle);
+        buttonShowShop(textButtonStyle);
+        buttonToMenu(textButtonStyle);
+
+        shopBackground = createShopBackground();
+
     }
 
     @Override
     public void render(float delta) {
+        Gdx.input.setInputProcessor(stage);
 
         batch.begin();
 
@@ -74,6 +85,12 @@ public class departmentScreen2 implements Screen {
 
         drawHealthBar();
         drawIndicators();
+
+        drawShopBackground(shopBackground, boolShowShop);
+        drawBuyWeaponInformation(titleFont, bodyFont);
+        drawSellWeaponInformation(titleFont, bodyFont);
+
+        toggleShop(boolShowShop, shopBackground, titleFont, bodyFont);
 
         batch.end();
 
@@ -157,9 +174,9 @@ public class departmentScreen2 implements Screen {
 
     public Department assignDepartment(int randInt) {
         switch (randInt) {
-            case 1:
+            case 0:
                 return (new Department(COMP_SCI_WEPS.getWeaponList(), COMP_SCI_UPGRADES.getRoomUpgradeList(), game));
-            case 2:
+            case 1:
                 return (new Department(LMB_WEPS.getWeaponList(), LMB_UPGRADES.getRoomUpgradeList(), game));
         }
         return null;
@@ -208,28 +225,105 @@ public class departmentScreen2 implements Screen {
         indicatorFont.draw(batch, "Crew: " + playerShip.getCrew(), 280, 965);
     }
 
-    public TextButton buttonShowShop(TextButton.TextButtonStyle textButtonStyle) {
-      TextButton showShop = new TextButton("Open Shop", textButtonStyle);
+    public void buttonShowShop(TextButton.TextButtonStyle textButtonStyle) {
+      final TextButton showShop = new TextButton("Open Shop", textButtonStyle);
       showShop.setPosition(350, 960);
       showShop.addListener(new InputListener() {
           public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-                //TODO Show/Hide Shop
+              boolShowShop = !boolShowShop;
               return true;
           }
       });
-      return showShop;
+      stage.addActor(showShop);
     }
 
-    public TextButton buttonToMenu(TextButton.TextButtonStyle textButtonStyle){
+    public void buttonToMenu(TextButton.TextButtonStyle textButtonStyle){
         TextButton toMenu = new TextButton("To Menu", textButtonStyle);
-        showShop.setPosition(880, 980);
-        showShop.addListener(new InputListener() {
+        toMenu.setPosition(880, 980);
+        toMenu.addListener(new InputListener() {
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
                 game.getGame().setScreen(new menuScreen(game));
                 return true;
             }
         });
-        return toMenu;
+        stage.addActor(toMenu);
+    }
+
+    public Sprite createShopBackground(){
+        Texture shopBackgroundTexture = new Texture("shopBackground.png");
+        Sprite shopBackgroundSprite = new Sprite(shopBackgroundTexture);
+
+        return shopBackgroundSprite;
+    }
+
+    public void drawShopBackground(Sprite shopBackground,Boolean showShop) {
+        shopBackground.draw(batch);
+        shopBackground.setScale(1.5f, 1.5f);
+        shopBackground.setPosition(256, 256);
+
+        if (showShop){
+            shopBackground.setAlpha(1);
+        } else {
+            shopBackground.setAlpha(0);
+        }
+    }
+
+    public void drawBuyWeaponInformation(BitmapFont titleFont, BitmapFont bodyFont) {
+        titleFont.getData().setScale(1.5f);
+
+        List<Weapon> weaponList = new ArrayList<Weapon>();
+        int i = 0;
+        while (i <= department.getWeaponStock().size()) {
+            weaponList.add(department.getWeaponStock().get(i));
+        }
+
+        int j = 0;
+        while (j <= department.getWeaponStock().size()){
+            titleFont.draw(batch, weaponList.get(j).getName(), 160, 880 - (150 * j));
+            bodyFont.draw(batch, "Damage: " + df.format(weaponList.get(j).getBaseDamage()), 160, 850 - (150 * j));
+            bodyFont.draw(batch, "Crit Chance: " + df.format(weaponList.get(j).getBaseCritChance()), 160, 830 - (150 * j));
+            bodyFont.draw(batch, "Hit Chance: " + df.format(weaponList.get(j).getBaseChanceToHit()), 160, 810 - (150 * j));
+            bodyFont.draw(batch, "Cooldown: " + df.format(weaponList.get(j).getBaseCooldown()), 160, 790 - (150 * j));
+            i++;
+        }
+
+        titleFont.setColor(1,1,1,0);
+        bodyFont.setColor(1,1,1,0);
+    }
+
+    public void drawSellWeaponInformation(BitmapFont titleFont, BitmapFont bodyFont) {
+        titleFont.getData().setScale(1.5f);
+
+        List<Weapon> weaponList = new ArrayList<Weapon>();
+        int i = 0;
+        while (i <= playerShip.getWeapons().size()) {
+            weaponList.add(playerShip.getWeapons().get(i));
+        }
+
+        int j = 0;
+        while (j <= playerShip.getWeapons().size()){
+            titleFont.draw(batch, weaponList.get(j).getName(), 160, 880 - (150 * j));
+            bodyFont.draw(batch, "Damage: " + df.format(weaponList.get(j).getBaseDamage()), 160, 850 - (150 * j));
+            bodyFont.draw(batch, "Crit Chance: " + df.format(weaponList.get(j).getBaseCritChance()), 160, 830 - (150 * j));
+            bodyFont.draw(batch, "Hit Chance: " + df.format(weaponList.get(j).getBaseChanceToHit()), 160, 810 - (150 * j));
+            bodyFont.draw(batch, "Cooldown: " + df.format(weaponList.get(j).getBaseCooldown()), 160, 790 - (150 * j));
+            i++;
+        }
+
+        titleFont.setColor(1,1,1,0);
+        bodyFont.setColor(1,1,1,0);
+    }
+
+    public void toggleShop(Boolean boolShowShop, Sprite shopBackground, BitmapFont titleFont, BitmapFont bodyFont) {
+        if (boolShowShop) {
+            shopBackground.setAlpha(0.85f);
+            titleFont.setColor(1, 1, 1, 1);
+            bodyFont.setColor(1, 1, 1, 1);
+        } else {
+            shopBackground.setAlpha(0);
+            titleFont.setColor(1, 1, 1, 0);
+            bodyFont.setColor(1, 1, 1, 0);
+        }
     }
 
 }
