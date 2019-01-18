@@ -34,7 +34,7 @@ public enum WeaponSetBank {
                 Weapon copying = w.getWeapon();
                 out.add(w.getWeapon());
             } else {
-                out.add(null);
+
             }
         }
 

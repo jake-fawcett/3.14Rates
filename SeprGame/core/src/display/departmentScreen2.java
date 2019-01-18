@@ -73,7 +73,6 @@ public class departmentScreen2 implements Screen {
         textButtonStyle.down = skin.getDrawable("buttonDown");
 
         shopBackground = createShopBackground();
-
     }
 
     @Override
@@ -309,7 +308,6 @@ public class departmentScreen2 implements Screen {
             final int j = i;
             buyButtonList.get(j).addListener(new InputListener() {
                 public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-
                     try {
                         department.buyWeapon(weaponList.get(j));
                         stage.clear();
@@ -331,7 +329,6 @@ public class departmentScreen2 implements Screen {
         }
 
     }
-    //FIXME WORDS AND BUTTONS DON'T WORK FULLYs
 
     public List<TextButton> drawSellWeaponFeatures(BitmapFont titleFont, BitmapFont bodyFont, TextButton.TextButtonStyle textButtonStyle) {
         List<TextButton> sellButtonList = new ArrayList<TextButton>();
@@ -382,7 +379,6 @@ public class departmentScreen2 implements Screen {
         }
 
     }
-    //FIXME WORDS AND BUTTONS DON'T WORK FULLY
 
     public List<TextButton> drawBuyRoomUpgradeFeatures(BitmapFont titleFont, BitmapFont bodyFont, TextButton.TextButtonStyle textButtonStyle) {
         List<TextButton> buyButtonList = new ArrayList<TextButton>();
@@ -408,7 +404,7 @@ public class departmentScreen2 implements Screen {
 
         return buyButtonList;
     }
-    //FIXME Unable to Sell Room Upgrades
+
 
     public void buyRoomUpgradeButtonListener(final List<TextButton> buyButtonList, final List<RoomUpgrade> roomUpgradeList) {
         int i = 0;
