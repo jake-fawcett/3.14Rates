@@ -72,6 +72,8 @@ public class CombatManager {
                 damage = damage * 2;
             }
 
+            damage = (int) (damage * shipFiring.getRoom(RoomFunction.GUN_DECK).getMultiplier());
+
             damageReport.add(new Pair<Room, Integer>(target, damage));
         }
 
