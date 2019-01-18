@@ -10,6 +10,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import static other.Constants.COOLDOWN_TICKS_PER_TURN;
+
 public class CombatEnemy extends CombatActor {
     public CombatEnemy(Ship ship) {
         super(ship);
@@ -18,7 +20,9 @@ public class CombatEnemy extends CombatActor {
     @Override
     public List<Pair<Room, Weapon>> takeTurn(List<Pair<Room, Integer>> damageReport, Ship enemy) {
         List<Pair<Room, Weapon>> attackReport = new ArrayList<Pair<Room, Weapon>>();
-
+        for (Weapon weapon : getShip().getWeapons()) {
+            weapon.decrementCooldown(COOLDOWN_TICKS_PER_TURN);
+        }
         getShip().combatRepair();
         attackReport.add(new Pair<Room, Weapon>(pickRandRoom(enemy), pickRandChargedWeapon()));
 
