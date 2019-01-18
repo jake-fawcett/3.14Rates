@@ -97,5 +97,12 @@ public class Room {
 
 
     }
+
+    public void repair(int amount) {
+        hp += amount;
+        if (hp > baseHP) {
+            hp = baseHP;
+        }
+    }
 }
 

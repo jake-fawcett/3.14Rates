@@ -2,12 +2,10 @@ package location;
 
 import combat.items.RoomUpgrade;
 import combat.items.Weapon;
-import combat.ship.Ship;
 import game_manager.GameManager;
 import other.Constants;
 import other.Resource;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -95,7 +93,7 @@ public class Department {
             if (price * amount > gameManager.getGold()) {
                 throw new IllegalStateException("Not enough gold");
             } else {
-                gameManager.getPlayerShip().repair(amount);
+                gameManager.getPlayerShip().repairHull(amount);
                 gameManager.deductGold(price * amount);
             }
         }

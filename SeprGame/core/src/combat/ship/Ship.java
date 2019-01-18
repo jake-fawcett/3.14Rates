@@ -6,12 +6,19 @@ import combat.items.Weapon;
 import java.util.Hashtable;
 import java.util.List;
 
+import static java.lang.Math.log;
 import static other.Constants.BASE_SHIP_ACCURACY;
 import static other.Constants.BASE_SHIP_EVADE;
+import static other.Constants.BASE_SHIP_REPAIR;
 
 @SuppressWarnings("ALL")
 public class Ship {
     private int crew;
+
+    public List<Room> getRooms() {
+        return rooms;
+    }
+
     private List<Room> rooms;
     private List<Weapon> weapons;
     private int baseHullHP;
@@ -75,7 +82,7 @@ public class Ship {
         }
     }
 
-    public void repair(int damage) {
+    public void repairHull(int damage) {
         hullHP += damage;
         if (hullHP > baseHullHP) {
             hullHP = baseHullHP;
@@ -132,5 +139,20 @@ public class Ship {
         } else {
             throw new IllegalArgumentException("Cannot delete upgrade that you do not have");
         }
+    }
+
+    public double calculateRepair() {
+        return BASE_SHIP_REPAIR * calculateCrewEffectiveness() * getRoom(RoomFunction.CREW_QUARTERS).getMultiplier();
+    }
+
+    public void combatRepair() {
+        Double repairPercent = calculateRepair();
+        for (Room room : rooms) {
+            room.repair((int) (room.getBaseHP() * repairPercent));
+        }
+    }
+
+    private Double calculateCrewEffectiveness() {
+        return 0.6666*log(0.2*crew + 1) + 0.67;
     }
 }
