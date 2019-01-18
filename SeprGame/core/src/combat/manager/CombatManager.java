@@ -84,11 +84,14 @@ public class CombatManager {
             return true;
         } else if (enemy.getShip().getHullHP() < (enemy.getShip().getBaseHullHP() * SHIP_BOARD_PERCENTAGE)) {
             //TODO Minigame option to start here. The below is just a placeholder.
-            Boolean playerWantsToStartMinigame = false;
+            boolean playerWantsToStartMinigame = false;
+            //noinspection StatementWithEmptyBody,ConstantConditions
             if (playerWantsToStartMinigame) {
                 //begin minigame
             }
             return true;
+        } else {
+            return false;
         }
     }
 
