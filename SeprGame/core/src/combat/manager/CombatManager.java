@@ -93,11 +93,11 @@ public class CombatManager {
             //noinspection StatementWithEmptyBody,ConstantConditions
             if (playerWantsToStartMinigame) {
                 //begin minigame
+                return true;
             }
-            return true;
-        } else {
-            return false;
         }
+        return false;
+
     }
 
     private float pickRandom() {
