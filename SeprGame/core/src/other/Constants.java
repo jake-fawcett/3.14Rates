@@ -12,6 +12,7 @@ package other;
         public static final int DEFAULT_WEAPON_COST = 100;
         public static final int DEFAULT_WEAPON_DAMAGE = 100;
         public static final int DEFAULT_WEAPON_COOLDOWN = 10000;
+        public static final int COOLDOWN_TICKS_PER_TURN = 1000;
         public static final double DEFAULT_WEAPON_CRIT_CHANCE = 0.2;
         public static final double DEFAULT_WEAPON_HIT_CHANCE = 0.9;
         public static final int STARTING_GOLD = 250;
