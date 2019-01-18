@@ -9,13 +9,11 @@ import com.badlogic.gdx.graphics.g2d.*;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.ButtonGroup;
-import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
-import com.badlogic.gdx.scenes.scene2d.ui.Skin;
-import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.sun.org.apache.xpath.internal.operations.Bool;
 import combat.items.RoomUpgrade;
 import combat.items.Weapon;
+import combat.ship.Room;
 import combat.ship.Ship;
 import game_manager.GameManager;
 import location.Department;
@@ -26,6 +24,8 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+
+import static combat.ship.RoomFunction.*;
 
 public class combatScreen implements Screen {
 
@@ -47,7 +47,7 @@ public class combatScreen implements Screen {
     private TextureAtlas buttonAtlas;
     private Skin skin = new Skin();
 
-    private String roomSelected;
+    private Room roomSelected;
 
     @Override
     public void show() {
@@ -57,6 +57,8 @@ public class combatScreen implements Screen {
         textButtonStyle.font = buttonFont;
         textButtonStyle.up = skin.getDrawable("buttonUp");
         textButtonStyle.down = skin.getDrawable("buttonDown");
+
+        drawEnemyShip();
     }
 
     @Override
@@ -67,8 +69,6 @@ public class combatScreen implements Screen {
 
         drawBackground();
         drawFriendlyShip();
-        drawEnemyShip();
-
         buttonToMenu(textButtonStyle);
 
         drawHealthBar();
@@ -104,12 +104,12 @@ public class combatScreen implements Screen {
 
     }
 
-    public void drawBackground() {
+    private void drawBackground() {
         Texture background = new Texture("battleBackground.png");
         batch.draw(background, 0, 0);
     }
 
-    public void drawFriendlyShip(){
+    private void drawFriendlyShip(){
         TextureAtlas roomSpriteAtlas = new TextureAtlas("roomSpriteSheet.txt");
 
         Sprite friendlyCrewQuaters = roomSpriteAtlas.createSprite("crewQuaters");
@@ -146,7 +146,7 @@ public class combatScreen implements Screen {
         friendlyEmptyRoom4.draw(batch);
     }
 
-    public void drawHealthBar() {
+    private void drawHealthBar() {
         Texture hpBar = new Texture("background.png");
         Texture hpBackground = new Texture("disabledBackground.png");
 
@@ -157,7 +157,7 @@ public class combatScreen implements Screen {
         batch.draw(hpBar,25, 970, width, 16);
     }
 
-    public void drawIndicators(){
+    private void drawIndicators(){
         BitmapFont indicatorFont = new BitmapFont();
         indicatorFont.setColor(1,1,1,1);
 
@@ -167,7 +167,7 @@ public class combatScreen implements Screen {
         indicatorFont.draw(batch, "Crew: " + playerShip.getCrew(), 280, 965);
     }
 
-    public void buttonToMenu(TextButton.TextButtonStyle textButtonStyle){
+    private void buttonToMenu(TextButton.TextButtonStyle textButtonStyle){
         TextButton toMenu = new TextButton("To Menu", textButtonStyle);
         toMenu.setPosition(880, 980);
         toMenu.addListener(new InputListener() {
@@ -179,7 +179,7 @@ public class combatScreen implements Screen {
         stage.addActor(toMenu);
     }
 
-    public void drawEnemyShip(){
+    private void drawEnemyShip(){
         TextureAtlas roomButtonAtlas = new TextureAtlas("roomSpriteSheet.txt");
         Skin roomButtonSkin = new Skin();
         roomButtonSkin.addRegions(roomButtonAtlas);
@@ -202,22 +202,6 @@ public class combatScreen implements Screen {
         ButtonGroup roomButtonGroup = new ButtonGroup(enemyCrewQuarters, enemyCrowsNest, enemyGunDeck, enemyHelm, enemyEmpty1, enemyEmpty2, enemyEmpty3, enemyEmpty4);
         roomButtonGroup.setMaxCheckCount(1);
 
-        final List<ImageButton> roomButtonList = new ArrayList<ImageButton>();
-        roomButtonList.add(enemyCrewQuarters);
-        roomButtonList.add(enemyCrowsNest);
-        roomButtonList.add(enemyGunDeck);
-        roomButtonList.add(enemyHelm);
-        roomButtonList.add(enemyEmpty1);
-        roomButtonList.add(enemyEmpty2);
-        roomButtonList.add(enemyEmpty3);
-        roomButtonList.add(enemyEmpty4);
-
-        int i = 0;
-        while (i < roomButtonList.size()){
-            stage.addActor(roomButtonList.get(i));
-            i++;
-        }
-
         enemyCrewQuarters.setPosition(700, 256);
         enemyEmpty1.setPosition(828, 256);
         enemyCrowsNest.setPosition(700, 384);
@@ -227,14 +211,83 @@ public class combatScreen implements Screen {
         enemyEmpty4.setPosition(700, 640);
         enemyHelm.setPosition(828, 640);
 
-
-        roomButtonList.get(i).addListener(new InputListener(){
+        enemyCrewQuarters.addListener(new InputListener(){
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button){
-            roomSelected =
-            return true;
+                roomSelected = playerShip.getRoom(CREW_QUARTERS);
+                return true;
+            }
+        });
+        enemyCrowsNest.addListener(new InputListener(){
+            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button){
+                roomSelected = playerShip.getRoom(CROWS_NEST);
+                return true;
+            }
+        });
+        enemyGunDeck.addListener(new InputListener(){
+            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button){
+                roomSelected = playerShip.getRoom(GUN_DECK);
+                return true;
+            }
+        });
+        enemyHelm.addListener(new InputListener(){
+            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button){
+                roomSelected = playerShip.getRoom(HELM);
+                return true;
+            }
+        });
+        enemyEmpty1.addListener(new InputListener(){
+            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button){
+                roomSelected = playerShip.getRoom(NON_FUNCTIONAL);
+                return true;
+            }
+        });
+        enemyEmpty2.addListener(new InputListener(){
+            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button){
+                roomSelected = playerShip.getRoom(NON_FUNCTIONAL);
+                return true;
+            }
+        });
+        enemyEmpty3.addListener(new InputListener(){
+            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button){
+                roomSelected = playerShip.getRoom(NON_FUNCTIONAL);
+                return true;
+            }
+        });
+        enemyEmpty4.addListener(new InputListener(){
+            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button){
+                roomSelected = playerShip.getRoom(NON_FUNCTIONAL);
+                return true;
             }
         });
 
+        stage.addActor(enemyCrewQuarters);
+        stage.addActor(enemyCrowsNest);
+        stage.addActor(enemyGunDeck);
+        stage.addActor(enemyHelm);
+        stage.addActor(enemyEmpty1);
+        stage.addActor(enemyEmpty2);
+        stage.addActor(enemyEmpty3);
+        stage.addActor(enemyEmpty4);
+    }
 
+    private void drawWeaponButtons() {
+        TextureAtlas weaponButtonAtlas = new TextureAtlas("weaponButtonSpriteSheet.txt");
+        Skin weaponButtonSkin = new Skin();
+        weaponButtonSkin.addRegions(weaponButtonAtlas);
+
+        TextButton.TextButtonStyle weaponButtonStyle = new TextButton.TextButtonStyle();
+        weaponButtonStyle.up = weaponButtonSkin.getDrawable("weaponButtonUp");
+        weaponButtonStyle.down = weaponButtonSkin.getDrawable("weaponButtonDown");
+        weaponButtonStyle.checked = weaponButtonSkin.getDrawable("weaponButtonChecked");
+
+        List<Weapon> playerWeapons = playerShip.getWeapons();
+        List<TextButton> weaponButtons = new ArrayList<TextButton>();
+
+        int i = 0;
+        while (i < playerWeapons.size()){
+            weaponButtons.add(new TextButton(playerWeapons.get(i).getName(), weaponButtonStyle));
+        }
+
+        ButtonGroup weaponButtonGroup = new ButtonGroup(weaponButtons.get(0),weaponButtons.get(1),weaponButtons.get(2),weaponButtons.get(3));
     }
 }
