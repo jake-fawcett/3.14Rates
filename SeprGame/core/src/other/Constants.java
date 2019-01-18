@@ -23,7 +23,7 @@ package other;
         public static final int FOOD_COST = 10;
         public static final double BASE_SHIP_ACCURACY = 1;
         public static final double BASE_SHIP_EVADE = 0.3;
-        public static final double BASE_SHIP_REPAIR = 1;
+        public static final double BASE_SHIP_REPAIR = 5;
         public static final double EASY_SCORE_MULTIPLIER = 1.0;
         public static final double MED_SCORE_MULTIPLIER = 2.0;
         public static final double DIFF_SCORE_MULTIPLIER = 3.0;
