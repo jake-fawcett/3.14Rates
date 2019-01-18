@@ -30,5 +30,5 @@ abstract class CombatActor {
      * @return A list of pairs of Rooms and Weapons telling the CombatManager which rooms were fired at and with which
      * weapons
      */
-    public abstract List<Pair<Room, Weapon>> takeTurn(List<Pair<Room, Integer>> damageReport);
+    public abstract List<Pair<Room, Weapon>> takeTurn(List<Pair<Room, Integer>> damageReport, Ship enemy);
 }

@@ -5,7 +5,6 @@ import banks.ShipBank;
 import combat.items.RoomUpgrade;
 import combat.items.Weapon;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import testing_tools.SampleObjects;
 
@@ -57,9 +56,9 @@ public class ShipTest {
     public void repair() {
         tester.damage(tester.getBaseHullHP() - 1);
         assertEquals("HP should be 1 before these tests run", 1, tester.getHullHP());
-        tester.repair(50);
+        tester.repairHull(50);
         assertEquals("HP should be raised to 51", 51, tester.getHullHP());
-        tester.repair(tester.getBaseHullHP());
+        tester.repairHull(tester.getBaseHullHP());
         assertEquals("HP should not be allowed to go above max", tester.getBaseHullHP(),
                 tester.getHullHP());
     }
