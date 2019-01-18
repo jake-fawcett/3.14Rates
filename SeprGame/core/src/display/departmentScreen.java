@@ -4,6 +4,7 @@ import banks.CoordBank;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.*;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
@@ -36,13 +37,13 @@ import static banks.WeaponSetBank.LMB_WEPS;
 import static other.Constants.STORE_SELL_PRICE_MULTIPLIER;
 
 public class departmentScreen implements Screen {
-    private Game game2;
+    private Game game;
     public departmentScreen(Game game){
-        this.game2 = game;
+        this.game = game;
     }
 
-    private GameManager game = new GameManager(null, null);
-    private Ship playerShip = game.getPlayerShip();
+    private GameManager gameManager = new GameManager(null, null);
+    private Ship playerShip = gameManager.getPlayerShip();
 
     private SpriteBatch batch = new SpriteBatch();
     private Stage stage = new Stage();
@@ -61,10 +62,6 @@ public class departmentScreen implements Screen {
     private Sprite shopBackground;
     private BitmapFont titleFont = new BitmapFont();
     private BitmapFont bodyFont = new BitmapFont();
-
-    private List<TextButton> buyWeaponButtonList = new ArrayList<TextButton>();
-    private List<TextButton> sellButtonList = new ArrayList<TextButton>();
-    private List<TextButton> buyRoomUpgradeButtonList = new ArrayList<TextButton>();
 
     @Override
     public void show() {
@@ -91,18 +88,15 @@ public class departmentScreen implements Screen {
         drawFriendlyShip();
         drawDepartment(randInt);
 
-        buttonShowShop(textButtonStyle);
         buttonToMenu(textButtonStyle);
 
         drawHealthBar();
         drawIndicators();
 
         drawShopBackground(shopBackground, boolShowShop);
-        buyWeaponButtonList = drawBuyWeaponFeatures(titleFont, bodyFont, textButtonStyle);
-        sellButtonList = drawSellWeaponFeatures(titleFont, bodyFont, textButtonStyle);
-        buyRoomUpgradeButtonList = drawBuyRoomUpgradeFeatures(titleFont, bodyFont, textButtonStyle);
-
-        toggleShop(boolShowShop, shopBackground, titleFont, bodyFont, buyWeaponButtonList, sellButtonList, buyRoomUpgradeButtonList);
+        drawBuyWeaponFeatures(titleFont, bodyFont, textButtonStyle);
+        drawSellWeaponFeatures(titleFont, bodyFont, textButtonStyle);
+        drawBuyRoomUpgradeFeatures(titleFont, bodyFont, textButtonStyle);
 
         batch.end();
 
@@ -132,6 +126,7 @@ public class departmentScreen implements Screen {
     @Override
     public void dispose() {
         stage.dispose();
+        batch.dispose();
     }
 
     public int pickRandom(int max) {
@@ -186,9 +181,9 @@ public class departmentScreen implements Screen {
     public Department assignDepartment(int randInt) {
         switch (randInt) {
             case 0:
-                return (new Department(COMP_SCI_WEPS.getWeaponList(), COMP_SCI_UPGRADES.getRoomUpgradeList(), game));
+                return (new Department(COMP_SCI_WEPS.getWeaponList(), COMP_SCI_UPGRADES.getRoomUpgradeList(), gameManager));
             case 1:
-                return (new Department(LMB_WEPS.getWeaponList(), LMB_UPGRADES.getRoomUpgradeList(), game));
+                return (new Department(LMB_WEPS.getWeaponList(), LMB_UPGRADES.getRoomUpgradeList(), gameManager));
         }
         return null;
     }
@@ -230,22 +225,10 @@ public class departmentScreen implements Screen {
         BitmapFont indicatorFont = new BitmapFont();
         indicatorFont.setColor(1,1,1,1);
 
-        indicatorFont.draw(batch, "Score: " + game.getPoints(), 25, 965);
-        indicatorFont.draw(batch, "Gold: " + game.getGold(), 110, 965);
-        indicatorFont.draw(batch, "Food: " + game.getFood(), 195, 965);
+        indicatorFont.draw(batch, "Score: " + gameManager.getPoints(), 25, 965);
+        indicatorFont.draw(batch, "Gold: " + gameManager.getGold(), 110, 965);
+        indicatorFont.draw(batch, "Food: " + gameManager.getFood(), 195, 965);
         indicatorFont.draw(batch, "Crew: " + playerShip.getCrew(), 280, 965);
-    }
-
-    public void buttonShowShop(TextButton.TextButtonStyle textButtonStyle) {
-      final TextButton showShop = new TextButton("Open Shop", textButtonStyle);
-      showShop.setPosition(350, 960);
-      showShop.addListener(new InputListener() {
-          public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-              boolShowShop = !boolShowShop;
-              return true;
-          }
-      });
-      stage.addActor(showShop);
     }
 
     public void buttonToMenu(TextButton.TextButtonStyle textButtonStyle){
@@ -253,7 +236,7 @@ public class departmentScreen implements Screen {
         toMenu.setPosition(880, 980);
         toMenu.addListener(new InputListener() {
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-                game2.setScreen(new menuScreen(game));
+                game.setScreen(new menuScreen(game));
                 return true;
             }
         });
@@ -271,15 +254,10 @@ public class departmentScreen implements Screen {
         shopBackground.draw(batch);
         shopBackground.setScale(1.5f, 1.5f);
         shopBackground.setPosition(256, 256);
-
-        if (showShop){
-            shopBackground.setAlpha(1);
-        } else {
-            shopBackground.setAlpha(0);
-        }
+        shopBackground.setAlpha(0.85f);
     }
 
-    public List<TextButton> drawBuyWeaponFeatures(BitmapFont titleFont, BitmapFont bodyFont, TextButton.TextButtonStyle textButtonStyle) {
+    public void drawBuyWeaponFeatures(BitmapFont titleFont, BitmapFont bodyFont, TextButton.TextButtonStyle textButtonStyle) {
         List<TextButton> buyButtonList = new ArrayList<TextButton>();
         List<Weapon> weaponList = new ArrayList<Weapon>();
 
@@ -304,8 +282,6 @@ public class departmentScreen implements Screen {
         }
 
         buyWeaponButtonListener(buyButtonList, weaponList);
-
-        return buyButtonList;
     }
 
     public void buyWeaponButtonListener(final List<TextButton> buyButtonList, final List<Weapon> weaponList) {
@@ -333,10 +309,9 @@ public class departmentScreen implements Screen {
 
             i++;
         }
-
     }
 
-    public List<TextButton> drawSellWeaponFeatures(BitmapFont titleFont, BitmapFont bodyFont, TextButton.TextButtonStyle textButtonStyle) {
+    public void drawSellWeaponFeatures(BitmapFont titleFont, BitmapFont bodyFont, TextButton.TextButtonStyle textButtonStyle) {
         List<TextButton> sellButtonList = new ArrayList<TextButton>();
         List<Weapon> weaponList = new ArrayList<Weapon>();
 
@@ -360,8 +335,6 @@ public class departmentScreen implements Screen {
             j++;
         }
         sellButtonListener(sellButtonList, weaponList);
-
-        return sellButtonList;
     }
 
     public void sellButtonListener(final List<TextButton> buyButtonList, final List<Weapon> weaponList) {
@@ -386,7 +359,7 @@ public class departmentScreen implements Screen {
 
     }
 
-    public List<TextButton> drawBuyRoomUpgradeFeatures(BitmapFont titleFont, BitmapFont bodyFont, TextButton.TextButtonStyle textButtonStyle) {
+    public void drawBuyRoomUpgradeFeatures(BitmapFont titleFont, BitmapFont bodyFont, TextButton.TextButtonStyle textButtonStyle) {
         List<TextButton> buyButtonList = new ArrayList<TextButton>();
         List<RoomUpgrade> roomUpgradeList = new ArrayList<RoomUpgrade>();
         int i = 0;
@@ -407,8 +380,6 @@ public class departmentScreen implements Screen {
             j++;
         }
         buyRoomUpgradeButtonListener(buyButtonList, roomUpgradeList);
-
-        return buyButtonList;
     }
 
     public void buyRoomUpgradeButtonListener(final List<TextButton> buyButtonList, final List<RoomUpgrade> roomUpgradeList) {
@@ -439,46 +410,10 @@ public class departmentScreen implements Screen {
 
     }
 
-    public void toggleShop(Boolean boolShowShop, Sprite shopBackground, BitmapFont titleFont, BitmapFont bodyFont, List<TextButton> buyWeaponButtonList, List<TextButton> sellButtonList, List<TextButton> buyRoomUpgradeButtonList) {
-        if (boolShowShop) {
-            shopBackground.setAlpha(0.85f);
-            titleFont.setColor(1, 1, 1, 1);
-            bodyFont.setColor(1, 1, 1, 1);
-            int i = 0;
-            while (i <= buyWeaponButtonList.size() - 1){
-                buyWeaponButtonList.get(i).setColor(1,1,1,1);
-                i++;
-            }
-            i = 0;
-            while (i <= sellButtonList.size() - 1){
-                sellButtonList.get(i).setColor(1,1,1,1);
-                i++;
-            }
-            i = 0;
-            while (i <= buyRoomUpgradeButtonList.size() - 1){
-                buyRoomUpgradeButtonList.get(i).setColor(1,1,1,1);
-                i++;
-            }
-        } else {
-            shopBackground.setAlpha(0);
-            titleFont.setColor(1, 1, 1, 0);
-            bodyFont.setColor(1, 1, 1, 0);
-            int i = 0;
-            while (i <= buyWeaponButtonList.size() - 1){
-                buyWeaponButtonList.get(i).setColor(1,1,1,0);
-                i++;
-            }
-            i = 0;
-            while (i <= sellButtonList.size() - 1){
-                sellButtonList.get(i).setColor(1,1,1,0);
-                i++;
-            }
-            i = 0;
-            while (i <= buyRoomUpgradeButtonList.size() - 1){
-                buyRoomUpgradeButtonList.get(i).setColor(1,1,1,0);
-                i++;
-            }
-        }
+    public void drawBuyResourceFeatures(BitmapFont titleFont){
+        titleFont.draw(batch, "Crew", 160, 150);
+        titleFont.draw(batch, "Food", 160, 150);
+        titleFont.draw(batch, "Repair", 160, 150);
     }
 
 }
