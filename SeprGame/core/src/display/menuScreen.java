@@ -36,7 +36,6 @@ public class menuScreen extends InputListener implements Screen {
     private TextButton exitGame;
 
     private Game game;
-
     public menuScreen(Game game){
         this.game = game;
     }
@@ -85,7 +84,7 @@ public class menuScreen extends InputListener implements Screen {
         runDepartment.setScale(3);
         runDepartment.addListener(new InputListener() {
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button){
-                game.setScreen(new departmentScreen());
+                game.setScreen(new departmentScreen(game));
                 return true;
             }
         });

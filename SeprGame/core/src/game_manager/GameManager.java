@@ -104,7 +104,7 @@ public class GameManager extends Game {
     public void create() { //Called when the application is created
         //defaultCombatScreen = new combatScreen(false);
         //collegeCombatScreen = new combatScreen(true);
-        departmentScreen = new departmentScreen();
+        departmentScreen = new departmentScreen(game);
         menuScreen =  new menuScreen(game);
         this.setScreen(menuScreen);
     }

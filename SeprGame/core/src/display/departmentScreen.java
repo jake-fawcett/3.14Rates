@@ -1,6 +1,7 @@
 package display;
 
 import banks.CoordBank;
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Texture;
@@ -35,6 +36,11 @@ import static banks.WeaponSetBank.LMB_WEPS;
 import static other.Constants.STORE_SELL_PRICE_MULTIPLIER;
 
 public class departmentScreen implements Screen {
+    private Game game2;
+    public departmentScreen(Game game){
+        this.game2 = game;
+    }
+
     private GameManager game = new GameManager(null, null);
     private Ship playerShip = game.getPlayerShip();
 
@@ -247,7 +253,7 @@ public class departmentScreen implements Screen {
         toMenu.setPosition(880, 980);
         toMenu.addListener(new InputListener() {
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-                game.getGame().setScreen(new menuScreen(game));
+                game2.setScreen(new menuScreen(game));
                 return true;
             }
         });
@@ -405,7 +411,6 @@ public class departmentScreen implements Screen {
         return buyButtonList;
     }
 
-
     public void buyRoomUpgradeButtonListener(final List<TextButton> buyButtonList, final List<RoomUpgrade> roomUpgradeList) {
         int i = 0;
         while (i <= buyButtonList.size() - 1) {
@@ -433,7 +438,6 @@ public class departmentScreen implements Screen {
         }
 
     }
-
 
     public void toggleShop(Boolean boolShowShop, Sprite shopBackground, BitmapFont titleFont, BitmapFont bodyFont, List<TextButton> buyWeaponButtonList, List<TextButton> sellButtonList, List<TextButton> buyRoomUpgradeButtonList) {
         if (boolShowShop) {
