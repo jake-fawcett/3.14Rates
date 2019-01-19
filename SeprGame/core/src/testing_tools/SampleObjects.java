@@ -14,7 +14,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-
+/**
+ * This is a very rough way of creating instances of objects for testing purposes that was created before lots of the
+ * groundwork for creating things properly was in place. This needs to stay here unless you want to refactor tests, but
+ * it is highly recommended that you dont use this if you can help it and use the banks that are now in place instead
+ * since they are simpler to use, cleared and less prone to mistakes made from hardcoding everything.
+ *
+ * These were only used the first place because there was no other facility for creating objects at the start.
+ */
 public class SampleObjects {
     public static Ship createSampleShip(int set) {
         int crew = 0;
