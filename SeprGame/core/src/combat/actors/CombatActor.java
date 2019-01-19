@@ -7,6 +7,9 @@ import javafx.util.Pair;
 
 import java.util.List;
 
+/**
+ * An abstract class which defines the architecture of CombatEnemy and CombatPlayer
+ */
 public abstract class CombatActor {
     private Ship ship;
 
@@ -19,11 +22,8 @@ public abstract class CombatActor {
     }
 
     /**
-     * Handles the entire process of taking a turn. From repairing damage from the opponent's turn to ending the turn
-     * and sending targets and weapons firing on them to the combat manager.
-     *
-     * NOTE: At the time of writing there is no implementation yet. I am imagining that takeTurn will do nothing more
-     * than call lots of other methods which themselves do more specific things.
+     * Handles the entire process of taking a turn. From decrementing cooldowns and repairing damage from the opponent's
+     * turn to ending the turn and sending targets and weapons firing on them to the combat manager.
      *
      * @param damageReport A list of pairs telling the CombatActor which of their rooms were hit and how much damage for
      *                    eg: [[Helm, 5], [Sails,2]]
