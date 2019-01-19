@@ -1,5 +1,6 @@
 package combat.manager;
 
+import com.badlogic.gdx.math.Interpolation;
 import combat.actors.CombatActor;
 import combat.actors.CombatActorTest;
 import combat.actors.CombatEnemy;
@@ -29,17 +30,23 @@ public class CombatManager {
     /**
      * Controls the whole process of combat from start to entering minigame.
      */
-    public void combatLoop(CombatActor shooter, CombatActor receiver) {
+    public void combatLoop(CombatPlayer shooter, CombatEnemy receiver, Room roomSelected, Weapon weaponSelected) {
         List<Pair<Room, Integer>> damageReport = new ArrayList<Pair<Room, Integer>>();
-        List<Pair<Room, Weapon>> turnReport;
+        List<Pair<Room, Weapon>> turnReport = new ArrayList<Pair<Room, Weapon>>();
 
-        while (!checkFightEnd()) {
-            turnReport = shooter.takeTurn(damageReport, receiver.getShip());
-            damageReport = calculateDamage(turnReport, shooter.getShip(), receiver.getShip());
-            applyTurn(damageReport, receiver.getShip());
-        }
+        shooter.takeTurn(weaponSelected);
+        turnReport.add(new Pair<Room, Weapon>(roomSelected, weaponSelected));
+        damageReport = calculateDamage(turnReport, shooter.getShip(), receiver.getShip());
+        applyTurn(damageReport, receiver.getShip());
+    }
 
+    public void enemyCombatLoop(CombatEnemy shooter, CombatPlayer receiver){
+        List<Pair<Room, Integer>> damageReport = new ArrayList<Pair<Room, Integer>>();
+        List<Pair<Room, Weapon>> turnReport = new ArrayList<Pair<Room, Weapon>>();
 
+        turnReport = shooter.takeTurn(receiver.getShip());
+        damageReport = calculateDamage(turnReport, shooter.getShip(), receiver.getShip());
+        applyTurn(damageReport, receiver.getShip());
     }
 
     private List<Pair<Room, Integer>> calculateDamage(List<Pair<Room, Weapon>> turnReport, Ship shipFiring,
@@ -54,8 +61,10 @@ public class CombatManager {
 
             if (pickRandom() > (weapon.getAccuracy() * shipFiring.calculateShipAccuracy())) {
                 damage = 0;
+                System.out.println("Miss!");
             } else if (pickRandom() <= shipFiredAt.calculateShipEvade()) {
                 damage = 0;
+                System.out.println("Miss!");
             } else {
                 damage = weapon.getBaseDamage();
             }
@@ -72,14 +81,10 @@ public class CombatManager {
         return damageReport;
     }
 
-    private boolean checkFightEnd() {
+    public boolean checkFightEnd() {
         if (player.getShip().getHullHP() <= 0) {
-            //TODO Jake, replace println() with whatever you need to do to end combat here
-            System.out.println("Enemy wins");
             return true;
         } else if (enemy.getShip().getHullHP() <= 0) {
-            //TODO Jake, replace println() with whatever you need to do to end combat here
-            System.out.println("Player wins");
             return true;
         } else if (enemy.getShip().getHullHP() < (enemy.getShip().getBaseHullHP() * SHIP_BOARD_PERCENTAGE)) {
             //TODO Minigame option to start here. The below is just a placeholder.

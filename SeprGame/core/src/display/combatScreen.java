@@ -6,9 +6,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.*;
-import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.InputListener;
-import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.*;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.sun.org.apache.xpath.internal.operations.Bool;
 import combat.actors.CombatEnemy;
@@ -28,6 +26,7 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.concurrent.TimeUnit;
 
 import static banks.CoordBank.*;
 import static combat.ship.RoomFunction.*;
@@ -63,7 +62,13 @@ public class combatScreen implements Screen {
     private ButtonGroup weaponButtonGroup = new ButtonGroup();
     private ButtonGroup roomButtonGroup = new ButtonGroup();
 
-    private Boolean firePressed;
+    private List<TextButton> weaponButtons = new ArrayList<TextButton>();
+
+    private Boolean gameOver = false;
+    private Boolean gameWon;
+    private TextButton youWin;
+    private TextButton youLose;
+    private int a = 0;
 
     @Override
     public void show() {
@@ -77,6 +82,7 @@ public class combatScreen implements Screen {
         drawEnemyShip();
 
         drawWeaponButtons();
+        drawEndButtons();
     }
 
     @Override
@@ -93,8 +99,27 @@ public class combatScreen implements Screen {
         drawIndicators();
 
         drawRoomHP();
+        drawWeaponCooldowns();
 
         batch.end();
+
+        if (gameOver){
+            if (gameWon){
+                youWin.setVisible(true);
+            } else {
+                youLose.setVisible(true);
+            }
+
+            if (a == 5) {
+                try {
+                    TimeUnit.SECONDS.sleep(3);
+                } catch (InterruptedException e) {
+
+                }
+                game.setScreen(new menuScreen(game));
+            }
+            a++;
+        }
 
         stage.draw();
     }
@@ -302,14 +327,13 @@ public class combatScreen implements Screen {
         Skin weaponButtonSkin = new Skin();
         weaponButtonSkin.addRegions(weaponButtonAtlas);
 
-        TextButton.TextButtonStyle weaponButtonStyle = new TextButton.TextButtonStyle();
+        final TextButton.TextButtonStyle weaponButtonStyle = new TextButton.TextButtonStyle();
         weaponButtonStyle.up = weaponButtonSkin.getDrawable("weaponButtonUp");
         weaponButtonStyle.down = weaponButtonSkin.getDrawable("weaponButtonDown");
         weaponButtonStyle.checked = weaponButtonSkin.getDrawable("weaponButtonChecked");
         weaponButtonStyle.font = new BitmapFont();
 
         final List<Weapon> playerWeapons = playerShip.getWeapons();
-        List<TextButton> weaponButtons = new ArrayList<TextButton>();
 
         weaponButtonGroup.setMaxCheckCount(1);
         weaponButtonGroup.uncheckAll();
@@ -334,7 +358,6 @@ public class combatScreen implements Screen {
 
 
         final TextButton fire = new TextButton("Fire", weaponButtonStyle);
-        combatPlayer.setFireButton(fire);
         fire.setTransform(true);
         fire.setScale(1,1.5f);
         fire.setPosition(575,50);
@@ -382,15 +405,48 @@ public class combatScreen implements Screen {
 
         fire.addListener(new InputListener() {
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+                if (weaponSelected.getCurrentCooldown() > 0) {
+                    for (Weapon weapon : playerShip.getWeapons()) {
+                        weapon.decrementCooldown(COOLDOWN_TICKS_PER_TURN);
+                    }
+                } else {
+                    combatManager.combatLoop(combatPlayer, combatEnemy, roomSelected, weaponSelected);
+                }
+
                 weaponButtonGroup.uncheckAll();
                 roomButtonGroup.uncheckAll();
-                fire.setChecked(false);
 
-                combatManager.combatLoop(combatPlayer, combatEnemy);
-                combatManager.combatLoop(combatEnemy, combatPlayer);
+                combatManager.enemyCombatLoop(combatEnemy, combatPlayer);
+
+                if (combatManager.checkFightEnd() && playerShip.getHullHP() <= 0){
+                    gameOver = true;
+                    gameWon = false;
+                } else if (combatManager.checkFightEnd() && enemyShip.getHullHP() <= 0) {
+                    gameOver = true;
+                    gameWon = true;
+                }
+
                 return true;
             }
         });
+    }
+
+    private void drawWeaponCooldowns() {
+        BitmapFont cooldownFont = new BitmapFont();
+        cooldownFont.getData().setScale(0.9f);
+
+        int i = 0;
+        for  (Weapon weapon : playerShip.getWeapons())
+        {
+            if (weapon.getCurrentCooldown() <= 0){
+                cooldownFont.draw(batch, "Ready!", 55 + (i * 125) ,115);
+                weaponButtons.get(i).setTouchable(Touchable.enabled);
+            } else {
+                cooldownFont.draw(batch, "Cooldown: " + (weapon.getCurrentCooldown() / COOLDOWN_TICKS_PER_TURN) + "Turns", 55 + (i * 125),115);
+                weaponButtons.get(i).setTouchable(Touchable.disabled);
+            }
+            i++;
+        }
     }
 
     private void drawRoomHP(){
@@ -399,12 +455,27 @@ public class combatScreen implements Screen {
 
         roomHealthFont.draw(batch, "HP:" + playerShip.getRoom(CREW_QUARTERS).getHp(),FRIENDLY_CREWQUATERS.getX() + 10,FRIENDLY_CREWQUATERS.getY() + 22);
         roomHealthFont.draw(batch, "HP:" + playerShip.getRoom(HELM).getHp(),FRIENDLY_HELM.getX() + 10,FRIENDLY_HELM.getY() + 22);
-        roomHealthFont.draw(batch, "HP:" + playerShip.getRoom(CREW_QUARTERS).getHp(),FRIENDLY_CROWSNEST.getX() + 10,FRIENDLY_CROWSNEST.getY() + 22);
-        roomHealthFont.draw(batch, "HP:" + playerShip.getRoom(CREW_QUARTERS).getHp(),FRIENDLY_GUNDECK.getX() + 10,FRIENDLY_GUNDECK.getY() + 22);
-        roomHealthFont.draw(batch, "HP:" + playerShip.getRoom(CREW_QUARTERS).getHp(),FRIENDLY_EMPTYROOM1.getX() + 10,FRIENDLY_EMPTYROOM1.getY() + 22);
-        roomHealthFont.draw(batch, "HP:" + playerShip.getRoom(CREW_QUARTERS).getHp(),FRIENDLY_EMPTYROOM2.getX() + 10,FRIENDLY_EMPTYROOM2.getY() + 22);
-        roomHealthFont.draw(batch, "HP:" + playerShip.getRoom(CREW_QUARTERS).getHp(),FRIENDLY_EMPTYROOM3.getX() + 10,FRIENDLY_EMPTYROOM3.getY() + 22);
-        roomHealthFont.draw(batch, "HP:" + playerShip.getRoom(CREW_QUARTERS).getHp(),FRIENDLY_EMPTYROOM4.getX() + 10,FRIENDLY_EMPTYROOM4.getY() + 22);
+        roomHealthFont.draw(batch, "HP:" + playerShip.getRoom(CROWS_NEST).getHp(),FRIENDLY_CROWSNEST.getX() + 10,FRIENDLY_CROWSNEST.getY() + 22);
+        roomHealthFont.draw(batch, "HP:" + playerShip.getRoom(GUN_DECK).getHp(),FRIENDLY_GUNDECK.getX() + 10,FRIENDLY_GUNDECK.getY() + 22);
+        roomHealthFont.draw(batch, "HP:" + playerShip.getRoom(NON_FUNCTIONAL).getHp(),FRIENDLY_EMPTYROOM1.getX() + 10,FRIENDLY_EMPTYROOM1.getY() + 22);
+        roomHealthFont.draw(batch, "HP:" + playerShip.getRoom(NON_FUNCTIONAL).getHp(),FRIENDLY_EMPTYROOM2.getX() + 10,FRIENDLY_EMPTYROOM2.getY() + 22);
+        roomHealthFont.draw(batch, "HP:" + playerShip.getRoom(NON_FUNCTIONAL).getHp(),FRIENDLY_EMPTYROOM3.getX() + 10,FRIENDLY_EMPTYROOM3.getY() + 22);
+        roomHealthFont.draw(batch, "HP:" + playerShip.getRoom(NON_FUNCTIONAL).getHp(),FRIENDLY_EMPTYROOM4.getX() + 10,FRIENDLY_EMPTYROOM4.getY() + 22);
     }
 
+    private void drawEndButtons(){
+        youWin = new TextButton("You win!", textButtonStyle);
+        youWin.setTransform(true);
+        youWin.setScale(3);
+        youWin.setPosition((Gdx.graphics.getWidth() / 2) - (175) ,(Gdx.graphics.getHeight() / 2));
+        stage.addActor(youWin);
+        youWin.setVisible(false);
+
+        youLose = new TextButton("You Lose :(", textButtonStyle);
+        youLose.setTransform(true);
+        youLose.setScale(3);
+        youLose.setPosition((Gdx.graphics.getWidth()/2) - (175),(Gdx.graphics.getHeight() / 2));
+        stage.addActor(youLose);
+        youLose.setVisible(false);
+    }
 }

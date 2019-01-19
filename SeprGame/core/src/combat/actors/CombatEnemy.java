@@ -17,8 +17,7 @@ public class CombatEnemy extends CombatActor {
         super(ship);
     }
 
-    @Override
-    public List<Pair<Room, Weapon>> takeTurn(List<Pair<Room, Integer>> damageReport, Ship enemy) {
+    public List<Pair<Room, Weapon>> takeTurn(Ship enemy) {
         List<Pair<Room, Weapon>> attackReport = new ArrayList<Pair<Room, Weapon>>();
         for (Weapon weapon : getShip().getWeapons()) {
             weapon.decrementCooldown(COOLDOWN_TICKS_PER_TURN);
@@ -50,7 +49,11 @@ public class CombatEnemy extends CombatActor {
                 chargedWeapons.add(weapon);
             }
         }
-        return chargedWeapons.get(rand.nextInt(chargedWeapons.size()));
+        if (chargedWeapons.size() == 1) {
+            return chargedWeapons.get(0);
+        } else {
+            return chargedWeapons.get(rand.nextInt(chargedWeapons.size() - 1));
+        }
     }
 
 

@@ -8,7 +8,7 @@ import java.util.List;
 import static banks.WeaponBank.*;
 
 public enum WeaponSetBank {
-    STARTER_WEAPONS(STARTER_WEAPON, null, null, null),
+    STARTER_WEAPONS(STARTER_WEAPON, STORM, null, null),
     MED_1(STORM, STORM, null, null),
     COMP_SCI_WEPS(SEPR, SCATTER, CRITTER,null),
     LMB_WEPS(LAWBRINGER, MORTAR, BOOM, null);

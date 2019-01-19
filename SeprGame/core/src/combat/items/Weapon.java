@@ -49,7 +49,7 @@ public class Weapon {
     }
 
     public void fire() {
-        if (currentCooldown == 0) {
+        if (currentCooldown <= 0) {
             currentCooldown = cooldown;
         } else {
             throw new IllegalStateException("Cannot fire before cooldown reaches 0");
