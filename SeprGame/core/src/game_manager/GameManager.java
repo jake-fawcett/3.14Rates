@@ -1,6 +1,9 @@
 package game_manager;
 
 import com.badlogic.gdx.Game;
+import combat.actors.CombatEnemy;
+import combat.actors.CombatPlayer;
+import combat.manager.CombatManager;
 import combat.ship.Ship;
 import other.Difficulty;
 import other.Screen;
@@ -16,12 +19,18 @@ public class GameManager extends Game {
     private int food;
     private int points;
     private String playerName;
-    private Ship playerShip;
-    private Ship enemyShip;
     private Difficulty difficulty;
     private Game game;
 
+    private Ship playerShip = STARTER_SHIP.getShip();
+    private Ship enemyShip = DEFAULT_BRIG.getShip();
+    private CombatEnemy combatEnemy = new CombatEnemy(enemyShip);
+    private CombatPlayer combatPlayer = new CombatPlayer(playerShip);
+    private CombatManager combatManager = new CombatManager(combatPlayer, combatEnemy);
+
     public Game getGame() { return game; }
+
+    public CombatManager getCombatManager() { return combatManager; }
 
     public int getGold() {
         return gold;
@@ -77,6 +86,10 @@ public class GameManager extends Game {
         return enemyShip;
     }
 
+    public CombatPlayer getCombatPlayer(){return combatPlayer; }
+
+    public CombatEnemy getCombatEnemy() {return combatEnemy; }
+
     public Difficulty getDifficulty() {
         return difficulty;
     }
@@ -91,8 +104,6 @@ public class GameManager extends Game {
         this.gold = STARTING_GOLD;
         this.food = STARTING_FOOD;
         this.points = 0;
-        this.playerShip = STARTER_SHIP.getShip();
-        this.enemyShip = DEFAULT_BRIG.getShip();
         game = this;
     }
 
@@ -102,10 +113,10 @@ public class GameManager extends Game {
     }
 
     private Screen screen = Screen.MENU;
+    private menuScreen menuScreen;
     private combatScreen defaultCombatScreen;
     private combatScreen collegeCombatScreen;
     private departmentScreen departmentScreen;
-    private menuScreen menuScreen;
 
     @Override
     public void create() { //Called when the application is created
@@ -114,6 +125,8 @@ public class GameManager extends Game {
         departmentScreen = new departmentScreen(game);
         menuScreen =  new menuScreen(game);
         this.setScreen(menuScreen);
+
+
     }
 
     @Override

@@ -19,6 +19,7 @@ import combat.manager.CombatManager;
 import combat.ship.Room;
 import combat.ship.Ship;
 import game_manager.GameManager;
+import javafx.util.Pair;
 import location.Department;
 import other.Resource;
 
@@ -30,6 +31,7 @@ import java.util.Random;
 
 import static banks.CoordBank.*;
 import static combat.ship.RoomFunction.*;
+import static other.Constants.COOLDOWN_TICKS_PER_TURN;
 
 public class combatScreen implements Screen {
 
@@ -42,11 +44,10 @@ public class combatScreen implements Screen {
 
     private GameManager gameManager = new GameManager(null, null);
     private Ship playerShip = gameManager.getPlayerShip();
-    private CombatPlayer combatPlayer = new CombatPlayer(playerShip);
+    private CombatPlayer combatPlayer = gameManager.getCombatPlayer();
     private Ship enemyShip = gameManager.getEnemyShip();
-    private CombatEnemy combatEnemy = new CombatEnemy(enemyShip);
-    private CombatManager combatManager = new CombatManager(combatPlayer,combatEnemy);
-
+    private CombatEnemy combatEnemy = gameManager.getCombatEnemy();
+    private CombatManager combatManager = gameManager.getCombatManager();
 
     private SpriteBatch batch = new SpriteBatch();
     private Stage stage = new Stage();
@@ -61,6 +62,8 @@ public class combatScreen implements Screen {
 
     private ButtonGroup weaponButtonGroup = new ButtonGroup();
     private ButtonGroup roomButtonGroup = new ButtonGroup();
+
+    private Boolean firePressed;
 
     @Override
     public void show() {
@@ -331,6 +334,7 @@ public class combatScreen implements Screen {
 
 
         final TextButton fire = new TextButton("Fire", weaponButtonStyle);
+        combatPlayer.setFireButton(fire);
         fire.setTransform(true);
         fire.setScale(1,1.5f);
         fire.setPosition(575,50);
@@ -382,8 +386,8 @@ public class combatScreen implements Screen {
                 roomButtonGroup.uncheckAll();
                 fire.setChecked(false);
 
-                combatManager.combatLoop();
-
+                combatManager.combatLoop(combatPlayer, combatEnemy);
+                combatManager.combatLoop(combatEnemy, combatPlayer);
                 return true;
             }
         });
@@ -402,4 +406,5 @@ public class combatScreen implements Screen {
         roomHealthFont.draw(batch, "HP:" + playerShip.getRoom(CREW_QUARTERS).getHp(),FRIENDLY_EMPTYROOM3.getX() + 10,FRIENDLY_EMPTYROOM3.getY() + 22);
         roomHealthFont.draw(batch, "HP:" + playerShip.getRoom(CREW_QUARTERS).getHp(),FRIENDLY_EMPTYROOM4.getX() + 10,FRIENDLY_EMPTYROOM4.getY() + 22);
     }
+
 }

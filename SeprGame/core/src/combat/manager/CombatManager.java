@@ -24,27 +24,19 @@ public class CombatManager {
     public CombatManager(CombatPlayer player, CombatEnemy enemy) {
         this.player = player;
         this.enemy = enemy;
-        combatLoop();
     }
 
     /**
      * Controls the whole process of combat from start to entering minigame.
      */
-    public void combatLoop() {
+    public void combatLoop(CombatActor shooter, CombatActor receiver) {
         List<Pair<Room, Integer>> damageReport = new ArrayList<Pair<Room, Integer>>();
         List<Pair<Room, Weapon>> turnReport;
-        CombatActor shooter = player;
-        CombatActor receiver = enemy;
-        CombatActor temp;
 
         while (!checkFightEnd()) {
             turnReport = shooter.takeTurn(damageReport, receiver.getShip());
             damageReport = calculateDamage(turnReport, shooter.getShip(), receiver.getShip());
             applyTurn(damageReport, receiver.getShip());
-
-            temp = shooter;
-            shooter = receiver;
-            receiver = temp;
         }
 
 
