@@ -6,6 +6,7 @@ import other.Difficulty;
 import other.Screen;
 import display.*;
 
+import static banks.ShipBank.DEFAULT_BRIG;
 import static banks.ShipBank.STARTER_SHIP;
 import static other.Constants.STARTING_FOOD;
 import static other.Constants.STARTING_GOLD;
@@ -16,6 +17,7 @@ public class GameManager extends Game {
     private int points;
     private String playerName;
     private Ship playerShip;
+    private Ship enemyShip;
     private Difficulty difficulty;
     private Game game;
 
@@ -71,6 +73,10 @@ public class GameManager extends Game {
         return playerShip;
     }
 
+    public Ship getEnemyShip() {
+        return enemyShip;
+    }
+
     public Difficulty getDifficulty() {
         return difficulty;
     }
@@ -86,6 +92,7 @@ public class GameManager extends Game {
         this.food = STARTING_FOOD;
         this.points = 0;
         this.playerShip = STARTER_SHIP.getShip();
+        this.enemyShip = DEFAULT_BRIG.getShip();
         game = this;
     }
 

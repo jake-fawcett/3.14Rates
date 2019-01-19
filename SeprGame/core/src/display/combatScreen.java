@@ -25,6 +25,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import static banks.CoordBank.*;
 import static combat.ship.RoomFunction.*;
 
 public class combatScreen implements Screen {
@@ -38,6 +39,7 @@ public class combatScreen implements Screen {
 
     private GameManager gameManager = new GameManager(null, null);
     private Ship playerShip = gameManager.getPlayerShip();
+    private Ship enemyShip = gameManager.getEnemyShip();
 
     private SpriteBatch batch = new SpriteBatch();
     private Stage stage = new Stage();
@@ -80,6 +82,8 @@ public class combatScreen implements Screen {
         drawHealthBar();
         drawIndicators();
 
+        drawRoomHP();
+
         batch.end();
 
         stage.draw();
@@ -119,28 +123,28 @@ public class combatScreen implements Screen {
         TextureAtlas roomSpriteAtlas = new TextureAtlas("roomSpriteSheet.txt");
 
         Sprite friendlyCrewQuaters = roomSpriteAtlas.createSprite("crewQuaters");
-        friendlyCrewQuaters.setPosition(CoordBank.FRIENDLY_ROOM1.getX(),CoordBank.FRIENDLY_ROOM1.getY());
+        friendlyCrewQuaters.setPosition(CoordBank.FRIENDLY_CREWQUATERS.getX(),CoordBank.FRIENDLY_CREWQUATERS.getY());
 
         Sprite friendlyEmptyRoom1 = roomSpriteAtlas.createSprite("EmptyRoom");
-        friendlyEmptyRoom1.setPosition(CoordBank.FRIENDLY_ROOM2.getX(),CoordBank.FRIENDLY_ROOM2.getY());
+        friendlyEmptyRoom1.setPosition(CoordBank.FRIENDLY_EMPTYROOM1.getX(),CoordBank.FRIENDLY_EMPTYROOM1.getY());
 
         Sprite friendlyCrowsNest = roomSpriteAtlas.createSprite("crowsNest");
-        friendlyCrowsNest.setPosition(CoordBank.FRIENDLY_ROOM3.getX(),CoordBank.FRIENDLY_ROOM3.getY());
+        friendlyCrowsNest.setPosition(CoordBank.FRIENDLY_CROWSNEST.getX(),CoordBank.FRIENDLY_CROWSNEST.getY());
 
         Sprite friendlyGunDeck = roomSpriteAtlas.createSprite("gunDeck");
-        friendlyGunDeck.setPosition(CoordBank.FRIENDLY_ROOM4.getX(),CoordBank.FRIENDLY_ROOM4.getY());
+        friendlyGunDeck.setPosition(CoordBank.FRIENDLY_GUNDECK.getX(),CoordBank.FRIENDLY_GUNDECK.getY());
 
         Sprite friendlyEmptyRoom2 = roomSpriteAtlas.createSprite("EmptyRoom");
-        friendlyEmptyRoom2.setPosition(CoordBank.FRIENDLY_ROOM5.getX(),CoordBank.FRIENDLY_ROOM5.getY());
+        friendlyEmptyRoom2.setPosition(CoordBank.FRIENDLY_EMPTYROOM2.getX(),CoordBank.FRIENDLY_EMPTYROOM2.getY());
 
         Sprite friendlyHelm = roomSpriteAtlas.createSprite("helm");
-        friendlyHelm.setPosition(CoordBank.FRIENDLY_ROOM6.getX(),CoordBank.FRIENDLY_ROOM6.getY());
+        friendlyHelm.setPosition(CoordBank.FRIENDLY_HELM.getX(),CoordBank.FRIENDLY_HELM.getY());
 
         Sprite friendlyEmptyRoom3 = roomSpriteAtlas.createSprite("EmptyRoom");
-        friendlyEmptyRoom3.setPosition(CoordBank.FRIENDLY_ROOM7.getX(),CoordBank.FRIENDLY_ROOM7.getY());
+        friendlyEmptyRoom3.setPosition(CoordBank.FRIENDLY_EMPTYROOM3.getX(),CoordBank.FRIENDLY_EMPTYROOM3.getY());
 
         Sprite friendlyEmptyRoom4 = roomSpriteAtlas.createSprite("EmptyRoom");
-        friendlyEmptyRoom4.setPosition(CoordBank.FRIENDLY_ROOM8.getX(),CoordBank.FRIENDLY_ROOM8.getY());
+        friendlyEmptyRoom4.setPosition(CoordBank.FRIENDLY_EMPTYROOM4.getX(),CoordBank.FRIENDLY_EMPTYROOM4.getY());
 
         friendlyCrewQuaters.draw(batch);
         friendlyCrowsNest.draw(batch);
@@ -158,23 +162,23 @@ public class combatScreen implements Screen {
 
         double defaultWidth = 320;
         int playerWidth = (int)(defaultWidth * ((double)playerShip.getHullHP() / (double)playerShip.getBaseHullHP()));
-        //int enemtyWidth = TODO get enemy hp
+        int enemyWidth = (int)(defaultWidth * ((double)enemyShip.getHullHP() / (double)enemyShip.getBaseHullHP()));
 
-        batch.draw(hpBackground,25, 970, 320, 16);
-        batch.draw(hpBar,25, 970, playerWidth, 16);
+        batch.draw(hpBackground,25, 900, 320, 16);
+        batch.draw(hpBar,25, 900, playerWidth, 16);
 
-        //batch.draw(hpBackground, 525, 970, 320, 16);
-        //batch.draw(hpBar,525, 970, enemyWidth, 16);
+        batch.draw(hpBackground, 675, 900, 320, 16);
+        batch.draw(hpBar,675, 900, enemyWidth, 16);
     }
 
     private void drawIndicators(){
         BitmapFont indicatorFont = new BitmapFont();
         indicatorFont.setColor(1,1,1,1);
 
-        indicatorFont.draw(batch, "Score: " + gameManager.getPoints(), 25, 965);
-        indicatorFont.draw(batch, "Gold: " + gameManager.getGold(), 110, 965);
-        indicatorFont.draw(batch, "Food: " + gameManager.getFood(), 195, 965);
-        indicatorFont.draw(batch, "Crew: " + playerShip.getCrew(), 280, 965);
+        indicatorFont.draw(batch, "Score: " + gameManager.getPoints(), 25, 890);
+        indicatorFont.draw(batch, "Gold: " + gameManager.getGold(), 110, 890);
+        indicatorFont.draw(batch, "Food: " + gameManager.getFood(), 195, 890);
+        indicatorFont.draw(batch, "Crew: " + playerShip.getCrew(), 280, 890);
     }
 
     private void buttonToMenu(TextButton.TextButtonStyle textButtonStyle){
@@ -215,14 +219,14 @@ public class combatScreen implements Screen {
         roomButtonGroup.setMaxCheckCount(1);
         roomButtonGroup.uncheckAll();
 
-        enemyCrewQuarters.setPosition(700, 256);
-        enemyEmpty1.setPosition(828, 256);
-        enemyCrowsNest.setPosition(700, 384);
-        enemyEmpty2.setPosition(828, 384);
-        enemyGunDeck.setPosition(700, 512);
-        enemyEmpty3.setPosition(828, 512);
-        enemyEmpty4.setPosition(700, 640);
-        enemyHelm.setPosition(828, 640);
+        enemyCrewQuarters.setPosition(ENEMY_CREWQUATERS.getX(), ENEMY_CREWQUATERS.getY());
+        enemyEmpty1.setPosition(ENEMY_EMPTYROOM1.getX(), ENEMY_EMPTYROOM1.getY());
+        enemyCrowsNest.setPosition(ENEMY_CROWSNEST.getX(), ENEMY_CROWSNEST.getY());
+        enemyEmpty2.setPosition(ENEMY_EMPTYROOM2.getX(), ENEMY_EMPTYROOM2.getY());
+        enemyGunDeck.setPosition(ENEMY_GUNDECK.getX(), ENEMY_GUNDECK.getY());
+        enemyEmpty3.setPosition(ENEMY_EMPTYROOM3.getX(), ENEMY_EMPTYROOM3.getY());
+        enemyEmpty4.setPosition(ENEMY_EMPTYROOM4.getX(), ENEMY_EMPTYROOM4.getY());
+        enemyHelm.setPosition(ENEMY_HELM.getX(), ENEMY_HELM.getY());
 
         enemyCrewQuarters.addListener(new InputListener(){
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button){
@@ -376,6 +380,28 @@ public class combatScreen implements Screen {
     }
 
     private void drawRoomHP(){
-        //TODO drawRoomHP (NOTE super hardcoded)
+        BitmapFont roomHealthFont = new BitmapFont();
+        roomHealthFont.setColor(1,1,1,1);
+
+        roomHealthFont.draw(batch, "HP:" + playerShip.getRoom(CREW_QUARTERS).getHp(),FRIENDLY_CREWQUATERS.getX() + 10,FRIENDLY_CREWQUATERS.getY() + 22);
+        roomHealthFont.draw(batch, "HP:" + playerShip.getRoom(HELM).getHp(),FRIENDLY_HELM.getX() + 10,FRIENDLY_HELM.getY() + 22);
+        roomHealthFont.draw(batch, "HP:" + playerShip.getRoom(CREW_QUARTERS).getHp(),FRIENDLY_CROWSNEST.getX() + 10,FRIENDLY_CROWSNEST.getY() + 22);
+        roomHealthFont.draw(batch, "HP:" + playerShip.getRoom(CREW_QUARTERS).getHp(),FRIENDLY_GUNDECK.getX() + 10,FRIENDLY_GUNDECK.getY() + 22);
+        roomHealthFont.draw(batch, "HP:" + playerShip.getRoom(CREW_QUARTERS).getHp(),FRIENDLY_EMPTYROOM1.getX() + 10,FRIENDLY_EMPTYROOM1.getY() + 22);
+        roomHealthFont.draw(batch, "HP:" + playerShip.getRoom(CREW_QUARTERS).getHp(),FRIENDLY_EMPTYROOM2.getX() + 10,FRIENDLY_EMPTYROOM2.getY() + 22);
+        roomHealthFont.draw(batch, "HP:" + playerShip.getRoom(CREW_QUARTERS).getHp(),FRIENDLY_EMPTYROOM3.getX() + 10,FRIENDLY_EMPTYROOM3.getY() + 22);
+        roomHealthFont.draw(batch, "HP:" + playerShip.getRoom(CREW_QUARTERS).getHp(),FRIENDLY_EMPTYROOM4.getX() + 10,FRIENDLY_EMPTYROOM4.getY() + 22);
+
+        //FIXME EnemyRoomHP wont print
+        roomHealthFont.draw(batch, "HP:" + enemyShip.getRoom(CREW_QUARTERS).getHp(),ENEMY_CREWQUATERS.getX() + 10,ENEMY_CREWQUATERS.getY() + 22);
+        roomHealthFont.draw(batch, "HP:" + enemyShip.getRoom(HELM).getHp(),ENEMY_HELM.getX() + 10,ENEMY_HELM.getY() + 22);
+        roomHealthFont.draw(batch, "HP:" + enemyShip.getRoom(CREW_QUARTERS).getHp(),ENEMY_CROWSNEST.getX() + 10,ENEMY_CROWSNEST.getY() + 22);
+        roomHealthFont.draw(batch, "HP:" + enemyShip.getRoom(CREW_QUARTERS).getHp(),ENEMY_GUNDECK.getX() + 10,ENEMY_GUNDECK.getY() + 22);
+        roomHealthFont.draw(batch, "HP:" + enemyShip.getRoom(CREW_QUARTERS).getHp(),ENEMY_EMPTYROOM1.getX() + 10,ENEMY_EMPTYROOM1.getY() + 22);
+        roomHealthFont.draw(batch, "HP:" + enemyShip.getRoom(CREW_QUARTERS).getHp(),ENEMY_EMPTYROOM2.getX() + 10,ENEMY_EMPTYROOM2.getY() + 22);
+        roomHealthFont.draw(batch, "HP:" + enemyShip.getRoom(CREW_QUARTERS).getHp(),ENEMY_EMPTYROOM3.getX() + 10,ENEMY_EMPTYROOM3.getY() + 22);
+        roomHealthFont.draw(batch, "HP:" + enemyShip.getRoom(CREW_QUARTERS).getHp(),ENEMY_EMPTYROOM4.getX() + 10,ENEMY_EMPTYROOM4.getY() + 22);
+
+
     }
 }

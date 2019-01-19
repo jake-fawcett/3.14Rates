@@ -140,28 +140,28 @@ public class departmentScreen implements Screen {
         TextureAtlas roomSpriteAtlas = new TextureAtlas("roomSpriteSheet.txt");
 
         Sprite friendlyCrewQuaters = roomSpriteAtlas.createSprite("crewQuaters");
-        friendlyCrewQuaters.setPosition(CoordBank.FRIENDLY_ROOM1.getX(),CoordBank.FRIENDLY_ROOM1.getY());
+        friendlyCrewQuaters.setPosition(CoordBank.FRIENDLY_CREWQUATERS.getX(),CoordBank.FRIENDLY_CREWQUATERS.getY());
 
         Sprite friendlyEmptyRoom1 = roomSpriteAtlas.createSprite("EmptyRoom");
-        friendlyEmptyRoom1.setPosition(CoordBank.FRIENDLY_ROOM2.getX(),CoordBank.FRIENDLY_ROOM2.getY());
+        friendlyEmptyRoom1.setPosition(CoordBank.FRIENDLY_EMPTYROOM1.getX(),CoordBank.FRIENDLY_EMPTYROOM1.getY());
 
         Sprite friendlyCrowsNest = roomSpriteAtlas.createSprite("crowsNest");
-        friendlyCrowsNest.setPosition(CoordBank.FRIENDLY_ROOM3.getX(),CoordBank.FRIENDLY_ROOM3.getY());
+        friendlyCrowsNest.setPosition(CoordBank.FRIENDLY_CROWSNEST.getX(),CoordBank.FRIENDLY_CROWSNEST.getY());
 
         Sprite friendlyGunDeck = roomSpriteAtlas.createSprite("gunDeck");
-        friendlyGunDeck.setPosition(CoordBank.FRIENDLY_ROOM4.getX(),CoordBank.FRIENDLY_ROOM4.getY());
+        friendlyGunDeck.setPosition(CoordBank.FRIENDLY_GUNDECK.getX(),CoordBank.FRIENDLY_GUNDECK.getY());
 
         Sprite friendlyEmptyRoom2 = roomSpriteAtlas.createSprite("EmptyRoom");
-        friendlyEmptyRoom2.setPosition(CoordBank.FRIENDLY_ROOM5.getX(),CoordBank.FRIENDLY_ROOM5.getY());
+        friendlyEmptyRoom2.setPosition(CoordBank.FRIENDLY_EMPTYROOM2.getX(),CoordBank.FRIENDLY_EMPTYROOM2.getY());
 
         Sprite friendlyHelm = roomSpriteAtlas.createSprite("helm");
-        friendlyHelm.setPosition(CoordBank.FRIENDLY_ROOM6.getX(),CoordBank.FRIENDLY_ROOM6.getY());
+        friendlyHelm.setPosition(CoordBank.FRIENDLY_HELM.getX(),CoordBank.FRIENDLY_HELM.getY());
 
         Sprite friendlyEmptyRoom3 = roomSpriteAtlas.createSprite("EmptyRoom");
-        friendlyEmptyRoom3.setPosition(CoordBank.FRIENDLY_ROOM7.getX(),CoordBank.FRIENDLY_ROOM7.getY());
+        friendlyEmptyRoom3.setPosition(CoordBank.FRIENDLY_EMPTYROOM3.getX(),CoordBank.FRIENDLY_EMPTYROOM3.getY());
 
         Sprite friendlyEmptyRoom4 = roomSpriteAtlas.createSprite("EmptyRoom");
-        friendlyEmptyRoom4.setPosition(CoordBank.FRIENDLY_ROOM8.getX(),CoordBank.FRIENDLY_ROOM8.getY());
+        friendlyEmptyRoom4.setPosition(CoordBank.FRIENDLY_EMPTYROOM4.getX(),CoordBank.FRIENDLY_EMPTYROOM4.getY());
 
         friendlyCrewQuaters.draw(batch);
         friendlyCrowsNest.draw(batch);
