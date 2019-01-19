@@ -259,9 +259,9 @@ public class departmentScreen implements Screen {
         while (j <= weaponList.size() - 1){
             titleFont.draw(batch, weaponList.get(j).getName(), 160, 880 - (150 * j));
             bodyFont.draw(batch, "Damage: " + df.format(weaponList.get(j).getBaseDamage()), 160, 850 - (150 * j));
-            bodyFont.draw(batch, "Crit Chance: " + df.format(weaponList.get(j).getBaseCritChance()), 160, 830 - (150 * j));
-            bodyFont.draw(batch, "Hit Chance: " + df.format(weaponList.get(j).getBaseChanceToHit()), 160, 810 - (150 * j));
-            bodyFont.draw(batch, "Cooldown: " + df.format(weaponList.get(j).getBaseCooldown()), 160, 790 - (150 * j));
+            bodyFont.draw(batch, "Crit Chance: " + df.format(weaponList.get(j).getCritChance()), 160, 830 - (150 * j));
+            bodyFont.draw(batch, "Hit Chance: " + df.format(weaponList.get(j).getAccuracy()), 160, 810 - (150 * j));
+            bodyFont.draw(batch, "Cooldown: " + df.format(weaponList.get(j).getCooldown()), 160, 790 - (150 * j));
 
             buyButtonList.add(new TextButton("Buy (" + weaponList.get(j).getCost() + "g)", textButtonStyle));
             buyButtonList.get(j).setPosition(160, 740 - (j * 150));
@@ -313,9 +313,9 @@ public class departmentScreen implements Screen {
         while (j <= weaponList.size() - 1){
             titleFont.draw(batch, weaponList.get(j).getName(), 360, 880 - (150 * j));
             bodyFont.draw(batch, "Damage: " + df.format(weaponList.get(j).getBaseDamage()), 360, 850 - (150 * j));
-            bodyFont.draw(batch, "Crit Chance: " + df.format(weaponList.get(j).getBaseCritChance()), 360, 830 - (150 * j));
-            bodyFont.draw(batch, "Hit Chance: " + df.format(weaponList.get(j).getBaseChanceToHit()), 360, 810 - (150 * j));
-            bodyFont.draw(batch, "Cooldown: " + df.format(weaponList.get(j).getBaseCooldown()), 360, 790 - (150 * j));
+            bodyFont.draw(batch, "Crit Chance: " + df.format(weaponList.get(j).getCritChance()), 360, 830 - (150 * j));
+            bodyFont.draw(batch, "Hit Chance: " + df.format(weaponList.get(j).getAccuracy()), 360, 810 - (150 * j));
+            bodyFont.draw(batch, "Cooldown: " + df.format(weaponList.get(j).getCooldown()), 360, 790 - (150 * j));
 
             sellButtonList.add(new TextButton("Sell (" + df.format(weaponList.get(j).getCost() * STORE_SELL_PRICE_MULTIPLIER) + "g)", textButtonStyle));
             sellButtonList.get(j).setPosition(360, 740 - (j * 150));

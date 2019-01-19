@@ -11,8 +11,11 @@ import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.sun.org.apache.xpath.internal.operations.Bool;
+import combat.actors.CombatEnemy;
+import combat.actors.CombatPlayer;
 import combat.items.RoomUpgrade;
 import combat.items.Weapon;
+import combat.manager.CombatManager;
 import combat.ship.Room;
 import combat.ship.Ship;
 import game_manager.GameManager;
@@ -39,7 +42,11 @@ public class combatScreen implements Screen {
 
     private GameManager gameManager = new GameManager(null, null);
     private Ship playerShip = gameManager.getPlayerShip();
+    private CombatPlayer combatPlayer = new CombatPlayer(playerShip);
     private Ship enemyShip = gameManager.getEnemyShip();
+    private CombatEnemy combatEnemy = new CombatEnemy(enemyShip);
+    private CombatManager combatManager = new CombatManager(combatPlayer,combatEnemy);
+
 
     private SpriteBatch batch = new SpriteBatch();
     private Stage stage = new Stage();
@@ -374,6 +381,9 @@ public class combatScreen implements Screen {
                 weaponButtonGroup.uncheckAll();
                 roomButtonGroup.uncheckAll();
                 fire.setChecked(false);
+
+                combatManager.combatLoop();
+
                 return true;
             }
         });
