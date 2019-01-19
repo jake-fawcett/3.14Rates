@@ -144,7 +144,7 @@ public class ShipTest {
     @Test
     public void calculateShipEvadeBase() {
         assertTrue("The plain starter ship with no upgrades is expected to have an evade of 1 (Base)",
-                1 == tester2.calculateShipEvade());
+                BASE_SHIP_EVADE == tester2.calculateShipEvade());
     }
 
     @Test
@@ -153,13 +153,13 @@ public class ShipTest {
 
         helm.damage(helm.getBaseHP() / 2); // Half total health
         assertTrue("Damage to a room should affect its evade proportional to how much damage is taken.",
-                0.5 == tester2.calculateShipEvade());
+                0.5 * BASE_SHIP_EVADE == tester2.calculateShipEvade());
         helm.damage(helm.getBaseHP() / 4); // Quarter total health
         assertTrue("Damage to a room should affect its evade proportional to how much damage is taken.",
-                0.25 == tester2.calculateShipEvade());
+                0.25 * BASE_SHIP_EVADE == tester2.calculateShipEvade());
         helm.damage(helm.getBaseHP()); // 0 health
         assertTrue("Damage to a room should affect its evade proportional to how much damage is taken.",
-                0 == tester2.calculateShipEvade());
+                0 * BASE_SHIP_EVADE == tester2.calculateShipEvade());
     }
 
     @Test
@@ -167,11 +167,11 @@ public class ShipTest {
         tester2.addUpgrade(new RoomUpgrade("a", 1, 1.5, RoomFunction.CROWS_NEST));
         tester2.addUpgrade(new RoomUpgrade("a", 1, 1.5, RoomFunction.GUN_DECK));
         assertTrue("Upgrades added to anything besides helm should have no effect on evade",
-                1 == tester2.calculateShipEvade());
+                BASE_SHIP_EVADE == tester2.calculateShipEvade());
 
         tester2.addUpgrade(new RoomUpgrade("a", 1, 1.5, RoomFunction.HELM));
         assertEquals("Upgrades added to the helm should affect evade",
-                1.5, tester2.calculateShipEvade(), 0.1);
+                1.5 * BASE_SHIP_EVADE, tester2.calculateShipEvade(), 0.1);
     }
 
     @Test
