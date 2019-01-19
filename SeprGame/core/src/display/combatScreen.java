@@ -391,17 +391,5 @@ public class combatScreen implements Screen {
         roomHealthFont.draw(batch, "HP:" + playerShip.getRoom(CREW_QUARTERS).getHp(),FRIENDLY_EMPTYROOM2.getX() + 10,FRIENDLY_EMPTYROOM2.getY() + 22);
         roomHealthFont.draw(batch, "HP:" + playerShip.getRoom(CREW_QUARTERS).getHp(),FRIENDLY_EMPTYROOM3.getX() + 10,FRIENDLY_EMPTYROOM3.getY() + 22);
         roomHealthFont.draw(batch, "HP:" + playerShip.getRoom(CREW_QUARTERS).getHp(),FRIENDLY_EMPTYROOM4.getX() + 10,FRIENDLY_EMPTYROOM4.getY() + 22);
-
-        //FIXME EnemyRoomHP wont print
-        roomHealthFont.draw(batch, "HP:" + enemyShip.getRoom(CREW_QUARTERS).getHp(),ENEMY_CREWQUATERS.getX() + 10,ENEMY_CREWQUATERS.getY() + 22);
-        roomHealthFont.draw(batch, "HP:" + enemyShip.getRoom(HELM).getHp(),ENEMY_HELM.getX() + 10,ENEMY_HELM.getY() + 22);
-        roomHealthFont.draw(batch, "HP:" + enemyShip.getRoom(CREW_QUARTERS).getHp(),ENEMY_CROWSNEST.getX() + 10,ENEMY_CROWSNEST.getY() + 22);
-        roomHealthFont.draw(batch, "HP:" + enemyShip.getRoom(CREW_QUARTERS).getHp(),ENEMY_GUNDECK.getX() + 10,ENEMY_GUNDECK.getY() + 22);
-        roomHealthFont.draw(batch, "HP:" + enemyShip.getRoom(CREW_QUARTERS).getHp(),ENEMY_EMPTYROOM1.getX() + 10,ENEMY_EMPTYROOM1.getY() + 22);
-        roomHealthFont.draw(batch, "HP:" + enemyShip.getRoom(CREW_QUARTERS).getHp(),ENEMY_EMPTYROOM2.getX() + 10,ENEMY_EMPTYROOM2.getY() + 22);
-        roomHealthFont.draw(batch, "HP:" + enemyShip.getRoom(CREW_QUARTERS).getHp(),ENEMY_EMPTYROOM3.getX() + 10,ENEMY_EMPTYROOM3.getY() + 22);
-        roomHealthFont.draw(batch, "HP:" + enemyShip.getRoom(CREW_QUARTERS).getHp(),ENEMY_EMPTYROOM4.getX() + 10,ENEMY_EMPTYROOM4.getY() + 22);
-
-
     }
 }
