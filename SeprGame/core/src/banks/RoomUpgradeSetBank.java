@@ -7,8 +7,6 @@ import java.util.List;
 
 import static banks.RoomUpgradeBank.*;
 
-//TODO Tests Scott Pls
-
 /**
  * A bank of possible sets of room upgrades to be used in rooms or departments.
  */
