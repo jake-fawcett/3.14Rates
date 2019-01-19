@@ -1,7 +1,6 @@
 package combat.manager;
 
 import combat.actors.CombatActor;
-import combat.actors.CombatActorTest;
 import combat.actors.CombatEnemy;
 import combat.actors.CombatPlayer;
 import combat.items.Weapon;
