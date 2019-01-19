@@ -7,6 +7,9 @@ import javafx.util.Pair;
 
 import java.util.List;
 
+/**
+ * Interacts with the player to get their move
+ */
 public class CombatPlayer extends CombatActor {
     public CombatPlayer(Ship ship) {
         super(ship);
