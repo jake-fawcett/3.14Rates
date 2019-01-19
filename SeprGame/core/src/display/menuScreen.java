@@ -1,5 +1,6 @@
 package display;
 
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
@@ -13,9 +14,8 @@ import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
-import game_manager.GameManager;
 
-public class menuScreen extends InputListener implements Screen  {
+public class menuScreen extends InputListener implements Screen {
     private SpriteBatch batch = new SpriteBatch();
 
     private Texture menuBackground = new Texture("menuBackground.png");
@@ -35,7 +35,10 @@ public class menuScreen extends InputListener implements Screen  {
     private TextButton runDepartment;
     private TextButton exitGame;
 
-    private GameManager gameManager = new GameManager();
+    private Game game;
+    public menuScreen(Game game){
+        this.game = game;
+    }
 
     @Override
     public void show() {
@@ -59,7 +62,7 @@ public class menuScreen extends InputListener implements Screen  {
         runCombat.setScale(3);
         runCombat.addListener(new InputListener() {
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button){
-                gameManager.setScreen(new combatScreen(false));
+                game.setScreen(new combatScreen(game,false));
                 return true;
             }
         });
@@ -70,7 +73,7 @@ public class menuScreen extends InputListener implements Screen  {
         runCollege.setScale(3);
         runCollege.addListener(new InputListener() {
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button){
-                gameManager.setScreen(new combatScreen(true));
+                game.setScreen(new combatScreen(game,true));
                 return true;
             }
         });
@@ -81,7 +84,7 @@ public class menuScreen extends InputListener implements Screen  {
         runDepartment.setScale(3);
         runDepartment.addListener(new InputListener() {
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button){
-                gameManager.setScreen(new departmentScreen());
+                game.setScreen(new departmentScreen(game));
                 return true;
             }
         });

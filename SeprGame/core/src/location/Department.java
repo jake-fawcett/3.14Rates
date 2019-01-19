@@ -18,11 +18,11 @@ public class Department {
     private Map<Resource, Integer> resourceStock;
     private GameManager gameManager;
 
-    public Department(List<Weapon> weaponStock, List<RoomUpgrade> upgradeStock, Map<Resource, Integer> resourceStock, GameManager gameManager) {
+    public Department(List<Weapon> weaponStock, List<RoomUpgrade> upgradeStock, GameManager gameManager) {
         this.weaponStock = weaponStock;
         this.upgradeStock = upgradeStock;
-        this.resourceStock = resourceStock;
         this.gameManager = gameManager;
+        this.resourceStock = new HashMap<Resource, Integer>();
         resourceStock.put(Resource.REPAIR, REPAIR_COST);
         resourceStock.put(Resource.CREW, CREW_COST);
         resourceStock.put(Resource.FOOD, FOOD_COST);

@@ -6,6 +6,7 @@ import other.Difficulty;
 import other.Screen;
 import display.*;
 
+import static banks.ShipBank.DEFAULT_BRIG;
 import static banks.ShipBank.STARTER_SHIP;
 import static other.Constants.STARTING_FOOD;
 import static other.Constants.STARTING_GOLD;
@@ -16,8 +17,11 @@ public class GameManager extends Game {
     private int points;
     private String playerName;
     private Ship playerShip;
+    private Ship enemyShip;
     private Difficulty difficulty;
-    private Screen screen = Screen.MENU;
+    private Game game;
+
+    public Game getGame() { return game; }
 
     public int getGold() {
         return gold;
@@ -69,6 +73,10 @@ public class GameManager extends Game {
         return playerShip;
     }
 
+    public Ship getEnemyShip() {
+        return enemyShip;
+    }
+
     public Difficulty getDifficulty() {
         return difficulty;
     }
@@ -84,6 +92,8 @@ public class GameManager extends Game {
         this.food = STARTING_FOOD;
         this.points = 0;
         this.playerShip = STARTER_SHIP.getShip();
+        this.enemyShip = DEFAULT_BRIG.getShip();
+        game = this;
     }
 
     public GameManager() {
@@ -91,10 +101,19 @@ public class GameManager extends Game {
 //          (name and the difficulty they want to play)
     }
 
+    private Screen screen = Screen.MENU;
+    private combatScreen defaultCombatScreen;
+    private combatScreen collegeCombatScreen;
+    private departmentScreen departmentScreen;
+    private menuScreen menuScreen;
 
     @Override
     public void create() { //Called when the application is created
-        this.setScreen(new menuScreen());
+        defaultCombatScreen = new combatScreen(game,false);
+        collegeCombatScreen = new combatScreen(game,true);
+        departmentScreen = new departmentScreen(game);
+        menuScreen =  new menuScreen(game);
+        this.setScreen(menuScreen);
     }
 
     @Override

@@ -9,7 +9,9 @@ import static banks.WeaponBank.*;
 
 public enum WeaponSetBank {
     STARTER_WEAPONS(STARTER_WEAPON, null, null, null),
-    MED_1(STORM, STORM, null, null);
+    MED_1(STORM, STORM, null, null),
+    COMP_SCI_WEPS(SEPR, SCATTER, CRITTER,null),
+    LMB_WEPS(LAWBRINGER, MORTAR, BOOM, null);
 
     private WeaponBank w1;
     private WeaponBank w2;
@@ -32,7 +34,7 @@ public enum WeaponSetBank {
                 Weapon copying = w.getWeapon();
                 out.add(w.getWeapon());
             } else {
-                out.add(null);
+
             }
         }
 
