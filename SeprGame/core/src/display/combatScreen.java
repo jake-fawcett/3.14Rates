@@ -336,7 +336,6 @@ public class combatScreen implements Screen {
         final List<Weapon> playerWeapons = playerShip.getWeapons();
 
         weaponButtonGroup.setMaxCheckCount(1);
-        weaponButtonGroup.uncheckAll();
 
         int i = 0;
         while (i < 4) {
@@ -428,6 +427,8 @@ public class combatScreen implements Screen {
                 return true;
             }
         });
+
+        weaponButtonGroup.uncheckAll();
     }
 
     private void drawWeaponCooldowns() {
