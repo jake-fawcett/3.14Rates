@@ -19,6 +19,7 @@ import combat.ship.RoomFunction;
 import combat.ship.Ship;
 import game_manager.GameManager;
 import javafx.util.Pair;
+import location.College;
 import location.Department;
 import other.Resource;
 
@@ -48,6 +49,9 @@ public class combatScreen implements Screen {
     private Ship enemyShip = gameManager.getEnemyShip();
     private CombatEnemy combatEnemy = gameManager.getCombatEnemy();
     private CombatManager combatManager = gameManager.getCombatManager();
+
+    private College college = assignCollege();
+    private int randInt = pickRandom(3);
 
     private SpriteBatch batch = new SpriteBatch();
     private Stage stage = new Stage();
@@ -113,6 +117,8 @@ public class combatScreen implements Screen {
         drawHealthBar();
         drawIndicators();
 
+        drawCollege();
+
         drawRoomHP();
         drawEnemyRoomHP();
         drawWeaponCooldowns();
@@ -173,6 +179,47 @@ public class combatScreen implements Screen {
     @Override
     public void dispose() {
 
+    }
+
+    private int pickRandom(int max){
+        Random rand = new Random();
+        int randInt = rand.nextInt(max);
+        return randInt;
+    }
+
+    private College assignCollege() {
+        switch (randInt) {
+            case 0:
+                return (new College("Constantine", playerShip, enemyShip));
+            case 1:
+                return (new College("Langwith", playerShip, enemyShip));
+            case 2:
+                return (new College("Goodricke", playerShip, enemyShip));
+        }
+        return null;
+    }
+
+    private void drawCollege(){
+        BitmapFont collegeFont = new BitmapFont();
+        collegeFont.getData().setScale(2);
+
+        switch (randInt) {
+            case 0:
+                Texture constantineTexture = new Texture("Constantine.png");
+                Sprite constantineSprite = new Sprite(constantineTexture);
+                batch.draw(constantineSprite, 375, 750, 256, 256);
+                collegeFont.draw(batch, "Constantine Defender", 690, 800);
+            case 1:
+                Texture langwithTexture = new Texture("langwidth.png");
+                Sprite langwithSprite = new Sprite(langwithTexture);
+                batch.draw(langwithSprite, 375, 750, 256, 256);
+                collegeFont.draw(batch, "Langwith Defender", 690, 800);
+            case 2:
+                Texture goodrickeTexture = new Texture("goodricke.png");
+                Sprite goodrickeSprite = new Sprite(goodrickeTexture);
+                batch.draw(goodrickeSprite, 375, 750, 256, 256);
+                collegeFont.draw(batch, "Goodricke Defender", 690, 800);
+        }
     }
 
     private void drawBackground() {
