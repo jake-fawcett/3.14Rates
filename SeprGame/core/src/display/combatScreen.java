@@ -203,22 +203,35 @@ public class combatScreen implements Screen {
         BitmapFont collegeFont = new BitmapFont();
         collegeFont.getData().setScale(2);
 
+        System.out.println(randInt);
         switch (randInt) {
             case 0:
                 Texture constantineTexture = new Texture("Constantine.png");
                 Sprite constantineSprite = new Sprite(constantineTexture);
                 batch.draw(constantineSprite, 375, 750, 256, 256);
-                collegeFont.draw(batch, "Constantine Defender", 690, 800);
+                collegeFont.draw(batch, "Constantine Defender", 690, 850);
+
+                Texture constantineShipBackground = new Texture("constantineShipBackground.png");
+                batch.draw(constantineShipBackground,636,207);
+                break;
             case 1:
                 Texture langwithTexture = new Texture("langwidth.png");
                 Sprite langwithSprite = new Sprite(langwithTexture);
                 batch.draw(langwithSprite, 375, 750, 256, 256);
-                collegeFont.draw(batch, "Langwith Defender", 690, 800);
+                collegeFont.draw(batch, "Langwith Defender", 690, 850);
+
+                Texture langwithShipBackground = new Texture("langwidthShipBackground.png");
+                batch.draw(langwithShipBackground,636,207);
+                break;
             case 2:
                 Texture goodrickeTexture = new Texture("goodricke.png");
                 Sprite goodrickeSprite = new Sprite(goodrickeTexture);
                 batch.draw(goodrickeSprite, 375, 750, 256, 256);
-                collegeFont.draw(batch, "Goodricke Defender", 690, 800);
+                collegeFont.draw(batch, "Goodricke Defender", 690, 850);
+
+                Texture goodrickeShipBackground = new Texture("goodrickeShipBackground.png");
+                batch.draw(goodrickeShipBackground,636,207);
+                break;
         }
     }
 
