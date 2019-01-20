@@ -517,7 +517,7 @@ public class combatScreen implements Screen {
         roomHealthFont.draw(batch, "Evade: " + playerShip.calculateShipEvade() * 100 + "%",100,230);
         roomHealthFont.draw(batch, "Accuracy:" + playerShip.calculateShipAccuracy() * 100 + "%",100,210);
         roomHealthFont.draw(batch, "Weapon Effectivness: " + playerShip.getRoom(RoomFunction.GUN_DECK).getMultiplier() * 100 + "%",100,190);
-        roomHealthFont.draw(batch, "Repair % Per Turn:" + df.format(playerShip.calculateRepair()) + "%",100,170);
+        roomHealthFont.draw(batch, "Repair % Per Turn: " + df.format(playerShip.calculateRepair()) + "%",100,170);
     }
 
     private void drawEnemyRoomHP() {
@@ -528,7 +528,7 @@ public class combatScreen implements Screen {
         roomHealthFont.draw(batch, "Evade: " + enemyShip.calculateShipEvade() * 100 + "%",700,230);
         roomHealthFont.draw(batch, "Accuracy:" + enemyShip.calculateShipAccuracy() * 100 + "%",700,210);
         roomHealthFont.draw(batch, "Weapon Effectivness: " + enemyShip.getRoom(RoomFunction.GUN_DECK).getMultiplier() * 100 + "%",700,190);
-        roomHealthFont.draw(batch, "Repair % Per Turn:" + df.format(enemyShip.calculateRepair()) + "%",700,170);
+        roomHealthFont.draw(batch, "Repair % Per Turn: " + df.format(enemyShip.calculateRepair()) + "%",700,170);
     }
 
     private void drawEndButtons(){

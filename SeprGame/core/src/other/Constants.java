@@ -49,7 +49,7 @@ public class Constants {
     /**
      * The amount of gold a player starts with
      */
-    public static final int STARTING_GOLD = 250;
+    public static final int STARTING_GOLD = 500;
     /**
      * The amount of food a player starts with
      */
@@ -57,7 +57,7 @@ public class Constants {
     /**
      * The default hp of a room on a new ship
      */
-    public static final int DEFAULT_ROOM_HP = 1000;
+    public static final int DEFAULT_ROOM_HP = 200;
     /**
      * The cost of crew in shops
      */
@@ -89,11 +89,11 @@ public class Constants {
     /**
      * The base chance a ship has of evading an incoming shot
      */
-    public static final double BASE_SHIP_EVADE = 0.3;
+    public static final double BASE_SHIP_EVADE = 0.2;
     /**
      * The base amount of room health repaired each turn for a room
      */
-    public static final double BASE_SHIP_REPAIR = 1;
+    public static final double BASE_SHIP_REPAIR = 2.677;
     /**
      * The multiplier applied to points earned on easy difficulty
      */
@@ -112,4 +112,6 @@ public class Constants {
      * E.g. if you want ships to be boardable after removing 60% of their health, set this to 0.4)
      */
     public static final double SHIP_BOARD_PERCENTAGE = 0.25;
+
+    public static final double NON_FUNCTIONAL_ROOM_MULTIPLIER = 1.5;
 }

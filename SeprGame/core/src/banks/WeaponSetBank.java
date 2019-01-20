@@ -12,7 +12,7 @@ import static banks.WeaponBank.*;
  */
 public enum WeaponSetBank {
     //NEW_WEAPON_SET_TEMPLATE(w1, w2, w3, w4)
-    STARTER_WEAPONS(STARTER_WEAPON, null, null, null),
+    STARTER_WEAPONS(STARTER_WEAPON, STARTER_WEAPON, STARTER_WEAPON, STARTER_WEAPON),
     MED_1(STORM, STORM, null, null),
     COMP_SCI_WEPS(SEPR, SCATTER, CRITTER,null),
     LMB_WEPS(LAWBRINGER, MORTAR, BOOM, null);

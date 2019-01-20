@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import static other.Constants.NON_FUNCTIONAL_ROOM_MULTIPLIER;
 import static other.Constants.SHIP_BOARD_PERCENTAGE;
 
 @SuppressWarnings("FieldCanBeLocal")
@@ -93,7 +94,7 @@ public class CombatManager {
 
 //            Hitting non-functional rooms doubles damage
             if (target.getFunction() == RoomFunction.NON_FUNCTIONAL) {
-                damage = damage * 2;
+                damage = (int)(damage * NON_FUNCTIONAL_ROOM_MULTIPLIER);
             }
 
 //            Apply a modifier to the damage of the shot depending on the GUN_DECKs health and upgrades
