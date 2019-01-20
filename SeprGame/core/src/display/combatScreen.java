@@ -506,6 +506,12 @@ public class combatScreen implements Screen {
         roomHealthFont.draw(batch, "HP:" + playerShip.getRoom(NON_FUNCTIONAL).getHp(),FRIENDLY_EMPTYROOM2.getX() + 10,FRIENDLY_EMPTYROOM2.getY() + 22);
         roomHealthFont.draw(batch, "HP:" + playerShip.getRoom(NON_FUNCTIONAL).getHp(),FRIENDLY_EMPTYROOM3.getX() + 10,FRIENDLY_EMPTYROOM3.getY() + 22);
         roomHealthFont.draw(batch, "HP:" + playerShip.getRoom(NON_FUNCTIONAL).getHp(),FRIENDLY_EMPTYROOM4.getX() + 10,FRIENDLY_EMPTYROOM4.getY() + 22);
+
+        roomHealthFont.draw(batch, "Ship Functionality",100,250);
+        roomHealthFont.draw(batch, "Evade: " + playerShip.calculateShipEvade() * 100 + "%",100,230);
+        roomHealthFont.draw(batch, "Accuracy:" + playerShip.calculateShipAccuracy() * 100 + "%",100,210);
+        roomHealthFont.draw(batch, "Weapon Effectivness: " + playerShip.getRoom(RoomFunction.GUN_DECK).getMultiplier() * 100 + "%",100,190);
+        roomHealthFont.draw(batch, "Repair % Per Turn:" + df.format(playerShip.calculateRepair()) + "%",100,170);
     }
 
     private void drawEnemyRoomHP() {
