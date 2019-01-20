@@ -3,8 +3,12 @@ package banks;
 import combat.items.Weapon;
 
 import static other.Constants.*;
-//FIXME DEFAULT Cooldown is 0
+
+/**
+ * A bank of weapons.
+ */
 public enum WeaponBank {
+    //NEW_WEAPON_TEMPLATE("name", cost, damage, cooldown, crit, accuracy)
     STARTER_WEAPON("Pea Shooter", DEFAULT_WEAPON_COST / 4, DEFAULT_WEAPON_DAMAGE / 4,
             DEFAULT_WEAPON_COOLDOWN / 2, DEFAULT_WEAPON_CRIT_CHANCE, DEFAULT_WEAPON_HIT_CHANCE),
 
@@ -41,6 +45,7 @@ public enum WeaponBank {
     WATER("Water Cannon", DEFAULT_WEAPON_COST / 3, DEFAULT_WEAPON_DAMAGE / 3, DEFAULT_WEAPON_COOLDOWN / 3,
             DEFAULT_WEAPON_CRIT_CHANCE, DEFAULT_WEAPON_HIT_CHANCE);
 
+    // Internal workings of the enum
     private String name;
     private int cost;
     private int baseDamage;
@@ -48,6 +53,7 @@ public enum WeaponBank {
     private double baseCritChance;
     private double baseChanceToHit;
 
+    // Internal workings of the enum
     WeaponBank(String name, int cost, int baseDamage, int baseCooldown, double baseCritChance, double baseChanceToHit) {
         this.name = name;
         this.cost = cost;
@@ -57,6 +63,9 @@ public enum WeaponBank {
         this.baseChanceToHit = baseChanceToHit;
     }
 
+    /**
+     * @return An instance of a weapon
+     */
     public Weapon getWeapon() {
         return new Weapon(name, cost, baseDamage, baseCooldown, baseCritChance, baseChanceToHit);
     }

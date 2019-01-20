@@ -14,14 +14,47 @@ import static banks.ShipBank.STARTER_SHIP;
 import static other.Constants.STARTING_FOOD;
 import static other.Constants.STARTING_GOLD;
 
+/**
+ * Controls the overall process of the game, handing control to various sub-managers (eg combat manager) as necessary.
+ * It also stores the information about the game which will be needed in lots of places, eg the amount of gold the
+ * player has or the points.
+ */
 public class GameManager extends Game {
+    /**
+     * Currency of the game
+     */
     private int gold;
+    /**
+     * A resource tied to crew and travelling. As you travel you use up food. The more crew you have, the faster you use
+     * it. This stops you ending up with a massive crew and means that you cant stay at sea for ever, progressing the
+     * game.
+     */
     private int food;
+    /**
+     * Points are accumulated by killing ships etc. They go toward recording the high scores.
+     */
     private int points;
+    /**
+     * The name of the current player for saves and hi-scores
+     */
     private String playerName;
+    /**
+     * The ship that the player is using. Used in combat, departments etc.
+     */
+    private Ship playerShip;
+    /**
+     * The difficulty that the player is playing on.
+     */
     private Difficulty difficulty;
+
+    /**
+     * Instance of LIBGDX Game used to allow setScreen to be used
+     */
     private Game game;
 
+    /**
+     * Creates Instances of enemyShip, playerShip and their Actors to be used in the game
+     */
     private Ship playerShip = STARTER_SHIP.getShip();
     private Ship enemyShip = STARTER_SHIP.getShip();
     private CombatEnemy combatEnemy = new CombatEnemy(enemyShip);
@@ -29,6 +62,7 @@ public class GameManager extends Game {
     private CombatManager combatManager = new CombatManager(combatPlayer, combatEnemy);
 
     public Game getGame() { return game; }
+
 
     public CombatManager getCombatManager() { return combatManager; }
 
@@ -112,6 +146,9 @@ public class GameManager extends Game {
 //          (name and the difficulty they want to play)
     }
 
+    /**
+     * Creates an Instance of Screen and all the different Screens used
+     */
     private Screen screen = Screen.MENU;
     private menuScreen menuScreen;
     private combatScreen defaultCombatScreen;

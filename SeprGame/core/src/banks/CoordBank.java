@@ -1,5 +1,8 @@
 package banks;
 
+/**
+ * A bank of coordinates storing the position of rooms for the graphics system.
+ */
 public enum CoordBank {
 
     FRIENDLY_CREWQUATERS(100,256),
@@ -20,19 +23,26 @@ public enum CoordBank {
     ENEMY_HELM(828, 640);
 
 
-
+    // Internal workings of the enum
     private int x;
     private int y;
 
+    // Internal workings of the enum
     CoordBank(int x, int y){
         this.x = x;
         this.y = y;
     }
 
+    /**
+     * @return The x coordinate of the room.
+     */
     public int getX() {
         return x;
     }
 
+    /**
+     * @return The y coordinate of the room.
+     */
     public int getY() {
         return y;
     }

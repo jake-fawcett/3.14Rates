@@ -2,9 +2,18 @@ package combat.ship;
 
 import combat.items.RoomUpgrade;
 
+/**
+ * 8 rooms make up a ship.
+ */
 @SuppressWarnings("WeakerAccess")
 public class Room {
+    /**
+     * The default HP a room is given.
+     */
     private int baseHP;
+    /**
+     * The current hp of the room.
+     */
     private int hp;
     /**
      * A 1x3 array of RoomUpgrade
@@ -13,6 +22,9 @@ public class Room {
      * a third. So the first slot is 100% effective, the second is 66%, then 33%.
      */
     private RoomUpgrade[] upgrades;
+    /**
+     * The function of the room in combat. See the enum RoomFunction for more info on what each function does.
+     */
     private RoomFunction function;
 
     public Room(int baseHealth, RoomUpgrade[] upgrades, RoomFunction function) {
@@ -29,9 +41,17 @@ public class Room {
         this.function = function;
     }
 
+    /**
+     * As rooms are damaged, fixed or upgraded the strength of the part of combat that they affect varies. This method
+     * finds the rooms contribution to this effectiveness.
+     * @return The current effectiveness contribution of this room.
+     */
     public double getMultiplier() {
+//        The effectiveness decrease due to damage
         double roomMultiplier = (double) hp / (double) baseHP;
 
+//        The effectiveness increase due to upgrades. See javadoc on the property "upgrades" to see why it is calculated
+//        in this way
         double slotMultiplier = 0.999;
         for (RoomUpgrade upgrade : upgrades) {
             if (upgrade != null) {
@@ -60,6 +80,10 @@ public class Room {
         return function;
     }
 
+    /**
+     * Applies damage to the room
+     * @param damage The amount of damage to be applied
+     */
     public void damage(int damage) {
         hp -= damage;
         if (hp < 0) {
@@ -67,6 +91,10 @@ public class Room {
         }
     }
 
+    /**
+     * Adds an upgrade to the room
+     * @param upgrade The upgrade to add
+     */
     public void addUpgrade(RoomUpgrade upgrade) {
         Boolean set = false;
         for (int i = 0; i < 3; i++) {
@@ -81,6 +109,10 @@ public class Room {
         }
     }
 
+    /**
+     * Deletes an upgrade from the room
+     * @param upgrade The upgrade to delete
+     */
     public void delUpgrade(RoomUpgrade upgrade) {
         Boolean deleted = false;
         for (int i = 0; i < 3; i++) {
@@ -90,7 +122,7 @@ public class Room {
                     deleted = true;
                 }
             } else {
-                upgrades[i-1] = upgrades[i];
+                upgrades[i - 1] = upgrades[i];
                 upgrades[i] = null;
             }
         }
@@ -98,6 +130,10 @@ public class Room {
 
     }
 
+    /**
+     * Repairs the room
+     * @param amount The amount of damage to be repaired
+     */
     public void repair(int amount) {
         hp += amount;
         if (hp > baseHP) {
