@@ -46,8 +46,8 @@ public class combatScreen implements Screen {
     private GameManager gameManager = new GameManager(null, null);
     private Ship playerShip = gameManager.getPlayerShip();
     private CombatPlayer combatPlayer = gameManager.getCombatPlayer();
-    private Ship enemyShip = gameManager.getEnemyShip();
-    private CombatEnemy combatEnemy = gameManager.getCombatEnemy();
+    private Ship enemyShip;
+    private CombatEnemy combatEnemy;
     private CombatManager combatManager = gameManager.getCombatManager();
 
     private College college = assignCollege();
@@ -86,6 +86,14 @@ public class combatScreen implements Screen {
 
     @Override
     public void show() {
+        if (isCollegeBattle) {
+            enemyShip = gameManager.getCollegeShip();
+            combatEnemy = gameManager.getCombatCollege();
+        } else {
+            enemyShip = gameManager.getEnemyShip();
+            combatEnemy = gameManager.getCombatEnemy();
+        }
+
         df = new DecimalFormat("#.##");
         df.setRoundingMode(RoundingMode.CEILING);
 
@@ -202,8 +210,7 @@ public class combatScreen implements Screen {
     private void drawCollege(){
         BitmapFont collegeFont = new BitmapFont();
         collegeFont.getData().setScale(2);
-
-        System.out.println(randInt);
+        
         switch (randInt) {
             case 0:
                 Texture constantineTexture = new Texture("Constantine.png");

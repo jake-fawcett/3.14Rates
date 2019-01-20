@@ -9,6 +9,7 @@ import other.Difficulty;
 import other.Screen;
 import display.*;
 
+import static banks.ShipBank.COLLEGE_SHIP;
 import static banks.ShipBank.DEFAULT_BRIG;
 import static banks.ShipBank.STARTER_SHIP;
 import static other.Constants.STARTING_FOOD;
@@ -53,9 +54,14 @@ public class GameManager extends Game {
      * Creates Instances of enemyShip, playerShip and their Actors to be used in the game
      */
     private Ship playerShip = STARTER_SHIP.getShip();
+    private CombatPlayer combatPlayer = new CombatPlayer(playerShip);
+
     private Ship enemyShip = STARTER_SHIP.getShip();
     private CombatEnemy combatEnemy = new CombatEnemy(enemyShip);
-    private CombatPlayer combatPlayer = new CombatPlayer(playerShip);
+
+    private Ship collegeShip = COLLEGE_SHIP.getShip();
+    private CombatEnemy combatCollege = new CombatEnemy(collegeShip);
+
     private CombatManager combatManager = new CombatManager(combatPlayer, combatEnemy);
 
     public Game getGame() { return game; }
@@ -117,9 +123,13 @@ public class GameManager extends Game {
         return enemyShip;
     }
 
+    public Ship getCollegeShip() { return collegeShip; }
+
     public CombatPlayer getCombatPlayer(){return combatPlayer; }
 
     public CombatEnemy getCombatEnemy() {return combatEnemy; }
+
+    public CombatEnemy getCombatCollege() { return combatCollege; }
 
     public Difficulty getDifficulty() {
         return difficulty;
