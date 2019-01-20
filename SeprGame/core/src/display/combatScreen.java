@@ -79,30 +79,39 @@ public class combatScreen implements Screen {
     private Weapon weaponSelected;
 
     /**
-     *
+     * Groups used to control sets of Buttons and Track number Checked
      */
     private ButtonGroup weaponButtonGroup = new ButtonGroup();
     private ButtonGroup roomButtonGroup = new ButtonGroup();
 
     private List<TextButton> weaponButtons = new ArrayList<TextButton>();
 
+    /**
+     * Booleans used to track if the Game is over and won/lost, plus buttons to display the info
+     */
     private Boolean gameOver = false;
     private Boolean gameWon;
     private TextButton youWin;
     private TextButton youLose;
     private int a = 0;
 
-    //Buttons to Display if Hit or Missed, FeedbackTime measures how long this is displayed
+    /**
+     * Buttons to Display if Hit or Missed, FeedbackTime measures how long this is displayed
+     */
     private int hitFeedbackTime;
     private TextButton youHit;
     private TextButton youMissed;
     private TextButton enemyHit;
     private TextButton enemyMissed;
 
+    /**
+     * Used to set values to the same no. decimal places
+     */
     private DecimalFormat df;
 
     @Override
     public void show() {
+        //Sets the Appropriate ship for if a College or Standard battle are happening
         if (isCollegeBattle) {
             enemyShip = gameManager.getCollegeShip();
             combatEnemy = gameManager.getCombatCollege();
@@ -142,7 +151,9 @@ public class combatScreen implements Screen {
         drawHealthBar();
         drawIndicators();
 
-        drawCollege();
+        if (isCollegeBattle) {
+            drawCollege();
+        }
 
         drawRoomHP();
         drawEnemyRoomHP();
@@ -172,7 +183,8 @@ public class combatScreen implements Screen {
 
         stage.draw();
 
-        if (hitFeedbackTime == 15){
+        //Used to control how long the Hit/Miss messages are displayed, hides them after the time
+        if (hitFeedbackTime == 25){
             youHit.setVisible(false);
             youMissed.setVisible(false);
             enemyHit.setVisible(false);
@@ -206,6 +218,9 @@ public class combatScreen implements Screen {
 
     }
 
+    /**
+     *
+     */
     private int pickRandom(int max){
         Random rand = new Random();
         int randInt = rand.nextInt(max);
