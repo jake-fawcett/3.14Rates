@@ -68,6 +68,7 @@ public class CombatManager {
                 shotHit = false;
             } else {
                 damage = weapon.getBaseDamage();
+                shotHit = true;
             }
 
             if (target.getFunction() == RoomFunction.NON_FUNCTIONAL) {
@@ -102,10 +103,6 @@ public class CombatManager {
 
     public Boolean getShotHit(){
         return shotHit;
-    }
-
-    public void resetShotHit(){
-        shotHit = true;
     }
 
     private float pickRandom() {

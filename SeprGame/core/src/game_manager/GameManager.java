@@ -23,7 +23,7 @@ public class GameManager extends Game {
     private Game game;
 
     private Ship playerShip = STARTER_SHIP.getShip();
-    private Ship enemyShip = DEFAULT_BRIG.getShip();
+    private Ship enemyShip = STARTER_SHIP.getShip();
     private CombatEnemy combatEnemy = new CombatEnemy(enemyShip);
     private CombatPlayer combatPlayer = new CombatPlayer(playerShip);
     private CombatManager combatManager = new CombatManager(combatPlayer, combatEnemy);

@@ -15,6 +15,7 @@ import combat.items.RoomUpgrade;
 import combat.items.Weapon;
 import combat.manager.CombatManager;
 import combat.ship.Room;
+import combat.ship.RoomFunction;
 import combat.ship.Ship;
 import game_manager.GameManager;
 import javafx.util.Pair;
@@ -77,8 +78,13 @@ public class combatScreen implements Screen {
     private TextButton enemyHit;
     private TextButton enemyMissed;
 
+    private DecimalFormat df;
+
     @Override
     public void show() {
+        df = new DecimalFormat("#.##");
+        df.setRoundingMode(RoundingMode.CEILING);
+
         buttonAtlas = new TextureAtlas("buttonSpriteSheet.txt");
         skin.addRegions(buttonAtlas);
 
@@ -108,6 +114,7 @@ public class combatScreen implements Screen {
         drawIndicators();
 
         drawRoomHP();
+        drawEnemyRoomHP();
         drawWeaponCooldowns();
 
         batch.end();
@@ -284,49 +291,49 @@ public class combatScreen implements Screen {
 
         enemyCrewQuarters.addListener(new InputListener(){
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button){
-                roomSelected = playerShip.getRoom(CREW_QUARTERS);
+                roomSelected = enemyShip.getRoom(CREW_QUARTERS);
                 return true;
             }
         });
         enemyCrowsNest.addListener(new InputListener(){
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button){
-                roomSelected = playerShip.getRoom(CROWS_NEST);
+                roomSelected = enemyShip.getRoom(CROWS_NEST);
                 return true;
             }
         });
         enemyGunDeck.addListener(new InputListener(){
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button){
-                roomSelected = playerShip.getRoom(GUN_DECK);
+                roomSelected = enemyShip.getRoom(GUN_DECK);
                 return true;
             }
         });
         enemyHelm.addListener(new InputListener(){
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button){
-                roomSelected = playerShip.getRoom(HELM);
+                roomSelected = enemyShip.getRoom(HELM);
                 return true;
             }
         });
         enemyEmpty1.addListener(new InputListener(){
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button){
-                roomSelected = playerShip.getRoom(NON_FUNCTIONAL);
+                roomSelected = enemyShip.getRoom(NON_FUNCTIONAL);
                 return true;
             }
         });
         enemyEmpty2.addListener(new InputListener(){
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button){
-                roomSelected = playerShip.getRoom(NON_FUNCTIONAL);
+                roomSelected = enemyShip.getRoom(NON_FUNCTIONAL);
                 return true;
             }
         });
         enemyEmpty3.addListener(new InputListener(){
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button){
-                roomSelected = playerShip.getRoom(NON_FUNCTIONAL);
+                roomSelected = enemyShip.getRoom(NON_FUNCTIONAL);
                 return true;
             }
         });
         enemyEmpty4.addListener(new InputListener(){
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button){
-                roomSelected = playerShip.getRoom(NON_FUNCTIONAL);
+                roomSelected = enemyShip.getRoom(NON_FUNCTIONAL);
                 return true;
             }
         });
@@ -440,12 +447,14 @@ public class combatScreen implements Screen {
                     roomButtonGroup.uncheckAll();
 
                     //Runs enemy Combat Loop
+                    if (combatEnemy.hasWepaonsReady()){
                     combatManager.enemyCombatLoop(combatEnemy, combatPlayer);
-                    //Displays if Enemy Hit or Missed
-                    if (combatManager.getShotHit()){
-                        enemyHit.setVisible(true);
-                    } else {
-                        enemyMissed.setVisible(true);
+                        //Displays if Enemy Hit or Missed
+                        if (combatManager.getShotHit()){
+                            enemyHit.setVisible(true);
+                        } else {
+                            enemyMissed.setVisible(true);
+                        }
                     }
 
                     if (combatManager.checkFightEnd() && playerShip.getHullHP() <= 0) {
@@ -497,6 +506,17 @@ public class combatScreen implements Screen {
         roomHealthFont.draw(batch, "HP:" + playerShip.getRoom(NON_FUNCTIONAL).getHp(),FRIENDLY_EMPTYROOM2.getX() + 10,FRIENDLY_EMPTYROOM2.getY() + 22);
         roomHealthFont.draw(batch, "HP:" + playerShip.getRoom(NON_FUNCTIONAL).getHp(),FRIENDLY_EMPTYROOM3.getX() + 10,FRIENDLY_EMPTYROOM3.getY() + 22);
         roomHealthFont.draw(batch, "HP:" + playerShip.getRoom(NON_FUNCTIONAL).getHp(),FRIENDLY_EMPTYROOM4.getX() + 10,FRIENDLY_EMPTYROOM4.getY() + 22);
+    }
+
+    private void drawEnemyRoomHP() {
+        BitmapFont roomHealthFont = new BitmapFont();
+        roomHealthFont.setColor(1,1,1,1);
+
+        roomHealthFont.draw(batch, "Ship Functionality",700,250);
+        roomHealthFont.draw(batch, "Evade: " + enemyShip.calculateShipEvade() * 100 + "%",700,230);
+        roomHealthFont.draw(batch, "Accuracy:" + enemyShip.calculateShipAccuracy() * 100 + "%",700,210);
+        roomHealthFont.draw(batch, "Weapon Effectivness: " + enemyShip.getRoom(RoomFunction.GUN_DECK).getMultiplier() * 100 + "%",700,190);
+        roomHealthFont.draw(batch, "Repair % Per Turn:" + df.format(enemyShip.calculateRepair()) + "%",700,170);
     }
 
     private void drawEndButtons(){
