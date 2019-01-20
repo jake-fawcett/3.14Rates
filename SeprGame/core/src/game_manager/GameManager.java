@@ -125,10 +125,6 @@ public class GameManager extends Game {
         return difficulty;
     }
 
-    public void setScreen(Screen screen) {
-        this.screen = screen;
-    }
-
     public GameManager(String playerName, Difficulty difficulty) {
         this.playerName = playerName;
         this.difficulty = difficulty;
@@ -138,25 +134,16 @@ public class GameManager extends Game {
         game = this;
     }
 
-    public GameManager() {
-//        TODO Write me so that the screen asks the player for their information
-//          (name and the difficulty they want to play)
-    }
-
     /**
      * Creates an Instance of Screen and all the different Screens used
      */
-    private Screen screen = Screen.MENU;
     private menuScreen menuScreen;
-    private combatScreen defaultCombatScreen;
-    private combatScreen collegeCombatScreen;
-    private departmentScreen departmentScreen;
 
     @Override
     public void create() { //Called when the application is created
-        defaultCombatScreen = new combatScreen(game,false);
-        collegeCombatScreen = new combatScreen(game,true);
-        departmentScreen = new departmentScreen(game);
+        combatScreen defaultCombatScreen = new combatScreen(game,false);
+        combatScreen collegeCombatScreen = new combatScreen(game,true);
+        departmentScreen departmentScreen = new departmentScreen(game);
         menuScreen =  new menuScreen(game);
         this.setScreen(menuScreen);
 
