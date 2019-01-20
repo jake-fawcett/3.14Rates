@@ -254,7 +254,6 @@ public class combatScreen implements Screen {
         stage.addActor(toMenu);
     }
 
-    //FIXME PeaShooter is Checked on Start, Fire stays checked after click
     private void drawEnemyShip(){
         TextureAtlas roomButtonAtlas = new TextureAtlas("roomSpriteSheet.txt");
         Skin roomButtonSkin = new Skin();

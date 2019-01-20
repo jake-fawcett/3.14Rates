@@ -1,8 +1,8 @@
 package other;
 
 /**
- * TODO Jake, javadoc here please. Check the other Difficulty and Resource to see how I reccomend doing it.
+ * The different screens that can be switched to within the game
  */
 public enum Screen {
-    MENU, COMBAT, DEPARTMENT, COLLEGE
+    MENU
 }
