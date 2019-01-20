@@ -21,6 +21,7 @@ import game_manager.GameManager;
 import javafx.util.Pair;
 import location.College;
 import location.Department;
+import other.Difficulty;
 import other.Resource;
 
 import java.math.RoundingMode;
@@ -33,6 +34,8 @@ import java.util.concurrent.TimeUnit;
 import static banks.CoordBank.*;
 import static combat.ship.RoomFunction.*;
 import static other.Constants.COOLDOWN_TICKS_PER_TURN;
+import static other.Constants.DIFF_SCORE_MULTIPLIER;
+import static other.Constants.EASY_SCORE_MULTIPLIER;
 
 public class combatScreen implements Screen {
     /**
@@ -164,6 +167,14 @@ public class combatScreen implements Screen {
         if (gameOver){
             if (gameWon){
                 youWin.setVisible(true);
+
+                if (isCollegeBattle){
+                    gameManager.addPoints((int)(1000 * EASY_SCORE_MULTIPLIER));
+                    gameManager.addGold((int)(1000 * EASY_SCORE_MULTIPLIER));
+                } else {
+                    gameManager.addPoints((int)(100 * EASY_SCORE_MULTIPLIER));
+                    gameManager.addGold((int)(100 * EASY_SCORE_MULTIPLIER));
+                }
             } else {
                 youLose.setVisible(true);
             }
