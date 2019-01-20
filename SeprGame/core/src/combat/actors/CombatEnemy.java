@@ -60,6 +60,6 @@ public class CombatEnemy extends CombatActor {
     private Room pickRandRoom(Ship ship) {
         Random rand = new Random();
         List<Room> rooms = ship.getRooms();
-        return rooms.get(rand.nextInt(rooms.size()));
+        return rooms.get(rand.nextInt(rooms.size() - 1));
     }
 }

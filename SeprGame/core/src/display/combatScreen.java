@@ -432,6 +432,7 @@ public class combatScreen implements Screen {
                         for (Weapon weapon : playerShip.getWeapons()) {
                             weapon.decrementCooldown(COOLDOWN_TICKS_PER_TURN);
                         }
+                        playerShip.combatRepair();
                     } else {
                         //Runs the players Combat Loop
                         combatManager.combatLoop(combatPlayer, combatEnemy, roomSelected, weaponSelected);
@@ -448,13 +449,18 @@ public class combatScreen implements Screen {
 
                     //Runs enemy Combat Loop
                     if (combatEnemy.hasWepaonsReady()){
-                    combatManager.enemyCombatLoop(combatEnemy, combatPlayer);
+                        combatManager.enemyCombatLoop(combatEnemy, combatPlayer);
                         //Displays if Enemy Hit or Missed
                         if (combatManager.getShotHit()){
                             enemyHit.setVisible(true);
                         } else {
                             enemyMissed.setVisible(true);
                         }
+                    } else {
+                        for (Weapon weapon : enemyShip.getWeapons()) {
+                            weapon.decrementCooldown(COOLDOWN_TICKS_PER_TURN);
+                        }
+                        enemyShip.combatRepair();
                     }
 
                     if (combatManager.checkFightEnd() && playerShip.getHullHP() <= 0) {
