@@ -155,8 +155,8 @@ public class combatScreen implements Screen {
             drawCollege();
         }
 
-        drawRoomHP();
-        drawEnemyRoomHP();
+        drawRoomHPEffectivness();
+        drawEnemyEffectivness();
         drawWeaponCooldowns();
 
         batch.end();
@@ -598,7 +598,7 @@ public class combatScreen implements Screen {
         }
     }
 
-    private void drawRoomHP(){
+    private void drawRoomHPEffectivness(){
         BitmapFont roomHealthFont = new BitmapFont();
         roomHealthFont.setColor(1,1,1,1);
 
@@ -612,20 +612,20 @@ public class combatScreen implements Screen {
         roomHealthFont.draw(batch, "HP:" + playerShip.getRoom(NON_FUNCTIONAL).getHp(),FRIENDLY_EMPTYROOM4.getX() + 10,FRIENDLY_EMPTYROOM4.getY() + 22);
 
         roomHealthFont.draw(batch, "Ship Functionality",100,250);
-        roomHealthFont.draw(batch, "Evade: " + playerShip.calculateShipEvade() * 100 + "%",100,230);
-        roomHealthFont.draw(batch, "Accuracy:" + playerShip.calculateShipAccuracy() * 100 + "%",100,210);
-        roomHealthFont.draw(batch, "Weapon Effectivness: " + playerShip.getRoom(RoomFunction.GUN_DECK).getMultiplier() * 100 + "%",100,190);
+        roomHealthFont.draw(batch, "Evade: " + df.format(playerShip.calculateShipEvade() * 100) + "%",100,230);
+        roomHealthFont.draw(batch, "Accuracy:" + df.format(playerShip.calculateShipAccuracy() * 100) + "%",100,210);
+        roomHealthFont.draw(batch, "Weapon Effectivness: " + df.format(playerShip.getRoom(RoomFunction.GUN_DECK).getMultiplier() * 100) + "%",100,190);
         roomHealthFont.draw(batch, "Repair % Per Turn: " + df.format(playerShip.calculateRepair()) + "%",100,170);
     }
 
-    private void drawEnemyRoomHP() {
+    private void drawEnemyEffectivness() {
         BitmapFont roomHealthFont = new BitmapFont();
         roomHealthFont.setColor(1,1,1,1);
 
         roomHealthFont.draw(batch, "Ship Functionality",700,250);
-        roomHealthFont.draw(batch, "Evade: " + enemyShip.calculateShipEvade() * 100 + "%",700,230);
-        roomHealthFont.draw(batch, "Accuracy:" + enemyShip.calculateShipAccuracy() * 100 + "%",700,210);
-        roomHealthFont.draw(batch, "Weapon Effectivness: " + enemyShip.getRoom(RoomFunction.GUN_DECK).getMultiplier() * 100 + "%",700,190);
+        roomHealthFont.draw(batch, "Evade: " + df.format(enemyShip.calculateShipEvade() * 100) + "%",700,230);
+        roomHealthFont.draw(batch, "Accuracy:" + df.format(enemyShip.calculateShipAccuracy() * 100) + "%",700,210);
+        roomHealthFont.draw(batch, "Weapon Effectivness: " + df.format(enemyShip.getRoom(RoomFunction.GUN_DECK).getMultiplier() * 100) + "%",700,190);
         roomHealthFont.draw(batch, "Repair % Per Turn: " + df.format(enemyShip.calculateRepair()) + "%",700,170);
     }
 
