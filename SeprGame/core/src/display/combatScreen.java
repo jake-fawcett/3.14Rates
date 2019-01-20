@@ -550,7 +550,7 @@ public class combatScreen implements Screen {
 
         fire.addListener(new InputListener() {
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-                if (weaponSelected instanceof Weapon) {
+                if (weaponSelected instanceof Weapon && roomSelected instanceof  Room) {
                     if (weaponSelected.getCurrentCooldown() > 0) {
                         for (Weapon weapon : playerShip.getWeapons()) {
                             weapon.decrementCooldown(COOLDOWN_TICKS_PER_TURN);
