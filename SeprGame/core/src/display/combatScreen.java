@@ -70,6 +70,13 @@ public class combatScreen implements Screen {
     private TextButton youLose;
     private int a = 0;
 
+    //Buttons to Display if Hit or Missed, FeedbackTime measures how long this is displayed
+    private int hitFeedbackTime;
+    private TextButton youHit;
+    private TextButton youMissed;
+    private TextButton enemyHit;
+    private TextButton enemyMissed;
+
     @Override
     public void show() {
         buttonAtlas = new TextureAtlas("buttonSpriteSheet.txt");
@@ -83,6 +90,8 @@ public class combatScreen implements Screen {
 
         drawWeaponButtons();
         drawEndButtons();
+
+        drawHitMissButtons();
     }
 
     @Override
@@ -103,6 +112,7 @@ public class combatScreen implements Screen {
 
         batch.end();
 
+        //Checks if the Game is Over and Displays Message if You Won/Lost
         if (gameOver){
             if (gameWon){
                 youWin.setVisible(true);
@@ -110,6 +120,7 @@ public class combatScreen implements Screen {
                 youLose.setVisible(true);
             }
 
+            //Waits 5 Loops to ensure Above messages render, Sleeps, then returns to menu
             if (a == 5) {
                 try {
                     TimeUnit.SECONDS.sleep(3);
@@ -122,6 +133,14 @@ public class combatScreen implements Screen {
         }
 
         stage.draw();
+
+        if (hitFeedbackTime == 15){
+            youHit.setVisible(false);
+            youMissed.setVisible(false);
+            enemyHit.setVisible(false);
+            enemyMissed.setVisible(false);
+        }
+        hitFeedbackTime++;
     }
 
     @Override
@@ -407,13 +426,27 @@ public class combatScreen implements Screen {
                             weapon.decrementCooldown(COOLDOWN_TICKS_PER_TURN);
                         }
                     } else {
+                        //Runs the players Combat Loop
                         combatManager.combatLoop(combatPlayer, combatEnemy, roomSelected, weaponSelected);
+                        //Displays if the Player Hit or Missed
+                        if (combatManager.getShotHit()){
+                            youHit.setVisible(true);
+                        } else {
+                            youMissed.setVisible(true);
+                        }
                     }
 
                     weaponButtonGroup.uncheckAll();
                     roomButtonGroup.uncheckAll();
 
+                    //Runs enemy Combat Loop
                     combatManager.enemyCombatLoop(combatEnemy, combatPlayer);
+                    //Displays if Enemy Hit or Missed
+                    if (combatManager.getShotHit()){
+                        enemyHit.setVisible(true);
+                    } else {
+                        enemyMissed.setVisible(true);
+                    }
 
                     if (combatManager.checkFightEnd() && playerShip.getHullHP() <= 0) {
                         gameOver = true;
@@ -422,7 +455,10 @@ public class combatScreen implements Screen {
                         gameOver = true;
                         gameWon = true;
                     }
+
                     fire.toggle();
+                    hitFeedbackTime = 0;
+
                 }
                 return true;
             }
@@ -477,5 +513,35 @@ public class combatScreen implements Screen {
         youLose.setPosition((Gdx.graphics.getWidth()/2) - (175),(Gdx.graphics.getHeight() / 2));
         stage.addActor(youLose);
         youLose.setVisible(false);
+    }
+
+    private void drawHitMissButtons(){
+        youHit = new TextButton("You hit!", textButtonStyle);
+        youHit.setTransform(true);
+        youHit.setScale(2);
+        youHit.setPosition(700,512);
+        stage.addActor(youHit);
+        youHit.setVisible(false);
+
+        youMissed = new TextButton("You Missed!", textButtonStyle);
+        youMissed.setTransform(true);
+        youMissed.setScale(2);
+        youMissed.setPosition(700,512);
+        stage.addActor(youMissed);
+        youMissed.setVisible(false);
+
+        enemyHit = new TextButton("Enemy hit!", textButtonStyle);
+        enemyHit.setTransform(true);
+        enemyHit.setScale(2);
+        enemyHit.setPosition(100,512);
+        stage.addActor(enemyHit);
+        enemyHit.setVisible(false);
+
+        enemyMissed = new TextButton("Enemy Missed!", textButtonStyle);
+        enemyMissed.setTransform(true);
+        enemyMissed.setScale(2);
+        enemyMissed.setPosition(100,512);
+        stage.addActor(enemyMissed);
+        enemyMissed.setVisible(false);
     }
 }

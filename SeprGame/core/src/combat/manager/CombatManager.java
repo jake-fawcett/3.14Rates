@@ -21,6 +21,7 @@ import static other.Constants.SHIP_BOARD_PERCENTAGE;
 public class CombatManager {
     private CombatPlayer player;
     private CombatEnemy enemy;
+    private Boolean shotHit = true;
 
     public CombatManager(CombatPlayer player, CombatEnemy enemy) {
         this.player = player;
@@ -61,10 +62,10 @@ public class CombatManager {
 
             if (pickRandom() > (weapon.getAccuracy() * shipFiring.calculateShipAccuracy())) {
                 damage = 0;
-                System.out.println("Miss!");
+                shotHit = false;
             } else if (pickRandom() <= shipFiredAt.calculateShipEvade()) {
                 damage = 0;
-                System.out.println("Miss!");
+                shotHit = false;
             } else {
                 damage = weapon.getBaseDamage();
             }
@@ -97,6 +98,14 @@ public class CombatManager {
         }
         return false;
 
+    }
+
+    public Boolean getShotHit(){
+        return shotHit;
+    }
+
+    public void resetShotHit(){
+        shotHit = true;
     }
 
     private float pickRandom() {
