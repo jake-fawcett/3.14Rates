@@ -51,6 +51,9 @@ public class menuScreen extends InputListener implements Screen {
         myTextButtonStyle.up = skin.getDrawable("buttonUp");
         myTextButtonStyle.down = skin.getDrawable("buttonDown");
 
+        /**
+         * Creates Text buttons for the menu, Sets them up and Adds listeners to switch to correct screen
+         */
         runCombat = new TextButton("Run Combat", myTextButtonStyle);
         runCollege = new TextButton("Run College", myTextButtonStyle);
         runDepartment = new TextButton("Run Department", myTextButtonStyle);
@@ -106,6 +109,7 @@ public class menuScreen extends InputListener implements Screen {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         Gdx.input.setInputProcessor(stage);
 
+        //Draws Menu Title and Background
         batch.begin();
         batch.draw(menuBackground,0,0);
         titleFont.draw(batch, "SEPR GAME", Gdx.graphics.getWidth()/2f - 160, 900);

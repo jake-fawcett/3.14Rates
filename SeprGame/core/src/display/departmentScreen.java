@@ -31,28 +31,48 @@ import static banks.WeaponSetBank.LMB_WEPS;
 import static other.Constants.*;
 
 public class departmentScreen implements Screen {
+    /**
+     * Constructor for DepartmentScreen requiring game to switch screen
+     */
     private Game game;
     public departmentScreen(Game game){
         this.game = game;
     }
 
+    /**
+     * Sets up gameManager to retrieve values and the playerShip
+     */
     private GameManager gameManager = new GameManager(null, null);
     private Ship playerShip = gameManager.getPlayerShip();
 
+    /**
+     * Used to Draw Assets on the Screen
+     */
     private SpriteBatch batch = new SpriteBatch();
     private Stage stage = new Stage();
 
+    /**
+     * Used to set values to the same no. decimal places
+     */
     private DecimalFormat df;
 
+    /**
+     * Used to pick a random department to display
+     */
     private int randInt = pickRandom(2);
     private Department department = assignDepartment(randInt);
 
+    /**
+     * Main style used for buttons
+     */
     private BitmapFont buttonFont = new BitmapFont();
     private TextButton.TextButtonStyle textButtonStyle = new TextButton.TextButtonStyle();
     private TextureAtlas buttonAtlas;
     private Skin skin = new Skin();
 
-    private Boolean boolShowShop = false;
+    /**
+     * Sprite for Shopbackground and Fonts for Shop Information
+     */
     private Sprite shopBackground;
     private BitmapFont titleFont = new BitmapFont();
     private BitmapFont bodyFont = new BitmapFont();
@@ -87,7 +107,7 @@ public class departmentScreen implements Screen {
         drawHealthBar();
         drawIndicators();
 
-        drawShopBackground(shopBackground, boolShowShop);
+        drawShopBackground(shopBackground);
         drawBuyWeaponFeatures(titleFont, bodyFont, textButtonStyle);
         drawSellWeaponFeatures(titleFont, bodyFont, textButtonStyle);
         drawBuyRoomUpgradeFeatures(titleFont, bodyFont, textButtonStyle);
@@ -124,6 +144,11 @@ public class departmentScreen implements Screen {
         batch.dispose();
     }
 
+    /**
+     * Picks a random int
+     * @param max
+     * @return returns random int between 0 and max - 1
+     */
     public int pickRandom(int max) {
         Random rand = new Random();
         int randInt = rand.nextInt(max);
@@ -131,11 +156,17 @@ public class departmentScreen implements Screen {
         return randInt;
     }
 
+    /**
+     * Draws the Shop background
+     */
     public void drawBackground() {
         Texture background = new Texture("battleBackground.png");
         batch.draw(background, 0, 0);
     }
 
+    /**
+     * Draws the friendly ship from room textures and constant coordinates
+     */
     public void drawFriendlyShip(){
         TextureAtlas roomSpriteAtlas = new TextureAtlas("roomSpriteSheet.txt");
 
@@ -173,6 +204,11 @@ public class departmentScreen implements Screen {
         friendlyEmptyRoom4.draw(batch);
     }
 
+    /**
+     * Assigns a random department to be used
+     * @param randInt
+     * @return random department
+     */
     public Department assignDepartment(int randInt) {
         switch (randInt) {
             case 0:
@@ -183,6 +219,10 @@ public class departmentScreen implements Screen {
         return null;
     }
 
+    /**
+     * Draws the Department generated above
+     * @param randInt
+     */
     public void drawDepartment(int randInt) {
         switch (randInt) {
             case 0:
@@ -198,6 +238,9 @@ public class departmentScreen implements Screen {
         }
     }
 
+    /**
+     * Draws Hp bars for both ships
+     */
     public void drawHealthBar() {
         Texture hpBar = new Texture("background.png");
         Texture hpBackground = new Texture("disabledBackground.png");
@@ -209,6 +252,9 @@ public class departmentScreen implements Screen {
         batch.draw(hpBar,25, 970, width, 16);
     }
 
+    /**
+     * Draws resource indicators for player
+     */
     public void drawIndicators(){
         BitmapFont indicatorFont = new BitmapFont();
         indicatorFont.setColor(1,1,1,1);
@@ -219,6 +265,10 @@ public class departmentScreen implements Screen {
         indicatorFont.draw(batch, "Crew: " + playerShip.getCrew(), 280, 965);
     }
 
+    /**
+     * Draws the Button returning to menu, taking the style button
+     * @param textButtonStyle
+     */
     public void buttonToMenu(TextButton.TextButtonStyle textButtonStyle){
         TextButton toMenu = new TextButton("To Menu", textButtonStyle);
         toMenu.setPosition(880, 980);
@@ -231,6 +281,10 @@ public class departmentScreen implements Screen {
         stage.addActor(toMenu);
     }
 
+    /**
+     * Generates the shopBackground
+     * @return return shop background sprite
+     */
     public Sprite createShopBackground(){
         Texture shopBackgroundTexture = new Texture("shopBackground.png");
         Sprite shopBackgroundSprite = new Sprite(shopBackgroundTexture);
@@ -238,13 +292,23 @@ public class departmentScreen implements Screen {
         return shopBackgroundSprite;
     }
 
-    public void drawShopBackground(Sprite shopBackground,Boolean showShop) {
+    /**
+     * Draws the shop background from given Sprite
+     * @param shopBackground
+     */
+    public void drawShopBackground(Sprite shopBackground) {
         shopBackground.draw(batch);
         shopBackground.setScale(1.5f, 1.5f);
         shopBackground.setPosition(256, 256);
         shopBackground.setAlpha(0.85f);
     }
 
+    /**
+     * Takes button styles and Fonts, draws buttons to buy items in the shop and the item information
+     * @param titleFont
+     * @param bodyFont
+     * @param textButtonStyle
+     */
     public void drawBuyWeaponFeatures(BitmapFont titleFont, BitmapFont bodyFont, TextButton.TextButtonStyle textButtonStyle) {
         List<TextButton> buyButtonList = new ArrayList<TextButton>();
         List<Weapon> weaponList = new ArrayList<Weapon>();
@@ -272,6 +336,11 @@ public class departmentScreen implements Screen {
         buyWeaponButtonListener(buyButtonList, weaponList);
     }
 
+    /**
+     * Adds listeners to all weapon buy buttons
+     * @param buyButtonList
+     * @param weaponList
+     */
     public void buyWeaponButtonListener(final List<TextButton> buyButtonList, final List<Weapon> weaponList) {
         int i = 0;
         while (i <= buyButtonList.size() - 1) {
@@ -299,6 +368,12 @@ public class departmentScreen implements Screen {
         }
     }
 
+    /**
+     * Takes button styles and Fonts, draws buttons to sell items in the shop and the item information
+     * @param titleFont
+     * @param bodyFont
+     * @param textButtonStyle
+     */
     public void drawSellWeaponFeatures(BitmapFont titleFont, BitmapFont bodyFont, TextButton.TextButtonStyle textButtonStyle) {
         List<TextButton> sellButtonList = new ArrayList<TextButton>();
         List<Weapon> weaponList = new ArrayList<Weapon>();
@@ -325,6 +400,11 @@ public class departmentScreen implements Screen {
         sellButtonListener(sellButtonList, weaponList);
     }
 
+    /**
+     * Adds listeners to all sell buttons
+     * @param buyButtonList
+     * @param weaponList
+     */
     public void sellButtonListener(final List<TextButton> buyButtonList, final List<Weapon> weaponList) {
         int i = 0;
         while (i <= buyButtonList.size() - 1) {
@@ -347,6 +427,12 @@ public class departmentScreen implements Screen {
 
     }
 
+    /**
+     * Takes button styles and Fonts, draws buttons to buy room upgrades in the shop and the item information
+     * @param titleFont
+     * @param bodyFont
+     * @param textButtonStyle
+     */
     public void drawBuyRoomUpgradeFeatures(BitmapFont titleFont, BitmapFont bodyFont, TextButton.TextButtonStyle textButtonStyle) {
         List<TextButton> buyButtonList = new ArrayList<TextButton>();
         List<RoomUpgrade> roomUpgradeList = new ArrayList<RoomUpgrade>();
@@ -370,6 +456,11 @@ public class departmentScreen implements Screen {
         buyRoomUpgradeButtonListener(buyButtonList, roomUpgradeList);
     }
 
+    /**
+     * Adds listeners to all buy room upgrade buttons
+     * @param buyButtonList
+     * @param roomUpgradeList
+     */
     public void buyRoomUpgradeButtonListener(final List<TextButton> buyButtonList, final List<RoomUpgrade> roomUpgradeList) {
         int i = 0;
         while (i <= buyButtonList.size() - 1) {
@@ -398,6 +489,10 @@ public class departmentScreen implements Screen {
 
     }
 
+    /**
+     * Draws buttons and information for buying resources
+     * @param titleFont
+     */
     public void drawBuyResourceFeatures(BitmapFont titleFont){
         List<TextButton> buyButtonList = new ArrayList<TextButton>();
 
@@ -420,6 +515,10 @@ public class departmentScreen implements Screen {
         buyResourceButtonListener(buyButtonList);
     }
 
+    /**
+     * Adds listeners to the buy resource buttons
+     * @param buyButtonList
+     */
     public void buyResourceButtonListener(final List<TextButton> buyButtonList){
         buyButtonList.get(0).addListener(new InputListener() {
                 public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {

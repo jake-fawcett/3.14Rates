@@ -456,7 +456,9 @@ public class combatScreen implements Screen {
     }
 
     /**
-     * Draws buttons
+     * Draws buttons for Each weapon the user has which can be pressed to fire
+     * Also adds listeners to these controlling the weaponSelected by the user
+     * This also contains the Fire button, when pressed this runs the main combat loop
      */
     private void drawWeaponButtons() {
         TextureAtlas weaponButtonAtlas = new TextureAtlas("weaponButtonSpriteSheet.txt");
@@ -592,6 +594,9 @@ public class combatScreen implements Screen {
         weaponButtonGroup.uncheckAll();
     }
 
+    /**
+     * Draws Text displaying weapon cooldowns to the user
+     */
     private void drawWeaponCooldowns() {
         BitmapFont cooldownFont = new BitmapFont();
         cooldownFont.getData().setScale(0.9f);
@@ -610,6 +615,9 @@ public class combatScreen implements Screen {
         }
     }
 
+    /**
+     * Draws the Player Room HP and a Stats display of Room Effectivness
+     */
     private void drawRoomHPEffectivness(){
         BitmapFont roomHealthFont = new BitmapFont();
         roomHealthFont.setColor(1,1,1,1);
@@ -630,6 +638,9 @@ public class combatScreen implements Screen {
         roomHealthFont.draw(batch, "Repair % Per Turn: " + df.format(playerShip.calculateRepair()) + "%",100,170);
     }
 
+    /**
+     * Draws the Enemy Room Effectivness Stats
+     */
     private void drawEnemyEffectivness() {
         BitmapFont roomHealthFont = new BitmapFont();
         roomHealthFont.setColor(1,1,1,1);
@@ -641,6 +652,9 @@ public class combatScreen implements Screen {
         roomHealthFont.draw(batch, "Repair % Per Turn: " + df.format(enemyShip.calculateRepair()) + "%",700,170);
     }
 
+    /**
+     * Draws buttons which display if you Win or Lose
+     */
     private void drawEndButtons(){
         youWin = new TextButton("You win!", textButtonStyle);
         youWin.setTransform(true);
@@ -657,6 +671,9 @@ public class combatScreen implements Screen {
         youLose.setVisible(false);
     }
 
+    /**
+     * Draws buttons which display if the user/Enemy hit or missed
+     */
     private void drawHitMissButtons(){
         youHit = new TextButton("You hit!", textButtonStyle);
         youHit.setTransform(true);
