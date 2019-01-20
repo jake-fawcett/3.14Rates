@@ -35,7 +35,9 @@ import static combat.ship.RoomFunction.*;
 import static other.Constants.COOLDOWN_TICKS_PER_TURN;
 
 public class combatScreen implements Screen {
-
+    /**
+     * Constructor requiring Game (to switch screen) and is college battle
+     */
     private Game game;
     private Boolean isCollegeBattle;
     public combatScreen(Game game, Boolean isCollegeBattle){
@@ -43,6 +45,9 @@ public class combatScreen implements Screen {
         this.isCollegeBattle = isCollegeBattle;
     }
 
+    /**
+     * Sets up all required managers to access Methods and Cause Combat
+     */
     private GameManager gameManager = new GameManager(null, null);
     private Ship playerShip = gameManager.getPlayerShip();
     private CombatPlayer combatPlayer = gameManager.getCombatPlayer();
@@ -53,17 +58,29 @@ public class combatScreen implements Screen {
     private College college = assignCollege();
     private int randInt = pickRandom(3);
 
+    /**
+     * Used to Draw Assets on the Screen
+     */
     private SpriteBatch batch = new SpriteBatch();
     private Stage stage = new Stage();
 
+    /**
+     * Main style used for buttons
+     */
     private BitmapFont buttonFont = new BitmapFont();
     private TextButton.TextButtonStyle textButtonStyle = new TextButton.TextButtonStyle();
     private TextureAtlas buttonAtlas;
     private Skin skin = new Skin();
 
+    /**
+     * Tracks the Room and Weapon Selected
+     */
     private Room roomSelected;
     private Weapon weaponSelected;
 
+    /**
+     *
+     */
     private ButtonGroup weaponButtonGroup = new ButtonGroup();
     private ButtonGroup roomButtonGroup = new ButtonGroup();
 
