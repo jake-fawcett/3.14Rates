@@ -55,7 +55,6 @@ public class combatScreen implements Screen {
     private CombatEnemy combatEnemy;
     private CombatManager combatManager = gameManager.getCombatManager();
 
-    private College college = assignCollege();
     private int randInt = pickRandom(3);
 
     /**
@@ -219,7 +218,7 @@ public class combatScreen implements Screen {
     }
 
     /**
-     *
+     * Picks a Random integer
      */
     private int pickRandom(int max){
         Random rand = new Random();
@@ -227,18 +226,9 @@ public class combatScreen implements Screen {
         return randInt;
     }
 
-    private College assignCollege() {
-        switch (randInt) {
-            case 0:
-                return (new College("Constantine", playerShip, enemyShip));
-            case 1:
-                return (new College("Langwith", playerShip, enemyShip));
-            case 2:
-                return (new College("Goodricke", playerShip, enemyShip));
-        }
-        return null;
-    }
-
+    /**
+     * Checks which college was chosen and Draws the CollegeSprite, ShipBackground and ShipText
+     */
     private void drawCollege(){
         BitmapFont collegeFont = new BitmapFont();
         collegeFont.getData().setScale(2);
@@ -274,11 +264,17 @@ public class combatScreen implements Screen {
         }
     }
 
+    /**
+     * Creates and Draws the Combat Background
+     */
     private void drawBackground() {
         Texture background = new Texture("battleBackground.png");
         batch.draw(background, 0, 0);
     }
 
+    /**
+     * Draws the friendly ship from room textures and constant coordinates
+     */
     private void drawFriendlyShip(){
         TextureAtlas roomSpriteAtlas = new TextureAtlas("roomSpriteSheet.txt");
 
@@ -316,6 +312,9 @@ public class combatScreen implements Screen {
         friendlyEmptyRoom4.draw(batch);
     }
 
+    /**
+     * Draws Hp bars for both ships
+     */
     private void drawHealthBar() {
         Texture hpBar = new Texture("background.png");
         Texture hpBackground = new Texture("disabledBackground.png");
@@ -331,6 +330,9 @@ public class combatScreen implements Screen {
         batch.draw(hpBar,675, 900, enemyWidth, 16);
     }
 
+    /**
+     * Draws resource indicators for player
+     */
     private void drawIndicators(){
         BitmapFont indicatorFont = new BitmapFont();
         indicatorFont.setColor(1,1,1,1);
@@ -341,6 +343,10 @@ public class combatScreen implements Screen {
         indicatorFont.draw(batch, "Crew: " + playerShip.getCrew(), 280, 890);
     }
 
+    /**
+     * Draws the Button returning to menu, taking the style button
+     * @param textButtonStyle
+     */
     private void buttonToMenu(TextButton.TextButtonStyle textButtonStyle){
         TextButton toMenu = new TextButton("To Menu", textButtonStyle);
         toMenu.setPosition(880, 980);
@@ -353,6 +359,9 @@ public class combatScreen implements Screen {
         stage.addActor(toMenu);
     }
 
+    /**
+     * Draws the Enemy Ship of buttonsFrom Textures using Constant Coordinates, adds listeners which track the selected room
+     */
     private void drawEnemyShip(){
         TextureAtlas roomButtonAtlas = new TextureAtlas("roomSpriteSheet.txt");
         Skin roomButtonSkin = new Skin();
@@ -446,6 +455,9 @@ public class combatScreen implements Screen {
         stage.addActor(enemyEmpty4);
     }
 
+    /**
+     * Draws buttons
+     */
     private void drawWeaponButtons() {
         TextureAtlas weaponButtonAtlas = new TextureAtlas("weaponButtonSpriteSheet.txt");
         Skin weaponButtonSkin = new Skin();
