@@ -49,7 +49,7 @@ public class Constants {
     /**
      * The amount of gold a player starts with
      */
-    public static final int STARTING_GOLD = 500;
+    public static final int STARTING_GOLD = 250;
     /**
      * The amount of food a player starts with
      */
