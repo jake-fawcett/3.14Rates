@@ -361,9 +361,6 @@ public class combatScreen implements Screen {
         fire.setTransform(true);
         fire.setScale(1,1.5f);
         fire.setPosition(575,50);
-        ButtonGroup fireGroup = new ButtonGroup(fire);
-        fireGroup.setMaxCheckCount(0);
-
         stage.addActor(fire);
 
         weaponButtons.get(0).addListener(new InputListener() {
@@ -405,27 +402,29 @@ public class combatScreen implements Screen {
 
         fire.addListener(new InputListener() {
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-                if (weaponSelected.getCurrentCooldown() > 0) {
-                    for (Weapon weapon : playerShip.getWeapons()) {
-                        weapon.decrementCooldown(COOLDOWN_TICKS_PER_TURN);
+                if (weaponSelected instanceof Weapon) {
+                    if (weaponSelected.getCurrentCooldown() > 0) {
+                        for (Weapon weapon : playerShip.getWeapons()) {
+                            weapon.decrementCooldown(COOLDOWN_TICKS_PER_TURN);
+                        }
+                    } else {
+                        combatManager.combatLoop(combatPlayer, combatEnemy, roomSelected, weaponSelected);
                     }
-                } else {
-                    combatManager.combatLoop(combatPlayer, combatEnemy, roomSelected, weaponSelected);
+
+                    weaponButtonGroup.uncheckAll();
+                    roomButtonGroup.uncheckAll();
+
+                    combatManager.enemyCombatLoop(combatEnemy, combatPlayer);
+
+                    if (combatManager.checkFightEnd() && playerShip.getHullHP() <= 0) {
+                        gameOver = true;
+                        gameWon = false;
+                    } else if (combatManager.checkFightEnd() && enemyShip.getHullHP() <= 0) {
+                        gameOver = true;
+                        gameWon = true;
+                    }
+                    fire.toggle();
                 }
-
-                weaponButtonGroup.uncheckAll();
-                roomButtonGroup.uncheckAll();
-
-                combatManager.enemyCombatLoop(combatEnemy, combatPlayer);
-
-                if (combatManager.checkFightEnd() && playerShip.getHullHP() <= 0){
-                    gameOver = true;
-                    gameWon = false;
-                } else if (combatManager.checkFightEnd() && enemyShip.getHullHP() <= 0) {
-                    gameOver = true;
-                    gameWon = true;
-                }
-
                 return true;
             }
         });
