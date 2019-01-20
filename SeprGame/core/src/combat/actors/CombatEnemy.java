@@ -42,7 +42,7 @@ public class CombatEnemy extends CombatActor {
     /**
      * @return Boolean - Ship has weapon ready to fire.
      */
-    private boolean hasWepaonsReady() {
+    public boolean hasWepaonsReady() {
         for (Weapon weapon : getShip().getWeapons()) {
             if (weapon.getCurrentCooldown() == 0) {
                 return true;

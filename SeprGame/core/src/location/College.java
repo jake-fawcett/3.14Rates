@@ -43,6 +43,5 @@ public class College {
 
     public void arrive() {
         CombatManager cm = new CombatManager(new CombatPlayer(player), new CombatEnemy(opponent));
-        cm.combatLoop();
     }
 }

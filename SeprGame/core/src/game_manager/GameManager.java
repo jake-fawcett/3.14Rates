@@ -38,10 +38,7 @@ public class GameManager extends Game {
      * The name of the current player for saves and hi-scores
      */
     private String playerName;
-    /**
-     * The ship that the player is using. Used in combat, departments etc.
-     */
-    private Ship playerShip;
+
     /**
      * The difficulty that the player is playing on.
      */
