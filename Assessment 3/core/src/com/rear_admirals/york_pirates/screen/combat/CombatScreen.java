@@ -350,8 +350,8 @@ public class CombatScreen extends BaseScreen {
                 break;
             case ENEMY_DIES:
                 textBox.setStyle(pirateGame.getSkin().get("default", TextButton.TextButtonStyle.class));
-                player.addGold(20);
-                player.addPoints(20);
+                player.addGold(enemy.getGoldValue());
+                player.addPoints(enemy.getPointValue());
                 dialog("Congratulations, you have defeated Enemy " + enemy.getName(), BattleEvent.SCENE_RETURN);
                 if (enemy.getIsBoss() == true) {
                     enemy.getCollege().setBossDead(true);
