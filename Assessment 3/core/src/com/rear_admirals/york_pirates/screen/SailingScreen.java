@@ -56,7 +56,7 @@ public class SailingScreen extends BaseScreen {
     private Label mapMessage;
     private Label hintMessage;
 
-    private Float timer;
+    private double timer;
 
     public SailingScreen(final PirateGame main){
         super(main);
@@ -270,9 +270,9 @@ public class SailingScreen extends BaseScreen {
         tiledMapRenderer.setView(tiledCamera);
 
         timer += delta;
-        if (timer > 1) {
+        if (timer > 2 ) {
             pirateGame.getPlayer().addPoints(1);
-            timer -= 1;
+            timer = 0;
         }
 
         pointsLabel.setText(Integer.toString(pirateGame.getPlayer().getPoints()));

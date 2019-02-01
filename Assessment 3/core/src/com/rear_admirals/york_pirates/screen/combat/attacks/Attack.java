@@ -27,6 +27,7 @@ public class Attack {
 	// Custom constructor. Can be used to create any attack which applies a multiple of the attacker's damage
 	// to the defender. Can also take a turn to charge and have custom accuracy.
 	protected Attack(String name, String desc, int dmgMultiplier, double accMultiplier, boolean skipMove, int accPercent) {
+
 		this.name = name;
 		this.desc = desc;
 		this.dmgMultiplier = dmgMultiplier;
@@ -76,6 +77,9 @@ public class Attack {
 	}
 	public void setSkipMoveStatus(boolean skipMoveStatus) {
 		this.skipMoveStatus = skipMoveStatus;
+	}
+	public void addAccuracy (int amount){
+		accPercent += amount;
 	}
 
 	// attacks to be used in the game are defined here.
