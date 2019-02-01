@@ -18,7 +18,7 @@ public class DepartmentScreen extends BaseScreen {
     private Label goldLabel;
     private int toHeal;
 
-    public DepartmentScreen(final PirateGame main, final Department department){
+    public DepartmentScreen(final PirateGame main, final Department department) {
         super(main);
         player = main.getPlayer();
 
@@ -47,28 +47,29 @@ public class DepartmentScreen extends BaseScreen {
         optionsTable.setFillParent(true);
         Label title = new Label(department.getName(), main.getSkin());
 
-        final TextButton upgrade = new TextButton("Upgrade Ship "+ department.getProduct() + " for " + department.getPrice() + " gold", main.getSkin());
+        final TextButton upgrade = new TextButton("Upgrade Ship " + department.getProduct() + " for " + department.getPrice() + " gold", main.getSkin());
         final Label message = new Label("", main.getSkin());
         this.toHeal = player.getPlayerShip().getHealthMax() - player.getPlayerShip().getHealth();
 
-        final TextButton heal = new TextButton("Repair Ship for "+ Integer.toString(toHeal/10) +" gold", main.getSkin());
-        upgrade.addListener(new ClickListener(){
+        final TextButton heal = new TextButton("Repair Ship for " + Integer.toString(toHeal / 10) + " gold", main.getSkin());
+        upgrade.addListener(new ClickListener() {
             @Override
-            public void clicked(InputEvent event, float x, float y){
+            public void clicked(InputEvent event, float x, float y) {
                 department.purchase();
-                upgrade.setText("Upgrade Ship "+ department.getProduct() + " for " + department.getPrice() + " gold");
+                upgrade.setText("Upgrade Ship " + department.getProduct() + " for " + department.getPrice() + " gold");
             }
         });
 
-        if (toHeal == 0) { heal.setText("Your ship is already fully repaired!"); }
+        if (toHeal == 0) {
+            heal.setText("Your ship is already fully repaired!");
+        }
 
         heal.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                if (toHeal==0){
+                if (toHeal == 0) {
                     heal.setText("Your ship is already fully repaired!");
-                }
-                else {
+                } else {
                     if (player.payGold(toHeal / 10)) {
                         System.out.println("charged");
                         player.getPlayerShip().setHealth(player.getPlayerShip().getHealthMax());
@@ -91,8 +92,8 @@ public class DepartmentScreen extends BaseScreen {
     }
 
     @Override
-    public void update(float delta){
-        if (Gdx.input.isKeyPressed(Input.Keys.ESCAPE)){
+    public void update(float delta) {
+        if (Gdx.input.isKeyPressed(Input.Keys.ESCAPE)) {
             System.out.println("ESCAPE");
             pirateGame.setScreen(pirateGame.getSailingScene());
         }

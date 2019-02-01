@@ -48,7 +48,7 @@ public class SailingScreen extends BaseScreen {
 
     private OrthogonalTiledMapRenderer tiledMapRenderer;
     private OrthographicCamera tiledCamera;
-    private int[] backgroundLayers = {0,1,2};
+    private int[] backgroundLayers = {0, 1, 2};
     private int[] foregroundLayers = {3};
 
     private Label pointsLabel;
@@ -58,7 +58,7 @@ public class SailingScreen extends BaseScreen {
 
     private Float timer;
 
-    public SailingScreen(final PirateGame main){
+    public SailingScreen(final PirateGame main) {
         super(main);
 
         playerShip = main.getPlayer().getPlayerShip();
@@ -69,11 +69,11 @@ public class SailingScreen extends BaseScreen {
 
         Table uiTable = new Table();
 
-        Label pointsTextLabel = new Label("Points: ", main.getSkin(),"default_black");
+        Label pointsTextLabel = new Label("Points: ", main.getSkin(), "default_black");
         pointsLabel = new Label(Integer.toString(main.getPlayer().getPoints()), main.getSkin(), "default_black");
         pointsLabel.setAlignment(Align.left);
 
-        Label goldTextLabel = new Label("Gold:", main.getSkin(),"default_black");
+        Label goldTextLabel = new Label("Gold:", main.getSkin(), "default_black");
         goldLabel = new Label(Integer.toString(main.getPlayer().getGold()), main.getSkin(), "default_black");
         goldLabel.setAlignment(Align.left);
 
@@ -89,7 +89,7 @@ public class SailingScreen extends BaseScreen {
         uiStage.addActor(uiTable);
 
         mapMessage = new Label("", main.getSkin(), "default_black");
-        hintMessage = new Label("", main.getSkin(),"default_black");
+        hintMessage = new Label("", main.getSkin(), "default_black");
 
         Table messageTable = new Table();
         messageTable.add(mapMessage);
@@ -117,12 +117,12 @@ public class SailingScreen extends BaseScreen {
             String name = object.getName();
 
             // all object data assumed to be stored as rectangles
-            RectangleMapObject rectangleObject = (RectangleMapObject)object;
+            RectangleMapObject rectangleObject = (RectangleMapObject) object;
             Rectangle r = rectangleObject.getRectangle();
 
-            if (name.equals("player")){
+            if (name.equals("player")) {
                 playerShip.setPosition(r.x, r.y);
-            } else{
+            } else {
                 System.err.println("Unknown tilemap object: " + name);
             }
         }
@@ -143,9 +143,9 @@ public class SailingScreen extends BaseScreen {
                 if (objectName.equals("derwent")) solid.setCollege(Derwent);
                 else if (objectName.equals("james")) solid.setCollege(James);
                 else if (objectName.equals("vanbrugh")) solid.setCollege(Vanbrugh);
-                else if (objectName.equals("chemistry"))solid.setDepartment(Chemistry);
+                else if (objectName.equals("chemistry")) solid.setDepartment(Chemistry);
                 else if (objectName.equals("physics")) solid.setDepartment(Physics);
-                else{
+                else {
                     System.out.println("Not college/department: " + solid.getName());
                 }
                 obstacleList.add(solid);
@@ -221,7 +221,8 @@ public class SailingScreen extends BaseScreen {
                 if (!(obstacle.getDepartment() == null)) {
                     mapMessage.setText(capitalizeFirstLetter(name) + " Island");
                     hintMessage.setText("Press F to interact");
-                    if (Gdx.input.isKeyPressed(Input.Keys.F)) pirateGame.setScreen(new DepartmentScreen(pirateGame, obstacle.getDepartment()));
+                    if (Gdx.input.isKeyPressed(Input.Keys.F))
+                        pirateGame.setScreen(new DepartmentScreen(pirateGame, obstacle.getDepartment()));
                 }
                 // Obstacle must be a college if college not null
                 else if (!(obstacle.getCollege() == null)) {
@@ -286,7 +287,7 @@ public class SailingScreen extends BaseScreen {
         update(delta);
 
         // render
-        Gdx.gl.glClearColor(0,0,0,1);
+        Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         tiledMapRenderer.render(backgroundLayers);
         mainStage.draw();
@@ -295,16 +296,16 @@ public class SailingScreen extends BaseScreen {
 
         uiStage.draw();
 
-        if (!playerShip.isAnchor()){
+        if (!playerShip.isAnchor()) {
             playerShip.addAccelerationAS(playerShip.getRotation(), 10000);
-        } else{
-            playerShip.setAccelerationXY(0,0);
+        } else {
+            playerShip.setAccelerationXY(0, 0);
             playerShip.setDeceleration(100);
         }
     }
 
     @Override
-    public void dispose () {
+    public void dispose() {
         mainStage.dispose();
         uiStage.dispose();
         playerShip.getSailingTexture().dispose();
