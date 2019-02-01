@@ -16,7 +16,7 @@ public class Player {
     public static List<Attack> attacks = new ArrayList<Attack>();
 
     public Player() {
-	    this.playerShip = new Ship(Brig, "Your Ship", Derwent);
+        this.playerShip = new Ship(Brig, "Your Ship", Derwent);
         this.gold = 0;
         this.points = 0;
 
@@ -35,29 +35,40 @@ public class Player {
         attacks.add(Attack.attackBoard);
     }
 
-    public Ship getPlayerShip() { return this.playerShip; }
+    public Ship getPlayerShip() {
+        return this.playerShip;
+    }
 
-    public int getPoints() { return points; }
+    public int getPoints() {
+        return points;
+    }
 
-	public int getGold() { return gold; }
+    public int getGold() {
+        return gold;
+    }
 
     public void setPoints(int points) {
         this.points = points;
     }
 
-    public void setGold(int gold) { this.gold = gold; }
+    public void setGold(int gold) {
+        this.gold = gold;
+    }
 
-	public boolean payGold(int amount){
-        if (amount > gold){
+    public boolean payGold(int amount) {
+        if (amount > gold) {
             return false;
-        }
-        else{
+        } else {
             addGold(-amount);
             return true;
         }
     }
 
-    public void addPoints(int amount) { points += amount; }
+    public void addPoints(int amount) {
+        points += amount;
+    }
 
-    public void addGold(int amount) { gold = gold + amount; }
+    public void addGold(int amount) {
+        gold = gold + amount;
+    }
 }

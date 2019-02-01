@@ -23,7 +23,7 @@ public class MainMenu extends BaseScreen {
     private float screen_width;
     private float screen_height;
 
-    public MainMenu(final PirateGame pirateGame){
+    public MainMenu(final PirateGame pirateGame) {
         super(pirateGame);
 
         Gdx.graphics.setTitle("York Pirates!");
@@ -31,10 +31,10 @@ public class MainMenu extends BaseScreen {
         // Layout Properties
         Container<Table> tableContainer = new Container<Table>();
         tableContainer.setFillParent(true);
-        tableContainer.setPosition(0,0);
+        tableContainer.setPosition(0, 0);
         tableContainer.align(Align.center);
         Table table = new Table();
-        stage = new Stage(new FitViewport(1920,1080));
+        stage = new Stage(new FitViewport(1920, 1080));
 
         screen_width = stage.getWidth();
         screen_height = stage.getHeight();
@@ -51,7 +51,7 @@ public class MainMenu extends BaseScreen {
         TextButton department_mode = new TextButton("Go to Department screen", pirateGame.getSkin());
 
         // Allows button to be clickable, and sets process for when clicked.
-        combat_mode.addListener(new ClickListener(){
+        combat_mode.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 pirateGame.setScreen(new CombatScreen(pirateGame, new Ship(Brig, Derwent)));
@@ -59,25 +59,25 @@ public class MainMenu extends BaseScreen {
             }
         });
 
-        sailing_mode.addListener(new ClickListener(){
+        sailing_mode.addListener(new ClickListener() {
             @Override
-            public void clicked(InputEvent event, float x, float y){
+            public void clicked(InputEvent event, float x, float y) {
                 pirateGame.setScreen(pirateGame.getSailingScene());
                 dispose();
             }
         });
 
-        college_mode.addListener(new ClickListener(){
+        college_mode.addListener(new ClickListener() {
             @Override
-            public void clicked(InputEvent event, float x, float y){
+            public void clicked(InputEvent event, float x, float y) {
                 pirateGame.setScreen(new CollegeScreen(pirateGame, Derwent));
                 dispose();
             }
         });
 
-        department_mode.addListener(new ClickListener(){
+        department_mode.addListener(new ClickListener() {
             @Override
-            public void clicked(InputEvent event, float x, float y){
+            public void clicked(InputEvent event, float x, float y) {
                 pirateGame.setScreen(new DepartmentScreen(pirateGame, Chemistry));
                 dispose();
             }
@@ -85,15 +85,15 @@ public class MainMenu extends BaseScreen {
 
         tableContainer.setActor(table);
 
-        table.add(title).padBottom(viewwidth/20).width(viewwidth/2);
+        table.add(title).padBottom(viewwidth / 20).width(viewwidth / 2);
         table.row(); // Ends the current row
-        table.add(sailing_mode).uniform().padBottom(viewheight/40).size(viewwidth/2,viewheight/10);
+        table.add(sailing_mode).uniform().padBottom(viewheight / 40).size(viewwidth / 2, viewheight / 10);
         table.row();
         table.add(new Label("These are for demo purposes, to show implementation of combat and colleges.", pirateGame.getSkin()));
         table.row();
-        table.add(combat_mode).uniform().padBottom(viewheight/40).fill();
+        table.add(combat_mode).uniform().padBottom(viewheight / 40).fill();
         table.row();
-        table.add(college_mode).uniform().fill().padBottom(viewheight/40);
+        table.add(college_mode).uniform().fill().padBottom(viewheight / 40);
         table.row();
         table.add(department_mode).uniform().fill();
 
@@ -104,9 +104,10 @@ public class MainMenu extends BaseScreen {
     }
 
     @Override
-    public void update(float delta) { }
+    public void update(float delta) {
+    }
 
-    public void render(float delta){
+    public void render(float delta) {
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         stage.draw();
@@ -116,7 +117,7 @@ public class MainMenu extends BaseScreen {
 
     @Override
     public void resize(int width, int height) {
-        stage.getViewport().update(width,height);
+        stage.getViewport().update(width, height);
     }
 
     @Override
