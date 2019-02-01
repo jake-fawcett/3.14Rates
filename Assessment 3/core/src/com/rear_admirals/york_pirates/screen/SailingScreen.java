@@ -255,7 +255,7 @@ public class SailingScreen extends BaseScreen {
         // camera adjustment
         Camera mainCamera = mainStage.getCamera();
 
-        // center camera on player
+        // center camera on playerenemy
         mainCamera.position.x = playerShip.getX() + playerShip.getOriginX();
         mainCamera.position.y = playerShip.getY() + playerShip.getOriginY();
 
@@ -272,7 +272,11 @@ public class SailingScreen extends BaseScreen {
 
         timer += delta;
         if (timer > 1) {
-            pirateGame.getPlayer().addPoints(1);
+            int points_gain = Integer.parseInt(pointsLabel.getText().toString()) / 250;
+            if (points_gain == 0) {
+                points_gain = 1;
+            }
+            pirateGame.getPlayer().addPoints(points_gain);
             timer -= 1;
         }
 

@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6d64a0f1-ade8-4b25-ab7f-83389071d214" name="Default Changelist" comment="" />
+    <list default="true" id="6d64a0f1-ade8-4b25-ab7f-83389071d214" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assessment 3/core/src/com/rear_admirals/york_pirates/Department.java" beforeDir="false" afterPath="$PROJECT_DIR$/Assessment 3/core/src/com/rear_admirals/york_pirates/Department.java" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,23 +41,88 @@
         </counts>
       </usages-collector>
     </session>
+    <session id="2105584205">
+      <usages-collector id="statistics.lifecycle.project">
+        <counts>
+          <entry key="project.closed" value="2" />
+          <entry key="project.open.time.2" value="1" />
+          <entry key="project.open.time.5" value="1" />
+          <entry key="project.opened" value="2" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.open">
+        <counts>
+          <entry key="java" value="8" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.open">
+        <counts>
+          <entry key="JAVA" value="8" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.edit">
+        <counts>
+          <entry key="java" value="1" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.edit">
+        <counts>
+          <entry key="JAVA" value="1" />
+        </counts>
+      </usages-collector>
+    </session>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Libgdx Learning/seprTest1/desktop/src/com/mygdx/seprtest1/desktop/DesktopLauncher.java">
+        <entry file="file://$PROJECT_DIR$/Assessment 3/core/src/com/rear_admirals/york_pirates/College.java">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Assessment 3/core/src/com/rear_admirals/york_pirates/Player.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="12" lean-forward="true" selection-start-line="12" selection-end-line="12" />
+            <state relative-caret-position="782">
+              <caret line="55" column="1" selection-start-line="55" selection-start-column="1" selection-end-line="55" selection-end-column="1" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Libgdx Learning/seprTest1/core/src/com/mygdx/seprtest1/seprTest1.java">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Assessment 3/core/src/com/rear_admirals/york_pirates/Ship.java">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Assessment 3/core/src/com/rear_admirals/york_pirates/ShipType.java">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Assessment 3/core/src/com/rear_admirals/york_pirates/Department.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="595">
-              <caret line="41" lean-forward="true" selection-start-line="41" selection-end-line="41" />
+            <state>
+              <caret column="1" selection-start-column="1" selection-end-column="1" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Assessment 3/core/src/com/rear_admirals/york_pirates/PirateGame.java">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Assessment 3/desktop/src/com/rear_admirals/york_pirates/desktop/DesktopLauncher.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="153">
+              <caret line="9" column="21" selection-start-line="9" selection-start-column="21" selection-end-line="9" selection-end-column="21" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -63,6 +131,13 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/Assessment 3/core/src/com/rear_admirals/york_pirates/Department.java" />
+      </list>
+    </option>
   </component>
   <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
   <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
@@ -81,7 +156,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
+      <pane id="AndroidView" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -92,20 +167,136 @@
             <path>
               <item name="3.14Rates" type="b2602c69:ProjectViewProjectNode" />
               <item name="3.14Rates" type="462c0819:PsiDirectoryNode" />
-              <item name="SeprGame" type="462c0819:PsiDirectoryNode" />
+              <item name="Assessment 3" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="3.14Rates" type="b2602c69:ProjectViewProjectNode" />
+              <item name="3.14Rates" type="462c0819:PsiDirectoryNode" />
+              <item name="Assessment 3" type="462c0819:PsiDirectoryNode" />
+              <item name="core" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="3.14Rates" type="b2602c69:ProjectViewProjectNode" />
+              <item name="3.14Rates" type="462c0819:PsiDirectoryNode" />
+              <item name="Assessment 3" type="462c0819:PsiDirectoryNode" />
+              <item name="core" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="3.14Rates" type="b2602c69:ProjectViewProjectNode" />
+              <item name="3.14Rates" type="462c0819:PsiDirectoryNode" />
+              <item name="Assessment 3" type="462c0819:PsiDirectoryNode" />
+              <item name="core" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="3.14Rates" type="b2602c69:ProjectViewProjectNode" />
+              <item name="3.14Rates" type="462c0819:PsiDirectoryNode" />
+              <item name="Assessment 3" type="462c0819:PsiDirectoryNode" />
+              <item name="core" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="rear_admirals" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="3.14Rates" type="b2602c69:ProjectViewProjectNode" />
+              <item name="3.14Rates" type="462c0819:PsiDirectoryNode" />
+              <item name="Assessment 3" type="462c0819:PsiDirectoryNode" />
+              <item name="core" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="rear_admirals" type="462c0819:PsiDirectoryNode" />
+              <item name="york_pirates" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="3.14Rates" type="b2602c69:ProjectViewProjectNode" />
+              <item name="3.14Rates" type="462c0819:PsiDirectoryNode" />
+              <item name="Assessment 3" type="462c0819:PsiDirectoryNode" />
+              <item name="core" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="rear_admirals" type="462c0819:PsiDirectoryNode" />
+              <item name="york_pirates" type="462c0819:PsiDirectoryNode" />
+              <item name="base" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="3.14Rates" type="b2602c69:ProjectViewProjectNode" />
+              <item name="3.14Rates" type="462c0819:PsiDirectoryNode" />
+              <item name="Assessment 3" type="462c0819:PsiDirectoryNode" />
+              <item name="desktop" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="3.14Rates" type="b2602c69:ProjectViewProjectNode" />
+              <item name="3.14Rates" type="462c0819:PsiDirectoryNode" />
+              <item name="Assessment 3" type="462c0819:PsiDirectoryNode" />
+              <item name="desktop" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="3.14Rates" type="b2602c69:ProjectViewProjectNode" />
+              <item name="3.14Rates" type="462c0819:PsiDirectoryNode" />
+              <item name="Assessment 3" type="462c0819:PsiDirectoryNode" />
+              <item name="desktop" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="3.14Rates" type="b2602c69:ProjectViewProjectNode" />
+              <item name="3.14Rates" type="462c0819:PsiDirectoryNode" />
+              <item name="Assessment 3" type="462c0819:PsiDirectoryNode" />
+              <item name="desktop" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="rear_admirals" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="3.14Rates" type="b2602c69:ProjectViewProjectNode" />
+              <item name="3.14Rates" type="462c0819:PsiDirectoryNode" />
+              <item name="Assessment 3" type="462c0819:PsiDirectoryNode" />
+              <item name="desktop" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="rear_admirals" type="462c0819:PsiDirectoryNode" />
+              <item name="york_pirates" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="3.14Rates" type="b2602c69:ProjectViewProjectNode" />
+              <item name="3.14Rates" type="462c0819:PsiDirectoryNode" />
+              <item name="Assessment 3" type="462c0819:PsiDirectoryNode" />
+              <item name="desktop" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="rear_admirals" type="462c0819:PsiDirectoryNode" />
+              <item name="york_pirates" type="462c0819:PsiDirectoryNode" />
+              <item name="desktop" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="3.14Rates" type="b2602c69:ProjectViewProjectNode" />
+              <item name="3.14Rates" type="462c0819:PsiDirectoryNode" />
+              <item name="Assessment 3" type="462c0819:PsiDirectoryNode" />
+              <item name="gradle" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="3.14Rates" type="b2602c69:ProjectViewProjectNode" />
+              <item name="3.14Rates" type="462c0819:PsiDirectoryNode" />
+              <item name="Assessment 3" type="462c0819:PsiDirectoryNode" />
+              <item name="gradle" type="462c0819:PsiDirectoryNode" />
+              <item name="wrapper" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="AndroidView" />
+      <pane id="PackagesPane" />
       <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1549020511691" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/Assessment 3" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -136,17 +327,18 @@
       <workItem from="1543582996408" duration="20000" />
       <workItem from="1547718221716" duration="42000" />
       <workItem from="1547718816784" duration="64000" />
+      <workItem from="1549018297475" duration="1789000" />
+      <workItem from="1549020529810" duration="289000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="179000" />
+    <option name="totallyTimeSpent" value="2257000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="2576" height="1416" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.13553259" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.13712242" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -164,6 +356,7 @@
       <window_info anchor="bottom" id="Terminal" order="8" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="10" />
+      <window_info anchor="bottom" id="Messages" order="11" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -182,17 +375,44 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Libgdx Learning/seprTest1/desktop/src/com/mygdx/seprtest1/desktop/DesktopLauncher.java">
+    <entry file="file://$PROJECT_DIR$/Libgdx Learning/seprTest1/desktop/src/com/mygdx/seprtest1/desktop/DesktopLauncher.java" />
+    <entry file="file://$PROJECT_DIR$/Libgdx Learning/seprTest1/core/src/com/mygdx/seprtest1/seprTest1.java" />
+    <entry file="file://$PROJECT_DIR$/Assessment 3/core/src/com/rear_admirals/york_pirates/College.java">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Assessment 3/core/src/com/rear_admirals/york_pirates/Player.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="12" lean-forward="true" selection-start-line="12" selection-end-line="12" />
+        <state relative-caret-position="782">
+          <caret line="55" column="1" selection-start-line="55" selection-start-column="1" selection-end-line="55" selection-end-column="1" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Libgdx Learning/seprTest1/core/src/com/mygdx/seprtest1/seprTest1.java">
+    <entry file="file://$PROJECT_DIR$/Assessment 3/core/src/com/rear_admirals/york_pirates/Ship.java">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Assessment 3/core/src/com/rear_admirals/york_pirates/ShipType.java">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Assessment 3/core/src/com/rear_admirals/york_pirates/Department.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="595">
-          <caret line="41" lean-forward="true" selection-start-line="41" selection-end-line="41" />
+        <state>
+          <caret column="1" selection-start-column="1" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Assessment 3/core/src/com/rear_admirals/york_pirates/PirateGame.java">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Assessment 3/desktop/src/com/rear_admirals/york_pirates/desktop/DesktopLauncher.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="21" selection-start-line="9" selection-start-column="21" selection-end-line="9" selection-end-column="21" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -254,6 +474,18 @@
               <list>
                 <option value="0.2" />
                 <option value="0.6" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectJDKs.UI">
+        <settings>
+          <last-edited>1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
               </list>
             </option>
           </splitter-proportions>
