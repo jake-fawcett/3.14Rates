@@ -254,7 +254,7 @@ public class SailingScreen extends BaseScreen {
         // camera adjustment
         Camera mainCamera = mainStage.getCamera();
 
-        // center camera on player
+        // center camera on playerenemy
         mainCamera.position.x = playerShip.getX() + playerShip.getOriginX();
         mainCamera.position.y = playerShip.getY() + playerShip.getOriginY();
 

@@ -22,6 +22,8 @@ public class Ship extends PhysicsActor {
     private Texture sailingTexture;
     private College college;
     private boolean isBoss = false;
+    private int pointValue;
+    private int goldValue;
 
     // For testing purposes only. Use of this constructor in-game WILL cause errors.
     @Deprecated
@@ -33,6 +35,8 @@ public class Ship extends PhysicsActor {
         this.healthMax = defence*20;
         this.health = healthMax;
         this.college = Derwent;
+        this.pointValue = 20;
+        this.goldValue = 20;
     }
 
     public Ship(ShipType type, College college) {
@@ -43,6 +47,8 @@ public class Ship extends PhysicsActor {
         this.healthMax = defence*20;
         this.health = healthMax;
         this.college = college;
+        this.pointValue = 20;
+        this.goldValue = 20;
         this.type = type;
         this.sailingTexture = new Texture(Gdx.files.internal("ship (1).png"));
         setupShip();
