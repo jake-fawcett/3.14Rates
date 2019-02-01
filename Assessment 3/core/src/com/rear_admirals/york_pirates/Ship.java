@@ -192,4 +192,20 @@ public class Ship extends PhysicsActor {
         this.type = type;
     }
 
+    public int getGoldValue() {
+        return this.goldValue;
+    }
+
+    public void setGoldValue(int newValue) {
+        this.goldValue = newValue;
+    }
+
+    public int getPointValue() {
+        return this.pointValue;
+    }
+
+    public void setPointValue(int newValue) {
+        this.pointValue = newValue;
+    }
+
 }
