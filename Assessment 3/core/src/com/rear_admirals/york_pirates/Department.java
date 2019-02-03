@@ -3,6 +3,7 @@ package com.rear_admirals.york_pirates;
 import static java.lang.Math.max;
 import static java.lang.Math.pow;
 
+
 public class Department {
 
     private final String name;
