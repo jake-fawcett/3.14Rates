@@ -28,7 +28,6 @@ public class minigame {
     }
 
     //TODO, front-end implement this please
-
     /**
      * Find out if the player wants to end the minigame and take their money
      *
@@ -56,7 +55,6 @@ public class minigame {
     }
 
     // Todo, front-end implement this please
-
     /**
      * Get the player's guess as to whether the coin will land on heads or tails
      *
@@ -71,7 +69,6 @@ public class minigame {
     }
 
     // Todo, front-end implement this please
-
     /**
      * Find out how much the player wants to bet
      *
