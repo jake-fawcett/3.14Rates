@@ -11,6 +11,7 @@ import com.rear_admirals.york_pirates.Department;
 import com.rear_admirals.york_pirates.PirateGame;
 import com.rear_admirals.york_pirates.Player;
 import com.rear_admirals.york_pirates.base.BaseScreen;
+import com.rear_admirals.york_pirates.minigame;
 
 public class MinigameScreen extends BaseScreen {
     private Player player;
@@ -18,6 +19,8 @@ public class MinigameScreen extends BaseScreen {
     
     private Label goldLabel;
     private Label resultLabel;
+
+    final minigame minigame = new minigame();
 
     public MinigameScreen(final PirateGame main, final Department department) {
         super(main);
@@ -38,17 +41,44 @@ public class MinigameScreen extends BaseScreen {
 
         uiStage.addActor(uiTable);
 
+        Table bettingTable = new Table();
+        bettingTable.setFillParent(true);
+
+        Label title = new Label("Heads or Tails!", main.getSkin());
+        final Label status = new Label("", main.getSkin());
+        Label empty = new Label(" ", main.getSkin());
+
         final TextButton Heads = new TextButton("Bet 5 on Heads", main.getSkin());
         Heads.addListener(new ClickListener() {
             public void clicked(InputEvent event, float x, float y) {
-                
+                if (player.getGold() >= 5) {
+                    if (minigame.flipCoin() == "h") {
+                        status.setText("The Coin was Heads, You Win!");
+                        player.setGold(player.getGold() + 5);
+                    } else {
+                        status.setText("The Coin was Tails, You Lose!");
+                        player.setGold(player.getGold() - 5);
+                    }
+                } else {
+                    status.setText("Not Enough Gold!");
+                }
             }
         });
 
         final TextButton Tails = new TextButton("Bet 5 on Tails", main.getSkin());
         Tails.addListener(new ClickListener() {
             public void clicked(InputEvent event, float x, float y) {
-
+                if (player.getGold() >= 5) {
+                    if (minigame.flipCoin() == "h") {
+                        status.setText("The Coin was Heads, You Lose!");
+                        player.setGold(player.getGold() - 5);
+                    } else {
+                        status.setText("The Coin was Tails, You Win!");
+                        player.setGold(player.getGold() + 5);
+                    }
+                } else {
+                    status.setText("Not Enough Gold!");
+                }
             }
         });
 
@@ -59,13 +89,6 @@ public class MinigameScreen extends BaseScreen {
                 dispose();
             }
         });
-
-        Table bettingTable = new Table();
-        bettingTable.setFillParent(true);
-
-        Label title = new Label("Heads or Tails!", main.getSkin());
-        Label status = new Label("", main.getSkin());
-        Label empty = new Label(" ", main.getSkin());
 
         bettingTable.add(title);
         bettingTable.row();

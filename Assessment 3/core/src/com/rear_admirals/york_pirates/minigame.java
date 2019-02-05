@@ -5,7 +5,9 @@ import java.util.Random;
 public class minigame {
     private Player player;
 
-    private String decision;
+    private String coinChoice;
+    private Boolean endMiniGame = false;
+
 
     /**
      * Play the minigame by choosing heads or tails. Every time you flip the coin it is double or nothing.
@@ -29,6 +31,10 @@ public class minigame {
         }
     }
 
+    private void setEndMinigame(Boolean end) {
+        endMiniGame = end;
+    }
+
     //TODO, front-end implement this please
     /**
      * Find out if the player wants to end the minigame and take their money
@@ -36,10 +42,7 @@ public class minigame {
      * @return true (player wants to end) or false (player wants to keep playing)
      */
     private boolean endMinigame() {
-        //If player wants to end minigame
-        //  return true
-        //else
-        return false;
+        return endMiniGame;
     }
 
     /**
@@ -47,7 +50,7 @@ public class minigame {
      *
      * @return "h" or "t" relating to heads or tails
      */
-    private String flipCoin() {
+    public String flipCoin() {
         Random rand = new Random();
         if (rand.nextBoolean()) {
             return "h";
@@ -56,8 +59,8 @@ public class minigame {
         }
     }
 
-    private void setDecision(String playerDecision){
-        decision = playerDecision;
+    private void setDecision(String playerChoice){
+        coinChoice = playerChoice;
     }
 
     // Todo, front-end implement this please
