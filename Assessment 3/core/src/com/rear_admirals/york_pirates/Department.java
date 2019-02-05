@@ -3,7 +3,6 @@ package com.rear_admirals.york_pirates;
 import static java.lang.Math.max;
 import static java.lang.Math.pow;
 
-
 public class Department {
 
     private final String name;
@@ -46,7 +45,9 @@ public class Department {
         else {return 0;}
     }
 
-    public String getName() { return name; }
+    public String getName() {
+        return name;
+    }
 
     public String getProduct() {
         return product;
