@@ -5,6 +5,8 @@ import java.util.Random;
 public class minigame {
     private Player player;
 
+    private String decision;
+
     /**
      * Play the minigame by choosing heads or tails. Every time you flip the coin it is double or nothing.
      */
@@ -52,6 +54,10 @@ public class minigame {
         } else {
             return "t";
         }
+    }
+
+    private void setDecision(String playerDecision){
+        decision = playerDecision;
     }
 
     // Todo, front-end implement this please
