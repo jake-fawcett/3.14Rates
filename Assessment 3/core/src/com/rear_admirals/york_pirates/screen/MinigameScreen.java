@@ -19,7 +19,7 @@ public class MinigameScreen extends BaseScreen {
     private Label goldLabel;
     private Label resultLabel;
 
-    public MinigameScreen(final PirateGame main, Department department) {
+    public MinigameScreen(final PirateGame main, final Department department) {
         super(main);
         player = main.getPlayer();
         this.department = department;
@@ -52,15 +52,32 @@ public class MinigameScreen extends BaseScreen {
             }
         });
 
+        final TextButton Exit = new TextButton("Exit", main.getSkin());
+        Exit.addListener(new ClickListener() {
+            public void clicked(InputEvent event, float x, float y) {
+                pirateGame.setScreen(new DepartmentScreen(pirateGame, department));
+                dispose();
+            }
+        });
+
         Table bettingTable = new Table();
         bettingTable.setFillParent(true);
+
         Label title = new Label("Heads or Tails!", main.getSkin());
-        title.setAlignment(Align.center);
+        Label status = new Label("", main.getSkin());
+        Label empty = new Label(" ", main.getSkin());
 
         bettingTable.add(title);
         bettingTable.row();
+        bettingTable.add(status);
+        bettingTable.row();
         bettingTable.add(Heads);
         bettingTable.add(Tails);
+        bettingTable.row();
+        bettingTable.add(empty);
+        bettingTable.row();
+        bettingTable.add(Exit);
+
 
         mainStage.addActor(bettingTable);
 
