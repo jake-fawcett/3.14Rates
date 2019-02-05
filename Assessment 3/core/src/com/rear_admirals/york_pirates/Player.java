@@ -35,6 +35,10 @@ public class Player {
         attacks.add(Attack.attackBoard);
     }
 
+    public List<Attack> getAttacks(){
+        return  attacks;
+    }
+
     public Ship getPlayerShip() {
         return this.playerShip;
     }
