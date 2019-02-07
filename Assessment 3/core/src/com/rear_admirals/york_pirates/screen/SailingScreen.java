@@ -197,7 +197,10 @@ public class SailingScreen extends BaseScreen {
                 x = true;
                 mapMessage.setText(capitalizeFirstLetter(name.substring(0, name.length() - 6)) + " Territory");
                 int enemyChance = ThreadLocalRandom.current().nextInt(0, 10001);
-                if (enemyChance <= 10) {
+                //TESTING HERE
+                //SOUT enemy chance
+                //SOUT points.... /10
+                if (enemyChance <= Integer.parseInt(pointsLabel.getText().toString()) / 10) {
                     System.out.println("Enemy Found in " + name);
                     College college = region.getCollege();
                     if (!playerShip.getCollege().getAlly().contains(college)) {
