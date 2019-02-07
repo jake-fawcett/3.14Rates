@@ -197,11 +197,11 @@ public class SailingScreen extends BaseScreen {
                 x = true;
                 mapMessage.setText(capitalizeFirstLetter(name.substring(0, name.length() - 6)) + " Territory");
                 int roll = ThreadLocalRandom.current().nextInt(0, 10001);
-                int enemyChance = Integer.parseInt(pointsLabel.getText().toString()) / 10;
-                if (enemyChance > 500) {
-                    enemyChance = 500;
-                } else if (enemyChance < 10) {
-                    enemyChance = 10;
+                int enemyChance = Integer.parseInt(pointsLabel.getText().toString()) / 2;
+                if (enemyChance > 300) {
+                    enemyChance = 300;
+                } else if (enemyChance < 5) {
+                    enemyChance = 5;
                 }
                 System.out.println();
                 System.out.println(roll);
