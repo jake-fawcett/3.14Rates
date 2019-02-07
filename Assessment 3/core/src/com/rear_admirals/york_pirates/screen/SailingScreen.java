@@ -196,11 +196,17 @@ public class SailingScreen extends BaseScreen {
             if (playerShip.overlaps(region, false)) {
                 x = true;
                 mapMessage.setText(capitalizeFirstLetter(name.substring(0, name.length() - 6)) + " Territory");
-                int enemyChance = ThreadLocalRandom.current().nextInt(0, 10001);
-                //TESTING HERE
-                //SOUT enemy chance
-                //SOUT points.... /10
-                if (enemyChance <= Integer.parseInt(pointsLabel.getText().toString()) / 10) {
+                int roll = ThreadLocalRandom.current().nextInt(0, 10001);
+                int enemyChance = Integer.parseInt(pointsLabel.getText().toString()) / 10;
+                if (enemyChance > 500) {
+                    enemyChance = 500;
+                } else if (enemyChance < 10) {
+                    enemyChance = 10;
+                }
+                System.out.println();
+                System.out.println(roll);
+                System.out.println(enemyChance);
+                if (roll <= enemyChance) {
                     System.out.println("Enemy Found in " + name);
                     College college = region.getCollege();
                     if (!playerShip.getCollege().getAlly().contains(college)) {
