@@ -345,7 +345,7 @@ public class CombatScreen extends BaseScreen {
                 textBox.setStyle(pirateGame.getSkin().get("red", TextButton.TextButtonStyle.class));
                 player.addGold(-player.getGold()/2);
                 player.setPoints(0);
-                player.getPlayerShip().setHealth(player.getPlayerShip().getHealthMax()/4);
+                player.getPlayerShip().setHealth(player.getPlayerShip().getHealthMax());
                 dialog("YOU HAVE DIED", BattleEvent.SCENE_RETURN);
                 break;
             case ENEMY_DIES:
