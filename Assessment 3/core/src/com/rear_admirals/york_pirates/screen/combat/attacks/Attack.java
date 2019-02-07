@@ -49,6 +49,7 @@ public class Attack {
 	// New function used to check if an attack hits the enemy.
 	protected boolean doesHit( int shipAcc, int accPercent) {
 		int random = ThreadLocalRandom.current().nextInt(0, 101);
+		//TODO will probably have to change this code
 		if (accPercent * (1+(shipAcc-3)*0.02) > random){
 			return true;
 		} else{
