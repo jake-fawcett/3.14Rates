@@ -16,7 +16,7 @@ public class Player {
     public static List<Attack> attacks = new ArrayList<Attack>();
 
     public Player() {
-        this.playerShip = new Ship(Brig, "Your Ship", Derwent);
+        this.playerShip = new Ship(Player, "Your Ship", Derwent);
         this.gold = 0;
         this.points = 0;
 

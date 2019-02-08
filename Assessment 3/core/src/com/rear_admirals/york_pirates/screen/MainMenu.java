@@ -54,7 +54,7 @@ public class MainMenu extends BaseScreen {
         combat_mode.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                pirateGame.setScreen(new CombatScreen(pirateGame, new Ship(Brig, Derwent)));
+                pirateGame.setScreen(new CombatScreen(pirateGame, new Ship(Player, Derwent)));
                 dispose();
             }
         });

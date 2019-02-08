@@ -54,6 +54,22 @@ public class Ship extends PhysicsActor {
         setupShip();
     }
 
+    public Ship(ShipType type, College college, boolean isBoss) {
+        this.name = college.getName() + " " + type.getName();
+        this.attack = type.getAttack();
+        this.defence = type.getDefence();
+        this.accuracy = type.getAccuracy();
+        this.healthMax = defence * 20;
+        this.health = healthMax;
+        this.college = college;
+        this.pointValue = 20;
+        this.goldValue = 20;
+        this.type = type;
+        this.sailingTexture = new Texture(Gdx.files.internal("ship (1).png"));
+        this.isBoss = isBoss;
+        setupShip();
+    }
+
     public Ship(ShipType type, College college, String texturePath) {
         this.name = college.getName() + " " + type.getName();
         this.attack = type.getAttack();

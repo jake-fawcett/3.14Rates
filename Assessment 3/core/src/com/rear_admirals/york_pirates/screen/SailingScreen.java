@@ -14,6 +14,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.Align;
 import com.rear_admirals.york_pirates.College;
+import com.rear_admirals.york_pirates.ShipType;
 import com.rear_admirals.york_pirates.screen.combat.CombatScreen;
 import com.rear_admirals.york_pirates.base.BaseActor;
 import com.rear_admirals.york_pirates.PirateGame;
@@ -140,13 +141,13 @@ public class SailingScreen extends BaseScreen {
                 String objectName = object.getName();
 
 
-                if (objectName.equals("derwent")) solid.setCollege(Derwent);
-                else if (objectName.equals("james")) solid.setCollege(James);
-                else if (objectName.equals("vanbrugh")) solid.setCollege(Vanbrugh);
+                if (objectName.equals("derwent")) solid.setCollege(College.Derwent);
+                else if (objectName.equals("james")) solid.setCollege(College.James);
+                else if (objectName.equals("vanbrugh")) solid.setCollege(College.Vanbrugh);
                 else if (objectName.equals("chemistry")) solid.setDepartment(Chemistry);
                 else if (objectName.equals("physics")) solid.setDepartment(Physics);
-                else if (objectName.equals("goodricke")) solid.setCollege(Goodricke);
-                else if (objectName.equals("langwith")) solid.setCollege(Langwith);
+                else if (objectName.equals("goodricke")) solid.setCollege(College.Goodricke);
+                else if (objectName.equals("langwith")) solid.setCollege(College.Langwith);
                 else if (objectName.equals("maths")) solid.setDepartment(Maths);
                 else{
                     System.out.println("Not college/department: " + solid.getName());
@@ -169,11 +170,11 @@ public class SailingScreen extends BaseScreen {
                 region.setRectangleBoundary();
                 region.setName(object.getName());
 
-                if (object.getName().equals("derwentregion")) region.setCollege(Derwent);
-                else if (object.getName().equals("jamesregion")) region.setCollege(James);
-                else if (object.getName().equals("vanbrughregion")) region.setCollege(Vanbrugh);
-                else if (object.getName().equals("goodrickeregion")) region.setCollege(Goodricke);
-                else if (object.getName().equals("langwithregion")) region.setCollege(Langwith);
+                if (object.getName().equals("derwentregion")) region.setCollege(College.Derwent);
+                else if (object.getName().equals("jamesregion")) region.setCollege(College.James);
+                else if (object.getName().equals("vanbrughregion")) region.setCollege(College.Vanbrugh);
+                else if (object.getName().equals("goodrickeregion")) region.setCollege(College.Goodricke);
+                else if (object.getName().equals("langwithregion")) region.setCollege(College.Langwith);
                 else if (object.getName().equals("chemistrydepartment")) region.setDepartment(Chemistry);
                 else if (object.getName().equals("physicsdepartment")) region.setDepartment(Physics);
                 else if (object.getName().equals("mathsdepartment")) region.setDepartment(Maths);
@@ -216,7 +217,7 @@ public class SailingScreen extends BaseScreen {
                     College college = region.getCollege();
                     if (!playerShip.getCollege().getAlly().contains(college)) {
                         System.out.println(name);
-                        pirateGame.setScreen(new CombatScreen(pirateGame, new Ship(Brig, college)));
+                        pirateGame.setScreen(new CombatScreen(pirateGame, new Ship(Enemy, college)));
                     }
                 }
             }
@@ -248,7 +249,21 @@ public class SailingScreen extends BaseScreen {
                         System.out.println("A college");
                         if (!playerShip.getCollege().getAlly().contains(college) && obstacle.getCollege().isBossDead() == false) {
                             System.out.println("Enemy");
-                            pirateGame.setScreen(new CombatScreen(pirateGame, new Ship(15, 15, 15, Brig, college, college.getName() + " Boss", true)));
+
+                            String collegeMet = obstacle.getCollege().getName();
+                            Ship collegeDefender;
+                            if (collegeMet == "James") {
+                                collegeDefender = new Ship(ShipType.James, College.James, true);
+                            } else if (collegeMet == "Vanbrugh") {
+                                collegeDefender = new Ship(ShipType.Van, College.Vanbrugh, true);
+                            } else if (collegeMet == "Goodricke") {
+                                collegeDefender = new Ship(ShipType.Good, College.Goodricke, true);
+                            } else if (collegeMet == "Langwith") {
+                                collegeDefender = new Ship(ShipType.Lan, College.Langwith, true);
+                            } else {
+                                throw new IllegalStateException("College not recognised");
+                            }
+                            pirateGame.setScreen(new CombatScreen(pirateGame, collegeDefender));
                         } else {
                             System.out.println("Ally");
                             pirateGame.setScreen(new CollegeScreen(pirateGame, college));
