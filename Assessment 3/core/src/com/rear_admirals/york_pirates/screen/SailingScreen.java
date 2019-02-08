@@ -41,8 +41,8 @@ public class SailingScreen extends BaseScreen {
     private int tileCountHeight = 256;
 
     //calculate game world dimensions
-    private final int mapWidth = tileSize * tileCountWidth;
-    private final int mapHeight = tileSize * tileCountHeight;
+    private final int mapWidth = (tileSize * tileCountWidth);
+    private final int mapHeight = (tileSize * tileCountHeight);
     private TiledMap tiledMap;
 
     private OrthogonalTiledMapRenderer tiledMapRenderer;
@@ -201,7 +201,7 @@ public class SailingScreen extends BaseScreen {
         Boolean x = false;
         for (BaseActor region : regionList) {
             String name = region.getName();
-            if (playerShip.overlaps(region, false) && !region.getName().contains("department")) {
+            if (playerShip.overlaps(region, false) && !(region.getName().contains("chemistry") || region.getName().contains("physics") || region.getName().contains("maths"))) {
                 x = true;
                 mapMessage.setText(capitalizeFirstLetter(name.substring(0, name.length() - 6)) + " Territory");
                 int enemyChance = ThreadLocalRandom.current().nextInt(0, 10001);
