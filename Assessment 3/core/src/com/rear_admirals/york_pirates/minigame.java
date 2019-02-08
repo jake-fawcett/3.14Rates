@@ -3,16 +3,11 @@ package com.rear_admirals.york_pirates;
 import java.util.Random;
 
 public class minigame {
-    private Player player;
-
-    private String coinChoice;
-    private Boolean endMiniGame = false;
-
 
     /**
      * Play the minigame by choosing heads or tails. Every time you flip the coin it is double or nothing.
      */
-    public void play() {
+/*    public void play() {
         int bet = getBet();
         String decision;
 
@@ -29,11 +24,11 @@ public class minigame {
                 return;
             }
         }
-    }
+    }*/
 
-    private void setEndMinigame(Boolean end) {
+/*    private void setEndMinigame(Boolean end) {
         endMiniGame = end;
-    }
+    }*/
 
     //TODO, front-end implement this please
     /**
@@ -41,9 +36,9 @@ public class minigame {
      *
      * @return true (player wants to end) or false (player wants to keep playing)
      */
-    private boolean endMinigame() {
+/*    private boolean endMinigame() {
         return endMiniGame;
-    }
+    }*/
 
     /**
      * Simulate flipping a coin
@@ -59,9 +54,9 @@ public class minigame {
         }
     }
 
-    private void setDecision(String playerChoice){
+/*    private void setDecision(String playerChoice){
         coinChoice = playerChoice;
-    }
+    }*/
 
     // Todo, front-end implement this please
     /**
@@ -69,13 +64,13 @@ public class minigame {
      *
      * @return "h" or "t" relating to heads or tails
      */
-    private String getDecision() {
+/*    private String getDecision() {
         // If player wants heads:
         //    Return "h"
         // Else
         //    return "t"
         return new String("h");
-    }
+    }*/
 
     // Todo, front-end implement this please
     /**
@@ -83,7 +78,7 @@ public class minigame {
      *
      * @return The amount of gold the player wants to bet
      */
-    private int getBet() {
+/*    private int getBet() {
         int bet = 0;
         //  TODO Get the amount of gold the player wants to bet
 
@@ -93,6 +88,6 @@ public class minigame {
             player.setGold(player.getGold() - bet);
             return bet;
         }
-    }
+    }*/
 
 }
