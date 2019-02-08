@@ -46,12 +46,26 @@ public class CombatScreen extends BaseScreen {
     public Player player;
     public Ship enemy;
 
+    //Player and Enemy Stat Labels
+    private Label playerStatTitle;
+    private Label playerAttack;
+    private Label playerDefense;
+    private Label playerAccuracy;
+    private Label enemyStatTitle;
+    private Label enemyAttack;
+    private Label enemyDefense;
+    private Label enemyAccuracy;
+
+
+
     // Control the layout of the stage
     private Table completeAttackTable;
     private Table attackTable;
     private Table rootTable;
     private Table descriptionTable;
     private Container<Table> tableContainer;
+    private Table playerStats;
+    private Table enemyStats;
 
     // Written text box
     private TextButton textBox;
@@ -105,6 +119,41 @@ public class CombatScreen extends BaseScreen {
         rootTable = new Table();
         descriptionTable = new Table();
         attackTable = new Table();
+        playerStats = new Table();
+        enemyStats = new Table();
+
+
+        // Instantiates Player and Enemy stat Labels
+
+        playerStatTitle = new Label("Player Stats: ", pirateGame.getSkin(), "default_black");
+        playerAttack = new Label("Attack: " + Integer.toString(player.getPlayerShip().getAttack()), pirateGame.getSkin(), "default_black");
+        playerDefense = new Label("Defense: " + Integer.toString(player.getPlayerShip().getDefence()), pirateGame.getSkin(), "default_black");
+        playerAccuracy = new Label("Accuracy: " + Integer.toString(player.getPlayerShip().getAccuracy()), pirateGame.getSkin(), "default_black");
+        enemyStatTitle = new Label("Enemy Stats: ", pirateGame.getSkin(), "default_black");
+        enemyAttack = new Label("Attack: " + Integer.toString(enemy.getAttack()),pirateGame.getSkin(),"default_black");
+        enemyDefense = new Label("Defense: " + Integer.toString(enemy.getDefence()),pirateGame.getSkin(),"default_black");
+        enemyAccuracy = new Label("Accuracy: " + Integer.toString(enemy.getAccuracy()), pirateGame.getSkin(), "default_black");
+
+/*        playerStats.add(playerAttack).padRight(viewwidth/16f);
+        playerStats.add(playerDefense).padRight(viewwidth/5);
+        enemyStats.add(enemyAttack).padRight(viewwidth/16f);
+        enemyStats.add(enemyDefense).padRight(viewwidth/5);
+        tableContainer.setActor(playerStats);
+        tableContainer.setActor(enemyStats);*/
+
+/*
+        playerStats.add(playerAttack);
+        playerStats.row();
+        playerStats.add(playerDefense);
+
+        enemyStats.add(enemyAttack);
+        enemyStats.row();
+        enemyStats.add(enemyDefense);
+*/
+
+
+
+
 
         // Instantiate both the ships for the battle
         CombatShip myShip = new CombatShip("ship1.png", viewwidth/3);
@@ -206,10 +255,35 @@ public class CombatScreen extends BaseScreen {
         completeAttackTable.add(descriptionTable).width(viewwidth/2);
         completeAttackTable.add(attackTable).width(viewwidth/2);
 
+
+        playerStats.setFillParent(true);
+        playerStats.align(Align.left);
+        playerStats.add(playerStatTitle).width(viewwidth);
+        playerStats.row();
+        playerStats.add(playerAttack).width(viewwidth);
+        playerStats.row();
+        playerStats.add(playerDefense).width(viewwidth);
+        playerStats.row();
+        playerStats.add(playerAccuracy).width(viewwidth);
+
+        enemyStats.setFillParent(true);
+        enemyStats.align(Align.right);
+        enemyStats.add(enemyStatTitle).width(viewwidth/9f);
+        enemyStats.row();
+        enemyStats.add(enemyAttack).width(viewwidth/9f);
+        enemyStats.row();
+        enemyStats.add(enemyDefense).width(viewwidth/9f);
+        enemyStats.row();
+        enemyStats.add(enemyAccuracy).width(viewwidth/9f);
+
+
         background_wood.setVisible(false);
         completeAttackTable.setVisible(false);
         mainStage.addActor(background_wood);
         mainStage.addActor(completeAttackTable);
+        mainStage.addActor(playerStats);
+        mainStage.addActor(enemyStats);
+
 
         uiStage.addActor(background);
         uiStage.addActor(tableContainer);

@@ -24,3 +24,5 @@ public class Flee extends Attack {
 
     public static final Flee attackFlee = new Flee();
 }
+
+
