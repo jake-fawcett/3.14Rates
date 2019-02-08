@@ -38,7 +38,11 @@ public class ShipType {
     }
 
     // Static Ship Types go here
-//	public static ShipType Sloop = new ShipType("Sloop", 4, 4, 7, 80);
-    public static ShipType Brig = new ShipType("Brig", 5, 5, 5, 100);
-//	public static ShipType Galleon = new ShipType("Galleon", 6, 6, 3, 120);
+	public static ShipType Enemy = new ShipType("Sloop", 4, 4, 7, 80);
+    public static ShipType Player = new ShipType("Brig", 5, 5, 5, 100);
+	public static ShipType James = new ShipType("James", 5, 5, 5, 110);
+	public static ShipType Van = new ShipType("Vanbrugh", 7, 5, 5, 120);
+	public static ShipType Good = new ShipType("Goodricke", 5, 7, 5, 130);
+	public static ShipType Lan = new ShipType("Langwith", 8, 8, 5, 150);
+
 }
