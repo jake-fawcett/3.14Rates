@@ -38,4 +38,6 @@ public class College {
     public static College Derwent = new College("Derwent");
     public static College Vanbrugh = new College("Vanbrugh");
     public static College James = new College("James");
+    public static College Goodricke = new College("Goodricke");
+    public static College Langwith = new College("Langwith");
 }
