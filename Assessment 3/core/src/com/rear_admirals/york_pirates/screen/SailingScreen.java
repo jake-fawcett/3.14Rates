@@ -211,9 +211,6 @@ public class SailingScreen extends BaseScreen {
                 } else if (enemyChance < 10) {
                     enemyChance = 10;
                 }
-                System.out.println();
-                System.out.println(roll);
-                System.out.println(enemyChance);
                 if (roll <= enemyChance) {
                     System.out.println("Enemy Found in " + name);
                     College college = region.getCollege();
