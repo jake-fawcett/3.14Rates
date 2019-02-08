@@ -8,6 +8,7 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Align;
+import com.rear_admirals.york_pirates.screen.VictoryScreen;
 import com.rear_admirals.york_pirates.screen.combat.attacks.*;
 import com.rear_admirals.york_pirates.PirateGame;
 import com.rear_admirals.york_pirates.Player;
@@ -18,6 +19,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
 import java.util.concurrent.ThreadLocalRandom;
+
+import static com.rear_admirals.york_pirates.College.Langwith;
 
 public class CombatScreen extends BaseScreen {
 
@@ -346,7 +349,9 @@ public class CombatScreen extends BaseScreen {
                 player.addGold(-player.getGold()/2);
                 player.setPoints(0);
                 player.getPlayerShip().setHealth(player.getPlayerShip().getHealthMax());
-                dialog("YOU HAVE DIED", BattleEvent.SCENE_RETURN);
+                //dialog("YOU HAVE DIED", BattleEvent.SCENE_RETURN);
+                pirateGame.setScreen(new VictoryScreen(pirateGame, false));
+                dispose();
                 break;
             case ENEMY_DIES:
                 textBox.setStyle(pirateGame.getSkin().get("default", TextButton.TextButtonStyle.class));
@@ -370,7 +375,12 @@ public class CombatScreen extends BaseScreen {
                 player.getPlayerShip().setAnchor(true);
                 System.out.println("END OF COMBAT");
                 toggleAttackStage();
-                pirateGame.setScreen(pirateGame.getSailingScene());
+                if (Langwith.isBossDead()) {
+                    pirateGame.setScreen(new VictoryScreen(pirateGame, true));
+                } else {
+                    pirateGame.setScreen(pirateGame.getSailingScene());
+                }
+                dispose();
                 break;
         }
     }
