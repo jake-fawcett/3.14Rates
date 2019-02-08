@@ -200,8 +200,8 @@ public class SailingScreen extends BaseScreen {
                 int enemyChance = Integer.parseInt(pointsLabel.getText().toString()) / 2;
                 if (enemyChance > 300) {
                     enemyChance = 300;
-                } else if (enemyChance < 5) {
-                    enemyChance = 5;
+                } else if (enemyChance < 10) {
+                    enemyChance = 10;
                 }
                 System.out.println();
                 System.out.println(roll);
