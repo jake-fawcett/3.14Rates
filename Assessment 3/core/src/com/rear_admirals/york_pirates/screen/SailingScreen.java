@@ -24,8 +24,7 @@ import java.util.ArrayList;
 import java.util.concurrent.ThreadLocalRandom;
 
 import static com.rear_admirals.york_pirates.College.*;
-import static com.rear_admirals.york_pirates.PirateGame.Chemistry;
-import static com.rear_admirals.york_pirates.PirateGame.Physics;
+import static com.rear_admirals.york_pirates.PirateGame.*;
 import static com.rear_admirals.york_pirates.ShipType.*;
 
 public class SailingScreen extends BaseScreen {
@@ -37,13 +36,13 @@ public class SailingScreen extends BaseScreen {
     private ArrayList<BaseActor> removeList;
     private ArrayList<BaseActor> regionList;
 
-    private int tileSize = 64;
-    private int tileCountWidth = 80;
-    private int tileCountHeight = 80;
+    private int tileSize = 32;
+    private int tileCountWidth = 64;
+    private int tileCountHeight = 256;
 
     //calculate game world dimensions
-    private final int mapWidth = tileSize * tileCountWidth;
-    private final int mapHeight = tileSize * tileCountHeight;
+    private final int mapWidth = (tileSize * tileCountWidth);
+    private final int mapHeight = (tileSize * tileCountHeight);
     private TiledMap tiledMap;
 
     private OrthogonalTiledMapRenderer tiledMapRenderer;
@@ -56,7 +55,7 @@ public class SailingScreen extends BaseScreen {
     private Label mapMessage;
     private Label hintMessage;
 
-    private Float timer;
+    private double timer;
 
     public SailingScreen(final PirateGame main) {
         super(main);
@@ -106,7 +105,7 @@ public class SailingScreen extends BaseScreen {
         regionList = new ArrayList<BaseActor>();
 
         // set up tile map, renderer and camera
-        tiledMap = new TmxMapLoader().load("game_map.tmx");
+        tiledMap = new TmxMapLoader().load("game_map_test.tmx");
         tiledMapRenderer = new OrthogonalTiledMapRenderer(tiledMap);
         tiledCamera = new OrthographicCamera();
         tiledCamera.setToOrtho(false, viewwidth, viewheight);
@@ -140,12 +139,16 @@ public class SailingScreen extends BaseScreen {
                 solid.setRectangleBoundary();
                 String objectName = object.getName();
 
+
                 if (objectName.equals("derwent")) solid.setCollege(Derwent);
                 else if (objectName.equals("james")) solid.setCollege(James);
                 else if (objectName.equals("vanbrugh")) solid.setCollege(Vanbrugh);
                 else if (objectName.equals("chemistry")) solid.setDepartment(Chemistry);
                 else if (objectName.equals("physics")) solid.setDepartment(Physics);
-                else {
+                else if (objectName.equals("goodricke")) solid.setCollege(Goodricke);
+                else if (objectName.equals("langwith")) solid.setCollege(Langwith);
+                else if (objectName.equals("maths")) solid.setDepartment(Maths);
+                else{
                     System.out.println("Not college/department: " + solid.getName());
                 }
                 obstacleList.add(solid);
@@ -169,6 +172,11 @@ public class SailingScreen extends BaseScreen {
                 if (object.getName().equals("derwentregion")) region.setCollege(Derwent);
                 else if (object.getName().equals("jamesregion")) region.setCollege(James);
                 else if (object.getName().equals("vanbrughregion")) region.setCollege(Vanbrugh);
+                else if (object.getName().equals("goodrickeregion")) region.setCollege(Goodricke);
+                else if (object.getName().equals("langwithregion")) region.setCollege(Langwith);
+                else if (object.getName().equals("chemistrydepartment")) region.setDepartment(Chemistry);
+                else if (object.getName().equals("physicsdepartment")) region.setDepartment(Physics);
+                else if (object.getName().equals("mathsdepartment")) region.setDepartment(Maths);
                 regionList.add(region);
             } else {
                 System.err.println("Unknown RegionData object.");
@@ -193,7 +201,7 @@ public class SailingScreen extends BaseScreen {
         Boolean x = false;
         for (BaseActor region : regionList) {
             String name = region.getName();
-            if (playerShip.overlaps(region, false)) {
+            if (playerShip.overlaps(region, false) && !(region.getName().contains("chemistry") || region.getName().contains("physics") || region.getName().contains("maths"))) {
                 x = true;
                 mapMessage.setText(capitalizeFirstLetter(name.substring(0, name.length() - 6)) + " Territory");
                 int roll = ThreadLocalRandom.current().nextInt(0, 10001);
