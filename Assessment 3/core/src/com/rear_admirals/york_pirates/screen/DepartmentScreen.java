@@ -81,11 +81,22 @@ public class DepartmentScreen extends BaseScreen {
             }
         });
 
+        final TextButton playerMinigame = new TextButton("Play Minigame", main.getSkin());
+        playerMinigame.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                pirateGame.setScreen(new MinigameScreen(pirateGame, department));
+                dispose();
+            }
+        });
+
         optionsTable.add(title);
         optionsTable.row();
         optionsTable.add(upgrade);
         optionsTable.row();
         optionsTable.add(heal);
+        optionsTable.row();
+        optionsTable.add(playerMinigame);
 
         mainStage.addActor(optionsTable);
         Gdx.input.setInputProcessor(mainStage);
