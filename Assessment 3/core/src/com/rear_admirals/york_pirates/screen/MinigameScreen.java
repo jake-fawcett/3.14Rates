@@ -11,16 +11,14 @@ import com.rear_admirals.york_pirates.Department;
 import com.rear_admirals.york_pirates.PirateGame;
 import com.rear_admirals.york_pirates.Player;
 import com.rear_admirals.york_pirates.base.BaseScreen;
-import com.rear_admirals.york_pirates.minigame;
+
+import java.util.Random;
 
 public class MinigameScreen extends BaseScreen {
     private Player player;
     private Department department;
     
     private Label goldLabel;
-    private Label resultLabel;
-
-    final minigame minigame = new minigame();
 
     public MinigameScreen(final PirateGame main, final Department department) {
         super(main);
@@ -52,7 +50,7 @@ public class MinigameScreen extends BaseScreen {
         Heads.addListener(new ClickListener() {
             public void clicked(InputEvent event, float x, float y) {
                 if (player.getGold() >= 5) {
-                    if (minigame.flipCoin() == "h") {
+                    if (flipCoin() == "h") {
                         status.setText("The Coin was Heads, You Win!");
                         player.setGold(player.getGold() + 5);
                     } else {
@@ -69,7 +67,7 @@ public class MinigameScreen extends BaseScreen {
         Tails.addListener(new ClickListener() {
             public void clicked(InputEvent event, float x, float y) {
                 if (player.getGold() >= 5) {
-                    if (minigame.flipCoin() == "h") {
+                    if (flipCoin() == "h") {
                         status.setText("The Coin was Heads, You Lose!");
                         player.setGold(player.getGold() - 5);
                     } else {
@@ -105,6 +103,15 @@ public class MinigameScreen extends BaseScreen {
         mainStage.addActor(bettingTable);
 
         Gdx.input.setInputProcessor(mainStage);
+    }
+
+    private String flipCoin() {
+        Random rand = new Random();
+        if (rand.nextBoolean()) {
+            return "h";
+        } else {
+            return "t";
+        }
     }
 
     @Override
