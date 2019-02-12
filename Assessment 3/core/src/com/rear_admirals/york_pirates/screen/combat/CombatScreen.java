@@ -540,4 +540,3 @@ public class CombatScreen extends BaseScreen {
         }
     }
 }
-

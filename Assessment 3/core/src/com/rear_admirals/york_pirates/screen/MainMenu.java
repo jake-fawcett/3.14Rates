@@ -140,5 +140,3 @@ public class MainMenu extends BaseScreen {
     public void dispose() {
     }
 }
-
-
