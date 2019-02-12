@@ -1,5 +1,6 @@
 package com.rear_admirals.york_pirates.screen;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.Align;
@@ -56,7 +57,7 @@ public class VictoryScreen extends BaseScreen {
                 System.exit(0);
             } else {
                 pirateGame.setScreen(pirateGame.getSailingScene());
-                pirateGame.getPlayer().getPlayerShip().setPosition(500,10);
+                pirateGame.getPlayer().getPlayerShip().setPosition(Gdx.graphics.getWidth(),50);
             }
 
             dispose();
