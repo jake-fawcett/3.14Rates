@@ -17,7 +17,7 @@ import java.util.Random;
 public class MinigameScreen extends BaseScreen {
     private Player player;
     private Department department;
-    
+
     private Label goldLabel;
 
     public MinigameScreen(final PirateGame main, final Department department) {
@@ -49,34 +49,14 @@ public class MinigameScreen extends BaseScreen {
         final TextButton Heads = new TextButton("Bet 5 on Heads", main.getSkin());
         Heads.addListener(new ClickListener() {
             public void clicked(InputEvent event, float x, float y) {
-                if (player.getGold() >= 5) {
-                    if (flipCoin() == "h") {
-                        status.setText("The Coin was Heads, You Win!");
-                        player.setGold(player.getGold() + 5);
-                    } else {
-                        status.setText("The Coin was Tails, You Lose!");
-                        player.setGold(player.getGold() - 5);
-                    }
-                } else {
-                    status.setText("Not Enough Gold!");
-                }
+                betHeads(status);
             }
         });
 
         final TextButton Tails = new TextButton("Bet 5 on Tails", main.getSkin());
         Tails.addListener(new ClickListener() {
             public void clicked(InputEvent event, float x, float y) {
-                if (player.getGold() >= 5) {
-                    if (flipCoin() == "h") {
-                        status.setText("The Coin was Heads, You Lose!");
-                        player.setGold(player.getGold() - 5);
-                    } else {
-                        status.setText("The Coin was Tails, You Win!");
-                        player.setGold(player.getGold() + 5);
-                    }
-                } else {
-                    status.setText("Not Enough Gold!");
-                }
+                betTails(status);
             }
         });
 
@@ -113,6 +93,35 @@ public class MinigameScreen extends BaseScreen {
             return "t";
         }
     }
+
+    private void betHeads(Label status) {
+        if (player.getGold() >= 5) {
+            if (flipCoin() == "h") {
+                status.setText("The Coin was Tails, You Lose!");
+                player.setGold(player.getGold() - 5);
+            } else {
+                status.setText("The Coin was Heads, You Win!");
+                player.setGold(player.getGold() + 5);
+            }
+        } else {
+            status.setText("Not Enough Gold!");
+        }
+    }
+
+    private void betTails(Label status) {
+        if (player.getGold() >= 5) {
+            if (flipCoin() == "h") {
+                status.setText("The Coin was Heads, You Lose!");
+                player.setGold(player.getGold() - 5);
+            } else {
+                status.setText("The Coin was Tails, You Win!");
+                player.setGold(player.getGold() + 5);
+            }
+        } else {
+            status.setText("Not Enough Gold!");
+        }
+    }
+
 
     @Override
     public void update(float delta) {
