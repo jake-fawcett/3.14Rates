@@ -94,7 +94,7 @@ public class MinigameScreen extends BaseScreen {
         }
     }
 
-    private void betHeads(Label status) {
+    void betHeads(Label status) {
         if (player.getGold() >= 5) {
             if (flipCoin() == "h") {
                 status.setText("The Coin was Tails, You Lose!");
@@ -108,7 +108,7 @@ public class MinigameScreen extends BaseScreen {
         }
     }
 
-    private void betTails(Label status) {
+    void betTails(Label status) {
         if (player.getGold() >= 5) {
             if (flipCoin() == "h") {
                 status.setText("The Coin was Heads, You Lose!");
