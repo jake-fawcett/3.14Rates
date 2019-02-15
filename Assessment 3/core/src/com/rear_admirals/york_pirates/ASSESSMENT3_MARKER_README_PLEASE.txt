@@ -2,7 +2,7 @@ THIS DOCUMENT WAS ADDED BY PI-RATES FOR ASSESSMENT 3!
 -----------------------------------------------------
 
 Please note that all sections of code added for assessment 3 by Pi-Rates are preceded by the comment:
-    //Added for assessment3
+    //Added For Assessment 3
 and followed by the comment:
     //End Added
 
