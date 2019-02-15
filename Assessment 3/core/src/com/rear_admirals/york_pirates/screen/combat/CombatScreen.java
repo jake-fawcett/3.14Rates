@@ -443,7 +443,10 @@ public class CombatScreen extends BaseScreen {
             case PLAYER_FLEES:
                 textBox.setStyle(pirateGame.getSkin().get("red", TextButton.TextButtonStyle.class));
                 player.addPoints(-5);
-                combatHandler(BattleEvent.SCENE_RETURN);
+                player.getPlayerShip().setSpeed(0);
+                player.getPlayerShip().setAccelerationXY(0,0);
+                player.getPlayerShip().setAnchor(true);
+                pirateGame.setScreen(pirateGame.getSailingScene());
                 break;
             case SCENE_RETURN:
                 System.out.println("Here");
