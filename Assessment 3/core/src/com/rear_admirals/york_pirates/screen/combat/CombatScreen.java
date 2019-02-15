@@ -420,17 +420,22 @@ public class CombatScreen extends BaseScreen {
                 break;
             case PLAYER_DIES:
                 textBox.setStyle(pirateGame.getSkin().get("red", TextButton.TextButtonStyle.class));
-                player.addGold(-player.getGold()/2);
                 player.setPoints(0);
+                player.addGold(-player.getGold()/2);
                 player.getPlayerShip().setHealth(player.getPlayerShip().getHealthMax());
-                //dialog("YOU HAVE DIED", BattleEvent.SCENE_RETURN);
+                player.getPlayerShip().setSpeed(0);
+                player.getPlayerShip().setAccelerationXY(0,0);
+                player.getPlayerShip().setAnchor(true);
                 pirateGame.setScreen(new VictoryScreen(pirateGame, false));
+                //dialog("YOU HAVE DIED", BattleEvent.SCENE_RETURN);
                 dispose();
                 break;
             case ENEMY_DIES:
                 textBox.setStyle(pirateGame.getSkin().get("default", TextButton.TextButtonStyle.class));
                 player.addGold(enemy.getGoldValue());
                 player.addPoints(enemy.getPointValue());
+                player.getPlayerShip().setSpeed(0);
+                player.getPlayerShip().setAccelerationXY(0,0);
                 dialog("Congratulations, you have defeated Enemy " + enemy.getName(), BattleEvent.SCENE_RETURN);
                 if (enemy.getIsBoss() == true) {
                     enemy.getCollege().setBossDead(true);
@@ -440,9 +445,13 @@ public class CombatScreen extends BaseScreen {
             case PLAYER_FLEES:
                 textBox.setStyle(pirateGame.getSkin().get("red", TextButton.TextButtonStyle.class));
                 player.addPoints(-5);
-                combatHandler(BattleEvent.SCENE_RETURN);
+                player.getPlayerShip().setSpeed(0);
+                player.getPlayerShip().setAccelerationXY(0,0);
+                player.getPlayerShip().setAnchor(true);
+                pirateGame.setScreen(pirateGame.getSailingScene());
                 break;
             case SCENE_RETURN:
+                System.out.println("Here");
                 enemy.setVisible(false);
                 player.getPlayerShip().setSpeed(0);
                 player.getPlayerShip().setAccelerationXY(0,0);
