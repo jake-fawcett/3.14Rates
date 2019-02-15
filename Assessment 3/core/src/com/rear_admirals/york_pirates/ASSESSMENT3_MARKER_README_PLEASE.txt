@@ -21,4 +21,9 @@ it up to make our lives easier. For instance we may have added/removed whitespac
 lines of:
     objectFoo.objectBar.objectX.getZ().objectZ.myMethod();
 We have decided not to add comments for these since they were only created where we happened to be working and found
-the code too messy. It also does not change any of the functionality whatsoever.
+the code too messy. It also does not change any of the functionality whatsoever. To see these formatting changes please
+compare the branches as described in 3.
+
+5. Added/Removed/Altered imports are also not flagged with comments as this would lead to a lot of clutter and in and
+of themselves they do not affect functionality. To see these formatting changes please compare the branches as described
+in 3.
