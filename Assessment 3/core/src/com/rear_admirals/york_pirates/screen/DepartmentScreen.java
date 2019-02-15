@@ -81,6 +81,7 @@ public class DepartmentScreen extends BaseScreen {
             }
         });
 
+        //Added For Assessment 3
         final TextButton playerMinigame = new TextButton("Play Minigame", main.getSkin());
         playerMinigame.addListener(new ClickListener() {
             @Override
@@ -89,14 +90,17 @@ public class DepartmentScreen extends BaseScreen {
                 dispose();
             }
         });
+        //End Added
 
         optionsTable.add(title);
         optionsTable.row();
         optionsTable.add(upgrade);
         optionsTable.row();
         optionsTable.add(heal);
+        //Added For Assessment 3
         optionsTable.row();
         optionsTable.add(playerMinigame);
+        //End Added
 
         mainStage.addActor(optionsTable);
         Gdx.input.setInputProcessor(mainStage);
