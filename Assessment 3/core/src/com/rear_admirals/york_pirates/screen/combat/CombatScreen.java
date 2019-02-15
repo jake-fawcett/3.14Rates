@@ -423,8 +423,11 @@ public class CombatScreen extends BaseScreen {
                 player.setPoints(0);
                 player.addGold(-player.getGold()/2);
                 player.getPlayerShip().setHealth(player.getPlayerShip().getHealthMax());
-                dialog("YOU HAVE DIED", BattleEvent.SCENE_RETURN);
-                //pirateGame.setScreen(new VictoryScreen(pirateGame, false));
+                player.getPlayerShip().setSpeed(0);
+                player.getPlayerShip().setAccelerationXY(0,0);
+                player.getPlayerShip().setAnchor(true);
+                pirateGame.setScreen(new VictoryScreen(pirateGame, false));
+                //dialog("YOU HAVE DIED", BattleEvent.SCENE_RETURN);
                 dispose();
                 break;
             case ENEMY_DIES:
@@ -443,6 +446,7 @@ public class CombatScreen extends BaseScreen {
                 combatHandler(BattleEvent.SCENE_RETURN);
                 break;
             case SCENE_RETURN:
+                System.out.println("Here");
                 enemy.setVisible(false);
                 player.getPlayerShip().setSpeed(0);
                 player.getPlayerShip().setAccelerationXY(0,0);
