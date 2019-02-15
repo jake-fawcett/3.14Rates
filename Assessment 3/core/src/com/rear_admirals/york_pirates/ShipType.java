@@ -37,6 +37,10 @@ public class ShipType {
         return accuracy;
     }
 
+    public int getGoldValue() { return goldValue; }
+
+    public int getPointValue() { return pointValue; }
+
     public Texture getTexture() {
         return texture;
     }
