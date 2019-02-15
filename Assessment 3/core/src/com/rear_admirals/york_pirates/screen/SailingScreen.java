@@ -37,9 +37,11 @@ public class SailingScreen extends BaseScreen {
     private ArrayList<BaseActor> removeList;
     private ArrayList<BaseActor> regionList;
 
+    //Altered For Assessment 3
     private int tileSize = 32;
     private int tileCountWidth = 64;
     private int tileCountHeight = 256;
+    //End Altered
 
     //calculate game world dimensions
     private final int mapWidth = (tileSize * tileCountWidth);
@@ -56,7 +58,9 @@ public class SailingScreen extends BaseScreen {
     private Label mapMessage;
     private Label hintMessage;
 
+    //Altered For Assessment 3
     private double timer;
+    //End Altered
 
     public SailingScreen(final PirateGame main) {
         super(main);
@@ -140,15 +144,16 @@ public class SailingScreen extends BaseScreen {
                 solid.setRectangleBoundary();
                 String objectName = object.getName();
 
-
+                //Altered For Assessment 3
                 if (objectName.equals("derwent")) solid.setCollege(College.Derwent);
                 else if (objectName.equals("james")) solid.setCollege(College.James);
                 else if (objectName.equals("vanbrugh")) solid.setCollege(College.Vanbrugh);
-                else if (objectName.equals("chemistry")) solid.setDepartment(Chemistry);
-                else if (objectName.equals("physics")) solid.setDepartment(Physics);
                 else if (objectName.equals("goodricke")) solid.setCollege(College.Goodricke);
                 else if (objectName.equals("langwith")) solid.setCollege(College.Langwith);
+                else if (objectName.equals("chemistry")) solid.setDepartment(Chemistry);
+                else if (objectName.equals("physics")) solid.setDepartment(Physics);
                 else if (objectName.equals("maths")) solid.setDepartment(Maths);
+                //End Altered
                 else{
                     System.out.println("Not college/department: " + solid.getName());
                 }
@@ -170,6 +175,7 @@ public class SailingScreen extends BaseScreen {
                 region.setRectangleBoundary();
                 region.setName(object.getName());
 
+                //Altered For Assessment 3
                 if (object.getName().equals("derwentregion")) region.setCollege(College.Derwent);
                 else if (object.getName().equals("jamesregion")) region.setCollege(College.James);
                 else if (object.getName().equals("vanbrughregion")) region.setCollege(College.Vanbrugh);
@@ -179,6 +185,7 @@ public class SailingScreen extends BaseScreen {
                 else if (object.getName().equals("physicsdepartment")) region.setDepartment(Physics);
                 else if (object.getName().equals("mathsdepartment")) region.setDepartment(Maths);
                 regionList.add(region);
+                //End Altered
             } else {
                 System.err.println("Unknown RegionData object.");
             }
@@ -202,6 +209,7 @@ public class SailingScreen extends BaseScreen {
         Boolean x = false;
         for (BaseActor region : regionList) {
             String name = region.getName();
+            //Altered For Assessment 3
             if (playerShip.overlaps(region, false) && !(region.getName().contains("chemistry") || region.getName().contains("physics") || region.getName().contains("maths"))) {
                 x = true;
                 mapMessage.setText(capitalizeFirstLetter(name.substring(0, name.length() - 6)) + " Territory");
@@ -221,6 +229,7 @@ public class SailingScreen extends BaseScreen {
                     }
                 }
             }
+            //End Altered
         }
 
         if (!x) {
@@ -250,6 +259,7 @@ public class SailingScreen extends BaseScreen {
                         if (!playerShip.getCollege().getAlly().contains(college) && obstacle.getCollege().isBossDead() == false) {
                             System.out.println("Enemy");
 
+                            //Altered For Assessment 3
                             String collegeMet = obstacle.getCollege().getName();
                             Ship collegeDefender;
                             if (collegeMet == "James") {
@@ -264,6 +274,7 @@ public class SailingScreen extends BaseScreen {
                                 throw new IllegalStateException("College not recognised");
                             }
                             pirateGame.setScreen(new CombatScreen(pirateGame, collegeDefender));
+                            //End Altered
                         } else {
                             System.out.println("Ally");
                             pirateGame.setScreen(new CollegeScreen(pirateGame, college));
@@ -299,6 +310,8 @@ public class SailingScreen extends BaseScreen {
         tiledCamera.update();
         tiledMapRenderer.setView(tiledCamera);
 
+        //Altered For Assessment 3
+        //Exponentially increases points
         timer += delta;
         if (timer > 1) {
             int points_gain = Integer.parseInt(pointsLabel.getText().toString()) / 250;
@@ -308,6 +321,7 @@ public class SailingScreen extends BaseScreen {
             pirateGame.getPlayer().addPoints(points_gain);
             timer -= 1;
         }
+        //End Altered
 
         pointsLabel.setText(Integer.toString(pirateGame.getPlayer().getPoints()));
     }
