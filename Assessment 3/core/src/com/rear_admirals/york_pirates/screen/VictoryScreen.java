@@ -1,6 +1,5 @@
 package com.rear_admirals.york_pirates.screen;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.Align;
@@ -11,12 +10,10 @@ import java.util.concurrent.TimeUnit;
 
 public class VictoryScreen extends BaseScreen {
 
-    private boolean hasWon;
     private int i;
 
     public VictoryScreen(PirateGame main, Boolean hasWon) {
         super(main);
-        this.hasWon = hasWon;
 
         Table uiTable = new Table();
         uiTable.setFillParent(true);
@@ -30,7 +27,7 @@ public class VictoryScreen extends BaseScreen {
         } else {
             Label Loss = new Label("You Lose :(", main.getSkin());
             uiTable.add(Loss);
-            Label Message = new Label("You will be reset to 0 points and respawn", main.getSkin());
+            Label Message = new Label("Game over!", main.getSkin());
             uiTable.row();
             uiTable.add(Message);
             i=0;
@@ -53,12 +50,7 @@ public class VictoryScreen extends BaseScreen {
             } catch (InterruptedException e) {
             }
 
-            if (hasWon) {
-                System.exit(0);
-            } else {
-                pirateGame.setScreen(pirateGame.getSailingScene());
-                pirateGame.getPlayer().getPlayerShip().setPosition(Gdx.graphics.getWidth(),50);
-            }
+            System.exit(0);
 
             dispose();
         }
