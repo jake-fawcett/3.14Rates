@@ -83,9 +83,11 @@ public class Attack {
 		this.skipMoveStatus = skipMoveStatus;
 	}
 
+	//Added For Assessment 3
 	public void addAccuracy (int amount){
 		accPercent += amount;
 	}
+	//End Added
 
 	// attacks to be used in the game are defined here.
 	public static Attack attackMain = new Attack("Broadside","Normal cannons. Fire a broadside at your enemy.",3,2,false,60);
