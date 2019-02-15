@@ -1,3 +1,5 @@
+//Added For Assessment 3
+
 package com.rear_admirals.york_pirates.screen;
 
 import com.badlogic.gdx.Gdx;
@@ -128,3 +130,5 @@ public class MinigameScreen extends BaseScreen {
         goldLabel.setText(Integer.toString(pirateGame.getPlayer().getGold()));
     }
 }
+
+//End Added
