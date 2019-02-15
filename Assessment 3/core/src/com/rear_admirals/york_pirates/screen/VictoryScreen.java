@@ -9,11 +9,12 @@ import com.rear_admirals.york_pirates.base.BaseScreen;
 import java.util.concurrent.TimeUnit;
 
 public class VictoryScreen extends BaseScreen {
-
+    private boolean hasWon;
     private int i;
 
     public VictoryScreen(PirateGame main, Boolean hasWon) {
         super(main);
+        hasWon = this.hasWon;
 
         Table uiTable = new Table();
         uiTable.setFillParent(true);
@@ -27,7 +28,7 @@ public class VictoryScreen extends BaseScreen {
         } else {
             Label Loss = new Label("You Lose :(", main.getSkin());
             uiTable.add(Loss);
-            Label Message = new Label("Game over!", main.getSkin());
+            Label Message = new Label("Your Gold will be Halved and Points Reset", main.getSkin());
             uiTable.row();
             uiTable.add(Message);
             i=0;
@@ -50,7 +51,11 @@ public class VictoryScreen extends BaseScreen {
             } catch (InterruptedException e) {
             }
 
-            System.exit(0);
+            if (hasWon) {
+                System.exit(0);
+            } else {
+                pirateGame.setScreen(new SailingScreen(pirateGame));
+            }
 
             dispose();
         }
