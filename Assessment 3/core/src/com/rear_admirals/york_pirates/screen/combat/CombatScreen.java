@@ -410,7 +410,7 @@ public class CombatScreen extends BaseScreen {
                 player.setPoints(0);
                 player.getPlayerShip().setHealth(player.getPlayerShip().getHealthMax());
                 player.getPlayerShip().setSpeed(0);
-                player.getPlayerShip().setAccelerationXY(0,0);
+                player.getPlayerShip().setAccelerationXY(0, 0);
                 player.getPlayerShip().setAnchor(true);
                 pirateGame.setScreen(new VictoryScreen(pirateGame, false));
                 dispose();
@@ -420,7 +420,7 @@ public class CombatScreen extends BaseScreen {
                 player.addGold(enemy.getGoldValue());
                 player.addPoints(enemy.getPointValue());
                 player.getPlayerShip().setSpeed(0);
-                player.getPlayerShip().setAccelerationXY(0,0);
+                player.getPlayerShip().setAccelerationXY(0, 0);
                 dialog("Congratulations, you have defeated Enemy " + enemy.getName(), BattleEvent.SCENE_RETURN);
                 if (enemy.getIsBoss() == true) {
                     enemy.getCollege().setBossDead(true);
@@ -431,7 +431,7 @@ public class CombatScreen extends BaseScreen {
                 textBox.setStyle(pirateGame.getSkin().get("red", TextButton.TextButtonStyle.class));
                 player.addPoints(-5);
                 player.getPlayerShip().setSpeed(0);
-                player.getPlayerShip().setAccelerationXY(0,0);
+                player.getPlayerShip().setAccelerationXY(0, 0);
                 player.getPlayerShip().setAnchor(true);
                 pirateGame.setScreen(pirateGame.getSailingScene());
                 break;
@@ -449,7 +449,7 @@ public class CombatScreen extends BaseScreen {
                 }
                 dispose();
                 break;
-                //End Alter
+            //End Alter
         }
     }
 
