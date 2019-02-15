@@ -115,6 +115,3 @@ public class DepartmentScreen extends BaseScreen {
 
     }
 }
-
-
-

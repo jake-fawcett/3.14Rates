@@ -38,11 +38,11 @@ public class ShipType {
     }
 
     // Static Ship Types go here
-	public static ShipType Enemy = new ShipType("Schooner", 4, 4, 5, 80);
+    public static ShipType Enemy = new ShipType("Schooner", 4, 4, 5, 80);
     public static ShipType Player = new ShipType("Brig", 5, 5, 5, 100);
-	public static ShipType James = new ShipType("Galleon", 6, 6, 5, 110);
-	public static ShipType Van = new ShipType("Frigate", 9, 6, 5, 120);
-	public static ShipType Good = new ShipType("Man o' War", 6, 9, 5, 130);
-	public static ShipType Lan = new ShipType("Leviathan", 10, 10, 5, 150);
+    public static ShipType James = new ShipType("Galleon", 6, 6, 5, 110);
+    public static ShipType Van = new ShipType("Frigate", 9, 6, 5, 120);
+    public static ShipType Good = new ShipType("Man o' War", 6, 9, 5, 130);
+    public static ShipType Lan = new ShipType("Leviathan", 10, 10, 5, 150);
 
 }

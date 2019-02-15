@@ -68,16 +68,21 @@ public class Attack {
 	}
 
 	public String getName() { return this.name;	}
+
 	public String getDesc() { return this.desc; }
+
 	public boolean isSkipMove() {
 		return this.skipMove;
 	}
+
 	public boolean isSkipMoveStatus() {
 		return this.skipMoveStatus;
 	}
+
 	public void setSkipMoveStatus(boolean skipMoveStatus) {
 		this.skipMoveStatus = skipMoveStatus;
 	}
+
 	public void addAccuracy (int amount){
 		accPercent += amount;
 	}

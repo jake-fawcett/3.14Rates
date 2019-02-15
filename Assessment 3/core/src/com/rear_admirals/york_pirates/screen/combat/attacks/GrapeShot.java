@@ -26,4 +26,3 @@ public class GrapeShot extends Attack {
 
     public static Attack attackGrape = new GrapeShot("Grape Shot","Fire a bundle of smaller cannonballs at the enemy.",1,1,false, 25);
 }
-
