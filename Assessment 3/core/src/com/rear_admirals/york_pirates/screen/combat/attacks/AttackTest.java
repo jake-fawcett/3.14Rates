@@ -8,8 +8,6 @@ import static org.junit.Assert.*;
 public class AttackTest {
     private Attack tester = new Attack();
 
-    @Before
-
     @Test
     public void constructor() {
         assertEquals(tester.name, "Broadside");
