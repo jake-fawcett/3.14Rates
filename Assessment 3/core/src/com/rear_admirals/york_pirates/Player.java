@@ -16,7 +16,9 @@ public class Player {
     public static List<Attack> attacks = new ArrayList<Attack>();
 
     public Player() {
+        //Altered For Assessment 3
         this.playerShip = new Ship(Player, "Your Ship", Derwent);
+        //End Altered
         this.gold = 0;
         this.points = 0;
 
