@@ -17,33 +17,36 @@ public class Department {
         this.pirateGame = pirateGame;
     }
 
+    //Altered For Assessment 3
     public boolean purchase() {
         if (pirateGame.getPlayer().payGold(getPrice())) {
             if (product == "Defence") {
                 pirateGame.getPlayer().getPlayerShip().setDefence(pirateGame.getPlayer().getPlayerShip().getDefence() + 1);
                 return true;
-            }
-            else if (product == "Attack") {
+            } else if (product == "Attack") {
                 pirateGame.getPlayer().getPlayerShip().setAttack(pirateGame.getPlayer().getPlayerShip().getAttack() + 1);
                 return true;
-            }
-            else {
-                for (int i = 0; i < pirateGame.getPlayer().getAttacks().size(); i++){
+            } else {
+                for (int i = 0; i < pirateGame.getPlayer().getAttacks().size(); i++) {
                     pirateGame.getPlayer().getAttacks().get(i).addAccuracy(1);
                 }
             }
-        }return false;}
+        }
+        return false;
+    }
 
     public int getPrice() {
         if (product == "Defence") {
             return (int) (base_price * pow(2, max(0, pirateGame.getPlayer().getPlayerShip().getDefence() - 3)));
-        } else if (product == "Attack"){
+        } else if (product == "Attack") {
             return (int) (base_price * pow(2, max(0, pirateGame.getPlayer().getPlayerShip().getAttack() - 3)));
-        } else if (product == "Accuracy"){
+        } else if (product == "Accuracy") {
             return (int) (base_price * pow(2, max(0, pirateGame.getPlayer().getPlayerShip().getAccuracy() - 3)));
+        } else {
+            return 0;
         }
-        else {return 0;}
     }
+    //End Altered
 
     public String getName() {
         return name;
