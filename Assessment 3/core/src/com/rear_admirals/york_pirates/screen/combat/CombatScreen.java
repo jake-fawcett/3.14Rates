@@ -409,7 +409,9 @@ public class CombatScreen extends BaseScreen {
                 player.addGold(-player.getGold() / 2);
                 player.setPoints(0);
                 player.getPlayerShip().setHealth(player.getPlayerShip().getHealthMax());
-                //dialog("YOU HAVE DIED", BattleEvent.SCENE_RETURN);
+                player.getPlayerShip().setSpeed(0);
+                player.getPlayerShip().setAccelerationXY(0,0);
+                player.getPlayerShip().setAnchor(true);
                 pirateGame.setScreen(new VictoryScreen(pirateGame, false));
                 dispose();
                 break;
@@ -417,20 +419,23 @@ public class CombatScreen extends BaseScreen {
                 textBox.setStyle(pirateGame.getSkin().get("default", TextButton.TextButtonStyle.class));
                 player.addGold(enemy.getGoldValue());
                 player.addPoints(enemy.getPointValue());
+                player.getPlayerShip().setSpeed(0);
+                player.getPlayerShip().setAccelerationXY(0,0);
                 dialog("Congratulations, you have defeated Enemy " + enemy.getName(), BattleEvent.SCENE_RETURN);
                 if (enemy.getIsBoss() == true) {
                     enemy.getCollege().setBossDead(true);
                     this.player.getPlayerShip().getCollege().addAlly(this.enemy.getCollege());
                 }
                 break;
-                //End Alter
             case PLAYER_FLEES:
                 textBox.setStyle(pirateGame.getSkin().get("red", TextButton.TextButtonStyle.class));
                 player.addPoints(-5);
-                combatHandler(BattleEvent.SCENE_RETURN);
+                player.getPlayerShip().setSpeed(0);
+                player.getPlayerShip().setAccelerationXY(0,0);
+                player.getPlayerShip().setAnchor(true);
+                pirateGame.setScreen(pirateGame.getSailingScene());
                 break;
             case SCENE_RETURN:
-                //Altered For Assessment 3
                 enemy.setVisible(false);
                 player.getPlayerShip().setSpeed(0);
                 player.getPlayerShip().setAccelerationXY(0, 0);

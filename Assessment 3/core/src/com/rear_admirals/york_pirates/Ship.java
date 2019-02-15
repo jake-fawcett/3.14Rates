@@ -62,8 +62,8 @@ public class Ship extends PhysicsActor {
         this.healthMax = defence * 20;
         this.health = healthMax;
         this.college = college;
-        this.pointValue = 20;
-        this.goldValue = 20;
+        this.pointValue = type.getPointValue();
+        this.goldValue = type.getGoldValue();
         this.type = type;
         this.sailingTexture = new Texture(Gdx.files.internal("ship (1).png"));
         this.isBoss = isBoss;
