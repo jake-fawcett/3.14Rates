@@ -35,8 +35,10 @@ public class Ship extends PhysicsActor {
         this.healthMax = defence * 20;
         this.health = healthMax;
         this.college = Derwent;
+        //Added For Assessment 3
         this.pointValue = 20;
         this.goldValue = 20;
+        //End Added
     }
 
     public Ship(ShipType type, College college) {
@@ -47,13 +49,22 @@ public class Ship extends PhysicsActor {
         this.healthMax = defence * 20;
         this.health = healthMax;
         this.college = college;
+        //Added For Assessment 3
         this.pointValue = 20;
         this.goldValue = 20;
+        //End Added
         this.type = type;
         this.sailingTexture = new Texture(Gdx.files.internal("ship (1).png"));
         setupShip();
     }
 
+    //Added For Assessment 3
+    /**
+     * Constructor for ship
+     * @param type Type of ship from ShipType. Determines stats
+     * @param college College Allegiance
+     * @param isBoss Whether or not this ship is the boss ship for a college
+     */
     public Ship(ShipType type, College college, boolean isBoss) {
         this.name = college.getName() + " " + type.getName();
         this.attack = type.getAttack();
@@ -69,6 +80,7 @@ public class Ship extends PhysicsActor {
         this.isBoss = isBoss;
         setupShip();
     }
+    //End Added
 
     public Ship(ShipType type, College college, String texturePath) {
         this.name = college.getName() + " " + type.getName();
@@ -96,8 +108,10 @@ public class Ship extends PhysicsActor {
         this.name = name;
         this.healthMax = defence * 20;
         this.college = college;
+        //Added For Assessment 3
         this.pointValue = 200;
         this.goldValue = 100;
+        //End Added
         this.health = healthMax;
         this.sailingTexture = new Texture(Gdx.files.internal("ship (1).png"));
         this.isBoss = isBoss;
