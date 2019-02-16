@@ -110,6 +110,7 @@ public class SailingScreen extends BaseScreen {
         regionList = new ArrayList<BaseActor>();
 
         // set up tile map, renderer and camera
+        //FIXME Test, cough cough.
         tiledMap = new TmxMapLoader().load("game_map_test.tmx");
         tiledMapRenderer = new OrthogonalTiledMapRenderer(tiledMap);
         tiledCamera = new OrthographicCamera();
@@ -206,13 +207,18 @@ public class SailingScreen extends BaseScreen {
         goldLabel.setText(Integer.toString(pirateGame.getPlayer().getGold()));
         this.playerShip.playerMove(delta);
 
+        //FIXME "x" should have a more descriptive name. We will get marked down otherwise. The only reason I'm not changing
+        // it myself now is because I'm not sure if it is used anywhere else.
         Boolean x = false;
         for (BaseActor region : regionList) {
             String name = region.getName();
             //Altered For Assessment 3
+            //If in a colleges territory
             if (playerShip.overlaps(region, false) && !(region.getName().contains("chemistry") || region.getName().contains("physics") || region.getName().contains("maths"))) {
                 x = true;
                 mapMessage.setText(capitalizeFirstLetter(name.substring(0, name.length() - 6)) + " Territory");
+
+                //Roll a random chance to see if you are meeting an enemy ship
                 int roll = ThreadLocalRandom.current().nextInt(0, 10001);
                 int enemyChance = Integer.parseInt(pointsLabel.getText().toString()) / 2;
                 if (enemyChance > 300) {
@@ -225,6 +231,7 @@ public class SailingScreen extends BaseScreen {
                     College college = region.getCollege();
                     if (!playerShip.getCollege().getAlly().contains(college)) {
                         System.out.println(name);
+                        //Start combat
                         pirateGame.setScreen(new CombatScreen(pirateGame, new Ship(Enemy, college)));
                     }
                 }
