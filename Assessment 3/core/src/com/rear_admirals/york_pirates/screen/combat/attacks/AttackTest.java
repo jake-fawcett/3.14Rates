@@ -12,7 +12,7 @@ public class AttackTest {
     private Attack tester = new Attack();
 
     /**
-     * Tests that the constructor constructs an object
+     * Tests that the constructor instantiates an object
      */
     @Test
     public void constructor() {
