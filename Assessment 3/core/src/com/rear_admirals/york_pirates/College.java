@@ -36,6 +36,7 @@ public class College {
     }
 
     //Altered For Assessment 3
+    //In-game Colleges
     public static College Derwent = new College("Derwent");
     public static College Vanbrugh = new College("Vanbrugh");
     public static College James = new College("James");
