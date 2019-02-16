@@ -22,8 +22,10 @@ public class Ship extends PhysicsActor {
     private Texture sailingTexture;
     private College college;
     private boolean isBoss = false;
+    //Added For Assessment 3
     private int pointValue;
     private int goldValue;
+    //End Added
 
     // For testing purposes only. Use of this constructor in-game WILL cause errors.
     @Deprecated
@@ -220,24 +222,13 @@ public class Ship extends PhysicsActor {
         this.health = health;
     }
 
-    public void setType(ShipType type) {
-        this.type = type;
-    }
-
+    //Added For Assessment 3
     public int getGoldValue() {
         return this.goldValue;
-    }
-
-    public void setGoldValue(int newValue) {
-        this.goldValue = newValue;
     }
 
     public int getPointValue() {
         return this.pointValue;
     }
-
-    public void setPointValue(int newValue) {
-        this.pointValue = newValue;
-    }
-
+    //End Added
 }
