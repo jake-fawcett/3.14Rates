@@ -13,17 +13,17 @@ public class ShipType {
     private String name;
     private Texture texture;
 
+    //Altered For Assessment 3
     public ShipType(String name, int attack, int defence, int accuracy, int health, int goldValue, int pointValue) {
         this.name = name;
         this.attack = attack;
         this.defence = defence;
         this.accuracy = accuracy;
-        //Added For Assessment 3
         this.goldValue = goldValue;
         this.pointValue = pointValue;
-        //End Added
         this.texture = new Texture("ship4.png"); //TESTING (without assets created)
     } // There is currently no way to give ships a custom texture. Do we need this?
+    //End Altered
 
     public String getName() {
         return name;
