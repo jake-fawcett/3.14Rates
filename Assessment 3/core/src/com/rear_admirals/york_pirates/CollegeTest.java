@@ -12,11 +12,17 @@ public class CollegeTest {
     private College tester;
 
     @Before
+    /**
+     * Set up college
+     */
     public void setUp() throws Exception {
         tester = College.Derwent;
     }
 
     @Test
+    /**
+     * Test that you can add allies to colleges after they are instantiated
+     */
     public void addAlly() {
         College adding = new College("Test");
         tester.addAlly(adding);
@@ -24,6 +30,9 @@ public class CollegeTest {
     }
 
     @Test
+    /**
+     * Test that you can check if the boss of that college is dead
+     */
     public void isBossDead() {
         boolean before = tester.isBossDead();
         tester.setBossDead(!before);
