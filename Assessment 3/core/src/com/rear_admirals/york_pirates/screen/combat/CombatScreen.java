@@ -128,13 +128,19 @@ public class CombatScreen extends BaseScreen {
 
         // Instantiates Player and Enemy stat Labels
         playerStatTitle = new Label("Player Stats: ", pirateGame.getSkin(), "default_black");
-        playerAttack = new Label("Attack: " + Integer.toString(player.getPlayerShip().getAttack()), pirateGame.getSkin(), "default_black");
-        playerDefense = new Label("Defense: " + Integer.toString(player.getPlayerShip().getDefence()), pirateGame.getSkin(), "default_black");
-        playerAccuracy = new Label("Accuracy: " + Integer.toString(player.getPlayerShip().getAccuracy()), pirateGame.getSkin(), "default_black");
+        playerAttack = new Label("Attack: " + Integer.toString(player.getPlayerShip().getAttack()),
+                pirateGame.getSkin(), "default_black");
+        playerDefense = new Label("Defense: " + Integer.toString(player.getPlayerShip().getDefence()),
+                pirateGame.getSkin(), "default_black");
+        playerAccuracy = new Label("Accuracy: " + Integer.toString(player.getPlayerShip().getAccuracy()),
+                pirateGame.getSkin(), "default_black");
         enemyStatTitle = new Label("Enemy Stats: ", pirateGame.getSkin(), "default_black");
-        enemyAttack = new Label("Attack: " + Integer.toString(enemy.getAttack()), pirateGame.getSkin(), "default_black");
-        enemyDefense = new Label("Defense: " + Integer.toString(enemy.getDefence()), pirateGame.getSkin(), "default_black");
-        enemyAccuracy = new Label("Accuracy: " + Integer.toString(enemy.getAccuracy()), pirateGame.getSkin(), "default_black");
+        enemyAttack = new Label("Attack: " + Integer.toString(enemy.getAttack()), pirateGame.getSkin(),
+                "default_black");
+        enemyDefense = new Label("Defense: " + Integer.toString(enemy.getDefence()), pirateGame.getSkin(),
+                "default_black");
+        enemyAccuracy = new Label("Accuracy: " + Integer.toString(enemy.getAccuracy()), pirateGame.getSkin(),
+                "default_black");
         //End Added
 
         // Instantiate both the ships for the battle
@@ -143,9 +149,11 @@ public class CombatScreen extends BaseScreen {
 
         Label shipName = new Label(player.getPlayerShip().getName(), pirateGame.getSkin(), "default_black");
         playerHP = new ProgressBar(0, player.getPlayerShip().getHealthMax(), 0.1f, false, pirateGame.getSkin());
-        playerHPLabel = new Label(player.getPlayerShip().getHealth() + "/" + player.getPlayerShip().getHealthMax(), pirateGame.getSkin());
+        playerHPLabel = new Label(player.getPlayerShip().getHealth() + "/" + player.getPlayerShip().getHealthMax(),
+                pirateGame.getSkin());
 
-        playerHP.getStyle().background.setMinHeight(playerHP.getPrefHeight() * 2); //Setting vertical size of progress slider (Class implementation is slightly weird)
+        playerHP.getStyle().background.setMinHeight(playerHP.getPrefHeight() * 2); //Setting vertical size of
+        // progress slider (Class implementation is slightly weird)
         playerHP.getStyle().knobBefore.setMinHeight(playerHP.getPrefHeight());
 
         Label enemyName = new Label(enemy.getName(), pirateGame.getSkin(), "default_black");
@@ -167,7 +175,8 @@ public class CombatScreen extends BaseScreen {
         Label screenTitle = new Label("Combat Mode", pirateGame.getSkin(), "title_black");
         screenTitle.setAlignment(Align.center);
 
-        textBox = new TextButton("You encountered a " + enemy.getCollege().getName() + " " + enemy.getType() + "!", pirateGame.getSkin());
+        textBox = new TextButton("You encountered a " + enemy.getCollege().getName() + " " + enemy.getType() + "!",
+                pirateGame.getSkin());
         textBox.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
@@ -187,7 +196,8 @@ public class CombatScreen extends BaseScreen {
         this.queuedCombatEvent = BattleEvent.NONE;
         currentAttack = null;
 
-        // Instantiation of the combat buttons. Attack and Flee are default attacks, the rest can be modified within player class.
+        // Instantiation of the combat buttons. Attack and Flee are default attacks, the rest can be modified within
+        // player class.
         final AttackButton button1 = new AttackButton(Attack.attackMain, pirateGame.getSkin());
         buttonListener(button1);
         final AttackButton button2 = new AttackButton(player.attacks.get(0), pirateGame.getSkin());
@@ -351,7 +361,8 @@ public class CombatScreen extends BaseScreen {
                         dialog("Flee failed.", BattleEvent.ENEMY_MOVE);
                     }
                 } else {
-                    int damage = currentAttack.doAttack(player.getPlayerShip(), enemy); // Calls the attack function on the player and stores damage output
+                    int damage = currentAttack.doAttack(player.getPlayerShip(), enemy); // Calls the attack function
+                    // on the player and stores damage output
                     // This selection statement returns Special Charge attacks to normal state
                     if (currentAttack.isSkipMove()) {
                         currentAttack.setSkipMoveStatus(true);
@@ -364,12 +375,15 @@ public class CombatScreen extends BaseScreen {
                         System.out.println("Player " + currentAttack.getName() + " SUCCESSFUL, damage dealt: " + damage + ", Player Ship Health: " + player.getPlayerShip().getHealth() + ", Enemy Ship Health: " + enemy.getHealth());
                         if (player.getPlayerShip().getHealth() <= 0) {
                             System.out.println("Player has died");
-                            dialog("You dealt " + damage + " with " + currentAttack.getName() + "!", BattleEvent.PLAYER_DIES);
+                            dialog("You dealt " + damage + " with " + currentAttack.getName() + "!",
+                                    BattleEvent.PLAYER_DIES);
                         } else if (enemy.getHealth() <= 0) {
                             System.out.println("Enemy has died");
-                            dialog("You dealt " + damage + " with " + currentAttack.getName() + "!", BattleEvent.ENEMY_DIES);
+                            dialog("You dealt " + damage + " with " + currentAttack.getName() + "!",
+                                    BattleEvent.ENEMY_DIES);
                         } else {
-                            dialog("You dealt " + damage + " with " + currentAttack.getName() + "!", BattleEvent.ENEMY_MOVE);
+                            dialog("You dealt " + damage + " with " + currentAttack.getName() + "!",
+                                    BattleEvent.ENEMY_MOVE);
                         }
                     }
                 }
@@ -384,7 +398,8 @@ public class CombatScreen extends BaseScreen {
                     System.out.println("Enemy " + enemyAttack.getName() + " ATTACK MISSED");
                     message = "Enemies " + enemyAttack.getName() + " missed.";
                 } else {
-                    System.out.println("ENEMY " + enemyAttack.getName() + " SUCCESSFUL, damage dealt: " + damage + ", Player Ship Health: " + player.getPlayerShip().getHealth() + ", Enemy Ship Health: " + enemy.getHealth());
+                    System.out.println("ENEMY " + enemyAttack.getName() + " SUCCESSFUL, damage dealt: " + damage + "," +
+                            " Player Ship Health: " + player.getPlayerShip().getHealth() + ", Enemy Ship Health: " + enemy.getHealth());
                     message = "Enemy " + enemy.getName() + " dealt " + damage + " with " + enemyAttack.getName() + "!";
                 }
 
@@ -448,8 +463,8 @@ public class CombatScreen extends BaseScreen {
                     pirateGame.setScreen(pirateGame.getSailingScene());
                 }
                 dispose();
+                //End Alter
                 break;
-            //End Alter
         }
     }
 
