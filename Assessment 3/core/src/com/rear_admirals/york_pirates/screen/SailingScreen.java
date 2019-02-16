@@ -110,7 +110,7 @@ public class SailingScreen extends BaseScreen {
         regionList = new ArrayList<BaseActor>();
 
         // set up tile map, renderer and camera
-        //FIXME Test, cough cough.
+        //FIXME game_map_TEST, cough cough.
         tiledMap = new TmxMapLoader().load("game_map_test.tmx");
         tiledMapRenderer = new OrthogonalTiledMapRenderer(tiledMap);
         tiledCamera = new OrthographicCamera();
