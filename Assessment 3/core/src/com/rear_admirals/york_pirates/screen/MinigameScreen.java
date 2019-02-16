@@ -87,6 +87,10 @@ public class MinigameScreen extends BaseScreen {
         Gdx.input.setInputProcessor(mainStage);
     }
 
+    /**
+     * Pick a random from heads or tails
+     * @return "h" or "t"
+     */
     private String flipCoin() {
         Random rand = new Random();
         if (rand.nextBoolean()) {
