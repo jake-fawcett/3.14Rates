@@ -18,15 +18,23 @@ public class Department {
     }
 
     //Altered For Assessment 3
+
+    /**
+     * Upgrade ship by spending gold.
+     * @return - Boolean, purchase successful
+     */
     public boolean purchase() {
         if (pirateGame.getPlayer().payGold(getPrice())) {
+            Ship playerShip = pirateGame.getPlayer().getPlayerShip();
             if (product == "Defence") {
-                pirateGame.getPlayer().getPlayerShip().setDefence(pirateGame.getPlayer().getPlayerShip().getDefence() + 1);
+                playerShip.setDefence(playerShip.getDefence() + 1);
                 return true;
             } else if (product == "Attack") {
-                pirateGame.getPlayer().getPlayerShip().setAttack(pirateGame.getPlayer().getPlayerShip().getAttack() + 1);
+                playerShip.setAttack(playerShip.getAttack() + 1);
                 return true;
             } else {
+                //FIXME I'm pretty sure that this else statement returns false, even if it was successful. Also, didn't
+                //  we decide not to upgrade accuracy because of the way that they implemented it?
                 for (int i = 0; i < pirateGame.getPlayer().getAttacks().size(); i++) {
                     pirateGame.getPlayer().getAttacks().get(i).addAccuracy(1);
                 }
@@ -35,6 +43,10 @@ public class Department {
         return false;
     }
 
+    /**
+     * Get the price of an upgrade from this department, taking into account current upgrade level
+     * @return price of upgrade
+     */
     public int getPrice() {
         if (product == "Defence") {
             return (int) (base_price * pow(2, max(0, pirateGame.getPlayer().getPlayerShip().getDefence() - 3)));
