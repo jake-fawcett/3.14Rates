@@ -135,7 +135,7 @@ public class CombatScreen extends BaseScreen {
         enemyAttack = new Label("Attack: " + Integer.toString(enemy.getAttack()), pirateGame.getSkin(), "default_black");
         enemyDefense = new Label("Defense: " + Integer.toString(enemy.getDefence()), pirateGame.getSkin(), "default_black");
         enemyAccuracy = new Label("Accuracy: " + Integer.toString(enemy.getAccuracy()), pirateGame.getSkin(), "default_black");
-        //End Adding
+        //End Added
 
         // Instantiate both the ships for the battle
         CombatShip myShip = new CombatShip("ship1.png", viewwidth / 3);
