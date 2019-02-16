@@ -27,3 +27,15 @@ compare the branches as described in 3.
 5. Added/Removed/Altered imports are also not flagged with comments as this would lead to a lot of clutter and in and
 of themselves they do not affect functionality. To see these formatting changes please compare the branches as described
 in 3.
+
+6. As well as what is commented in the code, we also added:
+    - AlcuinFlag.png
+    - college-maps.tsx
+    - ConstantineFlag.png
+    - DerwentFlag.png
+    FIXME is this still called game_map_TEST.tmx jake?
+    - game_map_test.tmx
+    - GoodrickeFlag.png
+    - JamesFlag.png
+    - LangwithFlag.png
+    - VanbrughFlag.png
