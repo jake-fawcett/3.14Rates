@@ -81,7 +81,6 @@ public class MinigameScreen extends BaseScreen {
         bettingTable.row();
         bettingTable.add(Exit);
 
-
         mainStage.addActor(bettingTable);
 
         Gdx.input.setInputProcessor(mainStage);
