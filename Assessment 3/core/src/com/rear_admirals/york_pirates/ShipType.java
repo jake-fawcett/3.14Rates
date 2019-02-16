@@ -57,8 +57,10 @@ public class ShipType {
 
     // Static Ship Types go here
     //Altered For Assessment 3
+    //Player and encountered enemy ships
     public static ShipType Enemy = new ShipType("Schooner", 4, 4, 5, 80, 40, 40);
     public static ShipType Player = new ShipType("Brig", 5, 5, 5, 100, 60, 60);
+    //College Bosses
     public static ShipType James = new ShipType("Galleon", 6, 6, 5, 110, 80, 80);
     public static ShipType Van = new ShipType("Frigate", 9, 6, 5, 120, 100, 100);
     public static ShipType Good = new ShipType("Man o' War", 6, 9, 5, 130, 120, 120);
