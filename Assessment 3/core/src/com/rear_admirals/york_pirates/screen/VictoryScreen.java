@@ -62,10 +62,8 @@ public class VictoryScreen extends BaseScreen {
             if (hasWon) {
                 System.exit(0);
             } else {
-                pirateGame.setScreen(new SailingScreen(pirateGame));
+                pirateGame.setScreen(pirateGame.getSailingScene());
             }
-
-            dispose();
         }
     }
 }

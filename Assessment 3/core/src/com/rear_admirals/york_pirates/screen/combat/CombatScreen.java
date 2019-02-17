@@ -424,11 +424,13 @@ public class CombatScreen extends BaseScreen {
                 player.addGold(-player.getGold() / 2);
                 player.setPoints(0);
                 player.getPlayerShip().setHealth(player.getPlayerShip().getHealthMax());
+                enemy.setVisible(false);
                 player.getPlayerShip().setSpeed(0);
-                player.getPlayerShip().setAccelerationXY(0, 0);
+                player.getPlayerShip().setAccelerationXY(0,0);
                 player.getPlayerShip().setAnchor(true);
+                System.out.println("END OF COMBAT");
+                toggleAttackStage();
                 pirateGame.setScreen(new VictoryScreen(pirateGame, false));
-                dispose();
                 break;
             case ENEMY_DIES:
                 textBox.setStyle(pirateGame.getSkin().get("default", TextButton.TextButtonStyle.class));
@@ -461,7 +463,6 @@ public class CombatScreen extends BaseScreen {
                 } else {
                     pirateGame.setScreen(pirateGame.getSailingScene());
                 }
-                dispose();
                 //End Alter
                 break;
         }
