@@ -435,20 +435,19 @@ public class CombatScreen extends BaseScreen {
                 player.addGold(enemy.getGoldValue());
                 player.addPoints(enemy.getPointValue());
                 player.getPlayerShip().setSpeed(0);
-                player.getPlayerShip().setAccelerationXY(0, 0);
-                dialog("Congratulations, you have defeated Enemy " + enemy.getName(), BattleEvent.SCENE_RETURN);
+                player.getPlayerShip().setAccelerationXY(0,0);
                 if (enemy.getIsBoss() == true) {
                     enemy.getCollege().setBossDead(true);
                     this.player.getPlayerShip().getCollege().addAlly(this.enemy.getCollege());
+                    dialog("Congratulations, you have defeated Enemy " + enemy.getName(), BattleEvent.SCENE_RETURN);
+                } else {
+                    dialog("Congratulations, you have defeated Enemy " + enemy.getName(), BattleEvent.SCENE_RETURN);
                 }
                 break;
             case PLAYER_FLEES:
                 textBox.setStyle(pirateGame.getSkin().get("red", TextButton.TextButtonStyle.class));
                 player.addPoints(-5);
-                player.getPlayerShip().setSpeed(0);
-                player.getPlayerShip().setAccelerationXY(0, 0);
-                player.getPlayerShip().setAnchor(true);
-                pirateGame.setScreen(pirateGame.getSailingScene());
+                dialog("You Managed to Flee Successfully " + enemy.getName(), BattleEvent.SCENE_RETURN);
                 break;
             case SCENE_RETURN:
                 enemy.setVisible(false);

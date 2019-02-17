@@ -31,7 +31,7 @@ public class PirateGame extends Game {
 		Chemistry = new Department("Chemistry", "Attack", this);
 		Physics = new Department("Physics", "Defence", this);
         //Added For Assessment 3
-		Maths = new Department("Maths", "Accuracy",this);
+        Maths = new Department("Maths", "Attack",this);
 		//End Added
 		this.sailingScene = new SailingScreen(this);
         setScreen(new MainMenu(this));
