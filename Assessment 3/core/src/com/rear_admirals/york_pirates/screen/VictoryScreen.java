@@ -1,5 +1,4 @@
 //Added For Assessment 3
-//FIXME libgdx comments please - For this whole class
 package com.rear_admirals.york_pirates.screen;
 
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
@@ -16,13 +15,16 @@ public class VictoryScreen extends BaseScreen {
 
     public VictoryScreen(PirateGame main, Boolean hasWon) {
         super(main);
+        //Stores if the User has Won or Lost
         hasWon = this.hasWon;
 
+        //Table used to store labels to align and position them relatively
         Table uiTable = new Table();
         uiTable.setFillParent(true);
         uiTable.setPosition(0,0);
         uiTable.align(Align.center);
 
+        //Creates Win and Lose messages based on if the Player has Won or Lost
         if (hasWon) {
             Label Victory = new Label("You Win!", main.getSkin());
             uiTable.add(Victory);
@@ -36,6 +38,7 @@ public class VictoryScreen extends BaseScreen {
             i=0;
         }
 
+        //Creates Label displaying the players score on the Win/Loss Screen
         Label pointsLabel = new Label("Score: " + Integer.toString(main.getPlayer().getPoints()), main.getSkin());
         uiTable.row();
         uiTable.add(pointsLabel);
@@ -47,12 +50,15 @@ public class VictoryScreen extends BaseScreen {
     public void update(float delta) {
         i++;
 
+        //i and If statement used to allow the screen to Update to the Victory Screen
+        //before sleeping so the Screen is displayed for a set amount of time
         if (i == 2){
             try {
-                TimeUnit.SECONDS.sleep(1);
+                TimeUnit.SECONDS.sleep(2);
             } catch (InterruptedException e) {
             }
 
+            //If the player has won the game closes, If they have lost they are reset to the Sailing Screen
             if (hasWon) {
                 System.exit(0);
             } else {

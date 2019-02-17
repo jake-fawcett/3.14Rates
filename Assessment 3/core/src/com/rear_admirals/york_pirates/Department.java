@@ -44,6 +44,8 @@ public class Department {
             return (int) (base_price * pow(2, max(0, pirateGame.getPlayer().getPlayerShip().getDefence() - 3)));
         } else if (product == "Attack") {
             return (int) (base_price * pow(2, max(0, pirateGame.getPlayer().getPlayerShip().getAttack() - 3)));
+        } else {
+            throw new IllegalArgumentException("Invalid Department Product");
         }
     }
     //End Altered

@@ -33,8 +33,7 @@ in 3.
     - college-maps.tsx
     - ConstantineFlag.png
     - DerwentFlag.png
-    FIXME is this still called game_map_TEST.tmx jake?
-    - game_map_test.tmx
+    - game_map.tmx
     - GoodrickeFlag.png
     - JamesFlag.png
     - LangwithFlag.png

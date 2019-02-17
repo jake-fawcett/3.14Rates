@@ -110,8 +110,7 @@ public class SailingScreen extends BaseScreen {
         regionList = new ArrayList<BaseActor>();
 
         // set up tile map, renderer and camera
-        //FIXME game_map_TEST, cough cough.
-        tiledMap = new TmxMapLoader().load("game_map_test.tmx");
+        tiledMap = new TmxMapLoader().load("game_map.tmx");
         tiledMapRenderer = new OrthogonalTiledMapRenderer(tiledMap);
         tiledCamera = new OrthographicCamera();
         tiledCamera.setToOrtho(false, viewwidth, viewheight);
@@ -207,8 +206,6 @@ public class SailingScreen extends BaseScreen {
         goldLabel.setText(Integer.toString(pirateGame.getPlayer().getGold()));
         this.playerShip.playerMove(delta);
 
-        //FIXME "x" should have a more descriptive name. We will get marked down otherwise. The only reason I'm not changing
-        // it myself now is because I'm not sure if it is used anywhere else.
         Boolean x = false;
         for (BaseActor region : regionList) {
             String name = region.getName();

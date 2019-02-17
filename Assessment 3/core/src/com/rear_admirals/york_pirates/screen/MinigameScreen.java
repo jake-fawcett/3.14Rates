@@ -1,4 +1,3 @@
-//FIXME libgdx comments please - For this whole class
 //Added For Assessment 3
 
 package com.rear_admirals.york_pirates.screen;
@@ -25,11 +24,15 @@ public class MinigameScreen extends BaseScreen {
 
     public MinigameScreen(final PirateGame main, final Department department) {
         super(main);
+        //Contains the Games instance of the Player to change gold values
         player = main.getPlayer();
+        //Contains the Department the Player was at so it can be returned to
         this.department = department;
 
+        //Creates a Table which all UI is added to so it can be relatively positioned
         Table uiTable = new Table();
 
+        //Creates the Label displaying the Users gold and positions it
         Label goldTextLabel = new Label("Gold:", main.getSkin());
         goldLabel = new Label(Integer.toString(main.getPlayer().getGold()), main.getSkin());
         goldLabel.setAlignment(Align.left);
@@ -42,6 +45,7 @@ public class MinigameScreen extends BaseScreen {
 
         uiStage.addActor(uiTable);
 
+        //Creates a Table which all betting buttons and messages are added to so they can be relatively positioned
         Table bettingTable = new Table();
         bettingTable.setFillParent(true);
 
@@ -49,6 +53,7 @@ public class MinigameScreen extends BaseScreen {
         final Label status = new Label("", main.getSkin());
         Label empty = new Label(" ", main.getSkin());
 
+        //Creates Heads Button which calls betHeads on click
         final TextButton Heads = new TextButton("Bet 5 on Heads", main.getSkin());
         Heads.addListener(new ClickListener() {
             public void clicked(InputEvent event, float x, float y) {
@@ -56,6 +61,7 @@ public class MinigameScreen extends BaseScreen {
             }
         });
 
+        //Creates Tails Button which calls betTails on click
         final TextButton Tails = new TextButton("Bet 5 on Tails", main.getSkin());
         Tails.addListener(new ClickListener() {
             public void clicked(InputEvent event, float x, float y) {
@@ -63,6 +69,7 @@ public class MinigameScreen extends BaseScreen {
             }
         });
 
+        //Creates Exit button which returns the player to the screen for the department they were previously at
         final TextButton Exit = new TextButton("Exit", main.getSkin());
         Exit.addListener(new ClickListener() {
             public void clicked(InputEvent event, float x, float y) {
@@ -71,6 +78,7 @@ public class MinigameScreen extends BaseScreen {
             }
         });
 
+        //Adds all Betting UI elements created above to the Table
         bettingTable.add(title);
         bettingTable.row();
         bettingTable.add(status);
@@ -100,7 +108,12 @@ public class MinigameScreen extends BaseScreen {
         }
     }
 
+    /**
+     * Picks Heads or Tails and Displays Win/Loss message and changes player gold for the player Choosing Heads
+     * @param status
+     */
     void betHeads(Label status) {
+        //Checks the player has enough gold to bet
         if (player.getGold() >= 5) {
             if (flipCoin() == "h") {
                 status.setText("The Coin was Tails, You Lose!");
@@ -114,7 +127,12 @@ public class MinigameScreen extends BaseScreen {
         }
     }
 
+    /**
+     * Picks Heads or Tails and Displays Win/Loss message and changes player gold for the player Choosing Tails
+     * @param status
+     */
     void betTails(Label status) {
+        //Checks the player has enough gold to bet
         if (player.getGold() >= 5) {
             if (flipCoin() == "h") {
                 status.setText("The Coin was Heads, You Lose!");
@@ -131,6 +149,7 @@ public class MinigameScreen extends BaseScreen {
 
     @Override
     public void update(float delta) {
+        //Updates the Label displaying the players gold balance during betting
         goldLabel.setText(Integer.toString(pirateGame.getPlayer().getGold()));
     }
 }
