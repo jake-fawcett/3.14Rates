@@ -218,8 +218,8 @@ public class SailingScreen extends BaseScreen {
                 //Roll a random chance to see if you are meeting an enemy ship
                 int roll = ThreadLocalRandom.current().nextInt(0, 10001);
                 int enemyChance = Integer.parseInt(pointsLabel.getText().toString()) / 2;
-                if (enemyChance > 300) {
-                    enemyChance = 300;
+                if (enemyChance > 100) {
+                    enemyChance = 100;
                 } else if (enemyChance < 10) {
                     enemyChance = 10;
                 }
