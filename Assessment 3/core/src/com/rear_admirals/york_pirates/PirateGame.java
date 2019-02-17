@@ -14,9 +14,12 @@ public class PirateGame extends Game {
     private BitmapFont font;
     private Skin skin;
     private Player player;
-    private SailingScreen sailingScene;
-    public static Department Chemistry;
-    public static Department Physics;
+	private SailingScreen sailingScene;
+	public static Department Chemistry;
+	public static Department Physics;
+	//Added For Assessment 3
+	public static Department Maths;
+    //End Added
 
     public void create() {
         Gdx.graphics.setTitle("York Pirates!");
@@ -25,9 +28,12 @@ public class PirateGame extends Game {
         //Use LibGDX's default Arial font.
         font = new BitmapFont();
         player = new Player();
-        Chemistry = new Department("Chemistry", "Attack", this);
-        Physics = new Department("Physics", "Defence", this);
-        this.sailingScene = new SailingScreen(this);
+		Chemistry = new Department("Chemistry", "Attack", this);
+		Physics = new Department("Physics", "Defence", this);
+        //Added For Assessment 3
+        Maths = new Department("Maths", "Attack",this);
+		//End Added
+		this.sailingScene = new SailingScreen(this);
         setScreen(new MainMenu(this));
     }
 

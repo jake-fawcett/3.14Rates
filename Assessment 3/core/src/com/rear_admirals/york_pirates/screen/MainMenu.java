@@ -49,12 +49,17 @@ public class MainMenu extends BaseScreen {
         TextButton combat_mode = new TextButton("Go to Combat Mode", pirateGame.getSkin());
         TextButton college_mode = new TextButton("Go to College screen", pirateGame.getSkin());
         TextButton department_mode = new TextButton("Go to Department screen", pirateGame.getSkin());
+        //Added For Assessment 3
+        TextButton exit_game = new TextButton("Exit Game", pirateGame.getSkin());
+        //End Added
 
         // Allows button to be clickable, and sets process for when clicked.
         combat_mode.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                pirateGame.setScreen(new CombatScreen(pirateGame, new Ship(Brig, Derwent)));
+                //Altered For Assessment 3
+                pirateGame.setScreen(new CombatScreen(pirateGame, new Ship(Player, Derwent)));
+                //End Altered
                 dispose();
             }
         });
@@ -83,6 +88,16 @@ public class MainMenu extends BaseScreen {
             }
         });
 
+        //Added For Assessment 3
+        exit_game.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                System.exit(1);
+                dispose();
+            }
+        });
+        //End Added
+
         tableContainer.setActor(table);
 
         table.add(title).padBottom(viewwidth / 20).width(viewwidth / 2);
@@ -95,7 +110,11 @@ public class MainMenu extends BaseScreen {
         table.row();
         table.add(college_mode).uniform().fill().padBottom(viewheight / 40);
         table.row();
-        table.add(department_mode).uniform().fill();
+        //Altered For Assessment 3
+        table.add(department_mode).uniform().fill().padBottom(viewheight / 40);
+        table.row();
+        table.add(exit_game).uniform().padBottom(viewheight / 40).size(viewwidth / 2, viewheight / 10);
+        //End Altered
 
         stage.addActor(tableContainer);
 
@@ -140,5 +159,3 @@ public class MainMenu extends BaseScreen {
     public void dispose() {
     }
 }
-
-

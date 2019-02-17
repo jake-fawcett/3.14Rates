@@ -17,29 +17,38 @@ public class Department {
         this.pirateGame = pirateGame;
     }
 
+    //Altered For Assessment 3
+
+    /**
+     * Upgrade ship by spending gold.
+     * @return - Boolean, purchase successful
+     */
     public boolean purchase() {
         if (pirateGame.getPlayer().payGold(getPrice())) {
+            Ship playerShip = pirateGame.getPlayer().getPlayerShip();
             if (product == "Defence") {
-                pirateGame.getPlayer().getPlayerShip().setDefence(pirateGame.getPlayer().getPlayerShip().getDefence() + 1);
+                playerShip.setDefence(playerShip.getDefence() + 1);
                 return true;
-            } else {
-                pirateGame.getPlayer().getPlayerShip().setAttack(pirateGame.getPlayer().getPlayerShip().getAttack() + 1);
+            } else if (product == "Attack") {
+                playerShip.setAttack(playerShip.getAttack() + 1);
                 return true;
             }
-        } else {
-            return false;
-        }
-    }
+        }return false;}
 
+    /**
+     * Get the price of an upgrade from this department, taking into account current upgrade level
+     * @return price of upgrade
+     */
     public int getPrice() {
         if (product == "Defence") {
             return (int) (base_price * pow(2, max(0, pirateGame.getPlayer().getPlayerShip().getDefence() - 3)));
         } else if (product == "Attack") {
             return (int) (base_price * pow(2, max(0, pirateGame.getPlayer().getPlayerShip().getAttack() - 3)));
         } else {
-            return 0;
+            throw new IllegalArgumentException("Invalid Department Product");
         }
     }
+    //End Altered
 
     public String getName() {
         return name;

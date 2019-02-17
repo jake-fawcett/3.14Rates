@@ -113,4 +113,3 @@ public class BaseActor extends Group {
         setOrigin(getWidth() / 2, getHeight() / 2);
     }
 }
-

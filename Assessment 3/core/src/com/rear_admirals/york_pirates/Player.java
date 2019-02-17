@@ -16,7 +16,9 @@ public class Player {
     public static List<Attack> attacks = new ArrayList<Attack>();
 
     public Player() {
-        this.playerShip = new Ship(Brig, "Your Ship", Derwent);
+        //Altered For Assessment 3
+        this.playerShip = new Ship(Player, "Your Ship", Derwent);
+        //End Altered
         this.gold = 0;
         this.points = 0;
 
@@ -33,6 +35,10 @@ public class Player {
         attacks.add(Ram.attackRam);
         attacks.add(Attack.attackSwivel);
         attacks.add(Attack.attackBoard);
+    }
+
+    public List<Attack> getAttacks(){
+        return  attacks;
     }
 
     public Ship getPlayerShip() {
