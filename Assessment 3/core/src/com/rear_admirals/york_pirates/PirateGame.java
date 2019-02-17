@@ -28,7 +28,7 @@ public class PirateGame extends Game {
         player = new Player();
 		Chemistry = new Department("Chemistry", "Attack", this);
 		Physics = new Department("Physics", "Defence", this);
-		Maths = new Department("Maths", "Accuracy",this);
+		Maths = new Department("Maths", "Attack",this);
 		this.sailingScene = new SailingScreen(this);
         setScreen(new MainMenu(this));
     }
