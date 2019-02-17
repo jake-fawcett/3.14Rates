@@ -439,6 +439,7 @@ public class CombatScreen extends BaseScreen {
                 if (enemy.getIsBoss() == true) {
                     enemy.getCollege().setBossDead(true);
                     this.player.getPlayerShip().getCollege().addAlly(this.enemy.getCollege());
+                    dialog("Congratulations, you have defeated Enemy " + enemy.getName(), BattleEvent.SCENE_RETURN);
                 } else {
                     dialog("Congratulations, you have defeated Enemy " + enemy.getName(), BattleEvent.SCENE_RETURN);
                 }
