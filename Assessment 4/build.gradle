@@ -9,6 +9,7 @@ buildscript {
         jcenter()
         google()
     }
+
     dependencies {
         
 
@@ -19,14 +20,16 @@ allprojects {
     apply plugin: "eclipse"
     apply plugin: "idea"
 
+
     version = '1.0'
     ext {
-        appName = "SeprGame"
+        appName = "APirateGame"
         gdxVersion = '1.9.8'
         roboVMVersion = '2.3.5'
         box2DLightsVersion = '1.4'
         ashleyVersion = '1.7.0'
         aiVersion = '1.8.0'
+        junitVersion = '4.12'
     }
 
     repositories {
@@ -53,16 +56,28 @@ project(":desktop") {
 
 project(":core") {
     apply plugin: "java"
-
-
+    apply plugin: "checkstyle"
+    
+    checkstyle {
+        configFile = rootProject.file('checkstyle/checkstyle.xml')
+        toolVersion = '8.11'
+    }
+    
     dependencies {
+        compileOnly "org.projectlombok:lombok:1.18.4"
+        annotationProcessor "org.projectlombok:lombok:1.18.4"
+
         compile "com.badlogicgames.gdx:gdx:$gdxVersion"
         compile "com.badlogicgames.gdx:gdx-box2d:$gdxVersion"
-        compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.8.1'
-
-
+        
+        testCompile "junit:junit:$junitVersion"
+        testCompile "org.mockito:mockito-all:1.9.+"
+        testCompile "com.badlogicgames.gdx:gdx-backend-headless:$gdxVersion"
+        testCompile "com.badlogicgames.gdx:gdx:$gdxVersion"
+        testCompile "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-desktop"
     }
 }
+
 
 tasks.eclipse.doLast {
     delete ".project"
