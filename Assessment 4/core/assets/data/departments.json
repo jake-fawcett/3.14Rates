@@ -1,0 +1,72 @@
+[
+  {
+    "class": "uk.ac.york.sepr4.ahod2.object.building.Department",
+    "id": 1,
+    "name": "Computer Science",
+    "repairCost": 2,
+    "minigamePower": 2
+  },
+  {
+    "class": "uk.ac.york.sepr4.ahod2.object.building.Department",
+    "id": 2,
+    "name": "Law and Management",
+    "repairCost": 2,
+    "minigamePower": 2
+  },
+  {
+    "class": "uk.ac.york.sepr4.ahod2.object.building.Department",
+    "id": 3,
+    "name": "Economics",
+    "repairCost": 3,
+    "minigamePower": 4
+  },
+  {
+    "class": "uk.ac.york.sepr4.ahod2.object.building.Department",
+    "id": 4,
+    "name": " Mathematics",
+    "repairCost": 3,
+    "minigamePower": 4
+  },
+  {
+    "class": "uk.ac.york.sepr4.ahod2.object.building.Department",
+    "id": 5,
+    "name": "Psychology",
+    "repairCost": 4,
+    "minigamePower": 6
+  },
+  {
+    "class": "uk.ac.york.sepr4.ahod2.object.building.Department",
+    "id": 6,
+    "name": "Biology",
+    "repairCost": 4,
+    "minigamePower": 6
+  },
+  {
+    "class": "uk.ac.york.sepr4.ahod2.object.building.Department",
+    "id": 7,
+    "name": "Chemistry",
+    "repairCost": 6,
+    "minigamePower": 8,
+  },
+  {
+    "class": "uk.ac.york.sepr4.ahod2.object.building.Department",
+    "id": 8,
+    "name": "Physics",
+    "repairCost": 6,
+    "minigamePower": 8
+  },
+  {
+    "class": "uk.ac.york.sepr4.ahod2.object.building.Department",
+    "id": 9,
+    "name": "English",
+    "repairCost": 8,
+    "minigamePower": 10
+  },
+  {
+    "class": "uk.ac.york.sepr4.ahod2.object.building.Department",
+    "id": 10,
+    "name": "Philosophy",
+    "repairCost": 8,
+    "minigamePower": 10
+  }
+]

@@ -1,0 +1,52 @@
+[
+  {
+    "class": "uk.ac.york.sepr4.ahod2.object.GameLevel",
+    "id": 1,
+    "collegeId": 1,
+    "departmentIds" : [1,2],
+    "levelGold" : 200,
+    "battleGold": 30,
+    "depth": 8,
+    "difficulty": 1
+  },
+  {
+    "class": "uk.ac.york.sepr4.ahod2.object.GameLevel",
+    "id": 2,
+    "collegeId": 2,
+    "departmentIds" : [3,4],
+    "levelGold" : 300,
+    "battleGold": 50,
+    "depth": 12,
+    "difficulty": 2
+  },
+  {
+    "class": "uk.ac.york.sepr4.ahod2.object.GameLevel",
+    "id": 3,
+    "collegeId": 3,
+    "departmentIds" : [5,6],
+    "levelGold" : 400,
+    "battleGold": 80,
+    "depth": 16,
+    "difficulty": 3
+  },
+  {
+    "class": "uk.ac.york.sepr4.ahod2.object.GameLevel",
+    "id": 4,
+    "collegeId": 4,
+    "departmentIds" : [7,8],
+    "levelGold" : 400,
+    "battleGold": 100,
+    "depth": 20,
+    "difficulty": 4
+  },
+  {
+    "class": "uk.ac.york.sepr4.ahod2.object.GameLevel",
+    "id": 5,
+    "collegeId": 5,
+    "departmentIds" : [9,10],
+    "levelGold" : 400,
+    "battleGold": 120,
+    "depth": 25,
+    "difficulty": 5
+  }
+]

@@ -1,0 +1,146 @@
+[
+  {
+    "class": "uk.ac.york.sepr4.ahod2.object.encounter.Encounter",
+    "id": 1,
+    "name": "Mutiny",
+    "text": "Bad feelings aboard, what should you do?",
+    "options" : [
+      {
+        "class": "uk.ac.york.sepr4.ahod2.object.encounter.EncounterOption",
+        "text": "Make a crew member walk the plank!",
+        "gold": 0
+      },
+      {
+        "class": "uk.ac.york.sepr4.ahod2.object.encounter.EncounterOption",
+        "text": "Ignore them!",
+        "gold": -5
+      }
+    ],
+    "chance": 5
+  },
+  {
+    "class": "uk.ac.york.sepr4.ahod2.object.encounter.Encounter",
+    "id": 1,
+    "name": "Sighting!",
+    "text": "Captain, a bountiful ship has been sighted on the horizon - shall we pursue?",
+    "options" : [
+      {
+        "class": "uk.ac.york.sepr4.ahod2.object.encounter.EncounterOption",
+        "text": "Arrrr, let's get em!",
+        "battle": true,
+        "difficulty": 3,
+        "gold": 0
+      },
+      {
+        "class": "uk.ac.york.sepr4.ahod2.object.encounter.EncounterOption",
+        "text": "Not today, we must rest!",
+        "gold": 0
+      }
+    ],
+    "chance": 5
+  },
+  {
+    "class": "uk.ac.york.sepr4.ahod2.object.encounter.Encounter",
+    "id": 1,
+    "name": "Craving",
+    "text": "The crew is craving gold! What should we do sir?",
+    "options" : [
+      {
+        "class": "uk.ac.york.sepr4.ahod2.object.encounter.EncounterOption",
+        "text": "Give them what they want",
+        "battle": false,
+        "gold": -10
+      },
+      {
+        "class": "uk.ac.york.sepr4.ahod2.object.encounter.EncounterOption",
+        "text": "Make them wait for the next bounty!",
+        "battle": true,
+        "difficulty": 4,
+        "gold": 0
+      }
+    ],
+    "chance": 5
+  },
+  {
+    "class": "uk.ac.york.sepr4.ahod2.object.encounter.Encounter",
+    "id": 1,
+    "name": "Kraken!",
+    "text": "Is that a tentacle rising from the water! Has it got gold armour?",
+    "options" : [
+      {
+        "class": "uk.ac.york.sepr4.ahod2.object.encounter.EncounterOption",
+        "text": "Must just be my imagination",
+        "battle": true,
+        "difficulty": 5,
+        "gold": 0
+      },
+      {
+        "class": "uk.ac.york.sepr4.ahod2.object.encounter.EncounterOption",
+        "text": "Fight for your lives men! Slay thy beast",
+        "battle": true,
+        "difficulty": 5,
+        "gold": 50
+      }
+    ],
+    "chance": 5
+  },
+  {
+    "class": "uk.ac.york.sepr4.ahod2.object.encounter.Encounter",
+    "id": 1,
+    "name": "Siren song",
+    "text": "Anyone else hear that majestic music? Must be Sirens",
+    "options" : [
+      {
+        "class": "uk.ac.york.sepr4.ahod2.object.encounter.EncounterOption",
+        "text": "Sacrifice bob!",
+        "gold": 0
+      },
+      {
+        "class": "uk.ac.york.sepr4.ahod2.object.encounter.EncounterOption",
+        "text": "Stick gold in your ears men",
+        "gold": -10
+      }
+    ],
+    "chance": 5
+  },
+  {
+    "class": "uk.ac.york.sepr4.ahod2.object.encounter.Encounter",
+    "id": 1,
+    "name": "Map",
+    "text": "Look there is a bottle with a map in it, give it here",
+    "options" : [
+      {
+        "class": "uk.ac.york.sepr4.ahod2.object.encounter.EncounterOption",
+        "text": "X marks the spot, lads!",
+        "gold": 20
+      },
+      {
+        "class": "uk.ac.york.sepr4.ahod2.object.encounter.EncounterOption",
+        "text": "It's probably fake, throw it away",
+        "gold": 0
+      }
+    ],
+    "chance": 5
+  },
+  {
+    "class": "uk.ac.york.sepr4.ahod2.object.encounter.Encounter",
+    "id": 1,
+    "name": "Dance",
+    "text": "Why is everyone singing and dancing, you want me to join in?",
+    "options" : [
+      {
+        "class": "uk.ac.york.sepr4.ahod2.object.encounter.EncounterOption",
+        "text": "Let me bust out my moves, hold my rum",
+        "gold": -30
+      },
+      {
+        "class": "uk.ac.york.sepr4.ahod2.object.encounter.EncounterOption",
+        "text": "Nah, I hate these things. Stop you fools!",
+        "battle": true,
+        "difficulty": 3,
+        "gold": 0
+      }
+    ],
+    "chance": 5
+  }
+]

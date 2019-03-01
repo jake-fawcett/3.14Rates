@@ -1,0 +1,32 @@
+[
+  {
+    "class": "uk.ac.york.sepr4.ahod2.object.building.College",
+    "id": 1,
+    "name": "Alcuin"
+    "bossDifficulty": 2
+  },
+  {
+    "class": "uk.ac.york.sepr4.ahod2.object.building.College",
+    "id": 2,
+    "name": "Halifax",
+    "bossDifficulty": 4
+  },
+  {
+    "class": "uk.ac.york.sepr4.ahod2.object.building.College",
+    "id": 3,
+    "name": "Vanburugh",
+    "bossDifficulty": 6
+  },
+  {
+    "class": "uk.ac.york.sepr4.ahod2.object.building.College",
+    "id": 4,
+    "name": "James",
+    "bossDifficulty": 8
+  },
+  {
+    "class": "uk.ac.york.sepr4.ahod2.object.building.College",
+    "id": 5,
+    "name": "Derwent",
+    "bossDifficulty": 10
+  }
+]

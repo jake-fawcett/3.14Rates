@@ -1,12 +1,8 @@
-# Yet Another Pirate Game
-
+# All Hands on Deck 2 (AHOD2)
 #### Master Branch
 
-[![Master Branch - Build Status](https://travis-ci.com/SEPR4/APirateGame.svg?branch=master)]()
+[![Master Branch - Build Status](https://travis-ci.com/SEPR4/AHOD2.svg?branch=master)]()
 
-#### Dev Branch
-
-[![Dev Branch - Build Status](https://travis-ci.com/SEPR4/APirateGame.svg?branch=dev)]()
 
 ### Project Prerequisites
 * Lombok Plugin for IntelliJ
