@@ -334,7 +334,7 @@
     "damageSelf": 5,
     "damage": 5,
     "moveTime": 8,
-    "manaCost": 10,
+    "manaCost": 8,
     "heal": 0
   },
   {
