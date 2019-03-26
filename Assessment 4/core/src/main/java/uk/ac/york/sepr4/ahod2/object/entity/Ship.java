@@ -64,7 +64,7 @@ public class Ship {
      * Increase health by specified value (cap at max health).
      * @param val specified value
      */
-    private void heal(Integer val) {
+    public void heal(Integer val) {
         if (health + val >= maxHealth) {
             health = maxHealth;
         } else {

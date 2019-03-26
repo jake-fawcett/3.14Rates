@@ -24,7 +24,6 @@ import uk.ac.york.sepr4.ahod2.object.card.Card;
 import uk.ac.york.sepr4.ahod2.object.entity.Player;
 import uk.ac.york.sepr4.ahod2.object.entity.Ship;
 import uk.ac.york.sepr4.ahod2.util.BattleAI;
-
 import java.util.Random;
 
 //could be replaced by a bool?
@@ -261,6 +260,7 @@ public class BattleScreen extends AHODScreen {
             gameInstance.getMessageHUD().addGoldMessage(gold);
             if (enemy.isBoss()) {
                 //screen is switched in this method
+                player.getShip().heal(10);
                 gameInstance.advanceLevel();
             } else {
                 gameInstance.fadeSwitchScreen(new CardSelectionScreen(gameInstance, gameInstance.getCardManager().getRandomSelection(difficulty)), true);
