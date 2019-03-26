@@ -82,7 +82,7 @@
     "damageSelf": 5,
     "damage": 15,
     "moveTime": 0,
-    "manaCost": 5,
+    "manaCost": 2,
     "heal": 0
   },
   {
@@ -156,18 +156,18 @@
     "heal": 0
   },
   {
-  "class": "uk.ac.york.sepr4.ahod2.object.card.Card",
-  "id": 10,
-  "_default": false,
-  "power": 6,
-  "name": "Heated-shot++",
-  "desc": "Fires a hot shot to set enemy boat alight!++",
-  "textureStr": "heatedshot++",
-  "damageSelf": 0,
-  "damage": 5,
-  "moveTime": 4,
-  "manaCost": 7,
-  "heal": 0
+    "class": "uk.ac.york.sepr4.ahod2.object.card.Card",
+    "id": 10,
+    "_default": false,
+    "power": 6,
+    "name": "Heated-shot++",
+    "desc": "Fires a hot shot to set enemy boat alight!++",
+    "textureStr": "heatedshot++",
+    "damageSelf": 0,
+    "damage": 5,
+    "moveTime": 4,
+    "manaCost": 6,
+    "heal": 0
   },
   {
     "class": "uk.ac.york.sepr4.ahod2.object.card.Card",
@@ -250,7 +250,7 @@
     "damageSelf": 0,
     "damage": 15,
     "moveTime": 5,
-    "manaCost": 10,
+    "manaCost": 8,
     "heal": 0
   },
   {
@@ -264,7 +264,7 @@
     "damageSelf": 5,
     "damage": 5,
     "moveTime": 3,
-    "manaCost": 5,
+    "manaCost": 7,
     "heal": 0
   },
   {
@@ -278,7 +278,7 @@
     "damageSelf": 10,
     "damage": 10,
     "moveTime": 6,
-    "manaCost": 7,
+    "manaCost": 5,
     "heal": 0
   },
   {
