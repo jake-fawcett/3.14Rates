@@ -32,7 +32,7 @@ public class MonsterScreen extends AHODScreen {
         table1.top();
 
         //create label for base encounter
-        Label encounterText = new Label("You have Encountered a Sea Monster, Take 3 Damage", StyleManager.generateLabelStyle(60, Color.BLACK));
+        Label encounterText = new Label("You have Encountered a Sea Monster, Take 7 Damage", StyleManager.generateLabelStyle(60, Color.BLACK));
         table1.add(encounterText).expandX().padTop(Gdx.graphics.getHeight() / 4);
 
         //create EncounterButton table
@@ -49,8 +49,8 @@ public class MonsterScreen extends AHODScreen {
                 public void clicked(InputEvent ev, float x, float y) {
                     Player player = gameInstance.getPlayer();
 
-                    if (player.getShip().getHealth() > 3) {
-                        player.getShip().setHealth(player.getShip().getHealth() - 3);
+                    if (player.getShip().getHealth() > 7) {
+                        player.getShip().setHealth(player.getShip().getHealth() - 7);
                         gameInstance.fadeSwitchScreen(gameInstance.getSailScreen());
                     } else {
                         //health less than 0, player loses
