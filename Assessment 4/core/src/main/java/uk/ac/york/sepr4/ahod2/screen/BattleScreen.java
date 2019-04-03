@@ -260,8 +260,23 @@ public class BattleScreen extends AHODScreen {
             gameInstance.getMessageHUD().addGoldMessage(gold);
             if (enemy.isBoss()) {
                 //screen is switched in this method
-                player.getShip().heal(10);
-                gameInstance.advanceLevel();
+                player.incBoss();
+                if (player.getBossCounter() >= 1){
+                    player.getShip().heal(10);
+                }
+                if (player.getBossCounter() == 1){
+                    gameInstance.fadeSwitchScreen(new PerkScreen(gameInstance, "Your player now heals for 10 every time you defeat a boss"));
+                }
+                if (player.getBossCounter() >= 2){
+                    player.getShip().setMaxHealth(player.getShip().getMaxHealth() + 5);
+                }
+                if(player.getBossCounter() ==2){
+                    gameInstance.fadeSwitchScreen(new PerkScreen(gameInstance, "Your player gains 5 hp every time time you defeat a boss"));
+                }
+
+
+
+                //gameInstance.advanceLevel();
             } else {
                 gameInstance.fadeSwitchScreen(new CardSelectionScreen(gameInstance, gameInstance.getCardManager().getRandomSelection(difficulty)), true);
             }

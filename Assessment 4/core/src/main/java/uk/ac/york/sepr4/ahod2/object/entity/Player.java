@@ -17,6 +17,7 @@ public class Player {
     private Optional<Node> location = Optional.empty();
     private Integer gold = 100;
     private GameLevel level;
+    private Integer BossCounter;
 
     public Player(GameLevel gameLevel) {
         ship = new Ship();
@@ -24,6 +25,7 @@ public class Player {
         //set higher than default ship health
         ship.setMaxHealth(20);
         ship.setHealth(20);
+        BossCounter = 0;
     }
 
     //TODO: WIP
@@ -41,6 +43,14 @@ public class Player {
 
     public Ship getShip(){
         return ship;
+    }
+
+    public Integer getBossCounter(){
+        return BossCounter;
+    }
+
+    public void incBoss(){
+        BossCounter++;
     }
 
 }
