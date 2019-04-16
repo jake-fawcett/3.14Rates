@@ -19,7 +19,8 @@ public class Ship {
 
     private String name;
     private boolean boss;
-    private Integer health, maxHealth = 4, mana = 1, maxMana = 1;
+    private Integer health, maxHealth = 4, mana, maxMana = 1;
+    public Integer additionalMana = 0;
     private Texture image;
     //current hand and full deck (non battle)
     private List<Card> hand = new ArrayList<>(), deck = new ArrayList<>();
@@ -105,8 +106,8 @@ public class Ship {
         hand = new ArrayList<>();
         playDeck = new ArrayDeque<>();
         delayedDamage = new ArrayList<>();
-        maxMana = 1;
-        mana = 1;
+        maxMana = 1 + additionalMana;
+        mana = 1 + additionalMana;
     }
 
     public boolean applyDelayedDamage(GameInstance gameInstance, Vector2 poi) {
@@ -153,6 +154,10 @@ public class Ship {
         } else {
             delayedDamage.add(turn, val);
         }
+    }
+
+    public void incMana(){
+        additionalMana += 1;
     }
 
     public void deductMana(Integer val) {

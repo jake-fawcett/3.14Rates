@@ -138,7 +138,7 @@ public class BattleScreen extends AHODScreen {
 
                 turnNo++;
                 //set to turn number (max at 10)
-                player.getShip().setMaxMana(turnNo);
+                player.getShip().setMaxMana(turnNo + player.getShip().additionalMana);
                 player.getShip().setMana(player.getShip().getMaxMana());
                 enemy.setMaxMana(turnNo);
                 enemy.setMana(enemy.getMaxMana());
@@ -273,6 +273,13 @@ public class BattleScreen extends AHODScreen {
                 if(player.getBossCounter() ==2){
                     gameInstance.fadeSwitchScreen(new PerkScreen(gameInstance, "Your player gains 5 hp every time time you defeat a boss"));
                 }
+                if (player.getBossCounter() >= 3){
+                    player.getShip().incMana();
+                }
+                if(player.getBossCounter() == 3){
+                    gameInstance.fadeSwitchScreen(new PerkScreen(gameInstance, "You now have 1 additional mana to start with everytime you defeat a boss"));
+                }
+
 
 
 
