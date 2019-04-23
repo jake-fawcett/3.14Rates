@@ -72,8 +72,8 @@ public class MinigameScreen extends AHODScreen {
     /***
      * Start game (when play has been clicked).
      */
-    private void playGame() {
-        createPlayTable();
+    private void playGame(Optional<Card> toWinOpt) {
+        createPlayTable(toWinOpt);
     }
 
     /***
@@ -107,7 +107,7 @@ public class MinigameScreen extends AHODScreen {
     /***
      * Create on-screen elements for minigame.
      */
-    private void createPlayTable() {
+    private void createPlayTable(Optional<Card> toWinOpt) {
         //clear stage
         getStage().clear();
         //create table
@@ -118,7 +118,6 @@ public class MinigameScreen extends AHODScreen {
             playTable.debug();
         }
 
-        Optional<Card> toWinOpt = gameInstance.getCardManager().randomCard(minigamePower);
         if (toWinOpt.isPresent()) {
             toWin = toWinOpt.get();
             Drawable drawable = FileManager.minigameBackDrawable;
@@ -179,9 +178,10 @@ public class MinigameScreen extends AHODScreen {
         introTable.setFillParent(true);
 
         //create intro label
+        Optional<Card> toWinOpt = gameInstance.getCardManager().randomCard(minigamePower);
         Label introLabel = new Label(
                 "Welcome! This game costs " + getPlayCost() + " to play!\n" +
-                        "The aim is to pick 2 identical cards from a pile of 8.\n" +
+                        "The aim is to pick 2 " + toWinOpt.get().getName() + " cards from a pile of 8 cards.\n" +
                         "You have only " + attempts + " attempts! If you win, you get to keep the card!",
                 StyleManager.generateLabelStyle(30, Color.WHITE));
 
@@ -194,7 +194,7 @@ public class MinigameScreen extends AHODScreen {
                 //check player has gold to play
                 if (gameInstance.getPlayer().getGold() >= getPlayCost()) {
                     gameInstance.getPlayer().takeGold(getPlayCost());
-                    playGame();
+                    playGame(toWinOpt);
                 } else {
                     gameInstance.getMessageHUD().addStatusMessage("You do not have enough gold", 5f);
                 }
