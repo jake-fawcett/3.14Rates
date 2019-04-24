@@ -1,3 +1,11 @@
+/* EDITIED FOR ASSESSMENT 4:
+Various stats changed for balance and to match cards. (Use git to compare against the branch called
+  "START-OF-ASSESSMENT-4-DO-NOT-TOUCH" to see full changes. We felt they were too inconsequential to highlight every
+  single one.
+
+Note: Graphics for the cards have also been changed (Icons added, some stats changed and card back added,
+  since these were missing in the proejct when we took it over.)
+*/
 [
   {
     "class": "uk.ac.york.sepr4.ahod2.object.card.Card",
