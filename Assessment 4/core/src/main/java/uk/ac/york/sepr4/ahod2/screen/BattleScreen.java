@@ -321,6 +321,7 @@ public class BattleScreen extends AHODScreen {
         table = new Table();
         table.setFillParent(true);
         table.top();
+        // EDITED FOR ASSESSMENT 4: Commented out debug table so there are no red lines in the final product
         // table.debug();
 
         //top 2/3 (ship + stat display)
