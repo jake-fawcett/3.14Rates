@@ -43,7 +43,8 @@ public class CardSelectionScreen extends AHODScreen {
         Table selectionTable = new Table();
         selectionTable.setFillParent(true);
         selectionTable.top();
-        selectionTable.debug();
+        //EDITED FOR ASSESSMENT 4: Commented out debug table so that there are no red lines on the final product
+        //selectionTable.debug();
 
         //add selection cards to table
         for (Card card : selection) {
