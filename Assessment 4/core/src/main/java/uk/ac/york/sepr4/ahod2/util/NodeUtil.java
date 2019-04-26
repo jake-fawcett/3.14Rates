@@ -22,6 +22,7 @@ public class NodeUtil {
     private static Integer maxRowWidth = 4, minRowWidth = 2;
     //chance to replace node with BattleNode
     private static Double battleNodeChance = 0.4;
+    //EDITED FOR ASSESSMENT 4: Added Sea Monster to Node map
     //chance to replace a node with SeaMonster
     private static Double seaMonsterChance = 0.1;
 

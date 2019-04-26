@@ -16,6 +16,7 @@ public class BattleNode extends Node {
         super(node.getId(), node.getRow(), node.getCol());
         setConnected(node.getConnected());
         this.setTexture(new TextureRegionDrawable(new TextureRegion(FileManager.battleNodeIcon)));
+
     }
 
     /***

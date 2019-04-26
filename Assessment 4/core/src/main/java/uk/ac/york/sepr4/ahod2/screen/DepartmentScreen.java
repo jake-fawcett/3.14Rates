@@ -41,6 +41,7 @@ public class DepartmentScreen extends AHODScreen {
         generateRandomUpgrade();
 
         setupTopTable();
+        //EDITED FOR ASSESSMENT 4: Added Stats HUD to department screen, gold balance/health clearer
         setStatsHUD(gameInstance);
         setMessageHUD(gameInstance);
     }
