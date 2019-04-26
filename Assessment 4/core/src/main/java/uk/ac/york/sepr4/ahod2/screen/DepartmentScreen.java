@@ -41,6 +41,7 @@ public class DepartmentScreen extends AHODScreen {
         generateRandomUpgrade();
 
         setupTopTable();
+        setStatsHUD(gameInstance);
         setMessageHUD(gameInstance);
     }
 
@@ -71,8 +72,8 @@ public class DepartmentScreen extends AHODScreen {
         Label label = new Label("Welcome to " + department.getName(), StyleManager.generateLabelStyle(50, Color.RED));
         topTable.add(label)
                 .expandX()
-                .padTop(Value.percentHeight(0.02f, topTable))
-                .height(Value.percentHeight(0.1f, topTable));
+                .padTop(Value.percentHeight(0.03f, topTable))
+                .height(Value.percentHeight(0.15f, topTable));
         topTable.row();
         //repair button
         repairButton = new TextButton("Click to repair!\nCost: " + getRepairCost(),
