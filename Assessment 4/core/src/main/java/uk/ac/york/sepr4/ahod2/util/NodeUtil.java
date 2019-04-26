@@ -22,6 +22,8 @@ public class NodeUtil {
     private static Integer maxRowWidth = 4, minRowWidth = 2;
     //chance to replace node with BattleNode
     private static Double battleNodeChance = 0.4;
+    //chance to replace a node with SeaMonster
+    private static Double seaMonsterChance = 0.1;
 
     /***
      * Generates random node map and populates with department,
@@ -49,6 +51,8 @@ public class NodeUtil {
                 if (random.nextDouble() <= battleNodeChance) {
                     //replace with battle node
                     finalNodes.add(new BattleNode(node));
+                } else if (random.nextDouble() <= seaMonsterChance) {
+                    finalNodes.add(new MonsterNode(node));
                 } else {
                     finalNodes.add(node);
                 }
