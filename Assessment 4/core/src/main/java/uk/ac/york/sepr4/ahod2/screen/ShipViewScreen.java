@@ -12,6 +12,7 @@ import uk.ac.york.sepr4.ahod2.GameInstance;
 import uk.ac.york.sepr4.ahod2.io.FileManager;
 import uk.ac.york.sepr4.ahod2.io.StyleManager;
 import uk.ac.york.sepr4.ahod2.object.card.Card;
+import uk.ac.york.sepr4.ahod2.object.entity.Player;
 
 public class ShipViewScreen extends AHODScreen {
 
@@ -20,14 +21,16 @@ public class ShipViewScreen extends AHODScreen {
     @Setter
     private AHODScreen previousScreen;
     //display variables
-    private Table table = new Table(), cardTable = new Table();
+    private Table table = new Table(), cardTable = new Table(), crewTable = new Table(), member1 = new Table();
     private Label levelValueLabel;
+    private Player player;
 
     public ShipViewScreen(GameInstance gameInstance) {
         super(new Stage(new ScreenViewport()), FileManager.menuScreenBG);
         this.gameInstance = gameInstance;
 
         createTable();
+        //addMember1();
     }
 
 
@@ -39,6 +42,12 @@ public class ShipViewScreen extends AHODScreen {
         cardTable.top();
         cardTable.setFillParent(true);
         cardTable.padTop(Value.percentHeight(0.05f, cardTable));
+
+        crewTable.left();
+        crewTable.padBottom(0.001f);
+        crewTable.padLeft(15);
+        crewTable.setFillParent(true);
+        crewTable.add(new Label("Crew Members: ", StyleManager.generateLabelStyle(30, Color.GOLD )));
 
         //level label
         levelValueLabel = new Label("Level: ", StyleManager.generateLabelStyle(30, Color.GREEN));
@@ -63,6 +72,7 @@ public class ShipViewScreen extends AHODScreen {
         //add tables to stage
         getStage().addActor(table);
         getStage().addActor(cardTable);
+        getStage().addActor(crewTable);
     }
 
     /***
@@ -89,6 +99,17 @@ public class ShipViewScreen extends AHODScreen {
             }
         }
     }
+
+  //  private void addMember1(){
+  //      if (player.getBossCounter() >= 1){
+  //          member1.left();
+  //          member1.setFillParent(true);
+  //          member1.padBottom(0.001f);
+  //          member1.padLeft(10);
+  //          member1.add(new Label("Extra 100 Gold every time you defeat the boss", StyleManager.generateLabelStyle(30, Color.GOLD )));
+  //          getStage().addActor(member1);
+  //      }
+  //  }
 
     @Override
     public void renderInner(float delta) {

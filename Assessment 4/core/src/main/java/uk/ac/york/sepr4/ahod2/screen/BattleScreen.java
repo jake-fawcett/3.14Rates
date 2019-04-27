@@ -267,7 +267,6 @@ public class BattleScreen extends AHODScreen {
                 if (player.getBossCounter() == 1){
                     gameInstance.fadeSwitchScreen(new PerkScreen(gameInstance, "Your player now gains an extra 100 gold everytime you defeat a boss"));
                 }
-
                 if (player.getBossCounter() >= 2){
                     player.getShip().heal(10);
                 }
@@ -286,11 +285,6 @@ public class BattleScreen extends AHODScreen {
                 if(player.getBossCounter() == 4){
                     gameInstance.fadeSwitchScreen(new PerkScreen(gameInstance, "You now have 1 additional mana to start with everytime you defeat a boss"));
                 }
-
-
-
-
-                //gameInstance.advanceLevel();
             } else {
                 gameInstance.fadeSwitchScreen(new CardSelectionScreen(gameInstance, gameInstance.getCardManager().getRandomSelection(difficulty)), true);
             }
