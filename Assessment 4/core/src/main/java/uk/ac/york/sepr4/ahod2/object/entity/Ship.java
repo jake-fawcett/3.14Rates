@@ -20,6 +20,7 @@ public class Ship {
     private String name;
     private boolean boss;
     private Integer health, maxHealth = 4, mana, maxMana = 1;
+    // ADDED FOR ASSESSMENT 4: additionalMana
     public Integer additionalMana = 0;
     private Texture image;
     //current hand and full deck (non battle)
@@ -65,6 +66,7 @@ public class Ship {
      * Increase health by specified value (cap at max health).
      * @param val specified value
      */
+    // EDITED FOR ASSESSMENT 4: Made public
     public void heal(Integer val) {
         if (health + val >= maxHealth) {
             health = maxHealth;
@@ -106,6 +108,7 @@ public class Ship {
         hand = new ArrayList<>();
         playDeck = new ArrayDeque<>();
         delayedDamage = new ArrayList<>();
+        // EDITED FOR ASSESSMENT 4: Implemented additional mana from crew
         maxMana = 1 + additionalMana;
         mana = 1 + additionalMana;
     }
@@ -156,6 +159,7 @@ public class Ship {
         }
     }
 
+    // ADDED FOR ASSESSMENT 4:  incMana
     public void incMana(){
         additionalMana += 1;
     }
