@@ -43,12 +43,6 @@ public class ShipViewScreen extends AHODScreen {
         cardTable.setFillParent(true);
         cardTable.padTop(Value.percentHeight(0.05f, cardTable));
 
-        crewTable.left();
-        crewTable.padBottom(0.001f);
-        crewTable.padLeft(15);
-        crewTable.setFillParent(true);
-        crewTable.add(new Label("Crew Members: ", StyleManager.generateLabelStyle(30, Color.GOLD )));
-
         //level label
         levelValueLabel = new Label("Level: ", StyleManager.generateLabelStyle(30, Color.GREEN));
 
@@ -99,17 +93,6 @@ public class ShipViewScreen extends AHODScreen {
             }
         }
     }
-
-  //  private void addMember1(){
-  //      if (player.getBossCounter() >= 1){
-  //          member1.left();
-  //          member1.setFillParent(true);
-  //          member1.padBottom(0.001f);
-  //          member1.padLeft(10);
-  //          member1.add(new Label("Extra 100 Gold every time you defeat the boss", StyleManager.generateLabelStyle(30, Color.GOLD )));
-  //          getStage().addActor(member1);
-  //      }
-  //  }
 
     @Override
     public void renderInner(float delta) {
