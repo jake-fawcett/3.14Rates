@@ -52,6 +52,7 @@ public class NodeUtil {
                 if (random.nextDouble() <= battleNodeChance) {
                     //replace with battle node
                     finalNodes.add(new BattleNode(node));
+                // ADDED FOR ASSESSMENT 3: Sea monster node
                 } else if (random.nextDouble() <= seaMonsterChance) {
                     finalNodes.add(new MonsterNode(node));
                 } else {
