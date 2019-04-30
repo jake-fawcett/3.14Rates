@@ -260,6 +260,7 @@ public class BattleScreen extends AHODScreen {
             gameInstance.getMessageHUD().addGoldMessage(gold);
             if (enemy.isBoss()) {
                 //screen is switched in this method
+                // EDITED FOR ASSESSMENT 4: Crew members for bosses
                 player.incBoss();
                 if (player.getBossCounter() >= 1){
                     player.addGold(100);
@@ -344,6 +345,7 @@ public class BattleScreen extends AHODScreen {
         table = new Table();
         table.setFillParent(true);
         table.top();
+        // EDITED FOR ASSESSMENT 4: Commented out debug table
         // table.debug();
 
         //top 2/3 (ship + stat display)
