@@ -139,7 +139,7 @@ public class BattleScreen extends AHODScreen {
 
                 turnNo++;
                 //set to turn number (max at 10)
-                player.getShip().setMaxMana(turnNo);
+                player.getShip().setMaxMana(turnNo + player.getShip().additionalMana);
                 player.getShip().setMana(player.getShip().getMaxMana());
                 enemy.setMaxMana(turnNo);
                 enemy.setMana(enemy.getMaxMana());
@@ -261,7 +261,32 @@ public class BattleScreen extends AHODScreen {
             gameInstance.getMessageHUD().addGoldMessage(gold);
             if (enemy.isBoss()) {
                 //screen is switched in this method
-                gameInstance.advanceLevel();
+                // EDITED FOR ASSESSMENT 4: Crew members for bosses
+                player.incBoss();
+                if (player.getBossCounter() >= 1){
+                    player.addGold(100);
+                }
+                if (player.getBossCounter() == 1){
+                    gameInstance.fadeSwitchScreen(new PerkScreen(gameInstance, "Your player now gains an extra 100 gold everytime you defeat a boss"));
+                }
+                if (player.getBossCounter() >= 2){
+                    player.getShip().heal(10);
+                }
+                if (player.getBossCounter() == 2){
+                    gameInstance.fadeSwitchScreen(new PerkScreen(gameInstance, "Your player now heals for 10 every time you defeat a boss"));
+                }
+                if (player.getBossCounter() >= 3){
+                    player.getShip().setMaxHealth(player.getShip().getMaxHealth() + 5);
+                }
+                if(player.getBossCounter() ==3){
+                    gameInstance.fadeSwitchScreen(new PerkScreen(gameInstance, "Your player gains 5 hp every time time you defeat a boss"));
+                }
+                if (player.getBossCounter() >= 4){
+                    player.getShip().incMana();
+                }
+                if(player.getBossCounter() == 4){
+                    gameInstance.fadeSwitchScreen(new PerkScreen(gameInstance, "You now have 1 additional mana to start with everytime you defeat a boss"));
+                }
             } else {
                 gameInstance.fadeSwitchScreen(new CardSelectionScreen(gameInstance, gameInstance.getCardManager().getRandomSelection(difficulty)), true);
             }

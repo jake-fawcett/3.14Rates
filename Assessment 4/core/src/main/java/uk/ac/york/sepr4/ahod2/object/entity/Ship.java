@@ -19,7 +19,9 @@ public class Ship {
 
     private String name;
     private boolean boss;
-    private Integer health, maxHealth = 4, mana = 1, maxMana = 1;
+    private Integer health, maxHealth = 4, mana, maxMana = 1;
+    // ADDED FOR ASSESSMENT 4: additionalMana
+    public Integer additionalMana = 0;
     private Texture image;
     //current hand and full deck (non battle)
     private List<Card> hand = new ArrayList<>(), deck = new ArrayList<>();
@@ -64,7 +66,8 @@ public class Ship {
      * Increase health by specified value (cap at max health).
      * @param val specified value
      */
-    private void heal(Integer val) {
+    // EDITED FOR ASSESSMENT 4: Made public
+    public void heal(Integer val) {
         if (health + val >= maxHealth) {
             health = maxHealth;
         } else {
@@ -105,8 +108,9 @@ public class Ship {
         hand = new ArrayList<>();
         playDeck = new ArrayDeque<>();
         delayedDamage = new ArrayList<>();
-        maxMana = 1;
-        mana = 1;
+        // EDITED FOR ASSESSMENT 4: Implemented additional mana from crew
+        maxMana = 1 + additionalMana;
+        mana = 1 + additionalMana;
     }
 
     public boolean applyDelayedDamage(GameInstance gameInstance, Vector2 poi) {
@@ -153,6 +157,11 @@ public class Ship {
         } else {
             delayedDamage.add(turn, val);
         }
+    }
+
+    // ADDED FOR ASSESSMENT 4:  incMana
+    public void incMana(){
+        additionalMana += 1;
     }
 
     public void deductMana(Integer val) {

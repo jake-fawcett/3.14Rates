@@ -12,6 +12,7 @@ import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import uk.ac.york.sepr4.ahod2.GameInstance;
 import uk.ac.york.sepr4.ahod2.io.FileManager;
 import uk.ac.york.sepr4.ahod2.object.card.Card;
+import uk.ac.york.sepr4.ahod2.object.entity.Player;
 
 import java.util.List;
 
@@ -75,6 +76,7 @@ public class CardSelectionScreen extends AHODScreen {
         gameInstance.getPlayer().getShip().addCard(card);
         gameInstance.fadeSwitchScreen(gameInstance.getSailScreen(), true);
     }
+
 
     @Override
     public void renderInner(float delta) {
