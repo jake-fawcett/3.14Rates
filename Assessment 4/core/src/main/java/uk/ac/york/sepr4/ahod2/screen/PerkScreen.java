@@ -1,3 +1,5 @@
+// ADDED FOR ASSESSMENT 4: This entire class was added to show the player what the new crew member that they earned does
+
 package uk.ac.york.sepr4.ahod2.screen;
 
 import com.badlogic.gdx.graphics.Color;
