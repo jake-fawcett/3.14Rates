@@ -139,6 +139,7 @@ public class BattleScreen extends AHODScreen {
 
                 turnNo++;
                 //set to turn number (max at 10)
+                // EDITED FOR ASSESSMENT 4: Added additionalMana
                 player.getShip().setMaxMana(turnNo + player.getShip().additionalMana);
                 player.getShip().setMana(player.getShip().getMaxMana());
                 enemy.setMaxMana(turnNo);
