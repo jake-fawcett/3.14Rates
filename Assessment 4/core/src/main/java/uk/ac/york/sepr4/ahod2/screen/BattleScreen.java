@@ -288,6 +288,9 @@ public class BattleScreen extends AHODScreen {
                 if(player.getBossCounter() == 4){
                     gameInstance.fadeSwitchScreen(new PerkScreen(gameInstance, "You now have 1 additional mana to start with everytime you defeat a boss"));
                 }
+                if (player.getBossCounter() == 5){
+                    gameInstance.fadeSwitchScreen(new EndScreen(gameInstance, true), true);
+                }
             } else {
                 gameInstance.fadeSwitchScreen(new CardSelectionScreen(gameInstance, gameInstance.getCardManager().getRandomSelection(difficulty)), true);
             }
