@@ -1,11 +1,9 @@
 package uk.ac.york.sepr4.ahod2.screen;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
-import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
@@ -13,7 +11,6 @@ import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import uk.ac.york.sepr4.ahod2.GameInstance;
 import uk.ac.york.sepr4.ahod2.io.FileManager;
-import uk.ac.york.sepr4.ahod2.io.StyleManager;
 import uk.ac.york.sepr4.ahod2.object.card.Card;
 import uk.ac.york.sepr4.ahod2.object.entity.Player;
 
@@ -28,7 +25,6 @@ public class CardSelectionScreen extends AHODScreen {
     private GameInstance gameInstance;
     //has card been chosen
     private boolean selected = false;
-    private Player player;
 
     public CardSelectionScreen(GameInstance gameInstance, List<Card> selection) {
         super(new Stage(new ScreenViewport()), FileManager.menuScreenBG);
