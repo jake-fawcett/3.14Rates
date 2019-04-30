@@ -12,6 +12,7 @@ import uk.ac.york.sepr4.ahod2.GameInstance;
 import uk.ac.york.sepr4.ahod2.io.FileManager;
 import uk.ac.york.sepr4.ahod2.io.StyleManager;
 import uk.ac.york.sepr4.ahod2.object.card.Card;
+// ADDED FOR ASSESSMENT 4: Import
 import uk.ac.york.sepr4.ahod2.object.entity.Player;
 
 public class ShipViewScreen extends AHODScreen {
@@ -21,16 +22,14 @@ public class ShipViewScreen extends AHODScreen {
     @Setter
     private AHODScreen previousScreen;
     //display variables
-    private Table table = new Table(), cardTable = new Table(), crewTable = new Table(), member1 = new Table();
+    private Table table = new Table(), cardTable = new Table(), crewTable = new Table();
     private Label levelValueLabel;
-    private Player player;
 
     public ShipViewScreen(GameInstance gameInstance) {
         super(new Stage(new ScreenViewport()), FileManager.menuScreenBG);
         this.gameInstance = gameInstance;
 
         createTable();
-        //addMember1();
     }
 
 
@@ -66,6 +65,7 @@ public class ShipViewScreen extends AHODScreen {
         //add tables to stage
         getStage().addActor(table);
         getStage().addActor(cardTable);
+        // ADDED FOR ASSESSMENT 4: Shows what crew you have
         getStage().addActor(crewTable);
     }
 
