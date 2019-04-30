@@ -17,6 +17,7 @@ public class Player {
     private Optional<Node> location = Optional.empty();
     private Integer gold = 100;
     private GameLevel level;
+    // ADDED FOR ASSESSMENT 4: Boss Counter
     private Integer BossCounter;
 
     public Player(GameLevel gameLevel) {
@@ -25,6 +26,7 @@ public class Player {
         //set higher than default ship health
         ship.setMaxHealth(20);
         ship.setHealth(20);
+        // ADDED FOR ASSESSMENT 4: Boss Counter
         BossCounter = 0;
     }
 
@@ -41,6 +43,7 @@ public class Player {
         this.gold += gold;
     }
 
+    // ADDED FOR ASSESSMENT 4: getShip, getBossCounter and incBoss
     public Ship getShip(){
         return ship;
     }
