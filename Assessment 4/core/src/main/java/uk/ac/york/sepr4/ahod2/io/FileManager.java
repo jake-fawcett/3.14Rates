@@ -22,7 +22,7 @@ public class FileManager {
     public static Texture randEncounterIcon = new Texture(Gdx.files.internal("images/node/encounter.png"));
     public static Texture battleNodeIcon = new Texture(Gdx.files.internal("images/node/battle.png"));
     public static Texture departmentNodeIcon = new Texture(Gdx.files.internal("images/node/department.png"));
-    //EDITED FOR ASSESSMENT 4: Added Sea Monster node icon
+    // EDITED FOR ASSESSMENT 4: Added Sea Monster node icon
     public static Texture seamonsterNodeIcon = new Texture(Gdx.files.internal("images/node/seamonster.png"));
 
     public static Texture hudShipView = new Texture(Gdx.files.internal("images/hud/shipview.png"));

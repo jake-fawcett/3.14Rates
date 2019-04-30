@@ -1,4 +1,4 @@
-/*ADDED FOR ASSESSMENT 4
+/* ADDED FOR ASSESSMENT 4
 Added Monster Screen class extending AHODScreen, Creates the screen seen by the user when they encounter the sea monster
  */
 
