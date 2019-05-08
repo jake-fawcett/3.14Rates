@@ -259,6 +259,7 @@ public class BattleScreen extends AHODScreen {
         if (ship == enemy) {
             //player wins (reset mana and cards)
             player.addGold(gold);
+            player.addScore(100);
             gameInstance.getMessageHUD().addGoldMessage(gold);
             if (enemy.isBoss()) {
                 //screen is switched in this method

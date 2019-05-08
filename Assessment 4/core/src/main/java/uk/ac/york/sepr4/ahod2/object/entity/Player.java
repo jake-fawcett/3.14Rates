@@ -19,6 +19,7 @@ public class Player {
     private GameLevel level;
     // ADDED FOR ASSESSMENT 4: Boss Counter
     private Integer BossCounter;
+    private Integer Score;
 
     public Player(GameLevel gameLevel) {
         ship = new Ship();
@@ -28,11 +29,16 @@ public class Player {
         ship.setHealth(20);
         // ADDED FOR ASSESSMENT 4: Boss Counter
         BossCounter = 0;
+        Score = 0;
     }
 
     //TODO: WIP
     public Integer getScore() {
-        return 0;
+        return Score;
+    }
+
+    public void addScore(int amount ){
+        Score += amount;
     }
 
     public void takeGold(Integer gold) {
